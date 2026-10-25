@@ -71,6 +71,10 @@ document.head.append(el("style", {}, `
   #ftCard .chips button{background:transparent!important;color:var(--muted);padding:0 6px;font-size:16px}
   #ftCard .link{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
   #ftCard .link button{white-space:nowrap}
+  #ftCard .arrive{display:grid;gap:6px;padding:12px;border-radius:12px;background:var(--panel);border:1px solid var(--line)}
+  #ftCard .arrive .k{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--team)}
+  #ftCard .arrive .note{font-size:14px;line-height:1.4}
+  #ftCard .arrive .where{font-size:12px;color:var(--muted)}
   #ftCard .sec{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
   .ftpin{background:none;border:0;display:flex;flex-direction:column;align-items:center;cursor:pointer}
   .ftpin .ini{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;font:800 13px var(--font);border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35)}
@@ -306,6 +310,40 @@ if (topEv) {
   document.addEventListener("pointerdown", e => { if (!e.target.closest(".ce-top")) closePops(); });
 }
 
+/* ---------- finding the event itself ----------
+   The coordinator pins the exact door guests should use (by standing there, or from the
+   address) and adds arrival notes. Guests get Expréss Walker's own turn-by-turn directions
+   to that spot, with the note shown, before they look for the team. */
+function findEvent(e) {
+  if (!e?.spot) return;
+  if (guide) stopFind();
+  if (fromPlace) { fromPlace = null; $("fromInput").value = ""; map.removeLayer(startMarker); }
+  const name = (e.name || "The event") + " · entrance", { lat, lng } = e.spot;
+  dest = { lat, lng, name };
+  destMarker.setLatLng([lat, lng]).bindPopup(el("div", {}, el("b", {}, name), e.arrive ? el("div", {}, e.arrive) : null)).setOpacity(1);
+  $("destInput").value = name;
+  arrived = false; route = null; routeLine.setLatLngs([]); stepIdx = 0;
+  map.fitBounds(last ? [[last.lat, last.lng], [lat, lng]] : [[lat, lng], [lat, lng]], { padding: [60, 40], maxZoom: 17 });
+  if (watchId == null) start(); else if (last) fetchRoute();
+  setStatus(`Walking you to ${e.name || "the event"}.` + (e.arrive ? " " + e.arrive : ""), "ok");
+}
+async function findVenueByAddress(e) {
+  setStatus("Looking up " + e.venue + "…");
+  try { const g = await geocode(e.venue); if (!g) return setStatus("Couldn't find “" + e.venue + "” on the map.", "err");
+        findEvent({ ...e, spot: { lat: g.lat, lng: g.lng } }); }
+  catch (_) { setStatus("Search failed. Check your connection.", "err"); }
+}
+function eventSpotBlock(e) {
+  if (!e?.spot && !e?.venue) return null;
+  return el("div", { class: "arrive" },
+    el("span", { class: "k" }, "Find the event"),
+    e.arrive ? el("span", { class: "note" }, e.arrive) : null,
+    e.venue ? el("span", { class: "where" }, e.venue + (e.spot ? " · entrance pinned by the coordinator" : "")) : null,
+    e.spot ? el("button", { type: "button", onclick: () => findEvent(e) }, "Walk me to the entrance")
+           : el("button", { type: "button", onclick: () => findVenueByAddress(e) }, "Directions to the venue"));
+}
+const roundSpot = (lat, lng, acc, how) => ({ lat: +lat.toFixed(6), lng: +lng.toFixed(6), acc: acc == null ? null : Math.round(acc), how });
+
 /* ---------- joining from a link ---------- */
 function join(cfg, pid) {
   if (ev?.id !== cfg.id) { if (on) checkOut(); pos = {}; }
@@ -390,7 +428,7 @@ const joinTopic = id => FT.prefix + id + "-join";
 const replyTopic = (id, rid) => FT.prefix + id + "-j-" + rid;
 const JOIN_TTL = 12 * 3600000;
 const joinLinkFor = d => location.origin + location.pathname + "#teamjoin=" +
-  encCfg({ id: d.id, name: d.name, venue: d.venue, date: d.date, start: d.start, end: d.end, jpub: d.jpub });
+  encCfg({ id: d.id, name: d.name, venue: d.venue, date: d.date, start: d.start, end: d.end, spot: d.spot, arrive: d.arrive, jpub: d.jpub });
 
 // --- the person asking ---
 let asking = jget("ftJoinPending");     // { info, rid, jwk, name, role, phone, at, state }
@@ -435,7 +473,7 @@ function cancelAsk() { askEs?.close(); askEs = null; asking = null; jset("ftJoin
 function renderAsk() {
   const a = asking, info = a.info;
   const when = [fmtD(info.date), range(info.start, info.end)].filter(Boolean).join(" · ");
-  const head = [el("b", {}, "Join " + (info.name || "this event")), info.venue ? el("span", { class: "muted" }, info.venue) : null, when ? el("span", { class: "muted" }, when) : null];
+  const head = [el("b", {}, "Join " + (info.name || "this event")), when ? el("span", { class: "muted" }, when) : null, eventSpotBlock(info)];
   const close = label => el("button", { type: "button", class: "ghost", onclick: cancelAsk }, label);
   if (a.state === "form") {
     const nameIn = el("input", { type: "text", placeholder: "Your name", "aria-label": "Your name", autocomplete: "name", maxlength: "40" });
@@ -530,7 +568,7 @@ function render() {
 function renderIntro() {
   setCard(
     el("b", {}, "Find my team"),
-    el("span", { class: "muted" }, "For events. The coordinator adds the team, sends each person their own link, and everyone who checks in can find each other on the map, with walking directions and a WhatsApp button."),
+    el("span", { class: "muted" }, "Find the event, then the team. The coordinator pins the exact entrance and adds arrival notes, so guests are walked to the right door, not just the address. Everyone who checks in can then find each other on the map, with walking directions and a WhatsApp button."),
     el("button", { type: "button", onclick: () => { draft ??= newDraft(); view = "setup"; render(); } }, draft?.people.length ? "Continue setting up the team" : "Set up a team"),
     el("span", { class: "muted" }, "Got a link from your coordinator? Open it on this phone and you're in."));
 }
@@ -548,6 +586,7 @@ function renderSetup() {
   const sIn = el("input", { type: "time", "aria-label": "Shift starts" }), eIn = el("input", { type: "time", "aria-label": "Shift ends" });
   sIn.value = d.start || ""; eIn.value = d.end || "";
   const hint = el("span", { class: "hint", hidden: "" });
+  const spotHint = el("span", { class: "hint", hidden: "" });
   const addPerson = e => {
     e.preventDefault();
     const n = nameIn.value.trim();
@@ -559,6 +598,26 @@ function renderSetup() {
     el("b", {}, "Set up the team"),
     f("Event name", inp("name", "Hart wedding · Saturday")),
     f("Venue", inp("venue", "The Foundry, 1055 Thomas Jefferson St NW")),
+    el("div", { class: "sec" }, "Where guests should go"),
+    d.spot ? el("span", { class: "muted" }, (d.spot.how === "here" ? "Entrance pinned where you stood" : "Pinned from the address") + (d.spot.acc ? ` (±${d.spot.acc} m)` : "") + ".") 
+           : el("span", { class: "muted" }, "Not pinned yet. Guests will get directions to the address only."),
+    el("div", { class: "row" },
+      el("button", { type: "button", class: "ghost", onclick: () => {
+          if (!navigator.geolocation) { spotHint.textContent = "This phone can't share its location."; spotHint.hidden = false; return; }
+          spotHint.textContent = "Getting your exact spot…"; spotHint.hidden = false;
+          navigator.geolocation.getCurrentPosition(p => { d.spot = roundSpot(p.coords.latitude, p.coords.longitude, p.coords.accuracy, "here"); saveDraft(); renderSetup(); },
+            () => { spotHint.textContent = "Couldn't get your location. Allow location for this page and try again."; }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
+        } }, "Pin where I’m standing"),
+      el("button", { type: "button", class: "ghost", onclick: async () => {
+          if (!d.venue) { spotHint.textContent = "Type the venue address first."; spotHint.hidden = false; return; }
+          spotHint.textContent = "Looking up the address…"; spotHint.hidden = false;
+          try { const g = await geocode(d.venue); if (!g) { spotHint.textContent = "Couldn't find that address. Try adding the city."; return; }
+                d.spot = roundSpot(g.lat, g.lng, null, "address"); saveDraft(); renderSetup(); }
+          catch (_) { spotHint.textContent = "Search failed. Check your connection."; }
+        } }, "Pin from the address")),
+    spotHint,
+    f("Arrival notes for guests", inp("arrive", "Side door on 21st St · look for the black Expréss flag")),
+    el("span", { class: "muted" }, "Hard-to-find venue? Stand at the door guests should use and tap “Pin where I’m standing”; it’s more exact than an address."),
     f("Date", inp("date", "", "date")),
     el("div", { class: "grid2" }, f("Event starts", inp("start", "", "time")), f("Event ends", inp("end", "", "time"))),
     f("WhatsApp group link", inp("group", "https://chat.whatsapp.com/…", "url")),
@@ -635,6 +694,7 @@ function renderLive() {
     el("div", { class: "row", style: "align-items:center;justify-content:space-between" },
       el("div", {}, el("b", {}, ev.name || "Event"), el("div", { class: "muted" }, ev.venue || ""), evWhen ? el("div", { class: "muted" }, evWhen) : null),
       el("span", { class: "pill " + (on ? "on" : "off") }, on ? "Sharing" : "Not sharing")),
+    eventSpotBlock(ev),
     el("div", { class: "tm", style: "border-top:0;padding-top:0" },
       el("span", { class: "av", style: `background:${color(m.role)}` }, initials(m.name)),
       el("div", {}, el("div", { class: "nm" }, m.name + " (you)"), el("span", { class: "muted" }, m.role + (myShift ? ` · ${shiftWord(m)} ${myShift}` : "") + (myNote ? ` · ${myNote}` : ""))),
