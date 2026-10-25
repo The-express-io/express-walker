@@ -166,7 +166,7 @@ async function onMessage(raw) {
     if (!pos[p.id] || (p.ts || 0) >= pos[p.id].ts) delete pos[p.id];
   } else if (p.t === "roster" && p.cfg && (p.cfg.rv || 0) > (ev.rv || 0) && p.cfg.cpub === ev.cpub && await verifyCfg(ev.cpub, p.cfg, p.sig)) {
     // the coordinator changed the team: take the new list, keep this event's id and key
-    ev = { ...p.cfg, id: ev.id, k: ev.k }; jset("ftEvent", ev);
+    ev = { ...p.cfg, id: ev.id, k: ev.k }; jset("ftEvent", ev); remember();
     if (!me()) { leave(true); return; }
   }
   liveRefresh();
@@ -232,21 +232,96 @@ function drawPins() {
   }
 }
 
+/* ---------- saved events and profile (header bar) ----------
+   Every event this phone has joined is kept on this phone, so you can switch
+   between them from the event button in the header. Nothing is stored anywhere else. */
+const savedList = () => (jget("ftSaved") || []).filter(s => s?.cfg?.id && s.pid);
+function remember() {
+  if (!ev || !meId) return updateTop();
+  const l = savedList().filter(s => s.cfg.id !== ev.id);
+  l.unshift({ cfg: ev, pid: meId, at: Date.now() });
+  jset("ftSaved", l.slice(0, 20)); updateTop();
+}
+function forget(id) { jset("ftSaved", savedList().filter(s => s.cfg.id !== id)); updateTop(); }
+const evWhen = e => [e.date ? fmtD(e.date) : "", e.start ? fmtT(e.start) : ""].filter(Boolean).join(" · ");
+const isToday = d => d && d === new Date().toLocaleDateString("en-CA");
+const topEv = $("ceEvent"), topMenu = $("ceMenu"), topMe = $("ceMe"), topProfile = $("ceProfile");
+function updateTop() {
+  if (!topEv) return;
+  const n = savedList().length;
+  $("ceEventLabel").textContent = ev ? (isToday(ev.date) ? "Today’s event" : ev.date ? fmtD(ev.date) : "Your event") : (n ? "Your events" : "Events");
+  $("ceEventName").textContent = ev ? [ev.name || "Unnamed event", ev.venue].filter(Boolean).join(" · ") : (n ? `${n} saved · choose one` : "No event yet");
+  const nm = load("fmName");
+  $("ceMeTxt").textContent = nm ? initials(nm) : "Me";
+  topMe.setAttribute("aria-label", nm ? `Your profile: ${nm}` : "Your profile");
+}
+function closePops() {
+  for (const [b, p] of [[topEv, topMenu], [topMe, topProfile]]) { p.hidden = true; b.setAttribute("aria-expanded", "false"); }
+}
+function openPop(b, p, fill) {
+  const wasOpen = !p.hidden; closePops(); if (wasOpen) return;
+  fill(); p.hidden = false; b.setAttribute("aria-expanded", "true");
+  p.querySelector("button,input")?.focus();
+}
+function fillMenu() {
+  const l = savedList();
+  const rows = l.map(s => {
+    const cur = ev?.id === s.cfg.id, who = s.cfg.people?.find(p => p.id === s.pid);
+    return el("button", { type: "button", class: "ev", "aria-current": cur ? "true" : "false", onclick: () => {
+        closePops(); if (cur) { setMode("team"); return; }
+        join(s.cfg, s.pid); setStatus(`Switched to ${s.cfg.name || "this event"}.`, "ok");
+      } },
+      el("b", {}, s.cfg.name || "Unnamed event"),
+      el("span", {}, [s.cfg.venue, evWhen(s.cfg), who ? who.role : ""].filter(Boolean).join(" · ")),
+      cur ? el("em", {}, "Current") : null);
+  });
+  const kids = [el("h2", {}, "Your events"),
+    el("span", { class: "muted" }, l.length ? "Events you’ve joined on this phone. Tap one to switch; your check-in for the current event ends first." : "No saved events yet. Open the link your coordinator sends you and the event is saved here."),
+    ...rows,
+    el("div", { class: "row" },
+      el("button", { type: "button", onclick: () => { closePops(); setMode("team"); draft ??= newDraft(); view = "setup"; render(); } }, "Set up a new event")),
+    ev ? el("button", { type: "button", class: "forget", onclick: () => { if (confirm("Remove the current event from this phone?")) { closePops(); leave(); } } }, "Remove the current event from this phone") : null];
+  topMenu.replaceChildren(...kids.filter(Boolean));
+}
+function fillProfile() {
+  const nameIn = el("input", { type: "text", autocomplete: "name", maxlength: "40", placeholder: "Your name" });
+  const phoneIn = el("input", { type: "tel", autocomplete: "tel", inputmode: "tel", maxlength: "20", placeholder: "Your phone number" });
+  nameIn.value = load("fmName") || ""; phoneIn.value = load("fmPhone") || "";
+  const saved = !!load("fmName");
+  topProfile.replaceChildren(
+    el("h2", {}, saved ? "Hi, " + (load("fmName").split(" ")[0]) : "Sign in on this phone"),
+    el("span", { class: "muted" }, "Saved on this phone only. It fills in your details when you ask to find someone or join an event."),
+    el("label", {}, "Name", nameIn), el("label", {}, "Phone", phoneIn),
+    el("div", { class: "row" },
+      el("button", { type: "button", onclick: () => {
+          const n = nameIn.value.trim(); if (!n) { nameIn.focus(); return; }
+          store("fmName", n); store("fmPhone", phoneIn.value.trim() || null); updateTop(); closePops(); setStatus("Profile saved on this phone.", "ok");
+        } }, "Save"),
+      saved ? el("button", { type: "button", class: "ghost", onclick: () => { store("fmName", null); store("fmPhone", null); updateTop(); closePops(); setStatus("Signed out on this phone.", "ok"); } }, "Sign out") : null));
+}
+if (topEv) {
+  topEv.onclick = () => openPop(topEv, topMenu, fillMenu);
+  topMe.onclick = () => openPop(topMe, topProfile, fillProfile);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && (!topMenu.hidden || !topProfile.hidden)) { closePops(); topEv.focus(); } });
+  document.addEventListener("pointerdown", e => { if (!e.target.closest(".ce-top")) closePops(); });
+}
+
 /* ---------- joining from a link ---------- */
 function join(cfg, pid) {
   if (ev?.id !== cfg.id) { if (on) checkOut(); pos = {}; }
   if (ev?.id === cfg.id && (ev.rv || 0) > (cfg.rv || 0)) cfg = { ...ev };   // keep a newer roster we already have
-  ev = cfg; meId = pid; jset("ftEvent", ev); store("ftMe", pid);
+  ev = cfg; meId = pid; jset("ftEvent", ev); store("ftMe", pid); remember();
   view = "live"; connect(); setMode("team");
   startJoinListener();
 }
 function leave(removed) {
+  if (ev) forget(ev.id);
   if (on) checkOut();
   if (guide) stopFind();
   es?.close(); es = null; ev = null; meId = null; pos = {};
   jset("ftEvent", null); store("ftMe", null); clearPins();
   if (removed) setStatus("You've been removed from this event's team.", "err");
-  render();
+  render(); updateTop();
 }
 function handleTeamLink() {
   const j = location.hash.match(/^#teamjoin=([\w-]+)$/);
@@ -297,7 +372,7 @@ async function publishDraft() {
   draft.rv = Date.now(); saveDraft();
   const { k, ...cfg } = draft;                    // the event key never travels through the relay
   const msg = { t: "roster", cfg, sig: await signCfg(draft.id, cfg) };
-  if (ev?.id === draft.id) { ev = { ...draft }; jset("ftEvent", ev); }
+  if (ev?.id === draft.id) { ev = { ...draft }; jset("ftEvent", ev); remember(); }
   try {                                           // push the new team to every phone on the event
     const dk = await crypto.subtle.importKey("raw", b64u.dec(draft.k), { name: "AES-GCM" }, false, ["encrypt"]);
     await relayPost(FT.prefix + draft.id, await seal(dk, msg));
@@ -616,6 +691,7 @@ function liveRefresh() {
 
 /* ---------- start ---------- */
 if (ev && !me()) { ev = null; meId = null; jset("ftEvent", null); }
+if (ev) remember(); else updateTop();
 setMode(mode);
 connect();
 if (ev && on && watchId == null) start();      // still checked in after a reload: pick tracking back up

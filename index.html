@@ -151,9 +151,86 @@ ol.steps li.cur{background:#e4f8ef;box-shadow:inset 4px 0 0 #17865f}ol.steps .no
 .human-support{display:grid;gap:7px;padding:5px 0 7px}.human-support .eyebrow{margin:0;color:#17865f;font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.human-support h1{margin:0;font:400 40px/.88 'Bauer Bodoni','Times New Roman',serif;letter-spacing:-.015em}.human-support .intro{margin:3px 0 5px;color:var(--muted);font-size:12px;line-height:1.5}.whatsapp-jump{display:flex;align-items:center;justify-content:center;min-height:45px;padding:11px 14px;border-radius:10px;color:#fff;background:#17865f;font-size:13px;font-weight:800;text-decoration:none}.whatsapp-jump:hover{background:#116b4b}.whatsapp-jump:focus-visible{outline:3px solid rgba(81,201,153,.35);outline-offset:2px}
 @media(min-width:900px){.panel{width:430px;padding:20px 22px calc(18px + env(safe-area-inset-bottom))}.ce-brand{margin-bottom:3px}}
 @media(max-width:899px){.ce-brand{position:sticky;top:0;z-index:20;margin:-12px -16px 2px;padding:11px 16px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px)}.ce-brand img{width:46px;height:46px}.ce-brand strong{font-size:17px}}
+
+/* Cülinary Expréss · Figma alignment: black brand bar, event switcher, profile, forest-green actions */
+html:root{--team:#173a2f;--team-bg:#f2f6f3;--ce-forest:#173a2f;--ce-forest-2:#24473b;--ce-mint:#66e0ad;--ce-ink:#080908}
+.ce-brand{display:none}
+.ce-top{position:relative;z-index:1200;flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:var(--ce-ink);color:#fff;padding:calc(10px + env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 10px max(16px,env(safe-area-inset-left))}
+.ce-top-brand{display:flex;align-items:center;gap:12px;min-width:0}
+.ce-top-brand img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#000;box-shadow:0 0 0 2px #fff}
+.ce-top-brand div{display:grid;min-width:0}
+.ce-top-brand strong{font:400 21px/1.05 'Bauer Bodoni','Playfair Display','Times New Roman',serif;letter-spacing:-.01em;white-space:nowrap}
+.ce-top-brand span{margin-top:4px;color:#b9bdb9;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.ce-top-acts{display:flex;align-items:center;gap:10px;min-width:0}
+.ce-event{display:flex;align-items:center;gap:10px;min-width:0;max-width:300px;background:#151715;color:#fff;border:1px solid #2c2f2c;border-radius:12px;padding:7px 12px 7px 8px;text-align:left}
+.ce-event:hover{background:#1d201d}
+.ce-cal{display:grid;place-items:center;width:30px;height:30px;flex:none;border-radius:8px;background:var(--ce-forest);color:var(--ce-mint)}
+.ce-ev-txt{display:grid;min-width:0}
+.ce-ev-txt small{color:#9fa49f;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.ce-ev-txt b{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ce-chev{color:#9fa49f;font-size:20px;line-height:1}
+.ce-me{width:44px;height:44px;flex:none;border-radius:50%;padding:0;background:var(--ce-mint);color:var(--ce-forest);font-size:13px;font-weight:800;letter-spacing:.02em}
+.ce-me:hover{background:#7ee8bc}
+.ce-pop{position:absolute;right:max(16px,env(safe-area-inset-right));top:calc(100% + 8px);width:min(360px,calc(100vw - 32px));max-height:70vh;overflow-y:auto;
+  background:#fff;color:var(--fg);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px rgba(8,9,8,.22);padding:16px;display:grid;gap:10px}
+.ce-pop h2{margin:0;font:400 24px/1.05 'Bauer Bodoni','Times New Roman',serif}
+.ce-pop .muted{color:var(--muted);font-size:12px;line-height:1.45}
+.ce-pop .ev{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;width:100%;text-align:left;background:#f7f9fa;color:var(--fg);border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+.ce-pop .ev[aria-current="true"]{border-color:var(--ce-forest);background:#eef5f1}
+.ce-pop .ev b{font-size:14px}.ce-pop .ev span{grid-column:1;color:var(--muted);font-size:12px;font-weight:500}
+.ce-pop .ev em{grid-row:1/3;grid-column:2;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ce-forest)}
+.ce-pop .row{display:flex;gap:8px}.ce-pop .row>*{flex:1}
+.ce-pop label{display:grid;gap:4px;font-size:12px;font-weight:700;color:var(--muted)}
+.ce-pop input{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#f7f9fa;color:var(--fg);font:inherit;width:100%}
+.ce-pop .forget{background:transparent;color:var(--muted);border:0;padding:4px;font-size:12px;font-weight:600;text-decoration:underline;justify-self:start}
+.ce-kicker{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 6px;padding-bottom:10px;border-bottom:1px solid var(--line);color:#66747a;font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.ce-kicker .n{font:400 20px/1 'Bauer Bodoni','Times New Roman',serif;letter-spacing:0;color:var(--fg)}
+.human-support .eyebrow{color:#1f5b48}
+button{background:var(--ce-forest)}button.ghost{background:#fff;color:var(--fg)}
+.find,.route-form .side button[type="submit"]{background:var(--ce-forest)}
+.modes button[aria-pressed="true"],.modes.two button[aria-pressed="true"][data-find]{background:var(--ce-forest)!important;color:#fff}
+.whatsapp-jump{background:#fff;color:var(--fg);border:1px solid var(--line);gap:8px}
+.whatsapp-jump::before{content:"";width:16px;height:16px;flex:none;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M21 12a8 8 0 0 1-11.6 7.1L4 20l1-5A8 8 0 1 1 21 12z'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M21 12a8 8 0 0 1-11.6 7.1L4 20l1-5A8 8 0 1 1 21 12z'/%3E%3C/svg%3E") center/contain no-repeat}
+.whatsapp-jump:hover{background:#f4f7f5}
+.leaflet-tile-pane{filter:grayscale(1) sepia(.18) hue-rotate(95deg) saturate(.55) brightness(1.04) contrast(.9)}
+.ce-privacy{margin:0;order:98;text-align:center;color:var(--muted);font-size:11px}
+@media(min-width:900px){
+  body{display:grid;grid-template-columns:minmax(0,1fr) 430px;grid-template-rows:auto minmax(0,1fr)}
+  .ce-top{grid-column:1/-1}
+  .mapwrap,.panel{grid-row:2;height:auto;min-height:0}
+  .mapwrap{grid-column:1}.panel{grid-column:2;width:auto}
+}
+@media(max-width:899px){
+  .ce-top{padding-top:calc(8px + env(safe-area-inset-top));padding-bottom:8px}
+  .ce-top-brand img{width:36px;height:36px}.ce-top-brand strong{font-size:17px}.ce-top-brand span{display:none}
+  .ce-event{max-width:46vw;padding:5px 8px 5px 5px;gap:7px}.ce-cal{width:26px;height:26px}.ce-chev{display:none}
+  .ce-me{width:38px;height:38px}
+}
+@media(max-width:420px){.ce-top{gap:8px}.ce-top-brand{gap:8px}.ce-top-brand img{width:32px;height:32px}.ce-top-brand strong{font-size:15px}.ce-cal{display:none}.ce-event{max-width:38vw;padding:5px 9px}.ce-me{width:36px;height:36px;font-size:12px}}
 </style>
 </head>
 <body>
+<header class="ce-top">
+  <div class="ce-top-brand">
+    <img src="assets/express-logo.png" alt="The Expréss">
+    <div><strong>Cülinary Expréss</strong><span>Expréss Walker</span></div>
+  </div>
+  <div class="ce-top-acts">
+    <button type="button" class="ce-event" id="ceEvent" aria-haspopup="dialog" aria-expanded="false" aria-controls="ceMenu">
+      <span class="ce-cal" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+      <span class="ce-ev-txt"><small id="ceEventLabel">Your events</small><b id="ceEventName">No event yet</b></span>
+      <span class="ce-chev" aria-hidden="true">›</span>
+    </button>
+    <button type="button" class="ce-me" id="ceMe" aria-haspopup="dialog" aria-expanded="false" aria-controls="ceProfile" aria-label="Your profile">
+      <span id="ceMeTxt">Me</span>
+    </button>
+  </div>
+  <div class="ce-pop" id="ceMenu" hidden role="dialog" aria-label="Your events"></div>
+  <div class="ce-pop" id="ceProfile" hidden role="dialog" aria-label="Your profile"></div>
+</header>
 <div class="mapwrap">
   <div id="map"></div>
   <div class="banner" id="banner" hidden>
@@ -167,10 +244,11 @@ ol.steps li.cur{background:#e4f8ef;box-shadow:inset 4px 0 0 #17865f}ol.steps .no
     <div><strong>Cülinary Expréss</strong><span>Expréss Walker · Live event concierge</span></div>
   </div>
   <section class="human-support" aria-labelledby="humanSupportTitle">
-    <p class="eyebrow">Live human assistance</p>
+    <p class="ce-kicker"><span>CE / Guest experience</span><span class="n">01</span></p>
+    <p class="eyebrow">Find my team · Live assistance</p>
     <h1 id="humanSupportTitle">Find your<br>event team.</h1>
     <p class="intro">Connect directly with a real Cülinary Expréss team member for help during your event.</p>
-    <a class="whatsapp-jump" href="https://wa.me/18326939729?text=Hi%20C%C3%BClinary%20Expr%C3%A9ss%21%20I%27m%20at%20the%20event%20and%20would%20like%20assistance." target="_blank" rel="noopener">Jump to WhatsApp</a>
+    <a class="whatsapp-jump" aria-label="Jump to WhatsApp" href="https://wa.me/18326939729?text=Hi%20C%C3%BClinary%20Expr%C3%A9ss%21%20I%27m%20at%20the%20event%20and%20would%20like%20assistance." target="_blank" rel="noopener">Jump to WhatsApp</a>
   </section>
   <form class="route-form" id="destForm">
     <div class="fields">
@@ -209,7 +287,8 @@ ol.steps li.cur{background:#e4f8ef;box-shadow:inset 4px 0 0 #17865f}ol.steps .no
     <button id="followBtn" class="ghost" type="button">Follow: on</button>
     <button id="clearBtn" class="ghost" type="button">Clear trail</button>
   </div>
-  <p class="version" id="version">Walk Tracker · version 22 Oct 2026 · Find my team</p>
+  <p class="ce-privacy">Your location is shared only while using Expréss Walker.</p>
+  <p class="version" id="version">Expréss Walker · version 25 Oct 2026 · Cülinary Expréss</p>
   <details id="stepsBox" open>
     <summary id="stepsSum">Directions</summary>
     <ol class="steps" id="steps"><li><span class="i">ⓘ</span><span>Start tracking to get directions from where you are.</span><span></span></li></ol>
@@ -220,7 +299,7 @@ ol.steps li.cur{background:#e4f8ef;box-shadow:inset 4px 0 0 #17865f}ol.steps .no
 <script>
 // Default destination: CVS, 2000 Pennsylvania Ave NW, Washington DC
 let dest = { lat: 38.9002258, lng: -77.046458, name: "CVS, 2000 Pennsylvania Ave NW" };
-const APP_VERSION = "22 Oct 2026 · Find my team";
+const APP_VERSION = "25 Oct 2026 · Cülinary Expréss branding, saved events";
 const SPEED = { foot: 1.35, bike: 4.5, car: 9 };          // fallback m/s for "time" when no route
 const STEP_AHEAD = { foot: 5, bike: 10, car: 20 };         // m before a turn when it becomes the current step
 const OFF_ROUTE = { foot: 40, bike: 50, car: 70 };         // m from the line before rerouting
