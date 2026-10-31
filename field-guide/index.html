@@ -95,6 +95,12 @@ h1 em{font-style:normal;color:var(--red);display:block}
 .inq{margin-top:40px;padding-top:36px;border-top:1.5px solid var(--line)}
 .inq[hidden]{display:none}
 .inq h3{margin:0;font-weight:700;font-size:28px;letter-spacing:-.03em}
+.vendors{display:grid;gap:16px}
+.vrow{display:grid;grid-template-columns:1fr 1fr 44px;gap:16px;align-items:end}
+.vdel{appearance:none;border:0;cursor:pointer;width:44px;height:52px;border-radius:14px;background:var(--bg);font:600 22px 'Manrope',sans-serif;color:var(--muted)}
+.vdel:hover{background:#e2e2e2;color:var(--ink)}
+.vdel[hidden]{visibility:hidden;display:block}
+@media(max-width:900px){.vrow{grid-template-columns:1fr 44px}.vrow label:nth-child(2){grid-column:1}.vrow .vdel{grid-row:1;grid-column:2}}
 .form .err{color:var(--red);font-size:14px;font-weight:600}
 
 
@@ -162,11 +168,17 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
 
     <div class="panel" id="panel-byo" hidden>
       <div class="panel-head">
-        <div><h3>Your favorite isn’t listed? That’s okay.</h3><p>We can include them in your event, and maybe add them to the Fíeld Güide.</p></div>
+        <div><h3>You know your favorite vendors, great!</h3><p>We can include them in your event, and maybe add them to the Fíeld Güide.</p></div>
       </div>
       <form class="form" id="byoForm" novalidate>
-        <label>Vendor or venue<input name="vname" required autocomplete="off" placeholder="e.g. Your favorite taquería"></label>
-        <label>Website or Instagram<input name="vlink" autocomplete="off" placeholder="https:// or @handle"></label>
+        <div class="vendors full" id="vendorRows">
+          <div class="vrow">
+            <label>Vendor or venue<input name="vname" autocomplete="off" placeholder="e.g. Your favorite taquería"></label>
+            <label>Website or Instagram<input name="vlink" autocomplete="off" placeholder="https:// or @handle"></label>
+            <button class="vdel" type="button" aria-label="Remove this vendor" hidden>×</button>
+          </div>
+        </div>
+        <div class="full"><button class="pill line" type="button" id="addVendor" style="border:0;cursor:pointer;font-family:inherit">+ Add another vendor</button></div>
         <label>Your name<input name="cname" required autocomplete="name"></label>
         <label>Event date (optional)<input name="cdate" type="date"></label>
         <div class="row">
@@ -214,15 +226,23 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
     const body = [`Name: ${d.name}`, `Email: ${d.email}`, d.date && `Event date: ${d.date}`, d.guests && `Guest count: ${d.guests}`, d.notes && `Occasion: ${d.notes}`].filter(Boolean).join('\n');
     location.href = 'mailto:plan@culinary.express?subject=' + encodeURIComponent('Field Guide inquiry: ' + d.name) + '&body=' + encodeURIComponent(body);
   });
+  const rows = document.getElementById('vendorRows');
+  const syncDel = () => { const r = rows.querySelectorAll('.vrow'); r.forEach(x => x.querySelector('.vdel').hidden = r.length < 2); };
+  document.getElementById('addVendor').addEventListener('click', () => {
+    const n = rows.querySelector('.vrow').cloneNode(true);
+    n.querySelectorAll('input').forEach(i => i.value = ''); rows.appendChild(n); syncDel(); n.querySelector('input').focus();
+  });
+  rows.addEventListener('click', e => { const b = e.target.closest('.vdel'); if (!b) return; b.closest('.vrow').remove(); syncDel(); rows.querySelector('input').focus(); });
   const f = document.getElementById('byoForm'), err = document.getElementById('byoErr');
   f.addEventListener('input', () => { err.textContent = ''; });
   f.addEventListener('submit', e => {
     e.preventDefault(); err.textContent = '';
     const d = Object.fromEntries(new FormData(f));
-    if (!d.vname.trim()) { err.textContent = 'Add the vendor or venue.'; f.vname.focus(); return; }
+    const vs = [...rows.querySelectorAll('.vrow')].map(r => [r.querySelector('[name=vname]').value.trim(), r.querySelector('[name=vlink]').value.trim()]).filter(v => v[0]);
+    if (!vs.length) { err.textContent = 'Add at least one vendor or venue.'; rows.querySelector('input').focus(); return; }
     if (!d.cname.trim()) { err.textContent = 'Add your name.'; f.cname.focus(); return; }
-    const body = [`Vendor or venue: ${d.vname}`, d.vlink && `Website or Instagram: ${d.vlink}`, `My name: ${d.cname}`, d.cdate && `Event date: ${d.cdate}`].filter(Boolean).join('\n');
-    location.href = 'mailto:plan@culinary.express?subject=' + encodeURIComponent('Bring my own: ' + d.vname) + '&body=' + encodeURIComponent(body);
+    const body = [...vs.map((v, i) => `Vendor ${i + 1}: ${v[0]}${v[1] ? ' (' + v[1] + ')' : ''}`), `My name: ${d.cname}`, d.cdate && `Event date: ${d.cdate}`].filter(Boolean).join('\n');
+    location.href = 'mailto:plan@culinary.express?subject=' + encodeURIComponent('My vendors: ' + vs.map(v => v[0]).join(', ')) + '&body=' + encodeURIComponent(body);
   });
 })();
 </script>
