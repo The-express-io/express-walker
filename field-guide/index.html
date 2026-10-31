@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b0b0b">
 <title>The Fíeld Güide of Local Gems · Cülinary Expréss</title>
-<meta name="description" content="Cülinary Expréss presents the Fíeld Güide of Local Gems: recommended restaurants, rental facilities and specialty vendors. Coming soon.">
+<meta name="description" content="Cülinary Expréss presents the Fíeld Güide of Local Gems: our favorite venues and vendors, with a Lead Planner to guide your event, or Aütopílot to do it for you. Coming soon.">
 <meta property="og:title" content="Cülinary Expréss presents the Fíeld Güide of Local Gems">
 <meta property="og:description" content="Recommended restaurants, rental facilities and specialty vendors. Coming soon.">
 <meta property="og:image" content="/assets/field-guide-story-poster.jpg?v=2">
@@ -63,7 +63,7 @@ h1 em{font-style:normal;color:var(--red)}
 .film-meta b{color:var(--ink);font-weight:700}
 
 /* categories */
-.rule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.rule-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
 .rule-grid > div{border-top:1.5px solid var(--ink);padding-top:24px}
 .k{font-size:13px;font-weight:600;color:var(--soft);margin:0 0 18px}
 .rule-grid h2{margin:0 0 10px;font-weight:700;font-size:32px;line-height:1.1;letter-spacing:-.03em}
@@ -78,6 +78,24 @@ h1 em{font-style:normal;color:var(--red)}
 .step b{font-size:20px;font-weight:700;letter-spacing:-.02em}
 .step p{margin:0;color:var(--muted);font-size:16px}
 
+/* lead planner */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mode{border-radius:28px;padding:40px;display:grid;gap:16px;align-content:start}
+.mode.light{background:var(--card)}
+.mode.dark{background:var(--ink);color:#fff}
+.mode .tag{justify-self:start;font-size:13px;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--bg);color:var(--ink)}
+.mode.dark .tag{background:var(--red);color:#fff}
+.mode h3{margin:0;font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1.05;letter-spacing:-.035em}
+.mode p{margin:0;color:var(--muted);font-size:17px}
+.mode.dark p{color:#c4c4c4}
+.mode ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.mode li{display:flex;gap:10px;align-items:baseline;font-size:16px;font-weight:500}
+.mode li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--red);transform:translateY(-2px)}
+/* bring your own */
+.byo{background:var(--card);border-radius:32px;padding:56px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+.byo h2{margin:0;font-weight:700;font-size:clamp(32px,4vw,52px);line-height:1.04;letter-spacing:-.04em}
+.byo h2 span{color:var(--red)}
+.byo p{margin:18px 0 0;color:var(--muted);font-size:18px;max-width:640px}
 /* founding vendors */
 .cta-band{background:var(--ink);color:#fff;border-radius:32px;padding:64px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
 .cta-band h2{margin:0;font-weight:700;font-size:clamp(34px,4.4vw,56px);line-height:1.02;letter-spacing:-.04em}
@@ -91,7 +109,8 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
   .hero{grid-template-columns:1fr;gap:36px;padding-top:56px}
   .mark{justify-self:start;justify-items:start;order:-1}
   .mark img{width:132px}
-  .rule-grid,.steps{grid-template-columns:1fr;gap:28px}
+  .rule-grid,.steps,.modes{grid-template-columns:1fr;gap:28px}
+  .mode,.byo{padding:32px 26px}.byo{grid-template-columns:1fr}
   .cta-band{grid-template-columns:1fr;padding:40px 28px}
   .nav a.txt{display:none}
   .film-meta{flex-direction:column;gap:4px}
@@ -106,6 +125,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
     <b>Cülinary Expréss</b><span>Fíeld Güide</span>
   </a>
   <nav class="nav" aria-label="Main">
+    <a class="txt" href="#planner">Your Lead Planner</a>
     <a class="txt" href="#film">The story</a>
     <a class="txt" href="#vendors">For vendors</a>
     <a class="pill red" href="https://www.culinary.express">Plan an event</a>
@@ -120,9 +140,9 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
         <p><b>Cülinary Expréss</b>presents</p>
       </div>
       <h1 id="t">The Fíeld Güide <em>of Local Gems</em></h1>
-      <p class="lede">Our guide to the local gems we recommend: restaurants, rental facilities and specialty vendors such as coffee and pastry. Find the vendors you love, then book them for your event, with the staff, rentals and the whole night handled.</p>
+      <p class="lede">Peruse the Fíeld Güide of Local Gems to find our favorite venues and vendors. Then your Cülinary Expréss Lead Planner brings them together and guides you through every part of your event.</p>
       <div class="ctas">
-        <a class="pill dark" href="#vendors">Become a founding vendor</a>
+        <a class="pill dark" href="https://www.culinary.express">Plan an event</a>
         <a class="pill line" href="#film">Watch the story</a>
       </div>
     </div>
@@ -141,21 +161,51 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
 
   <section aria-labelledby="who">
     <p class="eyebrow"><span class="dot"></span>Who you’ll find</p>
-    <h2 id="who" class="big">The vendors people already love, <span>ready for your event.</span></h2>
+    <h2 id="who" class="big">Our favorite venues and vendors, <span>the local gems behind every great event.</span></h2>
     <div class="rule-grid">
-      <div><p class="k">01 · Food</p><h2>Restaurants</h2><p>The kitchens you’d pick for a night out, bringing their menu to your venue.</p></div>
-      <div><p class="k">02 · Materials</p><h2>Rental facilities</h2><p>Tables, linens, tents and chafing dishes: everything that sets the scene.</p></div>
-      <div><p class="k">03 · Specialty</p><h2>Specialty vendors</h2><p>Espresso carts, pastry and the details that make an event yours.</p></div>
+      <div><p class="k">01 · Place</p><h2>Venues</h2><p>Vineyards, rooftops, gardens and private rooms worth gathering in.</p></div>
+      <div><p class="k">02 · Food</p><h2>Restaurants</h2><p>The kitchens you’d pick for a night out, bringing their menu to your venue.</p></div>
+      <div><p class="k">03 · Materials</p><h2>Rental facilities</h2><p>Tables, linens, tents and chafing dishes: everything that sets the scene.</p></div>
+      <div><p class="k">04 · Specialty</p><h2>Specialty vendors</h2><p>Espresso carts, pastry and the details that make an event yours.</p></div>
+    </div>
+  </section>
+
+  <section id="planner" aria-labelledby="lp">
+    <p class="eyebrow"><span class="dot"></span>Your Lead Planner</p>
+    <h2 id="lp" class="big">A Lead Planner guides you through every part of your event. <span>Or does it all for you.</span></h2>
+    <div class="modes">
+      <div class="mode light">
+        <span class="tag">Guided</span>
+        <h3>Plan it together.</h3>
+        <p>Your Cülinary Expréss Lead Planner walks you through every decision, from the venue and the menu to the staff, the rentals and the run of the night.</p>
+        <ul><li>Pick your venue and vendors from the Fíeld Güide</li><li>Approve the quote and the details at your pace</li><li>Follow the event live in your client portal</li></ul>
+      </div>
+      <div class="mode dark">
+        <span class="tag">Aütopílot</span>
+        <h3>Let your Lead Planner do it.</h3>
+        <p>Select Aütopílot and your Lead Planner handles everything for you. You make the big calls; we take care of every detail after that.</p>
+        <ul><li>Vendors booked and coordinated for you</li><li>Staff, rentals and timeline handled</li><li>You simply show up and enjoy it</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="byo">
+    <div class="byo">
+      <div>
+        <h2 id="byo">Your favorite isn’t listed? <span>That’s okay.</span></h2>
+        <p>If your preferred vendor or venue isn’t in the Fíeld Güide yet, we can still include them in your event, and we may even add them to the Güide.</p>
+      </div>
+      <a class="pill dark" href="https://www.culinary.express">Plan with your favorites</a>
     </div>
   </section>
 
   <section aria-labelledby="how">
     <p class="eyebrow"><span class="dot"></span>How it will work</p>
-    <h2 id="how" class="big">Find a gem. Book it. <span>We run the night.</span></h2>
+    <h2 id="how" class="big">Find a gem. Choose your way. <span>We run the night.</span></h2>
     <div class="steps">
-      <div class="step"><span class="n">01</span><b>Browse the Fíeld Güide</b><p>Every vendor has its own page with menus, catalogues and rentals.</p></div>
-      <div class="step"><span class="n">02</span><b>Book with your vendor</b><p>Start an event with your favorite vendor already on it.</p></div>
-      <div class="step"><span class="n">03</span><b>We handle the rest</b><p>Cülinary Expréss brings the staff and rentals and runs the event.</p></div>
+      <div class="step"><span class="n">01</span><b>Peruse the Fíeld Güide</b><p>Every venue and vendor has its own page with menus, catalogues and rentals. Bring your own favorites too.</p></div>
+      <div class="step"><span class="n">02</span><b>Guided or Aütopílot</b><p>Plan side by side with your Lead Planner, or select Aütopílot and let them do it for you.</p></div>
+      <div class="step"><span class="n">03</span><b>We run the night</b><p>Cülinary Expréss brings the staff and rentals and runs your event from start to finish.</p></div>
     </div>
   </section>
 
@@ -163,7 +213,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
     <div class="cta-band">
       <div>
         <h2 id="fv">Become a founding vendor.</h2>
-        <p>Restaurants, rental facilities and specialty vendors: be among the first local gems in the Fíeld Güide. Zero commission on the events we book for you.</p>
+        <p>Venues, restaurants, rental facilities and specialty vendors: be among the first local gems in the Fíeld Güide. Zero commission on the events we book for you.</p>
       </div>
       <a class="pill red" href="mailto:plan@culinary.express?subject=Field%20Guide%20founding%20vendor&amp;body=Business%20name%3A%0ACity%3A%0AWhat%20we%20offer%3A%0AWebsite%20or%20Instagram%3A">Apply by email</a>
     </div>
