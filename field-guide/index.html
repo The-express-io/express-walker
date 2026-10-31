@@ -260,6 +260,8 @@ footer{font-size:13px;letter-spacing:.04em}
   document.querySelector('.pill-hit').addEventListener('click', e => { e.preventDefault(); show('peruse'); });
   const v = document.querySelector('.frame video');
   const tryPlay = () => { const r = v.play(); if (r) r.catch(() => { v.controls = true; }); };
+  const SPEED = 0.6; v.defaultPlaybackRate = SPEED; v.playbackRate = SPEED;
+  v.addEventListener('loadedmetadata', () => { v.playbackRate = SPEED; });
   v.muted = true; tryPlay();
   if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && v.paused) tryPlay(); }), { threshold: .25 }).observe(v);
   v.addEventListener('click', () => { if (v.paused) { v.play(); } });
