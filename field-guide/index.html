@@ -123,6 +123,11 @@ h1 em{font-style:normal;color:var(--red);display:block;font-size:.62em;line-heig
 .chip-c input:checked + span{background:var(--ink);color:#fff}
 .chip-c input:focus-visible + span{outline:3px solid var(--red);outline-offset:2px}
 @media(max-width:900px){.details{grid-template-columns:1fr}}
+.book h3{margin:0;font-weight:700;font-size:clamp(26px,3vw,38px);line-height:1.08;letter-spacing:-.03em}
+.book > p{color:var(--muted);margin:12px 0 0}
+.book .cal{margin-top:24px;border-radius:20px;overflow:hidden;background:#fff;box-shadow:inset 0 0 0 1px var(--line)}
+.book iframe{display:block;width:100%;height:720px;border:0}
+.book .small{font-size:14px;margin-top:14px}
 .form .err{color:var(--red);font-size:14px;font-weight:600}
 
 
@@ -188,7 +193,7 @@ footer{font-size:13px;letter-spacing:.04em}
     </div>
   </section>
 
-  <section class="start" aria-label="Where would you like to start?">
+  <section class="start" id="start" aria-label="Where would you like to start?">
     <div>
       <div class="choose" role="group" aria-label="Where would you like to start?">
         <button class="choice" type="button" data-go="peruse" aria-pressed="false" aria-controls="panel-peruse"><span class="n">01 · Our picks</span><b>Let us pick the local gems</b><span class="s">Our favorite venues and vendors <i>→</i></span></button>
@@ -260,6 +265,7 @@ footer{font-size:13px;letter-spacing:.04em}
   btns.forEach(b => b.addEventListener('click', () => show(b.dataset.go)));
   if (location.hash === '#bring-your-own') show('byo');
   if (location.hash === '#local-gems') show('peruse');
+  if (location.hash === '#start') setTimeout(() => document.getElementById('start').scrollIntoView({ block: 'start' }), 50);
   document.querySelector('.pill-hit').addEventListener('click', e => { e.preventDefault(); show('peruse'); });
   const v = document.querySelector('.frame video');
   const tryPlay = () => { const r = v.play(); if (r) r.catch(() => { v.controls = true; }); };
@@ -300,13 +306,27 @@ footer{font-size:13px;letter-spacing:.04em}
     if (!/^\S+@\S+\.\S+$/.test(form.email.value.trim())) { err.textContent = 'Add a valid email.'; form.email.focus(); return false; }
     return true;
   };
-  const send = (subject, body) => { location.href = 'mailto:plan@culinary.express?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body.join('\n')); };
+  // Step 1: the inquiry goes to the Lead Planner. Step 2: book a call on Calendly, prefilled with name and email.
+  const send = (form, subject, body) => {
+    location.href = 'mailto:plan@culinary.express?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body.join('\n'));
+    const name = form.name.value.trim(), email = form.email.value.trim();
+    const cal = 'https://calendly.com/theexpress?hide_gdpr_banner=1&name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email);
+    const panel = form.closest('.panel');
+    panel.innerHTML = `<div class="book">
+      <p class="eyebrow" style="margin:0 0 14px"><span class="dot"></span>Step 2 of 2</p>
+      <h3>Thanks, ${name.replace(/[<>&"]/g, '')}. Now book a call with your Lead Planner.</h3>
+      <p>Your inquiry is ready to send in your email app. Pick a time below and we'll plan the rest together.</p>
+      <div class="cal"><iframe src="${cal}" title="Book a call with Cülinary Expréss on Calendly" loading="lazy"></iframe></div>
+      <p class="small">Calendar not loading? <a href="${cal}" target="_blank" rel="noopener">Open Calendly in a new tab</a>.</p>
+    </div>`;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
   document.querySelectorAll('#inqForm,#byoForm').forEach(f => f.addEventListener('input', () => { f.querySelector('.err').textContent = ''; }));
   const iq = document.getElementById('inqForm');
   iq.addEventListener('submit', e => {
     e.preventDefault(); const err = iq.querySelector('.err');
     if (!check(iq, err)) return;
-    send('Field Guide inquiry: ' + iq.name.value.trim(), ['Let us pick the local gems.', '', ...summarize(iq)]);
+    send(iq, 'Field Guide inquiry: ' + iq.name.value.trim(), ['Let us pick the local gems.', '', ...summarize(iq)]);
   });
   const rows = document.getElementById('vendorRows');
   const syncDel = () => { const r = rows.querySelectorAll('.vrow'); r.forEach(x => x.querySelector('.vdel').hidden = r.length < 2); };
@@ -321,7 +341,7 @@ footer{font-size:13px;letter-spacing:.04em}
     const vs = [...rows.querySelectorAll('.vrow')].map(r => [r.querySelector('[name=vname]').value.trim(), r.querySelector('[name=vlink]').value.trim()]).filter(v => v[0]);
     if (!vs.length) { err.textContent = 'Add at least one vendor or venue.'; rows.querySelector('input').focus(); return; }
     if (!check(f, err)) return;
-    send('My vendors: ' + vs.map(v => v[0]).join(', '), [...vs.map((v, i) => `Vendor ${i + 1}: ${v[0]}${v[1] ? ' (' + v[1] + ')' : ''}`), '', ...summarize(f)]);
+    send(f, 'My vendors: ' + vs.map(v => v[0]).join(', '), [...vs.map((v, i) => `Vendor ${i + 1}: ${v[0]}${v[1] ? ' (' + v[1] + ')' : ''}`), '', ...summarize(f)]);
   });
 })();
 </script>
