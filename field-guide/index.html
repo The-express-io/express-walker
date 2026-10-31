@@ -171,6 +171,11 @@ footer{font-size:13px;letter-spacing:.04em}
 @media(max-width:900px){
   .stories{gap:18px;flex-wrap:wrap}
 }
+.start{scroll-margin-top:88px}
+.inquiry .panel-head p{max-width:640px}
+.gems{background:var(--bg);border-radius:20px;padding:24px}
+.gems .form input,.gems input{background:#fff}
+.gems-h{margin:0 0 18px;color:var(--muted);font-size:15px}.gems-h b{display:block;color:var(--ink);font-size:17px;margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -193,42 +198,32 @@ footer{font-size:13px;letter-spacing:.04em}
     </div>
   </section>
 
-  <section class="start" id="start" aria-label="Where would you like to start?">
-    <div>
-      <div class="choose" role="group" aria-label="Where would you like to start?">
-        <button class="choice" type="button" data-go="peruse" aria-pressed="false" aria-controls="panel-peruse"><span class="n">01 · Our picks</span><b>Let us pick the local gems</b><span class="s">Our favorite venues and vendors <i>→</i></span></button>
-        <button class="choice" type="button" data-go="byo" aria-pressed="false" aria-controls="panel-byo"><span class="n">02 · Your picks</span><b>Input yours</b><span class="s">Your favorite vendor or venue <i>→</i></span></button>
-      </div>
-    </div>
-  </section>
-
-  <section class="picked" id="picked" aria-live="polite">
-    <div class="panel" id="panel-peruse" hidden>
+  <section class="start" id="start" aria-labelledby="inq-t">
+    <div class="panel inquiry">
       <div class="panel-head">
-        <div><h3>Let us pick the local gems.</h3><p>Tell us about your event. Your Lead Planner picks the vendors, or select Aütopílot and we handle it all.</p></div>
+        <div>
+          <p class="eyebrow" style="margin:0 0 14px">Start your inquiry</p>
+          <h3 id="inq-t">Local gems: ours, yours, or both.</h3>
+          <p>Ask your Lead Planner to find the local gems for you, tell us the ones you already love, or both. It is all one inquiry.</p>
+        </div>
       </div>
       <form class="form" id="inqForm" novalidate>
-        <div class="full details" data-details></div>
-        <div class="row">
-          <span class="err" role="alert"></span>
-          <button class="pill red" type="submit" style="border:0;cursor:pointer;font-family:inherit">Send inquiry</button>
-        </div>
-      </form>
-    </div>
-
-    <div class="panel" id="panel-byo" hidden>
-      <div class="panel-head">
-        <div><h3>You know your favorite vendors, great!</h3><p>We can include them in your event, and maybe add them to the Fíeld Güide.</p></div>
-      </div>
-      <form class="form" id="byoForm" novalidate>
-        <div class="vendors full" id="vendorRows">
-          <div class="vrow">
-            <label>Vendor or venue<input name="vname" autocomplete="off" placeholder="e.g. Your favorite taquería"></label>
-            <label>Website or Instagram<input name="vlink" autocomplete="off" placeholder="https:// or @handle"></label>
-            <button class="vdel" type="button" aria-label="Remove this vendor" hidden>×</button>
+        <fieldset class="full needs"><legend>Who picks the vendors?</legend><div class="chips" role="radiogroup">
+          <label class="chip-c"><input type="radio" name="mode" value="find" checked><span>Find local gems for me</span></label>
+          <label class="chip-c"><input type="radio" name="mode" value="own"><span>I have my own</span></label>
+          <label class="chip-c"><input type="radio" name="mode" value="both"><span>Both</span></label>
+        </div></fieldset>
+        <div class="full gems" id="gems" hidden>
+          <p class="gems-h"><b>Your local gems</b> Restaurants, bakeries, bartenders, photographers, venues: anyone you love. We'll bring them into your event.</p>
+          <div class="vendors" id="vendorRows">
+            <div class="vrow">
+              <label>Vendor or venue<input name="vname" autocomplete="off" placeholder="e.g. Your favorite taquería"></label>
+              <label>Website or Instagram<input name="vlink" autocomplete="off" placeholder="https:// or @handle"></label>
+              <button class="vdel" type="button" aria-label="Remove this vendor" hidden>×</button>
+            </div>
           </div>
+          <button class="pill line" type="button" id="addVendor" style="border:0;cursor:pointer;font-family:inherit;margin-top:16px">+ Add another local gem</button>
         </div>
-        <div class="full"><button class="pill line" type="button" id="addVendor" style="border:0;cursor:pointer;font-family:inherit">+ Add another vendor</button></div>
         <div class="full details" data-details></div>
         <div class="row">
           <span class="err" role="alert"></span>
@@ -257,16 +252,14 @@ footer{font-size:13px;letter-spacing:.04em}
 </footer>
 <script>
 (() => {
-  const btns = [...document.querySelectorAll('.choice')];
-  const show = id => {
-    btns.forEach(b => { const on = b.dataset.go === id; b.setAttribute('aria-pressed', on); document.getElementById(b.getAttribute('aria-controls')).hidden = !on; });
-    document.getElementById('picked').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-  btns.forEach(b => b.addEventListener('click', () => show(b.dataset.go)));
-  if (location.hash === '#bring-your-own') show('byo');
-  if (location.hash === '#local-gems') show('peruse');
-  if (location.hash === '#start') setTimeout(() => document.getElementById('start').scrollIntoView({ block: 'start' }), 50);
-  document.querySelector('.pill-hit').addEventListener('click', e => { e.preventDefault(); show('peruse'); });
+  const start = document.getElementById('start'), gems = document.getElementById('gems');
+  const setMode = m => { const r = document.querySelector(`[name=mode][value="${m}"]`); if (r) r.checked = true; gems.hidden = m === 'find'; };
+  document.querySelectorAll('[name=mode]').forEach(r => r.addEventListener('change', () => setMode(r.value)));
+  const goStart = (smooth) => start.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+  if (location.hash === '#bring-your-own') { setMode('own'); setTimeout(() => goStart(), 50); }
+  if (location.hash === '#local-gems') { setMode('find'); setTimeout(() => goStart(), 50); }
+  if (location.hash === '#start') setTimeout(() => goStart(), 50);
+  document.querySelector('.pill-hit').addEventListener('click', e => { e.preventDefault(); setMode('find'); goStart(true); });
   const v = document.querySelector('.frame video');
   const tryPlay = () => { const r = v.play(); if (r) r.catch(() => { v.controls = true; }); };
   const SPEED = 0.6; v.defaultPlaybackRate = SPEED; v.playbackRate = SPEED;
@@ -281,7 +274,7 @@ footer{font-size:13px;letter-spacing:.04em}
     frame.style.aspectRatio = x.dataset.ratio;
     v.poster = x.dataset.poster; v.src = x.dataset.src; v.setAttribute('aria-label', x.dataset.label); tryPlay();
   }));
-  // shared event details, used by both inquiry forms
+  // event details for the inquiry form
   const DETAILS = `
     <label>Your name<input name="name" required autocomplete="name"></label>
     <label>Email<input name="email" type="email" required autocomplete="email"></label>
@@ -321,13 +314,8 @@ footer{font-size:13px;letter-spacing:.04em}
     </div>`;
     panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
-  document.querySelectorAll('#inqForm,#byoForm').forEach(f => f.addEventListener('input', () => { f.querySelector('.err').textContent = ''; }));
   const iq = document.getElementById('inqForm');
-  iq.addEventListener('submit', e => {
-    e.preventDefault(); const err = iq.querySelector('.err');
-    if (!check(iq, err)) return;
-    send(iq, 'Field Guide inquiry: ' + iq.name.value.trim(), ['Let us pick the local gems.', '', ...summarize(iq)]);
-  });
+  iq.addEventListener('input', () => { iq.querySelector('.err').textContent = ''; });
   const rows = document.getElementById('vendorRows');
   const syncDel = () => { const r = rows.querySelectorAll('.vrow'); r.forEach(x => x.querySelector('.vdel').hidden = r.length < 2); };
   document.getElementById('addVendor').addEventListener('click', () => {
@@ -335,13 +323,14 @@ footer{font-size:13px;letter-spacing:.04em}
     n.querySelectorAll('input').forEach(i => i.value = ''); rows.appendChild(n); syncDel(); n.querySelector('input').focus();
   });
   rows.addEventListener('click', e => { const b = e.target.closest('.vdel'); if (!b) return; b.closest('.vrow').remove(); syncDel(); rows.querySelector('input').focus(); });
-  const f = document.getElementById('byoForm');
-  f.addEventListener('submit', e => {
-    e.preventDefault(); const err = f.querySelector('.err');
-    const vs = [...rows.querySelectorAll('.vrow')].map(r => [r.querySelector('[name=vname]').value.trim(), r.querySelector('[name=vlink]').value.trim()]).filter(v => v[0]);
-    if (!vs.length) { err.textContent = 'Add at least one vendor or venue.'; rows.querySelector('input').focus(); return; }
-    if (!check(f, err)) return;
-    send(f, 'My vendors: ' + vs.map(v => v[0]).join(', '), [...vs.map((v, i) => `Vendor ${i + 1}: ${v[0]}${v[1] ? ' (' + v[1] + ')' : ''}`), '', ...summarize(f)]);
+  iq.addEventListener('submit', e => {
+    e.preventDefault(); const err = iq.querySelector('.err');
+    const mode = iq.querySelector('[name=mode]:checked').value;
+    const vs = mode === 'find' ? [] : [...rows.querySelectorAll('.vrow')].map(r => [r.querySelector('[name=vname]').value.trim(), r.querySelector('[name=vlink]').value.trim()]).filter(v => v[0]);
+    if (mode !== 'find' && !vs.length) { err.textContent = 'Add at least one of your local gems.'; rows.querySelector('input').focus(); return; }
+    if (!check(iq, err)) return;
+    const pick = { find: 'Find local gems for me.', own: 'I have my own local gems.', both: 'Both: find local gems for me, and include mine.' }[mode];
+    send(iq, 'Field Guide inquiry: ' + iq.name.value.trim(), [pick, ...(vs.length ? ['', 'My local gems:', ...vs.map((v, i) => `${i + 1}. ${v[0]}${v[1] ? ' (' + v[1] + ')' : ''}`)] : []), '', ...summarize(iq)]);
   });
 })();
 </script>
