@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#fafafa">
+<meta name="theme-color" content="#0b0b0b">
 <title>Fíeld Güide · For catering using local gems · Cülinary Expréss</title>
 <meta name="description" content="Cülinary Expréss presents the Fíeld Güide: for catering using local gems. Let us pick the local gems, or input yours.">
 <meta property="og:title" content="Cülinary Expréss presents Fíeld Güide: for catering using local gems">
@@ -45,7 +45,7 @@ section{padding:88px 0}
 .presents p{margin:0;font-size:16px;line-height:1.3;color:var(--muted)}
 .presents b{display:block;color:var(--ink);font-weight:700}
 h1{margin:0;font-weight:700;font-size:clamp(52px,8.4vw,112px);line-height:.94;letter-spacing:-.045em}
-h1 em{font-style:normal;color:var(--red);display:block}
+h1 em{font-style:normal;color:var(--red);display:block;font-size:.62em;line-height:1.02;margin-top:.12em}
 .lede{margin:32px 0 0;max-width:620px;font-size:20px;line-height:1.5;color:var(--muted)}
 .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
 
@@ -124,22 +124,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
 /* ===== refined layer: airy, editorial (ref: upqode.com) ===== */
 :root{--bg:#fafafa;--line:#e6e6e6}
 body{background:var(--bg)}
-.top{background:rgba(250,250,250,.92);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);color:var(--ink);height:84px;padding:0 max(32px,env(safe-area-inset-left));border-bottom:1px solid transparent}
-.brand img{width:38px;height:38px;background:#fff;box-shadow:0 0 0 1px var(--line)}
-.brand b{font-size:15px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
-.top-r{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding-bottom:4px;border-bottom:1.5px solid var(--ink)}
-.kicker,.eyebrow,.choice .n,.pk-k{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
-.kicker{margin:0 0 22px}
-.hero{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;gap:40px;padding-top:72px;padding-bottom:40px}
-h1{font-weight:700;font-size:clamp(60px,9vw,132px);line-height:.95;letter-spacing:-.035em}
-h1 em{display:block;color:var(--ink);font-weight:600;font-size:clamp(28px,3.4vw,46px);line-height:1.12;letter-spacing:-.02em;margin-top:22px;max-width:14ch}
-h1 em::before{content:"";display:block;width:56px;height:3px;background:var(--red);margin-bottom:22px}
-.art{width:100%;max-width:460px;justify-self:end;overflow:visible}
-.art .gem{animation:float 4s ease-in-out infinite;transform-origin:284px 208px}
-.art .spark{animation:tw 2.4s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-10px) rotate(-4deg)}}
-@keyframes tw{50%{opacity:.2}}
-@media (prefers-reduced-motion:reduce){.art .gem,.art .spark{animation:none}}
+.eyebrow,.choice .n,.pk-k{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
 .start{padding:24px 0 0}
 .choose{margin-top:0;gap:20px}
 .choice{background:#fff;border-radius:22px;box-shadow:inset 0 0 0 1px var(--line);padding:34px 36px;min-height:0;gap:12px}
@@ -162,62 +147,27 @@ h1 em::before{content:"";display:block;width:56px;height:3px;background:var(--re
 .frame{border-radius:22px}
 footer{font-size:13px;letter-spacing:.04em}
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding-top:40px;gap:16px}
-  .art{max-width:300px;justify-self:center;order:-1}
-  .top{height:68px;padding:0 20px}.top-r{display:none}
   .stories{gap:18px;flex-wrap:wrap}
 }
-@media(max-width:480px){.brand b{font-size:13px;letter-spacing:.12em}}
 </style>
 </head>
 <body>
 <header class="top">
   <a class="brand" href="https://www.culinary.express">
     <img src="/assets/culinary-express-logo.png" alt="Cülinary Expréss">
-    <b>Cülinary Expréss</b>
+    <b>Cülinary Expréss</b><span>Fíeld Güide</span>
   </a>
-  <span class="top-r">Fíeld Güide</span>
 </header>
 
 <main>
   <section class="hero" aria-labelledby="t">
-    <div class="hero-txt">
-      <p class="kicker">Cülinary Expréss presents</p>
+    <div>
+      <div class="presents">
+        <img src="/assets/culinary-express-logo.png" alt="">
+        <p><b>Cülinary Expréss</b>presents</p>
+      </div>
       <h1 id="t">Fíeld Güide <em>For catering using local gems</em></h1>
     </div>
-    <svg class="art" viewBox="0 0 520 620" role="img" aria-label="Illustration: the Lead Planner in his top hat, a red local gem, and a client waving hello">
-      <defs><pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#fff"/><circle cx="5" cy="5" r="2.6" fill="#0b0b0b"/><circle cx="13" cy="13" r="2.6" fill="#0b0b0b"/></pattern></defs>
-      <g stroke="#0b0b0b" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
-        <!-- Lead Planner -->
-        <path d="M150 336 L142 580 L176 580 L182 360 Z" fill="#fff"/>
-        <path d="M182 360 L196 580 L232 580 L214 336 Z" fill="#0b0b0b"/>
-        <path d="M128 580 L178 580 L178 596 L120 596 Z" fill="#0b0b0b"/><path d="M194 580 L244 580 L252 596 L194 596 Z" fill="#0b0b0b"/>
-        <path d="M150 160 C 120 170, 112 230, 120 340 L 222 340 C 230 250, 222 172, 196 160 Z" fill="#0b0b0b"/>
-        <path d="M160 160 L174 226 L188 160 Z" fill="#fff"/>
-        <path d="M200 196 L214 196 L212 206 L202 206 Z" fill="#c1272d" stroke="none"/>
-        <path d="M128 200 C 104 250, 110 290, 150 300 L 156 286 C 132 278, 132 252, 146 222" fill="#0b0b0b"/>
-        <rect x="166" y="138" width="16" height="22" fill="#fff"/>
-        <circle cx="174" cy="114" r="30" fill="#fff"/>
-        <circle cx="186" cy="110" r="2.5" fill="#0b0b0b" stroke="none"/>
-        <rect x="146" y="24" width="56" height="62" rx="4" fill="#0b0b0b"/>
-        <rect x="146" y="70" width="56" height="10" fill="#c1272d" stroke="none"/>
-        <rect x="130" y="84" width="88" height="8" rx="4" fill="#0b0b0b"/>
-        <!-- local gem -->
-        <g transform="translate(-34 -46)"><g class="gem"><path d="M256 196 L270 180 L298 180 L312 196 L284 236 Z" fill="#c1272d"/><path d="M256 196 L312 196 L284 236 Z" fill="#8e1218" stroke="none" opacity=".45"/><path d="M270 180 L298 180 L292 196 L276 196 Z" fill="#ff9aa1" stroke="none"/></g></g>
-        <path class="spark" d="M280 112 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 z" fill="#fff"/>
-        <!-- client -->
-        <path d="M352 400 L346 580 L378 580 L386 420 Z" fill="#c1272d"/>
-        <path d="M386 420 L396 580 L428 580 L420 400 Z" fill="#c1272d"/>
-        <path d="M336 580 L380 580 L380 596 L330 596 Z" fill="#0b0b0b"/><path d="M394 580 L438 580 L444 596 L394 596 Z" fill="#0b0b0b"/>
-        <path d="M356 250 C 334 262, 334 330, 344 404 L 432 404 C 440 330, 436 262, 414 250 Z" fill="url(#dots)"/>
-        <path d="M360 262 C 330 250, 316 220, 312 190 L 296 196 C 300 236, 320 276, 352 290 Z" fill="url(#dots)"/>
-        <path d="M300 196 C 294 180, 292 168, 298 160 M306 192 C 304 176, 306 164, 312 158 M312 192 C 314 178, 318 168, 324 166" fill="none"/>
-        <path d="M372 152 C 330 150, 330 220, 350 252 C 380 266, 430 262, 444 240 C 456 200, 430 150, 372 152 Z" fill="#0b0b0b"/>
-        <circle cx="378" cy="200" r="27" fill="#fff"/>
-        <path d="M354 188 C 358 170, 400 168, 404 186 C 390 180, 368 180, 354 188 Z" fill="#0b0b0b"/>
-        <circle cx="366" cy="204" r="2.5" fill="#0b0b0b" stroke="none"/>
-      </g>
-    </svg>
   </section>
 
   <section class="start" aria-label="Where would you like to start?">
