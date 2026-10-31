@@ -51,7 +51,12 @@ h1 em{font-style:normal;color:var(--red);display:block}
 
 /* film */
 .film{padding-top:16px}
-.frame{position:relative;border-radius:28px;overflow:hidden;background:#000;aspect-ratio:16/9}
+.frame{position:relative;border-radius:28px;overflow:hidden;background:#000;aspect-ratio:16/9;transition:aspect-ratio .3s ease}
+.stories{display:inline-grid;grid-template-columns:repeat(3,auto);gap:6px;padding:6px;margin-bottom:14px;background:#e2e2e2;border-radius:999px}
+.story{appearance:none;border:0;cursor:pointer;min-height:44px;padding:0 22px;border-radius:999px;background:transparent;font-family:inherit;font-size:15px;font-weight:600;color:var(--muted)}
+.story:hover{color:var(--ink)}
+.story[aria-pressed="true"]{background:var(--ink);color:#fff}
+@media(max-width:560px){.stories{display:grid;width:100%}.story{padding:0 8px;font-size:13px}}
 .frame video{width:100%;height:100%;display:block;object-fit:cover}
 .film-meta{display:flex;justify-content:space-between;gap:24px;margin-top:20px;font-size:15px;color:var(--muted)}
 .film-meta b{color:var(--ink);font-weight:700}
@@ -189,9 +194,14 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
     </div>
   </section>
 
-  <section class="film" aria-label="The story">
+  <section class="film" aria-label="See how it works">
+    <div class="stories" role="group" aria-label="Choose a story">
+      <button type="button" class="story" aria-pressed="true" data-src="/assets/field-guide-story.mp4?v=9" data-poster="/assets/field-guide-story-poster.jpg?v=9" data-ratio="16/9" data-label="Catering: the Lead Planner mines for local gems, the vendors you will love. Your event can be a vineyard bachelorette party, a corporate event at a museum, or an intimate birthday party at home.">Catering</button>
+      <button type="button" class="story" aria-pressed="false" data-src="/assets/field-guide-onsite.mp4?v=1" data-poster="/assets/field-guide-onsite-poster.jpg?v=1" data-ratio="16/10" data-label="Onsite bookings: browse restaurants rated in gems, filter for private dining, open Casa Lumbre, choose a date, 40 guests and the family-style package, and send it to your Lead Planner, who books the private room.">Onsite bookings</button>
+      <button type="button" class="story" aria-pressed="false" data-src="/assets/field-guide-office.mp4?v=1" data-poster="/assets/field-guide-office-poster.jpg?v=1" data-ratio="16/10" data-label="Office catering with service: filter for catering, open Okra Supper Club, choose Cater my venue, 60 guests and the lunch buffet, and send it to your Lead Planner. Our best servers set up, serve and clean up.">Office catering</button>
+    </div>
     <div class="frame">
-      <video src="/assets/field-guide-story.mp4?v=9" poster="/assets/field-guide-story-poster.jpg?v=9" autoplay muted loop playsinline preload="metadata" aria-label="Animation: the Lead Planner mines for local gems, the vendors you will love, and adds them to your event. Your event can be a vineyard bachelorette party, a corporate event at a museum, or an intimate birthday party at home, with the Cülinary Expréss logo between each one."></video>
+      <video src="/assets/field-guide-story.mp4?v=9" poster="/assets/field-guide-story-poster.jpg?v=9" autoplay muted loop playsinline preload="metadata" aria-label="Catering: the Lead Planner mines for local gems, the vendors you will love. Your event can be a vineyard bachelorette party, a corporate event at a museum, or an intimate birthday party at home."></video>
     </div>
   </section>
 </main>
@@ -215,6 +225,13 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
   v.muted = true; tryPlay();
   if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && v.paused) tryPlay(); }), { threshold: .25 }).observe(v);
   v.addEventListener('click', () => { if (v.paused) { v.play(); } });
+  const frame = document.querySelector('.frame'), sbtn = [...document.querySelectorAll('.story')];
+  sbtn.forEach(x => x.addEventListener('click', () => {
+    if (x.getAttribute('aria-pressed') === 'true') return;
+    sbtn.forEach(y => y.setAttribute('aria-pressed', y === x));
+    frame.style.aspectRatio = x.dataset.ratio;
+    v.poster = x.dataset.poster; v.src = x.dataset.src; v.setAttribute('aria-label', x.dataset.label); tryPlay();
+  }));
   const iq = document.getElementById('inqForm'), io = document.getElementById('inqOpen'), ie = document.getElementById('inqErr');
   io.addEventListener('click', () => { iq.hidden = false; io.setAttribute('aria-expanded', 'true'); iq.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(() => iq.name.focus({ preventScroll: true }), 400); });
   iq.addEventListener('input', () => { ie.textContent = ''; });
