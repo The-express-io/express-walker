@@ -204,17 +204,13 @@ footer{font-size:13px;letter-spacing:.04em}
         <div>
           <p class="eyebrow" style="margin:0 0 14px">Start your inquiry</p>
           <h3 id="inq-t">Local gems: ours, yours, or both.</h3>
-          <p>Ask your Lead Planner to find the local gems for you, tell us the ones you already love, or both. It is all one inquiry.</p>
+          <p>We can pick the local gems for you, you can use your own, or a mix of both. Tell us about your event, and add any local gems you already love at the end.</p>
         </div>
       </div>
       <form class="form" id="inqForm" novalidate>
-        <fieldset class="full needs"><legend>Who picks the vendors?</legend><div class="chips" role="radiogroup">
-          <label class="chip-c"><input type="radio" name="mode" value="find" checked><span>Find local gems for me</span></label>
-          <label class="chip-c"><input type="radio" name="mode" value="own"><span>I have my own</span></label>
-          <label class="chip-c"><input type="radio" name="mode" value="both"><span>Both</span></label>
-        </div></fieldset>
-        <div class="full gems" id="gems" hidden>
-          <p class="gems-h"><b>Your local gems</b> Restaurants, bakeries, bartenders, photographers, venues: anyone you love. We'll bring them into your event.</p>
+        <div class="full details" data-details></div>
+        <div class="full gems" id="gems">
+          <p class="gems-h"><b>Your local gems (optional)</b> Add any restaurant, ice cream cart, espresso bar, bakery or venue you love. Leave it blank and we'll pick for you, or add a few and we'll fill in the rest.</p>
           <div class="vendors" id="vendorRows">
             <div class="vrow">
               <label>Vendor or venue<input name="vname" autocomplete="off" placeholder="e.g. Your favorite taquería"></label>
@@ -224,7 +220,6 @@ footer{font-size:13px;letter-spacing:.04em}
           </div>
           <button class="pill line" type="button" id="addVendor" style="border:0;cursor:pointer;font-family:inherit;margin-top:16px">+ Add another local gem</button>
         </div>
-        <div class="full details" data-details></div>
         <div class="row">
           <span class="err" role="alert"></span>
           <button class="pill red" type="submit" style="border:0;cursor:pointer;font-family:inherit">Send to my Lead Planner</button>
@@ -252,14 +247,10 @@ footer{font-size:13px;letter-spacing:.04em}
 </footer>
 <script>
 (() => {
-  const start = document.getElementById('start'), gems = document.getElementById('gems');
-  const setMode = m => { const r = document.querySelector(`[name=mode][value="${m}"]`); if (r) r.checked = true; gems.hidden = m === 'find'; };
-  document.querySelectorAll('[name=mode]').forEach(r => r.addEventListener('change', () => setMode(r.value)));
+  const start = document.getElementById('start');
   const goStart = (smooth) => start.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
-  if (location.hash === '#bring-your-own') { setMode('own'); setTimeout(() => goStart(), 50); }
-  if (location.hash === '#local-gems') { setMode('find'); setTimeout(() => goStart(), 50); }
-  if (location.hash === '#start') setTimeout(() => goStart(), 50);
-  document.querySelector('.pill-hit').addEventListener('click', e => { e.preventDefault(); setMode('find'); goStart(true); });
+  if (['#start', '#local-gems', '#bring-your-own'].includes(location.hash)) setTimeout(() => goStart(), 50);
+  document.querySelector('.pill-hit').addEventListener('click', e => { e.preventDefault(); goStart(true); });
   const v = document.querySelector('.frame video');
   const tryPlay = () => { const r = v.play(); if (r) r.catch(() => { v.controls = true; }); };
   const SPEED = 0.6; v.defaultPlaybackRate = SPEED; v.playbackRate = SPEED;
@@ -325,11 +316,9 @@ footer{font-size:13px;letter-spacing:.04em}
   rows.addEventListener('click', e => { const b = e.target.closest('.vdel'); if (!b) return; b.closest('.vrow').remove(); syncDel(); rows.querySelector('input').focus(); });
   iq.addEventListener('submit', e => {
     e.preventDefault(); const err = iq.querySelector('.err');
-    const mode = iq.querySelector('[name=mode]:checked').value;
-    const vs = mode === 'find' ? [] : [...rows.querySelectorAll('.vrow')].map(r => [r.querySelector('[name=vname]').value.trim(), r.querySelector('[name=vlink]').value.trim()]).filter(v => v[0]);
-    if (mode !== 'find' && !vs.length) { err.textContent = 'Add at least one of your local gems.'; rows.querySelector('input').focus(); return; }
+    const vs = [...rows.querySelectorAll('.vrow')].map(r => [r.querySelector('[name=vname]').value.trim(), r.querySelector('[name=vlink]').value.trim()]).filter(v => v[0]);
     if (!check(iq, err)) return;
-    const pick = { find: 'Find local gems for me.', own: 'I have my own local gems.', both: 'Both: find local gems for me, and include mine.' }[mode];
+    const pick = vs.length ? 'Include my local gems (and fill in the rest).' : 'Pick the local gems for me.';
     send(iq, 'Field Guide inquiry: ' + iq.name.value.trim(), [pick, ...(vs.length ? ['', 'My local gems:', ...vs.map((v, i) => `${i + 1}. ${v[0]}${v[1] ? ' (' + v[1] + ')' : ''}`)] : []), '', ...summarize(iq)]);
   });
 })();
