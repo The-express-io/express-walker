@@ -57,6 +57,8 @@ h1 em{font-style:normal;color:var(--red);display:block;font-size:.62em;line-heig
 .story:hover{color:var(--ink)}
 .story[aria-pressed="true"]{background:var(--ink);color:#fff}
 @media(max-width:560px){.stories{display:grid;width:100%}.story{padding:0 8px;font-size:13px}}
+.pill-hit{position:absolute;left:3.1%;top:4.7%;width:16.8%;height:5.6%;border-radius:999px;z-index:2;transition:box-shadow .15s ease}
+.pill-hit:hover{box-shadow:0 0 0 3px var(--red)}
 .frame video{width:100%;height:100%;display:block;object-fit:cover}
 .film-meta{display:flex;justify-content:space-between;gap:24px;margin-top:20px;font-size:15px;color:var(--muted)}
 .film-meta b{color:var(--ink);font-weight:700}
@@ -235,6 +237,7 @@ footer{font-size:13px;letter-spacing:.04em}
     </div>
     <div class="frame">
       <video src="/assets/field-guide-story.mp4?v=9" poster="/assets/field-guide-story-poster.jpg?v=9" autoplay muted loop playsinline preload="metadata" aria-label="Catering: the Lead Planner mines for local gems, the vendors you will love. Your event can be a vineyard bachelorette party, a corporate event at a museum, or an intimate birthday party at home."></video>
+      <a class="pill-hit" href="#local-gems" aria-label="Open the Fíeld Güide: let us pick the local gems"></a>
     </div>
   </section>
 </main>
@@ -253,6 +256,7 @@ footer{font-size:13px;letter-spacing:.04em}
   btns.forEach(b => b.addEventListener('click', () => show(b.dataset.go)));
   if (location.hash === '#bring-your-own') show('byo');
   if (location.hash === '#local-gems') show('peruse');
+  document.querySelector('.pill-hit').addEventListener('click', e => { e.preventDefault(); show('peruse'); });
   const v = document.querySelector('.frame video');
   const tryPlay = () => { const r = v.play(); if (r) r.catch(() => { v.controls = true; }); };
   v.muted = true; tryPlay();
