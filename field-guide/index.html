@@ -176,6 +176,13 @@ footer{font-size:13px;letter-spacing:.04em}
 .gems{background:var(--bg);border-radius:20px;padding:24px}
 .gems .form input,.gems input{background:#fff}
 .gems-h{margin:0 0 18px;color:var(--muted);font-size:15px}.gems-h b{display:block;color:var(--ink);font-size:17px;margin-bottom:4px}
+.watch{flex:none;display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 12px;border-radius:999px;background:var(--bg);color:var(--ink);font-size:14px;font-weight:600;text-decoration:none;transition:background .15s ease}
+.watch:hover{background:#e6e6e6}
+.watch-play{width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;padding-left:2px}
+.watch-arrow{display:inline-block;animation:watch-bob 1.6s ease-in-out infinite}
+@keyframes watch-bob{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+@media(prefers-reduced-motion:reduce){.watch-arrow{animation:none}}
+#how{scroll-margin-top:88px}
 </style>
 </head>
 <body>
@@ -206,6 +213,7 @@ footer{font-size:13px;letter-spacing:.04em}
           <h3 id="inq-t">Local gems: ours, yours, or both.</h3>
           <p>We can pick the local gems for you, you can use your own, or a mix of both. Tell us about your event, and add any local gems you already love at the end.</p>
         </div>
+        <a class="watch" href="#how" aria-label="Watch how it works, below the form"><span class="watch-play" aria-hidden="true">▶</span><span>Watch how it works</span><span class="watch-arrow" aria-hidden="true">↓</span></a>
       </div>
       <form class="form" id="inqForm" novalidate>
         <div class="full details" data-details></div>
@@ -228,7 +236,7 @@ footer{font-size:13px;letter-spacing:.04em}
     </div>
   </section>
 
-  <section class="film" aria-label="See how it works">
+  <section class="film" id="how" aria-label="See how it works">
     <div class="stories" role="group" aria-label="Choose a story">
       <button type="button" class="story" aria-pressed="true" data-src="/assets/field-guide-story.mp4?v=10" data-poster="/assets/field-guide-story-poster.jpg?v=10" data-ratio="16/9" data-label="Catering: the Lead Planner mines for local gems, the vendors you will love. Your event can be a vineyard bachelorette party, a corporate event at a museum, or an intimate birthday party at home.">Catering</button>
       <button type="button" class="story" aria-pressed="false" data-src="/assets/field-guide-onsite.mp4?v=3" data-poster="/assets/field-guide-onsite-poster.jpg?v=3" data-ratio="16/9" data-label="Onsite bookings: you ask your Lead Planner to celebrate at your favorite restaurant. The Lead Planner plans the private dining room, menu and wine pairings, date and our best servers, then runs the night.">Onsite bookings</button>
