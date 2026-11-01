@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fíeld Güide · Test drive · Cülinary Expréss</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="https://fieldguide.culinary.express/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f1412;--bg:#f4f4f4;--card:#fff;--line:#d9d9d9;--muted:#555b58;--blue:#0047ab;--blue2:#00337d;--tint:#e8eefb}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:400 16px/1.5 Manrope,system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+button,input,select,textarea{font:inherit;color:inherit}
+.demo{background:#fff3c4;color:#4a3b00;font-size:13px;font-weight:600;text-align:center;padding:6px 12px}
+.demo a{color:inherit}
+.top{position:sticky;top:0;z-index:20;background:#0b0b0b;color:#fff;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:16px}
+.top a{color:#fff;text-decoration:none}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.brand img{width:34px;height:34px;border-radius:50%;background:#fff}
+.brand span{color:#a9a9a9;font-weight:500;font-size:14px}
+.wrap{max-width:1180px;margin:0 auto;padding:32px 24px 80px}
+.lbl{margin:0;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.lbl.b{color:var(--blue)}
+h1{margin:10px 0 0;font-size:clamp(40px,6vw,72px);line-height:1;letter-spacing:-.04em;font-weight:800}
+h2{margin:8px 0 0;font-size:clamp(28px,3.4vw,40px);line-height:1.08;letter-spacing:-.03em;font-weight:800}
+.sub{color:var(--muted);font-size:17px;margin:10px 0 0;max-width:720px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px}
+.pad{padding:24px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.side{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+@media(max-width:900px){.grid2,.grid3,.side{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:999px;font-size:15px;font-weight:700;text-decoration:none;border:0;cursor:pointer;white-space:nowrap}
+.pri{background:var(--blue);color:#fff}.pri:hover{background:var(--blue2)}
+.sec{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}.sec:hover{background:#e9e9e9}
+.wht{background:#fff;color:var(--ink)}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.between{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+label.f{display:grid;gap:6px;font-size:14px;font-weight:600}
+input[type=text],input[type=email],input[type=tel],input[type=date],input[type=number],input[type=url],select,textarea{width:100%;background:var(--bg);border:1.5px solid transparent;border-radius:12px;padding:12px 14px;font-size:16px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink);background:#fff}
+textarea{min-height:90px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;cursor:pointer}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{display:inline-block;padding:9px 15px;border-radius:999px;background:#ececec;font-size:14px;font-weight:600;color:#333}
+.chip input:checked+span{background:var(--ink);color:#fff}
+.chip.bl input:checked+span{background:var(--blue)}
+.chip input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
+.steps{display:flex;gap:22px;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:14px 24px;justify-content:center}
+.step{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--muted)}
+.dot{width:26px;height:26px;border-radius:50%;border:1.5px solid #999;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.step.now{color:var(--ink)}.step.now .dot{background:var(--blue);border-color:var(--blue);color:#fff}
+.step.done .dot{background:var(--ink);border-color:var(--ink);color:#fff}
+.err{color:#b42318;font-weight:600;font-size:14px;min-height:20px}
+.tl{display:grid;grid-template-columns:40px 1fr auto;gap:14px;align-items:start;padding:16px 0;border-top:1px solid #e6e6e6}
+.tl:first-child{border-top:0}
+.n{width:34px;height:34px;border-radius:50%;border:1.5px solid #999;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--muted)}
+.n.on{background:var(--blue);border-color:var(--blue);color:#fff}.n.ok{background:var(--ink);border-color:var(--ink);color:#fff}
+.tag{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:#ececec;color:#333;white-space:nowrap}
+.tag.b{background:var(--tint);color:var(--blue)}.tag.k{background:var(--ink);color:#fff}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{padding:10px 16px;border-radius:999px;font-size:14px;font-weight:700;border:1px solid #cfcfcf;background:#fff;color:#333;cursor:pointer;text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+.tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.it{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:14px 0;border-top:1px solid #e9e9e9}
+.qty{display:flex;align-items:center;gap:10px;font-weight:700}
+.qty button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--ink);background:#fff;cursor:pointer;font-size:18px;line-height:1}
+.qty output{min-width:32px;text-align:center}
+.sum{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid #e9e9e9;font-size:15px}
+.sum:first-of-type{border-top:0}
+.sum span:first-child{color:var(--muted)}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th{text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px 8px 8px 0}
+.tbl td{padding:12px 8px 12px 0;border-top:1px solid #e9e9e9;vertical-align:middle}
+.scroll{overflow-x:auto}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.bar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.bar>div{display:grid;gap:6px;font-size:14px}
+.bar i{display:block;height:6px;border-radius:3px;background:#dcdcdc}
+.bar .ok i{background:var(--ink)}.bar .on i{background:var(--blue)}.bar .on b{color:var(--blue)}
+@media(max-width:700px){.bar{grid-template-columns:1fr}}
+.cols{display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));gap:12px;overflow-x:auto}
+.tk{display:grid;gap:8px;padding:14px;text-decoration:none;color:var(--ink)}
+.tk:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.vd{display:flex;align-items:center;gap:8px;font-size:13px;color:#333}
+.vd i{width:9px;height:9px;border-radius:50%;background:var(--ink);flex:none}
+.vd i.w{background:#fff;border:1.5px solid var(--ink)}
+.hero{position:relative;min-height:calc(100svh - 96px);background:#1c1d1f;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:40px 24px 56px;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.hero .in{position:relative;max-width:1180px;margin:0 auto;width:100%}
+.hero h1{font-size:clamp(52px,9vw,128px);line-height:.95;font-weight:600}
+.small{font-size:13px;color:var(--muted)}
+.cal{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.cal iframe{width:100%;height:640px;border:0;display:block}
+</style>
+</head>
+<body>
+<div class="demo">Test drive with sample vendors and sample prices. Everything you enter stays in this browser. <a href="#/admin">Admin dispatch board</a> · <a href="#" id="reset">Reset demo</a></div>
+<div id="app"></div>
+<script>
+(() => {
+const KEY = 'fg-demo-v1';
+const CAL = 'https://calendly.com/theexpress';
+const LOGO = 'https://fieldguide.culinary.express/assets/culinary-express-logo.png';
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const money = n => '$' + Math.round(n).toLocaleString();
+const blank = () => ({ inq: { type: 'Catering at my venue', service: 'Buffet with service', needs: ['Food', 'Servers'], headcount: '40', start: '18:00', end: '22:00' }, gems: [], gemsMode: 'yes', cats: {}, pref: { dietary: [] }, sel: {}, staff: null, mat: null, quote: null, booked: false });
+let S; try { S = JSON.parse(localStorage.getItem(KEY)) || blank(); } catch { S = blank(); }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
+
+// Sample library of local gems (placeholder vendors for testing only)
+const LIB = {
+  'Main food': { id: 'lib-main', name: 'Sample Taquería', kind: 'Restaurant', items: [['Carnitas tray', 'Slow-cooked pork, salsa verde, tortillas', 95, 'per tray (10)'], ['Vegetable enchiladas', 'Roasted squash, mole, queso fresco', 85, 'per tray (10)'], ['Rice + beans', 'Mexican rice, black beans', 45, 'per tray (10)'], ['Chips + three salsas', 'House chips, roja, verde, pico', 30, 'per tray (10)']] },
+  'Desserts': { id: 'lib-dess', name: 'Sample Bakery', kind: 'Bakery', items: [['Churros', 'Cinnamon sugar, chocolate dip', 36, 'per dozen'], ['Tres leches', 'Sheet cake', 70, 'per half sheet (24)'], ['Cookie platter', 'Assorted', 30, 'per dozen']] },
+  'Espresso / coffee': { id: 'lib-esp', name: 'Sample Espresso Cart', kind: 'Espresso bar', items: [['Espresso cart service', 'Barista-made drinks, 3 hours', 450, 'per event'], ['Extra hour', 'Cart + barista', 120, 'per hour']] },
+  'Bar + drinks': { id: 'lib-bar', name: 'Sample Wine Bar', kind: 'Bar service', items: [['Wine + beer package', 'Two wines, two beers, 3 hours', 28, 'per person'], ['Agua fresca', 'Two flavors', 3, 'per person']] },
+  'Rentals': { id: 'lib-rent', name: 'Sample Party Rentals', kind: 'Rentals', items: [['Delivery + pickup', 'Within 15 miles', 90, 'per event']] },
+  'Venue': { id: 'lib-venue', name: 'Sample Loft Venue', kind: 'Venue', items: [['Evening rental', '6 hours, up to 80 guests', 1200, 'per event']] },
+  'Music / photo': { id: 'lib-music', name: 'Sample DJ + Photo', kind: 'Entertainment', items: [['DJ, 4 hours', 'Sound system included', 650, 'per event'], ['Photographer, 2 hours', 'Edited gallery', 500, 'per event']] }
+};
+const CATS = Object.keys(LIB);
+const gemMenu = name => [[`${name}: signature tray`, 'Sample item until their page is live', 90, 'per tray (10)'], [`${name}: side`, 'Sample item until their page is live', 40, 'per tray (10)']];
+
+const guests = () => Math.max(1, parseInt(S.inq.headcount) || 40);
+const hours = () => { const [a, b] = [S.inq.start || '18:00', S.inq.end || '22:00'].map(t => { const [h, m] = t.split(':').map(Number); return h + m / 60; }); let d = b - a; if (d <= 0) d += 24; return Math.max(2, Math.round(d)); };
+const needs = k => (S.inq.needs || []).includes(k);
+
+function vendors() {
+  const out = [];
+  if (S.gemsMode === 'yes') S.gems.filter(g => g.name).forEach((g, i) => out.push({ id: 'gem-' + i, name: g.name, kind: g.cat, mine: true, items: gemMenu(g.name) }));
+  CATS.forEach(c => { const m = S.cats[c]; if (m === 'rec' || m === 'both') out.push({ ...LIB[c], mine: false }); });
+  return out.map(v => ({ ...v, items: v.items.map(([n, d, p, u], j) => ({ id: v.id + '-' + j, n, d, p, u })) }));
+}
+function staffPlan() {
+  const g = guests(), h = hours(), svc = S.inq.service || '';
+  const servers = svc === 'Drop-off' ? 0 : Math.ceil(g / (svc === 'Plated dinner' ? 10 : 15));
+  return [
+    { k: 'captain', n: 'Event captain', d: 'Runs the floor, your single contact', q: svc === 'Drop-off' ? 0 : 1, h: h + 1, r: 55 },
+    { k: 'server', n: 'Servers', d: 'Service, clearing, guest care', q: servers, h, r: 40 },
+    { k: 'bartender', n: 'Bartender', d: 'Bar service', q: (S.cats['Bar + drinks'] && S.cats['Bar + drinks'] !== 'none') || needs('Bartenders') ? Math.ceil(g / 50) : 0, h: Math.max(2, h - 1), r: 45 },
+    { k: 'barista', n: 'Barista', d: 'Runs the espresso cart', q: (S.cats['Espresso / coffee'] && S.cats['Espresso / coffee'] !== 'none') || needs('Espresso cart') ? 1 : 0, h: 3, r: 40 },
+    { k: 'setup', n: 'Setup + breakdown', d: 'Rentals, tables, cleanup', q: Math.ceil(g / 25), h: 3, r: 35 },
+    { k: 'chef', n: 'Chef on site', d: 'Finishing, plating, food safety', q: svc === 'Plated dinner' ? 1 : 0, h, r: 60 }
+  ];
+}
+function matPlan() {
+  const g = guests(), t = Math.ceil(g / 8) + 2, buffet = /Buffet/.test(S.inq.service || '');
+  return [
+    { k: 'tables', n: 'Tables', d: '60" rounds + buffet tables', q: t, p: 12 },
+    { k: 'chairs', n: 'Chairs', d: 'Folding, white', q: g, p: 4 },
+    { k: 'linens', n: 'Linens', d: 'Black or white', q: t, p: 14 },
+    { k: 'plates', n: 'Plates', d: 'Dinner + dessert', q: g * 2, p: 1 },
+    { k: 'cutlery', n: 'Cutlery sets', d: 'Fork, knife, spoon', q: g, p: 1.5 },
+    { k: 'glass', n: 'Glassware', d: 'Wine + water', q: g * 2, p: 1 },
+    { k: 'chafing', n: 'Chafing dishes', d: 'Full size + fuel', q: buffet ? Math.max(4, Math.ceil(g / 8)) : 0, p: 18 },
+    { k: 'tent', n: 'Tent / heaters', d: 'Outdoor only', q: 0, p: 250 }
+  ];
+}
+const ensureStaff = () => { if (!S.staff) { S.staff = {}; staffPlan().forEach(r => S.staff[r.k] = { q: r.q, h: r.h }); save(); } };
+const ensureMat = () => { if (!S.mat) { S.mat = {}; matPlan().forEach(m => S.mat[m.k] = { q: m.q, src: 'ce' }); save(); } };
+function totals() {
+  ensureStaff(); ensureMat();
+  let menus = 0, nItems = 0; vendors().forEach(v => v.items.forEach(i => { const q = S.sel[i.id] || 0; menus += q * i.p; if (q) nItems++; }));
+  let staff = 0, people = 0; staffPlan().forEach(r => { const s = S.staff[r.k]; staff += s.q * s.h * r.r; people += s.q; });
+  let mat = 0, nMat = 0; matPlan().forEach(m => { const s = S.mat[m.k]; if (s.q > 0) nMat++; if (s.src === 'ce') mat += s.q * m.p; });
+  const total = Math.max(0, menus + staff + mat - 200);
+  return { menus, nItems, staff, people, mat, nMat, total };
+}
+
+const header = () => `<header class="top"><a class="brand" href="#/guide"><img src="${LOGO}" alt="">Cülinary Expréss <span>Fíeld Güide</span></a><a href="#/" style="font-size:14px;color:#cfcfcf">culinary.express</a></header>`;
+const steps = n => `<nav class="steps" aria-label="Inquiry steps">${['Your event', 'Your local gems', 'Gems from us', 'Discovery call'].map((t, i) => `<div class="step ${i + 1 < n ? 'done' : i + 1 === n ? 'now' : ''}"><span class="dot">${i + 1 < n ? '✓' : i + 1}</span>${t}</div>`).join('')}</nav>`;
+const ptabs = cur => `<div class="tabs" role="navigation" aria-label="Proposal">${[['menus', 'Menus'], ['staff', 'Staffing'], ['materials', 'Materials']].map(([k, t]) => `<a class="tab ${k === cur ? 'on' : ''}" href="#/proposal/${k}">${t}</a>`).join('')}</div>`;
+const running = (next, label) => { const t = totals(); return `<aside class="card pad" style="position:sticky;top:84px"><p class="lbl">Your event so far</p><div style="margin-top:8px"><div class="sum"><span>Menus · ${t.nItems} items</span><b>${money(t.menus)}</b></div><div class="sum"><span>Staff · ${t.people} people</span><b>${money(t.staff)}</b></div><div class="sum"><span>Materials · ${t.nMat} items</span><b>${money(t.mat)}</b></div><div class="sum"><span>First-event coupon</span><span>−$200</span></div><div class="sum"><b>Estimated total</b><b>${money(t.total)}</b></div></div><div style="margin-top:14px">${next}</div><p class="small" style="margin:10px 0 0">${label || 'Sample prices for testing.'}</p></aside>`; };
+
+const V = {}; const H = {};
+V[''] = () => `
+<section class="hero">
+  <video src="https://www.culinary.express/assets/videos/brand/hero-reel.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="in">
+    <p class="lbl" style="color:#ddd">Cülinary Expréss · Catering &amp; events</p>
+    <h1>Order Your<br><span style="color:#4f7dff">Moment</span>.</h1>
+    <p style="font-size:20px;max-width:540px;color:#eee;margin:18px 0 0">Literally any restaurant you want, brought to any venue, staffed and run by us.</p>
+    <div class="row" style="margin-top:28px"><a class="btn wht" href="#/guide">Let's Begin ↗</a><a class="btn sec" style="color:#fff;box-shadow:inset 0 0 0 1.5px #fff" href="#/admin">Admin view</a></div>
+  </div>
+</section>`;
+
+V['guide'] = () => `${header()}<main class="wrap">
+  <p class="lbl">Cülinary Expréss presents</p><h1>Fíeld Güide</h1>
+  <p class="sub" style="font-size:20px;font-weight:600;color:var(--ink)">Your guide through catering with local gems: the vendors you love, the ones we love, or both.</p>
+  <div class="grid2" style="margin-top:32px">
+    <a class="card pad" href="#/inquiry/1" style="text-decoration:none;color:var(--ink);border:2px solid var(--blue);display:grid;gap:8px"><p class="lbl b">Start here · 4 short steps</p><b style="font-size:28px;letter-spacing:-.02em">Start your inquiry</b><span style="color:var(--muted)">Your event, your local gems, what you want us to find. Then book a discovery call.</span><span class="btn pri" style="justify-self:start;margin-top:6px">Begin →</span></a>
+    <a class="card pad" href="https://fieldguide.culinary.express/#how" target="_blank" rel="noopener" style="text-decoration:none;color:var(--ink);display:grid;gap:8px"><p class="lbl">Watch</p><b style="font-size:28px;letter-spacing:-.02em">How it works ↗</b><span style="color:var(--muted)">Catering · Onsite bookings · Office catering</span></a>
+  </div>
+  <div class="card pad" style="margin-top:20px"><p class="lbl">How ordering works</p><div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-top:12px">${[['Inquiry', 'Event details and your local gems.'], ['Discovery call', 'Time with your Lead Planner.'], ['Your proposal', 'Vendor menus, staffing, materials.'], ['Request a quote', 'We confirm every vendor.'], ['Your event', 'We run it, start to finish.']].map(([t, d], i) => `<div><b style="color:var(--blue)">0${i + 1}</b><div style="font-weight:700">${t}</div><div class="small">${d}</div></div>`).join('')}</div></div>
+</main>`;
+
+V['inquiry/1'] = () => { const q = S.inq; const chips = (name, opts, cur, multi) => `<div class="chips">${opts.map(o => `<label class="chip"><input type="${multi ? 'checkbox' : 'radio'}" name="${name}" value="${esc(o)}" ${(multi ? (cur || []).includes(o) : cur === o) ? 'checked' : ''}><span>${esc(o)}</span></label>`).join('')}</div>`;
+  return `${header()}${steps(1)}<main class="wrap"><p class="lbl">Step 1 of 4</p><h2>Tell us about your event</h2>
+  <form id="f" class="card pad" style="margin-top:22px;display:grid;gap:18px" novalidate>
+    <div class="grid3">
+      <label class="f">Your name<input type="text" name="name" autocomplete="name" value="${esc(q.name)}" required></label>
+      <label class="f">Email<input type="email" name="email" autocomplete="email" value="${esc(q.email)}" required></label>
+      <label class="f">Phone<input type="tel" name="phone" autocomplete="tel" value="${esc(q.phone)}"></label>
+      <label class="f">Event type<select name="type">${['Catering at my venue', 'Onsite booking at a restaurant', 'Office catering: regular deliveries', 'Office party', 'Something else'].map(o => `<option ${q.type === o ? 'selected' : ''}>${o}</option>`).join('')}</select></label>
+      <label class="f">Date<input type="date" name="date" value="${esc(q.date)}"></label>
+      <div class="grid2" style="gap:10px"><label class="f">Start<input type="text" name="start" placeholder="18:00" value="${esc(q.start)}"></label><label class="f">End<input type="text" name="end" placeholder="22:00" value="${esc(q.end)}"></label></div>
+      <label class="f">Location<input type="text" name="location" placeholder="Venue, office or neighborhood" value="${esc(q.location)}"></label>
+      <label class="f">Headcount<input type="number" name="headcount" min="1" value="${esc(q.headcount)}"></label>
+      <label class="f">Budget per guest (optional)<input type="text" name="budget" placeholder="e.g. $60" value="${esc(q.budget)}"></label>
+    </div>
+    <fieldset style="border:0;padding:0;margin:0;display:grid;gap:8px"><legend class="f" style="font-size:14px;font-weight:600;margin-bottom:8px">Service style</legend>${chips('service', ['Drop-off', 'Buffet with service', 'Tray passing', 'Plated dinner', 'Not sure yet'], q.service)}</fieldset>
+    <fieldset style="border:0;padding:0;margin:0;display:grid;gap:8px"><legend style="font-size:14px;font-weight:600;margin-bottom:8px">What do you need?</legend>${chips('needs', ['Food', 'Servers', 'Bartenders', 'Espresso cart', 'Desserts', 'Rentals', 'Setup + cleanup'], q.needs, true)}</fieldset>
+    <div class="between"><a class="btn sec" href="#/guide">← Back</a><span class="err" role="alert" id="err"></span><button class="btn pri" type="submit">Next: your local gems →</button></div>
+  </form></main>`; };
+H['inquiry/1'] = () => { $('#f').onsubmit = e => { e.preventDefault(); const f = e.target, d = new FormData(f);
+  if (!d.get('name').trim()) { $('#err').textContent = 'Add your name.'; f.name.focus(); return; }
+  if (!/^\S+@\S+\.\S+$/.test(d.get('email').trim())) { $('#err').textContent = 'Add a valid email.'; f.email.focus(); return; }
+  S.inq = { ...S.inq, ...Object.fromEntries([...d].filter(([k]) => k !== 'needs')), needs: d.getAll('needs') }; S.staff = null; S.mat = null; save(); go('inquiry/2'); }; };
+
+V['inquiry/2'] = () => { if (!S.gems.length) S.gems = [{ name: '', cat: 'Main food', link: '', love: '', invite: true }];
+  const yes = S.gemsMode === 'yes';
+  return `${header()}${steps(2)}<main class="wrap"><div class="side"><div>
+  <p class="lbl">Step 2 of 4</p><h2>Any local gems you already love?</h2><p class="sub">Restaurants, ice cream carts, espresso bars, bakeries, venues. Most events mix yours and ours.</p>
+  <div class="chips" style="margin-top:18px" role="radiogroup"><label class="chip"><input type="radio" name="mode" value="yes" ${yes ? 'checked' : ''}><span>Yes, I have some</span></label><label class="chip"><input type="radio" name="mode" value="no" ${!yes ? 'checked' : ''}><span>Not yet, pick for me</span></label></div>
+  <div id="gems" class="card pad" style="margin-top:16px;display:${yes ? 'grid' : 'none'};gap:16px">
+    ${S.gems.map((g, i) => `<div class="card" style="padding:16px;display:grid;gap:12px;background:#fafafa" data-i="${i}">
+      <div class="grid3"><label class="f">Vendor or venue<input type="text" data-k="name" value="${esc(g.name)}" placeholder="e.g. your favorite taquería"></label>
+      <label class="f">Category<select data-k="cat">${CATS.map(c => `<option ${g.cat === c ? 'selected' : ''}>${c}</option>`).join('')}</select></label>
+      <label class="f">Website or Instagram<input type="text" data-k="link" value="${esc(g.link)}" placeholder="https:// or @handle"></label></div>
+      <label class="f">What do you love from them? (optional)<input type="text" data-k="love" value="${esc(g.love)}"></label>
+      <div class="between"><label style="display:flex;gap:10px;align-items:center;font-size:14px;font-weight:600"><input type="checkbox" data-k="invite" ${g.invite ? 'checked' : ''} style="width:20px;height:20px;accent-color:#0047ab"> Invite them to set up a Fíeld Güide page</label>${S.gems.length > 1 ? `<button type="button" class="btn sec" data-del="${i}" style="min-height:38px">Remove</button>` : ''}</div>
+    </div>`).join('')}
+    <button type="button" class="btn sec" id="add" style="justify-self:start">+ Add another local gem</button>
+  </div>
+  <div class="between" style="margin-top:20px"><a class="btn sec" href="#/inquiry/1">← Back</a><button class="btn pri" id="next">Next: gems from us →</button></div>
+  </div><aside class="card pad"><p class="lbl b">What happens next</p><b style="font-size:18px">We bring your gems in</b><ol style="padding-left:18px;color:#333;font-size:15px"><li>We contact each vendor you invite.</li><li>They set up a Fíeld Güide page with their menu in minutes, or we do it for them.</li><li>Their menu shows up in your proposal next to our picks.</li></ol><p class="small">We never charge vendors a commission.</p></aside></div></main>`; };
+H['inquiry/2'] = () => {
+  document.querySelectorAll('[name=mode]').forEach(r => r.onchange = () => { S.gemsMode = r.value; save(); $('#gems').style.display = r.value === 'yes' ? 'grid' : 'none'; });
+  $('#gems').addEventListener('input', e => { const k = e.target.dataset.k; if (!k) return; const i = +e.target.closest('[data-i]').dataset.i; S.gems[i][k] = e.target.type === 'checkbox' ? e.target.checked : e.target.value; save(); });
+  $('#gems').addEventListener('change', e => { const k = e.target.dataset.k; if (!k) return; const i = +e.target.closest('[data-i]').dataset.i; S.gems[i][k] = e.target.type === 'checkbox' ? e.target.checked : e.target.value; save(); });
+  $('#add').onclick = () => { S.gems.push({ name: '', cat: 'Main food', link: '', love: '', invite: true }); save(); render(); };
+  document.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { S.gems.splice(+b.dataset.del, 1); save(); render(); });
+  $('#next').onclick = () => { if (S.gemsMode === 'yes') { const mine = {}; S.gems.filter(g => g.name).forEach(g => mine[g.cat] = 1); CATS.forEach(c => { if (mine[c] && !S.cats[c]) S.cats[c] = 'mine'; }); } save(); go('inquiry/3'); };
+};
+
+V['inquiry/3'] = () => { const mineCount = c => S.gemsMode === 'yes' ? S.gems.filter(g => g.name && g.cat === c).length : 0;
+  CATS.forEach(c => { if (!S.cats[c]) S.cats[c] = mineCount(c) ? 'mine' : ['Main food', 'Desserts'].includes(c) ? 'rec' : 'none'; });
+  const P = S.pref;
+  return `${header()}${steps(3)}<main class="wrap"><div class="side"><div>
+  <p class="lbl">Step 3 of 4</p><h2>What should we find for you?</h2><p class="sub">For each part of the event: you've got it, we recommend local gems, both, or skip.</p>
+  <div class="card pad" style="margin-top:18px">${CATS.map(c => `<div class="between" style="padding:12px 0;border-top:1px solid #e9e9e9"><b>${c}${mineCount(c) ? ` <span class="tag" style="margin-left:6px">${mineCount(c)} of yours</span>` : ''}</b><div class="chips" role="radiogroup" aria-label="${c}">${[['mine', 'Mine'], ['rec', 'Recommend'], ['both', 'Both'], ['none', 'Not needed']].map(([v, t]) => `<label class="chip ${v === 'rec' || v === 'both' ? 'bl' : ''}"><input type="radio" name="c-${CATS.indexOf(c)}" data-c="${esc(c)}" value="${v}" ${S.cats[c] === v ? 'checked' : ''}><span>${t}</span></label>`).join('')}</div></div>`).join('')}</div>
+  <div class="between" style="margin-top:20px"><a class="btn sec" href="#/inquiry/2">← Back</a><a class="btn pri" href="#/inquiry/4">Next: book your discovery call →</a></div>
+  </div><aside class="card pad" style="display:grid;gap:14px"><p class="lbl b">Help us pick</p>
+  <label class="f">Cuisines or vibe<input type="text" id="cuisine" value="${esc(P.cuisine)}" placeholder="e.g. Mexican, family style"></label>
+  <fieldset style="border:0;padding:0;margin:0"><legend style="font-size:14px;font-weight:600;margin-bottom:8px">Dietary needs</legend><div class="chips">${['Vegetarian', 'Vegan', 'Gluten-free', 'Halal', 'Kosher', 'Nut-free'].map(o => `<label class="chip"><input type="checkbox" class="diet" value="${o}" ${(P.dietary || []).includes(o) ? 'checked' : ''}><span>${o}</span></label>`).join('')}</div></fieldset>
+  <label class="f">Neighborhoods you like<input type="text" id="hood" value="${esc(P.hood)}"></label>
+  <label class="f">Anything else?<textarea id="notes" placeholder="The occasion, timing, must-haves…">${esc(P.notes)}</textarea></label>
+  </aside></div></main>`; };
+H['inquiry/3'] = () => { save();
+  document.querySelectorAll('[data-c]').forEach(r => r.onchange = () => { S.cats[r.dataset.c] = r.value; S.staff = null; save(); });
+  const sp = () => { S.pref = { cuisine: $('#cuisine').value, hood: $('#hood').value, notes: $('#notes').value, dietary: [...document.querySelectorAll('.diet:checked')].map(x => x.value) }; save(); };
+  ['#cuisine', '#hood', '#notes'].forEach(s => $(s).oninput = sp); document.querySelectorAll('.diet').forEach(x => x.onchange = sp); };
+
+V['inquiry/4'] = () => { const q = S.inq, rec = CATS.filter(c => ['rec', 'both'].includes(S.cats[c])), mine = S.gemsMode === 'yes' ? S.gems.filter(g => g.name) : [];
+  const cal = `${CAL}?hide_gdpr_banner=1&name=${encodeURIComponent(q.name || '')}&email=${encodeURIComponent(q.email || '')}`;
+  return `${header()}${steps(4)}<main class="wrap"><div class="side" style="grid-template-columns:360px minmax(0,1fr)">
+  <aside class="card pad"><p class="lbl">Your inquiry</p><b style="display:block;font-size:20px;margin:8px 0">${esc(q.name || 'Your')}'s event</b>
+  <div class="sum"><span>Event</span><span>${esc(q.type)}</span></div><div class="sum"><span>Date</span><span>${esc(q.date || 'TBD')} · ${esc(q.start)}–${esc(q.end)}</span></div><div class="sum"><span>Where</span><span>${esc(q.location || 'TBD')}</span></div><div class="sum"><span>Guests</span><span>${guests()}</span></div><div class="sum"><span>Your gems</span><span>${mine.length ? mine.map(g => esc(g.name)).join(', ') : 'None yet'}</span></div><div class="sum"><span>We'll recommend</span><span>${rec.length ? rec.join(', ') : '—'}</span></div>
+  <a href="#/inquiry/1" style="display:inline-block;margin-top:10px;font-weight:700">Edit answers</a></aside>
+  <div><p class="lbl">Step 4 of 4</p><h2>Book your discovery call</h2><p class="sub">Time with your Lead Planner: your gems, our picks, the plan.</p>
+  <div class="cal" style="margin-top:18px"><iframe src="${cal}" title="Book a discovery call on Calendly" loading="lazy"></iframe></div>
+  <div class="between" style="margin-top:18px"><a class="btn sec" href="#/inquiry/3">← Back</a><div class="row"><button class="btn sec" id="skip">Send without booking</button><button class="btn pri" id="booked">I booked my call · send inquiry</button></div></div>
+  <p class="small">In this test drive nothing is emailed. Booking on Calendly above is real.</p></div></div></main>`; };
+H['inquiry/4'] = () => { const send = b => { S.booked = b; S.inquiryAt = new Date().toISOString(); S.id = S.id || 'CE-' + (1000 + Math.floor(Math.random() * 9000)); save(); go('booked'); }; $('#booked').onclick = () => send(true); $('#skip').onclick = () => send(false); };
+
+V['booked'] = () => `${header()}<main class="wrap"><div class="side"><div>
+  <p class="lbl b">Inquiry sent${S.booked ? ' · Call booked' : ''}</p><h2 style="font-size:clamp(32px,4.4vw,48px)">${S.booked ? 'See you on your discovery call.' : 'Your Lead Planner will reach out to book your call.'}</h2>
+  <p class="sub">Your answers are with your Lead Planner${S.gems.some(g => g.name && g.invite) && S.gemsMode === 'yes' ? ', and your local gems have been invited' : ''}.</p>
+  <div class="card pad" style="margin-top:18px">
+    <div class="tl"><span class="n ok">✓</span><div><b>Inquiry</b><div class="small">Received.</div></div><span class="tag">Done</span></div>
+    <div class="tl"><span class="n on">2</span><div><b>Discovery call</b><div class="small">Budget, vibe, timing, your gems and our picks.</div></div><span class="tag b">${S.booked ? 'Booked' : 'To book'}</span></div>
+    <div class="tl"><span class="n">3</span><div><b>Your proposal</b><div class="small">Vendor menus, staffing and materials.</div></div><a class="btn pri" style="min-height:36px;padding:0 14px;font-size:13px" href="#/proposal/menus">Open proposal →</a></div>
+    <div class="tl"><span class="n">4</span><div><b>Request a quote</b><div class="small">We confirm every vendor and send your final quote.</div></div><span class="tag">Next</span></div>
+    <div class="tl"><span class="n">5</span><div><b>Your event</b><div class="small">We staff and run it.</div></div><span class="tag">${esc(S.inq.date || 'TBD')}</span></div>
+  </div></div>
+  <aside class="card pad"><p class="lbl">Test drive</p><p style="margin:8px 0 0">In real life your proposal arrives after the discovery call. Here you can open it now.</p><a class="btn pri" style="margin-top:12px" href="#/proposal/menus">Open my proposal →</a></aside></div></main>`;
+
+let curV = 0;
+V['proposal/menus'] = () => { const vs = vendors(); if (!vs.length) return `${header()}<main class="wrap"><h2>No vendors yet</h2><p class="sub">Add a local gem or ask us to recommend some.</p><a class="btn pri" href="#/inquiry/2">Back to your gems</a></main>`;
+  curV = Math.min(curV, vs.length - 1); const v = vs[curV];
+  return `${header()}<main class="wrap"><div class="between"><div><p class="lbl">Your proposal · ${esc(S.inq.name || '')} · ${guests()} guests</p><h2>Choose from each menu</h2></div>${ptabs('menus')}</div>
+  <div class="tabs" style="margin-top:20px">${vs.map((x, i) => `<button class="tab ${i === curV ? 'on' : ''}" data-v="${i}">${esc(x.name)} <span class="tag ${x.mine ? '' : 'b'}" style="${i === curV ? 'background:#fff;color:#111' : ''}">${x.mine ? 'Your pick' : 'Local gem'}</span></button>`).join('')}</div>
+  <div class="side" style="margin-top:18px"><section class="card pad">
+    <div class="between"><div><b style="font-size:24px">${esc(v.name)}</b><div class="small">${esc(v.kind)}${v.mine ? ' · page pending: sample menu shown until they publish' : ' · from the Fíeld Güide'}</div></div></div>
+    <div style="margin-top:10px">${v.items.map(i => `<div class="it"><div><b>${esc(i.n)}</b><div class="small">${esc(i.d)} · ${esc(i.u)} · ${money(i.p)}</div></div><div class="qty"><button type="button" aria-label="Fewer ${esc(i.n)}" data-q="${i.id}" data-d="-1">−</button><output>${S.sel[i.id] || 0}</output><button type="button" aria-label="More ${esc(i.n)}" data-q="${i.id}" data-d="1">+</button></div></div>`).join('')}</div>
+  </section>${running(`<a class="btn pri" style="width:100%" href="#/proposal/staff">Next: staffing →</a>`)}</div></main>`; };
+H['proposal/menus'] = () => { document.querySelectorAll('[data-v]').forEach(b => b.onclick = () => { curV = +b.dataset.v; render(); });
+  document.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { const k = b.dataset.q; S.sel[k] = Math.max(0, (S.sel[k] || 0) + +b.dataset.d); save(); render(); }); };
+
+V['proposal/staff'] = () => { ensureStaff();
+  return `${header()}<main class="wrap"><div class="between"><div><p class="lbl">Your proposal</p><h2>Your team for the night</h2><p class="sub">Recommended for ${guests()} guests, ${esc((S.inq.service || '').toLowerCase())}, ${hours()} hours. Adjust anything.</p></div>${ptabs('staff')}</div>
+  <div class="side" style="margin-top:18px"><section class="card pad scroll"><table class="tbl"><thead><tr><th>Role</th><th>How many</th><th>Hours</th><th>Rate</th></tr></thead><tbody>
+  ${staffPlan().map(r => `<tr><td><b>${r.n}</b><div class="small">${r.d}</div></td><td><div class="qty"><button aria-label="Fewer ${r.n}" data-s="${r.k}" data-f="q" data-d="-1">−</button><output>${S.staff[r.k].q}</output><button aria-label="More ${r.n}" data-s="${r.k}" data-f="q" data-d="1">+</button></div></td><td><div class="qty"><button aria-label="Fewer hours" data-s="${r.k}" data-f="h" data-d="-1">−</button><output>${S.staff[r.k].h}</output><button aria-label="More hours" data-s="${r.k}" data-f="h" data-d="1">+</button></div></td><td>${money(r.r)}/hr</td></tr>`).join('')}
+  </tbody></table>
+  <div class="grid3" style="margin-top:18px"><label class="f">Attire<select id="attire">${['All black', 'Whites', 'Your theme'].map(o => `<option ${S.attire === o ? 'selected' : ''}>${o}</option>`).join('')}</select></label><label class="f">Staff arrival<input type="text" id="arrive" value="${esc(S.arrive || '')}" placeholder="1 hour before"></label><label class="f">Parking / load-in<input type="text" id="loadin" value="${esc(S.loadin || '')}"></label></div>
+  </section>${running(`<a class="btn pri" style="width:100%" href="#/proposal/materials">Next: materials →</a>`, 'Sample rates. Our staff are paid above the industry average.')}</div></main>`; };
+H['proposal/staff'] = () => { document.querySelectorAll('[data-s]').forEach(b => b.onclick = () => { const s = S.staff[b.dataset.s]; s[b.dataset.f] = Math.max(0, s[b.dataset.f] + +b.dataset.d); save(); render(); });
+  $('#attire').onchange = e => { S.attire = e.target.value; save(); }; $('#arrive').oninput = e => { S.arrive = e.target.value; save(); }; $('#loadin').oninput = e => { S.loadin = e.target.value; save(); }; };
+
+V['proposal/materials'] = () => { ensureMat();
+  return `${header()}<main class="wrap"><div class="between"><div><p class="lbl">Your proposal</p><h2>Materials + rentals</h2><p class="sub">Calculated from ${guests()} guests. Tell us what you already have.</p></div>${ptabs('materials')}</div>
+  <div class="side" style="margin-top:18px"><section class="card pad scroll"><table class="tbl"><thead><tr><th>Item</th><th>Qty</th><th>Who provides</th></tr></thead><tbody>
+  ${matPlan().map(m => `<tr><td><b>${m.n}</b><div class="small">${m.d} · ${money(m.p)} each</div></td><td><div class="qty"><button aria-label="Fewer ${m.n}" data-m="${m.k}" data-d="-1">−</button><output>${S.mat[m.k].q}</output><button aria-label="More ${m.n}" data-m="${m.k}" data-d="1">+</button></div></td><td><div class="chips" role="radiogroup" aria-label="${m.n} provided by">${[['have', 'I have it'], ['ce', 'Cülinary Expréss'], ['vendor', 'Vendor']].map(([v, t]) => `<label class="chip ${v === 'ce' ? 'bl' : ''}"><input type="radio" name="src-${m.k}" data-src="${m.k}" value="${v}" ${S.mat[m.k].src === v ? 'checked' : ''}><span>${t}</span></label>`).join('')}</div></td></tr>`).join('')}
+  </tbody></table></section>${running(`<button class="btn pri" style="width:100%" id="rfq">Request for Quote</button>`, 'Your Lead Planner confirms each vendor and sends your final quote. Nothing is charged yet.')}</div></main>`; };
+H['proposal/materials'] = () => { document.querySelectorAll('[data-m]').forEach(b => b.onclick = () => { const s = S.mat[b.dataset.m]; s.q = Math.max(0, s.q + +b.dataset.d); save(); render(); });
+  document.querySelectorAll('[data-src]').forEach(r => r.onchange = () => { S.mat[r.dataset.src].src = r.value; save(); render(); });
+  $('#rfq').onclick = () => { const t = totals(); if (!t.nItems) { alertMsg('Choose at least one menu item first.'); go('proposal/menus'); return; }
+    const vs = {}; vendors().forEach(v => { if (v.items.some(i => S.sel[i.id])) vs[v.id] = 'waiting'; }); vs.staff = 'waiting';
+    S.id = S.id || 'CE-' + (1000 + Math.floor(Math.random() * 9000)); S.quote = { status: 'confirming', at: new Date().toISOString(), vendors: vs }; save(); go('quote'); }; };
+const alertMsg = m => { const d = document.createElement('div'); d.setAttribute('role', 'status'); d.textContent = m; d.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:12px 18px;border-radius:12px;z-index:50;font-weight:600'; document.body.appendChild(d); setTimeout(() => d.remove(), 2600); };
+
+const STAGES = [['requested', 'Requested'], ['confirming', 'Confirming vendors'], ['ready', 'Quote ready'], ['approved', 'Approved'], ['booked', 'Booked']];
+const stageIdx = s => STAGES.findIndex(x => x[0] === s);
+const vname = id => id === 'staff' ? 'Staff + materials' : (vendors().find(v => v.id === id) || {}).name || id;
+V['quote'] = () => { if (!S.quote) return `${header()}<main class="wrap"><h2>No quote yet</h2><a class="btn pri" href="#/proposal/menus">Open your proposal</a></main>`;
+  const q = S.quote, i = stageIdx(q.status), t = totals(), vs = Object.entries(q.vendors), done = vs.filter(([, s]) => s === 'confirmed').length;
+  const label = STAGES[i][1];
+  return `${header()}<main class="wrap"><div class="side"><div>
+  <div class="row"><h2 style="margin:0">Your quote</h2><span class="tag b" style="font-size:14px;padding:8px 14px">Status: ${label}</span></div>
+  <p class="sub">${q.status === 'ready' ? 'Your final quote is ready. Review and approve below.' : q.status === 'approved' ? 'Approved. Your Lead Planner is locking in the schedule.' : q.status === 'booked' ? 'You are booked. Your event ticket is with our dispatch team.' : 'Nothing is charged yet. You will get an email each time the status changes.'}</p>
+  <div class="card pad bar" style="margin-top:18px">${STAGES.map(([k, n], j) => `<div class="${j < i || (j === i && k === 'booked') ? 'ok' : j === i ? 'on' : ''}"><i></i><b>${n}</b><span class="small">${k === 'requested' ? new Date(q.at).toLocaleString() : k === 'confirming' ? `${done} of ${vs.length} confirmed` : k === 'ready' ? 'Review + approve' : k === 'approved' ? 'Deposit paid' : 'Event ticket created'}</span></div>`).join('')}</div>
+  <div class="card pad" style="margin-top:14px">${vs.map(([id, s]) => `<div class="sum"><span>${esc(vname(id))}</span><b style="${s === 'confirmed' ? '' : 'color:var(--blue)'}">${s === 'confirmed' ? 'Confirmed' : 'Waiting on reply'}</b></div>`).join('')}</div>
+  ${q.status === 'ready' ? `<div class="row" style="margin-top:18px"><button class="btn pri" id="approve">Approve quote + pay deposit</button><span class="small">Deposit is simulated in this test drive.</span></div>` : ''}
+  <p class="small" style="margin-top:16px">Test drive: open the <a href="#/admin">admin dispatch board</a> to confirm vendors and send the quote.</p>
+  </div><aside class="card pad"><p class="lbl">What you requested</p><div style="margin-top:8px"><div class="sum"><span>Menus</span><span>${t.nItems} items</span></div><div class="sum"><span>Staff</span><span>${t.people} people</span></div><div class="sum"><span>Materials</span><span>${t.nMat} items</span></div><div class="sum"><span>Coupon</span><span>−$200</span></div><div class="sum"><b>Estimate</b><b>${money(t.total)}</b></div></div>${i < 3 ? `<a href="#/proposal/menus" style="display:inline-block;margin-top:12px;font-weight:700">Edit my selections</a>` : ''}</aside></div></main>`; };
+H['quote'] = () => { const a = $('#approve'); if (a) a.onclick = () => { S.quote.status = 'approved'; save(); render(); }; };
+
+const SAMPLE_TICKETS = [{ id: 'CE-1046', who: 'Sample client', what: 'Office lunch · 20', status: 'booked', v: [['Sample Taquería', 1]] }, { id: 'CE-1039', who: 'Sample client', what: 'Book launch · 60', status: 'ready', v: [['Sample Bakery', 1], ['Sample Wine Bar', 1]] }];
+const adminHeader = cur => `<header class="top"><a class="brand" href="#/admin"><img src="${LOGO}" alt="">Cülinary Expréss <span>Super Admin</span></a><div class="row"><a href="#/admin" style="font-size:14px;${cur === 'board' ? 'font-weight:800' : 'color:#cfcfcf'}">Dispatch</a><a href="#/guide" style="font-size:14px;color:#cfcfcf">Client view</a></div></header>`;
+V['admin'] = () => { const cols = [['confirming', 'Confirming vendors'], ['ready', 'Quote sent'], ['approved', 'Approved'], ['booked', 'Booked · dispatch']];
+  const mine = S.quote ? [{ id: S.id, who: S.inq.name || 'Your test client', what: `${S.inq.type} · ${guests()}`, status: S.quote.status, v: Object.entries(S.quote.vendors).map(([id, s]) => [vname(id), s === 'confirmed']), live: true }] : [];
+  const all = [...mine, ...SAMPLE_TICKETS];
+  return `${adminHeader('board')}<main class="wrap" style="max-width:1400px"><div class="between"><h2 style="margin:0">Dispatch</h2><span class="small">${S.quote ? '' : 'Request a quote from the client view to see your ticket here.'}</span></div>
+  <div class="cols" style="margin-top:20px">${cols.map(([k, n]) => `<div style="display:grid;gap:10px;align-content:start"><div class="between"><span class="lbl">${n}</span><span class="small">${all.filter(t => t.status === k).length}</span></div>
+  ${all.filter(t => t.status === k).map(t => `<a class="card tk" href="${t.live ? '#/admin/ticket' : '#/admin'}" style="${t.live ? 'border:2px solid var(--blue)' : 'opacity:.8'}"><span class="small" style="font-weight:800;letter-spacing:.05em">${esc(t.id)}${t.live ? '' : ' · sample'}</span><b>${esc(t.who)}</b><span class="small">${esc(t.what)}</span>${t.v.map(([n, ok]) => `<span class="vd"><i class="${ok ? '' : 'w'}"></i>${esc(n)}</span>`).join('')}</a>`).join('')}</div>`).join('')}</div></main>`; };
+
+V['admin/ticket'] = () => { if (!S.quote) { return `${adminHeader()}<main class="wrap"><h2>No ticket yet</h2><a class="btn pri" href="#/guide">Go to client view</a></main>`; }
+  ensureStaff(); ensureMat(); const q = S.quote, vs = vendors(), sel = vs.map(v => ({ v, items: v.items.filter(i => S.sel[i.id]) })).filter(x => x.items.length);
+  const allOk = Object.values(q.vendors).every(s => s === 'confirmed');
+  const action = q.status === 'confirming' ? `<button class="btn wht" id="send" ${allOk ? '' : 'disabled style="opacity:.5;cursor:not-allowed"'}>Send quote to client</button>` : q.status === 'ready' ? `<span class="tag b">Waiting for client approval</span>` : q.status === 'approved' ? `<button class="btn wht" id="book">Book + dispatch</button>` : `<span class="tag k" style="background:#fff;color:#111">Booked</span>`;
+  return `${adminHeader()}<div style="background:#1c1d1f;color:#fff;padding:18px 24px"><div class="between" style="max-width:1400px;margin:0 auto"><div><a href="#/admin" style="color:#cfcfcf;font-weight:700;font-size:13px;text-decoration:none">← Dispatch</a><div style="font-size:24px;font-weight:800">${esc(S.id)} · ${esc(S.inq.name || 'Client')} · ${esc(S.inq.type)} · ${guests()} guests</div><div style="font-size:14px;color:#cfcfcf">${esc(S.inq.date || 'Date TBD')} · ${esc(S.inq.start)}–${esc(S.inq.end)} · ${esc(S.inq.location || 'Location TBD')} · ${esc(S.inq.email || '')} ${esc(S.inq.phone || '')}</div></div><div class="row"><span class="tag b">Status: ${STAGES[stageIdx(q.status)][1]}</span>${action}<button class="btn wht" onclick="window.print()">Print run sheet</button></div></div></div>
+  <main class="wrap" style="max-width:1400px"><div class="grid3" style="grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);align-items:start">
+  <section style="display:grid;gap:12px"><p class="lbl">Menus · ${sel.length} vendors</p>${sel.map(({ v, items }) => `<div class="card pad" style="padding:16px"><div class="between"><b>${esc(v.name)} <span class="tag ${v.mine ? '' : 'b'}">${v.mine ? "Client's pick" : 'Local gem'}</span></b>${q.vendors[v.id] === 'confirmed' ? '<span class="tag k">Confirmed</span>' : `<button class="btn pri" style="min-height:34px;padding:0 14px;font-size:13px" data-ok="${v.id}">Mark confirmed</button>`}</div>${items.map(i => `<div class="sum"><span>${esc(i.n)} · ${esc(i.u)}</span><b>× ${S.sel[i.id]}</b></div>`).join('')}</div>`).join('')}
+  ${(S.pref.dietary || []).length ? `<div class="card pad" style="padding:14px"><b>Dietary:</b> ${esc(S.pref.dietary.join(', '))}</div>` : ''}</section>
+  <section class="card pad"><div class="between"><p class="lbl">Staff</p>${q.vendors.staff === 'confirmed' ? '<span class="tag k">Confirmed</span>' : `<button class="btn pri" style="min-height:34px;padding:0 14px;font-size:13px" data-ok="staff">Mark confirmed</button>`}</div>${staffPlan().filter(r => S.staff[r.k].q).map(r => `<div class="sum"><span>${r.n}</span><b>${S.staff[r.k].q} × ${S.staff[r.k].h}h</b></div>`).join('')}<p class="small" style="margin:10px 0 0">Attire: ${esc(S.attire || 'All black')} · Arrive: ${esc(S.arrive || '1 hour before')}${S.loadin ? ' · ' + esc(S.loadin) : ''}</p></section>
+  <section class="card pad"><p class="lbl">Materials</p>${matPlan().filter(m => S.mat[m.k].q).map(m => `<div class="sum"><span>${S.mat[m.k].q} ${m.n.toLowerCase()}</span><span class="tag">${{ have: 'Client has', ce: 'Ours', vendor: 'Vendor' }[S.mat[m.k].src]}</span></div>`).join('')}</section>
+  </div></main>`; };
+H['admin/ticket'] = () => { document.querySelectorAll('[data-ok]').forEach(b => b.onclick = () => { S.quote.vendors[b.dataset.ok] = 'confirmed'; save(); render(); });
+  const s = $('#send'); if (s) s.onclick = () => { if (Object.values(S.quote.vendors).every(x => x === 'confirmed')) { S.quote.status = 'ready'; save(); render(); alertMsg('Quote sent. Open the client view to approve it.'); } };
+  const b = $('#book'); if (b) b.onclick = () => { S.quote.status = 'booked'; save(); render(); }; };
+
+function go(r) { location.hash = '#/' + r; }
+function render() { const r = location.hash.replace(/^#\/?/, '') || ''; const v = V[r] || V['']; $('#app').innerHTML = v(); (H[r] || (() => {}))(); }
+window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
+$('#reset').onclick = e => { e.preventDefault(); S = blank(); save(); go(''); render(); };
+render();
+})();
+</script>
+</body>
+</html>
