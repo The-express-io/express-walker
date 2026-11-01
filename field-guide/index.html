@@ -183,6 +183,19 @@ footer{font-size:13px;letter-spacing:.04em}
 @keyframes watch-bob{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
 @media(prefers-reduced-motion:reduce){.watch-arrow{animation:none}}
 #how{scroll-margin-top:88px}
+.jump{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+.jump-card{position:relative;display:grid;gap:6px;padding:26px 64px 26px 28px;border-radius:22px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);text-decoration:none;color:var(--ink);transition:box-shadow .15s ease,transform .15s ease}
+.jump-card:hover{box-shadow:inset 0 0 0 1.5px var(--ink);transform:translateY(-1px)}
+.jump-card .jn{font-size:13px;font-weight:700;letter-spacing:.16em;color:var(--red)}
+.jump-card b{font-size:clamp(22px,2.2vw,28px);font-weight:700;letter-spacing:-.025em;line-height:1.1}
+.jump-card .js{color:var(--muted);font-size:15px}
+.jump-card i{position:absolute;right:24px;top:50%;margin-top:-20px;width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:18px;animation:jumpbob 1.8s ease-in-out infinite}
+.jump-card:nth-child(2) i{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink);animation-delay:.3s}
+@keyframes jumpbob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@media(prefers-reduced-motion:reduce){.jump-card i{animation:none}}
+@media(max-width:720px){.jump{grid-template-columns:1fr}}
+.film{scroll-margin-top:88px}
+html{scroll-behavior:smooth}
 </style>
 </head>
 <body>
@@ -202,6 +215,10 @@ footer{font-size:13px;letter-spacing:.04em}
       </div>
       <h1 id="t">Fíeld Güide <em>For catering using local gems</em></h1>
       <p class="lede">Let actual human beings with Michelin experience guide your next food based event.</p>
+      <div class="jump" role="navigation" aria-label="On this page">
+        <a class="jump-card" href="#start"><span class="jn">01</span><b>Start your inquiry</b><span class="js">Tell us about your event. We pick the local gems, you add yours, or both.</span><i aria-hidden="true">↓</i></a>
+        <a class="jump-card" href="#how-it-works"><span class="jn">02</span><b>Watch how it works</b><span class="js">Short animated stories: catering, onsite bookings and office catering.</span><i aria-hidden="true">↓</i></a>
+      </div>
     </div>
   </section>
 
