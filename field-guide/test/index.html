@@ -3,465 +3,335 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cülinary Expréss · Fíeld Güide (test drive)</title>
+<title>Cülinary Expréss · Order Your Moment (test drive)</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#faf9f7;--side:#1e1e1e;--ink:#151515;--line:#e7e4df;--muted:#6b6b6b;--soft:#9a9a9a;--acc:#c45a0c;--ok:#1f8a4c;--warn:#c2700a;--card:#fff;--chip:#f1efeb}
+:root{--ink:#0f1412;--muted:#5a5f5c;--line:#e6e6e6;--soft:#f4f4f4;--blue:#0047ab;--blue2:#00337d;--sky:#4f7dff;--ok:#1d7a46;--warn:#9a5b00}
 *{box-sizing:border-box}html,body{margin:0}
-body{font:400 15px/1.5 Manrope,system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+body{font:400 16px/1.55 Manrope,system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
 a{color:inherit}button,input,select,textarea{font:inherit;color:inherit}
-.test{background:#151515;color:#cfcfcf;font-size:12px;text-align:center;padding:6px 12px}.test a{color:#fff}
-/* buttons */
-.bk,.ol,.gr{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 24px;border-radius:999px;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer;white-space:nowrap}
-.bk{background:#151515;color:#fff}.bk:hover{background:#333}
-.ol{background:#fff;color:#151515;box-shadow:inset 0 0 0 1px #151515}.ol:hover{background:#f3f1ed}
-.gr{background:#e9e7e3;color:#444}.gr:hover{background:#dfdcd7}
-.sm{min-height:34px;padding:0 14px;font-size:11.5px}
-button:disabled{opacity:.45;cursor:not-allowed}
-.lnk{background:none;border:0;padding:0;color:var(--acc);font-weight:600;cursor:pointer;text-decoration:none;font-size:13px}
-/* forms */
-label.f{display:grid;gap:7px;font-size:14px;font-weight:600}
-label.f .req{color:#d33}
-.in{width:100%;height:44px;background:#fff;border:1px solid #cfcac3;border-radius:10px;padding:0 14px;font-size:15px}
-textarea.in{height:auto;min-height:96px;padding:12px 14px;resize:vertical}
-.in:focus{outline:none;border-color:#151515;box-shadow:0 0 0 3px rgba(21,21,21,.08)}
-.hint{font-size:12px;color:var(--muted);font-weight:400}
-.cap{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0}
+.bar{height:32px;background:#0f1412;color:rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;gap:12px;font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:0 12px;text-align:center}
+.bar a{color:#fff;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.4)}
+header.h{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+header.h .in{height:72px;padding:0 40px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.nl{display:flex;gap:28px}.nl a{font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:4px 0;border-bottom:1px solid transparent}.nl a:hover,.nl a.on{border-color:currentColor}
+.wm{display:flex;align-items:center;gap:12px;text-decoration:none}.wm img{width:34px;height:34px;border-radius:50%;background:#fff}.wm span{font-size:13px;font-weight:600;letter-spacing:.32em;text-transform:uppercase}
+.hr{justify-self:end;display:flex;align-items:center;gap:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 24px;border-radius:999px;font-size:14.5px;font-weight:600;text-decoration:none;border:0;cursor:pointer;white-space:nowrap;transition:background .2s,opacity .2s}
+.dk{background:#0f1412;color:#fff}.dk:hover{background:#2b302d}
+.bl{background:var(--blue);color:#fff}.bl:hover{background:var(--blue2)}
+.wt{background:#fff;color:#0f1412}.wt:hover{background:#ececec}
+.ln{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}.ln:hover{background:rgba(0,0,0,.04)}
+.sm{min-height:36px;padding:0 16px;font-size:13px}
+.caps{font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+button:disabled{opacity:.4;cursor:not-allowed}
+.u{background:none;border:0;padding:0;cursor:pointer;font-weight:600;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(0,0,0,.25)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}.narrow{max-width:860px;margin:0 auto;padding:0 40px}
+h1,h2,h3{font-weight:600;letter-spacing:-.04em;margin:0}
+.d1{font-size:clamp(48px,7vw,104px);line-height:.95}.d2{font-size:clamp(34px,4.6vw,60px);line-height:1}.d3{font-size:26px;letter-spacing:-.03em}
+.lead{font-size:19px;color:var(--muted);margin:14px 0 0;max-width:620px}
+.m{color:var(--muted)}.sml{font-size:13px}
+.blue{color:var(--blue)}
+section.s{padding:72px 0}
+label.f{display:grid;gap:7px;font-size:13.5px;font-weight:600}
+.in{width:100%;height:50px;background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:0 16px;font-size:16px}
+textarea.in{height:auto;min-height:100px;padding:14px 16px;resize:vertical}
+.in:focus{outline:none;border-color:#0f1412;background:#fff}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{position:relative;cursor:pointer}.chip input{position:absolute;opacity:0;width:1px;height:1px}
-.chip span{display:inline-block;padding:8px 14px;border-radius:999px;background:var(--chip);font-size:13px;font-weight:600;color:#333}
-.chip input:checked+span{background:#151515;color:#fff}.chip input:focus-visible+span{outline:2px solid var(--acc);outline-offset:2px}
-.err{color:#b42318;font-size:13px;font-weight:600;min-height:18px}
-/* auth */
-.auth{display:grid;grid-template-columns:minmax(300px,380px) 1fr;min-height:calc(100vh - 29px)}
-.auth .l{background:var(--side);color:#fff;padding:36px 36px 28px;display:flex;flex-direction:column}
-.auth .r{background:#fff;display:flex;align-items:center;justify-content:center;padding:48px 24px}
-.auth .r>div{width:100%;max-width:600px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;text-decoration:none;color:inherit}
-.brand img{width:34px;height:34px;border-radius:50%;background:#fff}
-.auth h1{font-size:44px;line-height:1.05;letter-spacing:-.03em;margin:56px 0 12px;font-weight:700}
-.auth .l p{color:#b5b5b5;margin:0}
-.ul{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px;font-size:14px;color:#e6e6e6}.ul li{display:flex;gap:10px;align-items:baseline}.ul li::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff;flex:none;transform:translateY(-2px)}
-.quote{margin-top:auto;background:#2a2a2a;border-radius:10px;padding:18px;font-size:13px;color:#ddd}
-.vt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.vt label{cursor:pointer;position:relative}.vt input{position:absolute;opacity:0}
-.vt span{display:block;border:1px solid #d9d4cd;border-radius:10px;padding:14px 16px;font-weight:700}.vt small{display:block;font-weight:500;color:var(--muted);font-size:12px}
-.vt input:checked+span{background:#151515;color:#fff;border-color:#151515}.vt input:checked+span small{color:#bdbdbd}.vt input:focus-visible+span{outline:2px solid var(--acc)}
-/* app shell */
-.app{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 29px)}
-.side{background:var(--side);color:#fff;padding:32px 0 28px;display:flex;flex-direction:column;position:sticky;top:0;height:calc(100vh - 29px)}
-.side .brand{padding:0 28px;font-size:17px;font-weight:500}
-.nav{margin-top:56px;display:grid;gap:4px}
-.nav a{display:block;padding:10px 28px 10px 34px;color:#cfcfcf;text-decoration:none;font-size:15px;position:relative}
-.nav a:hover{color:#fff}.nav a.on{color:#fff;font-weight:600}.nav a.on::before{content:"";position:absolute;left:22px;top:8px;bottom:8px;width:2px;background:#fff;border-radius:2px}
-.side .out{margin-top:auto;padding:0 28px;display:grid;gap:6px}
-.side .out small{color:#8f8f8f;font-size:12px;overflow:hidden;text-overflow:ellipsis}
-.side .out button{background:none;border:0;color:#fff;text-align:left;padding:0;cursor:pointer;font-size:15px}
-.main{min-width:0;display:flex;flex-direction:column}
-.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:28px 48px 22px;border-bottom:1px solid var(--line)}
-.top h1{margin:0;font-size:34px;letter-spacing:-.025em;font-weight:600}
-.sub{color:var(--muted);margin:6px 0 0}
-.body{padding:32px 48px 40px;flex:1}
-.wrap{max-width:1060px;margin:0 auto}
-@media(max-width:900px){.app,.auth{grid-template-columns:1fr}.side{position:static;height:auto;padding:18px 0}.nav{margin-top:14px;display:flex;overflow-x:auto}.nav a{white-space:nowrap;padding:8px 14px}.nav a.on::before{display:none}.side .out{display:none}.top,.body{padding-left:20px;padding-right:20px}.auth .l{display:none}}
-/* stepper */
-.steps{display:flex;align-items:flex-start;justify-content:center;gap:0;margin:6px auto 34px;max-width:900px}
-.st{display:grid;justify-items:center;gap:8px;text-align:center;width:130px;font-size:13px;color:var(--soft);text-decoration:none}
-.st .ic{width:36px;height:36px;border-radius:50%;border:1.5px solid #c9c5bf;display:flex;align-items:center;justify-content:center;color:#b5b1ab;background:#fff}
-.st.done{color:var(--ink)}.st.done .ic{border-color:#151515;color:#151515}
-.st.now{color:var(--acc);font-weight:600}.st.now .ic{border-color:var(--acc);color:var(--acc)}
-.bar{flex:1;height:1.5px;background:#d6d2cc;margin-top:18px;min-width:20px}.bar.done{background:#151515}
-@media(max-width:700px){.st{width:64px;font-size:11px}}
-/* rows + cards */
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px}
-.pad{padding:22px 24px}
-.row{display:grid;grid-template-columns:28px 1fr auto;gap:18px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:14px}
-.row .t{font-weight:600;font-size:16px}.row .d{color:var(--muted);font-size:14px}
-.row.dim .t,.row.dim .d,.row.dim .ri{opacity:.55}
-.ri{color:#333;display:flex}
-.foot{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;padding:18px 48px 26px}
-.foot .c{display:grid;justify-items:center;gap:8px}.foot .c img{width:110px;height:auto}
-.dots{display:flex;gap:6px}.dots i{width:6px;height:6px;border-radius:50%;background:#cfcac3}.dots i.on{background:#151515}
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-@media(max-width:800px){.grid2,.grid3{grid-template-columns:1fr}.foot{padding:14px 20px}}
-.sum{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:14px}.sum span:first-child{color:var(--muted)}
-.hr{height:1px;background:var(--line);margin:8px 0}
-.tbl{width:100%;border-collapse:collapse;font-size:14px}
-.tbl th{text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:10px 10px 10px 0;border-bottom:1px solid var(--line)}
-.tbl td{padding:13px 10px 13px 0;border-bottom:1px solid #f0ede8;vertical-align:middle}
-.tbl tr:last-child td{border-bottom:0}
+.chip span{display:inline-block;padding:9px 16px;border-radius:999px;box-shadow:inset 0 0 0 1px #d4d4d4;font-size:14px;font-weight:500}
+.chip input:checked+span{background:#0f1412;color:#fff;box-shadow:none}.chip input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.err{color:#b42318;font-size:14px;font-weight:600;min-height:20px;margin:0}
+.blk{padding:40px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px}
+.blk>.k{display:grid;gap:6px;align-content:start}.blk>.k b{font-size:13px;font-weight:600;color:var(--blue)}.blk>.k span{font-size:22px;font-weight:600;letter-spacing:-.03em;line-height:1.1}
+@media(max-width:860px){header.h .in{padding:0 18px;grid-template-columns:auto 1fr}.nl{display:none}.wm span{display:none}.wrap,.narrow{padding:0 18px}.g2,.g3{grid-template-columns:1fr}.blk{grid-template-columns:1fr;gap:16px}}
+.card{border:1px solid var(--line);border-radius:18px;background:#fff}.pad{padding:24px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;background:var(--soft);white-space:nowrap}
+.pill.k{background:#0f1412;color:#fff}.pill.b{background:#e8eefb;color:var(--blue)}.pill.g{background:#e8f4ec;color:var(--ok)}
+.ok{color:var(--ok);font-weight:600}.wa{color:var(--warn);font-weight:600}
+.qty{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.qty button{width:34px;height:34px;border-radius:50%;border:1px solid #cfcfcf;background:#fff;cursor:pointer;font-size:17px;line-height:1}
+.qty output{min-width:26px;text-align:center}
+.tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.tl div{display:grid;gap:8px;font-size:13px;color:#8a8f8c}.tl i{height:3px;border-radius:2px;background:#e3e3e3}
+.tl .on{color:var(--ink);font-weight:600}.tl .on i{background:var(--ink)}.tl .now{color:var(--blue);font-weight:600}.tl .now i{background:var(--blue)}
+@media(max-width:700px){.tl{grid-template-columns:repeat(3,1fr)}}
+.hero{position:relative;min-height:calc(100svh - 104px);background:#111;color:#fff;display:flex;align-items:flex-end;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,.15) 60%)}
+.hero .wrap{position:relative;z-index:1;padding-bottom:72px;width:100%}
+.vc{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.vc .ph{aspect-ratio:16/10;background:var(--soft);display:flex;align-items:center;justify-content:center}
+.vc .ph span{width:72px;height:72px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;letter-spacing:-.02em}
+.vc .b{padding:18px 20px 20px;display:grid;gap:6px;flex:1}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th{text-align:left;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 10px 10px 0;border-bottom:1px solid var(--line)}
+.tbl td{padding:14px 10px 14px 0;border-bottom:1px solid var(--line);vertical-align:middle}.tbl tr:last-child td{border-bottom:0}
 .scroll{overflow-x:auto}
-.qty{display:inline-flex;align-items:center;gap:6px;font-weight:600}
-.qty button{width:30px;height:30px;border-radius:50%;border:1px solid #cfcac3;background:#fff;cursor:pointer;line-height:1}
-.qty output{min-width:28px;text-align:center}
-.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--chip);color:#333;white-space:nowrap}
-.pill.k{background:#151515;color:#fff}.pill.o{background:#fdf1e6;color:var(--acc)}.pill.g{background:#e8f5ee;color:var(--ok)}
-.ok{color:var(--ok);font-weight:600}.pend{color:var(--warn);font-weight:600}
-.tl{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-.tl div{display:grid;gap:8px;font-size:12.5px;color:var(--soft)}.tl i{height:6px;border-radius:3px;background:#e6e3de}
-.tl .on i{background:var(--acc)}.tl .on{color:var(--acc)}
-.vcard{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
-.vcard .ph{height:130px;background:linear-gradient(135deg,#efebe5,#e2ddd5);display:flex;align-items:center;justify-content:center;color:#8b857c;font-size:13px}
-.vcard .b{padding:14px 16px 16px;display:grid;gap:6px;flex:1}
-.tabs{display:flex;gap:28px;border-bottom:1px solid var(--line);margin-bottom:20px}
-.tabs a,.tabs button{padding:0 0 12px;font-size:15px;color:var(--muted);text-decoration:none;background:none;border:0;cursor:pointer;border-bottom:2px solid transparent}
-.tabs .on{color:var(--acc);border-color:var(--acc);font-weight:600}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:20px;z-index:60}
-.modal>div{background:#fff;border-radius:16px;width:min(920px,100%);max-height:90vh;overflow:auto;padding:24px}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#151515;color:#fff;padding:12px 18px;border-radius:10px;z-index:80;font-weight:600;font-size:14px}
-.hero{background:#151515;color:#fff;text-align:center;padding:56px 24px 64px}
-.hero h1{font-size:clamp(30px,4vw,44px);margin:0;letter-spacing:-.02em}
-.search{display:flex;gap:8px;max-width:640px;margin:22px auto 0;background:#fff;border-radius:999px;padding:6px}
-.search input{flex:1;border:0;padding:0 16px;font-size:15px;outline:none;border-radius:999px;color:#151515}
-.pub{display:flex;justify-content:space-between;align-items:center;padding:14px 32px;background:#fff;border-bottom:1px solid var(--line)}
-.pub nav{display:flex;gap:28px;font-size:14px}.pub nav a{text-decoration:none;color:#333}
-@media(max-width:700px){.pub nav{display:none}}
+.sum{display:flex;justify-content:space-between;gap:12px;padding:9px 0;font-size:15px}.sum span:first-child{color:var(--muted)}
+.notice{border-radius:14px;padding:16px 18px;background:#e8eefb;color:#0b2a63}
+.modal{position:fixed;inset:0;background:rgba(15,20,18,.6);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:18px;z-index:60}
+.modal>div{background:#fff;border-radius:22px;width:min(980px,100%);max-height:92vh;overflow:auto;padding:28px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1412;color:#fff;padding:12px 20px;border-radius:999px;z-index:80;font-weight:600;font-size:14px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
+@media(max-width:960px){.split{grid-template-columns:1fr}}
+footer.f{border-top:1px solid var(--line);padding:28px 40px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
 </style>
 </head>
 <body>
-<div class="test">Test drive · sample vendors &amp; prices · accounts are simulated (no passwords; sign-in codes appear on screen) · <a href="#/admin">Super Admin</a> · <a href="#" id="reset">Start over</a></div>
+<div class="bar"><span>Test drive · sample vendors · sign-in is simulated</span><a href="#" id="reset">Start over</a></div>
 <div id="app"></div>
 <script>
 (() => {
 const LOGO = '/assets/culinary-express-logo.png';
-const CAR = 'https://www.culinary.express/assets/images/car.svg';
+const MEDIA = 'https://www.culinary.express/assets/videos/brand';
 const CAL = 'https://calendly.com/theexpress';
+const REVIEWS = 'https://share.google/562GL0SKiDTD7gPY2';
 const TYPES = ['Restaurant', 'Event Venue', 'Farm', 'Winery', 'Bakery + Desserts', 'Coffee + Espresso', 'Bar + Drinks', 'Rentals', 'Entertainment'];
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const money = n => '$' + (Math.round(n * 100) / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const money = n => '$' + Math.round(n).toLocaleString();
 const toast = m => { const d = document.createElement('div'); d.className = 'toast'; d.setAttribute('role', 'status'); d.textContent = m; document.body.appendChild(d); setTimeout(() => d.remove(), 2800); };
 const store = { get: (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } }, set: (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
+const initials = n => String(n || '?').split(/\s+/).filter(w => !/^sample$/i.test(w)).slice(0, 2).map(w => w[0]).join('').toUpperCase();
 
-// ---------- icons ----------
-const I = (p, s = 20) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
-const ic = {
-  party: I('<path d="M4 20l5-14 9 9-14 5z"/><path d="M14 4l1 2M19 9l2-1M17 3l-1 3M21 5l-3 1"/>'),
-  food: I('<path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 2-2 6 0 8v10"/>'),
-  staff: I('<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.8.4 5 2.8 5 5.8"/>'),
-  quote: I('<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/>'),
-  heart: I('<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>'),
-  send: I('<path d="M21 3L10 14M21 3l-7 18-4-7-7-4 18-7z"/>'),
-  phone: I('<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>'),
-  layers: I('<path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/>'),
-  search: I('<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>'),
-  plus: I('<path d="M12 5v14M5 12h14"/>', 16),
-  store: I('<path d="M4 9l1-5h14l1 5M4 9v11h16V9M4 9h16M9 20v-6h6v6"/>'),
-  back: I('<path d="M15 6l-6 6 6 6"/>'),
-  doc: I('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>')
-};
-
-// ---------- state ----------
-let SESS = store.get('fg-sess', null), ADM = (() => { try { return sessionStorage.getItem('fg-adm') || ''; } catch { return ''; } })();
-let LIVE = [], ME = null, AD = null, S = store.get('fg-draft', null);
-const blank = () => ({ inq: { title: '', description: '', guaranteed: '', expected: '', date: '', start: '18:00', end: '22:00', location: '', type: 'Full event', service: 'Buffet with service' }, picks: [], gems: [], recommend: [], sel: {}, staff: null, mat: null, booked: false });
-if (!S) S = blank();
-const setSess = x => { SESS = x; ME = null; store.set('fg-sess', x); };
-const saveDraft = () => store.set('fg-draft', S);
+let SESS = store.get('ce-sess', null), ADM = (() => { try { return sessionStorage.getItem('ce-adm') || ''; } catch { return ''; } })();
+let LIVE = [], ME = null, AD = null, D = store.get('ce-draft', null), PARAM = null, PEND = null, INV = null, VD = null;
+const blankDraft = () => ({ inq: { title: '', type: 'Full event', guaranteed: '', date: '', start: '18:00', end: '22:00', location: '', service: 'Buffet with service', description: '' }, gems: [], picks: [], recommend: [] });
+if (!D) D = blankDraft();
+const setSess = x => { SESS = x; ME = null; store.set('ce-sess', x); };
 async function api(a, body = {}) {
   const r = await fetch('/api/fg?a=' + a, { method: 'POST', headers: { 'content-type': 'application/json', 'x-token': SESS?.token || '', 'x-admin-code': ADM }, body: JSON.stringify(body) });
   const j = await r.json().catch(() => ({ error: 'Network error. Try again.' }));
-  if (!r.ok) { if (r.status === 401 && !a.startsWith('admin')) { setSess(null); } throw new Error(j.error || 'Something went wrong'); }
+  if (!r.ok) { if (r.status === 401 && !a.startsWith('admin')) setSess(null); throw new Error(j.error || 'Something went wrong'); }
   return j;
 }
-const merge = ev => { S = { ...S, ...ev }; saveDraft(); };
-let syncT; const sync = () => { saveDraft(); if (!SESS || !S.id || S.quote) return; clearTimeout(syncT); syncT = setTimeout(async () => { try { merge((await api('saveEvent', { event: S })).event); } catch {} }, 700); };
 const loadLive = async () => { try { LIVE = (await api('vendors')).vendors || []; } catch { LIVE = []; } };
-const loadMe = async () => { ME = await api('me'); return ME; };
-const role = () => SESS?.account?.roles?.includes('vendor') && !SESS?.account?.roles?.includes('client') ? 'vendor' : 'client';
+const loadMe = async () => (ME = await api('me'));
+const isVendor = () => !!SESS?.account?.vendorId;
 
-// ---------- sample directory (placeholders for testing) ----------
+// Sample directory: placeholders for testing only
 const SAMPLES = [
-  { id: 'lib-1', name: 'Sample Taquería', type: 'Restaurant', hood: 'Mission', blurb: 'Family recipes, big trays.', items: [['Carnitas tray', 'Salsa verde, tortillas', 95, 'per tray (10)'], ['Vegetable enchiladas', 'Mole, queso fresco', 85, 'per tray (10)'], ['Rice + beans', '', 45, 'per tray (10)'], ['Chips + three salsas', '', 30, 'per tray (10)']] },
-  { id: 'lib-2', name: 'Sample Trattoria', type: 'Restaurant', hood: 'North Beach', blurb: 'Fresh pasta and antipasti.', items: [['Lasagna', 'Bolognese, béchamel', 110, 'per tray (12)'], ['Caesar salad', '', 55, 'per tray (12)'], ['Focaccia', 'Rosemary, sea salt', 25, 'per tray (12)']] },
-  { id: 'lib-3', name: 'Sample Bakery', type: 'Bakery + Desserts', hood: 'Inner Sunset', blurb: 'Cakes, cookies, churros.', items: [['Churros', 'Chocolate dip', 36, 'per dozen'], ['Tres leches', '', 70, 'per half sheet'], ['Cookie platter', 'Assorted', 30, 'per dozen']] },
-  { id: 'lib-4', name: 'Sample Espresso Cart', type: 'Coffee + Espresso', hood: 'Citywide', blurb: 'Barista-made drinks on site.', items: [['Espresso cart service', '3 hours', 450, 'per event'], ['Extra hour', '', 120, 'per hour']] },
-  { id: 'lib-5', name: 'Sample Wine Bar', type: 'Bar + Drinks', hood: 'Hayes Valley', blurb: 'Natural wine and beer.', items: [['Wine + beer package', '3 hours', 28, 'per person'], ['Agua fresca', 'Two flavors', 3, 'per person']] },
-  { id: 'lib-6', name: 'Sample Valley Farm', type: 'Farm', hood: 'Sonoma', blurb: 'Seasonal produce boxes.', items: [['Grazing board', 'Farm cheeses, fruit', 180, 'per board (20)']] },
-  { id: 'lib-7', name: 'Sample Loft Venue', type: 'Event Venue', hood: 'SoMa', blurb: 'Up to 80 guests.', items: [['Evening rental', '6 hours', 1200, 'per event']] },
-  { id: 'lib-8', name: 'Sample Ridge Winery', type: 'Winery', hood: 'Napa', blurb: 'Estate wines, tours.', items: [['Wine pairing', 'Three pours', 22, 'per person']] }
-].map(v => ({ ...v, sample: true, items: v.items.map(([n, d, p, u]) => ({ n, d, p, u })) }));
+  ['lib-1', 'Sample Taquería', 'Restaurant', 'Mission', [['Carnitas tray', 'Salsa verde, tortillas', 95, 'per tray (10)'], ['Vegetable enchiladas', 'Mole, queso fresco', 85, 'per tray (10)'], ['Rice + beans', '', 45, 'per tray (10)'], ['Chips + three salsas', '', 30, 'per tray (10)']]],
+  ['lib-2', 'Sample Trattoria', 'Restaurant', 'North Beach', [['Lasagna', 'Bolognese, béchamel', 110, 'per tray (12)'], ['Caesar salad', '', 55, 'per tray (12)'], ['Focaccia', 'Rosemary, sea salt', 25, 'per tray (12)']]],
+  ['lib-3', 'Sample Bakery', 'Bakery + Desserts', 'Inner Sunset', [['Churros', 'Chocolate dip', 36, 'per dozen'], ['Tres leches', '', 70, 'per half sheet'], ['Cookie platter', 'Assorted', 30, 'per dozen']]],
+  ['lib-4', 'Sample Espresso Cart', 'Coffee + Espresso', 'Citywide', [['Espresso cart service', 'Barista-made drinks, 3 hours', 450, 'per event']]],
+  ['lib-5', 'Sample Wine Bar', 'Bar + Drinks', 'Hayes Valley', [['Wine + beer package', '3 hours', 28, 'per person']]],
+  ['lib-6', 'Sample Valley Farm', 'Farm', 'Sonoma', [['Grazing board', 'Farm cheeses, fruit', 180, 'per board (20)']]]
+].map(([id, name, type, hood, items]) => ({ id, name, type, hood, sample: true, items: items.map(([n, d, p, u]) => ({ n, d, p, u })) }));
 const directory = () => [...LIVE, ...SAMPLES];
 const vById = id => directory().find(v => v.id === id);
-function eventVendors(ev = S) {
-  const out = [], seen = new Set();
-  (ev.picks || []).forEach(id => { const v = vById(id); if (v && !seen.has(v.id)) { seen.add(v.id); out.push({ ...v, how: 'Your pick' }); } });
-  (ev.gems || []).filter(g => g.name).forEach((g, i) => { const L = g.inviteId && LIVE.find(v => (v.inviteIds || []).includes(g.inviteId)); if (L) { if (!seen.has(L.id)) { seen.add(L.id); out.push({ ...L, how: 'Your local gem' }); } } else out.push({ id: g.inviteId ? 'inv-' + g.inviteId : 'gem-' + i, name: g.name, type: g.type, items: [], how: 'Invited · menu pending', pending: true }); });
-  (ev.recommend || []).forEach(t => { const v = directory().find(x => x.type === t && !seen.has(x.id)); if (v) { seen.add(v.id); out.push({ ...v, how: 'Our local gem' }); } });
+function eventVendors(ev) {
+  const out = [], seen = new Set(), add = (v, how) => { if (v && !seen.has(v.id)) { seen.add(v.id); out.push({ ...v, how }); } };
+  (ev.picks || []).forEach(id => add(vById(id), 'Your pick'));
+  (ev.gems || []).filter(g => g.name).forEach((g, i) => { const L = g.inviteId && LIVE.find(v => (v.inviteIds || []).includes(g.inviteId)); if (L) add(L, 'Your local gem'); else out.push({ id: g.inviteId ? 'inv-' + g.inviteId : 'gem-' + i, name: g.name, type: g.type, items: [], how: 'Your local gem', pending: true }); });
+  (ev.adminPicks || []).forEach(id => add(vById(id), 'Lead Planner pick'));
+  (ev.recommend || []).forEach(t => add(directory().find(x => x.type === t && !seen.has(x.id)), 'Our local gem'));
   return out.map(v => ({ ...v, items: (v.items || []).map((it, j) => ({ ...it, id: v.id + '-' + j })) }));
 }
-const guests = (ev = S) => Math.max(1, parseInt(ev.inq?.guaranteed) || parseInt(ev.inq?.expected) || 40);
-const hours = (ev = S) => { const t = x => { const [h, m] = String(x || '0:0').split(':').map(Number); return (h || 0) + (m || 0) / 60; }; let d = t(ev.inq?.end) - t(ev.inq?.start); if (d <= 0) d += 24; return Math.max(2, Math.round(d)); };
-const staffPlan = (ev = S) => { const g = guests(ev), h = hours(ev), svc = ev.inq?.service || '', drop = ev.inq?.type === 'Catering delivery'; return [
-  { k: 'captain', n: 'Event captain', q: drop ? 0 : 1, h: h + 1, r: 55 }, { k: 'server', n: 'Server', q: drop ? 0 : Math.ceil(g / (svc === 'Plated dinner' ? 10 : 15)), h, r: 40 },
-  { k: 'bartender', n: 'Bartender', q: eventVendors(ev).some(v => v.type === 'Bar + Drinks') ? Math.ceil(g / 50) : 0, h: Math.max(2, h - 1), r: 45 }, { k: 'barista', n: 'Barista', q: eventVendors(ev).some(v => v.type === 'Coffee + Espresso') ? 1 : 0, h: 3, r: 40 },
-  { k: 'driver', n: 'Driver', q: 1, h: 2, r: 35 }, { k: 'setup', n: 'Setup + breakdown', q: drop ? 0 : Math.ceil(g / 25), h: 3, r: 35 }]; };
-const matPlan = (ev = S) => { const g = guests(ev), t = Math.ceil(g / 8) + 2, buf = /Buffet/.test(ev.inq?.service || ''); return [
-  { k: 'tables', n: 'Round tables (60")', u: 'units', q: t, p: 12 }, { k: 'chairs', n: 'Chairs', u: 'units', q: g, p: 4 }, { k: 'linens', n: 'Linens + napkins', u: 'sets', q: t, p: 14 },
-  { k: 'plates', n: 'Plates (dinner + dessert)', u: 'units', q: g * 2, p: 1 }, { k: 'cutlery', n: 'Cutlery sets', u: 'sets', q: g, p: 1.5 }, { k: 'glass', n: 'Glassware', u: 'units', q: g * 2, p: 1 },
-  { k: 'chafing', n: 'Chafing dishes + fuel', u: 'units', q: buf ? Math.max(4, Math.ceil(g / 8)) : 0, p: 18 }]; };
-const ensure = (ev = S) => { if (!ev.staff) { ev.staff = {}; staffPlan(ev).forEach(r => ev.staff[r.k] = { q: r.q, h: r.h }); } if (!ev.mat) { ev.mat = {}; matPlan(ev).forEach(m => ev.mat[m.k] = { q: m.q, src: 'ce' }); } };
-function totals(ev = S) { ensure(ev); let food = 0, items = 0; eventVendors(ev).forEach(v => v.items.forEach(i => { const q = ev.sel?.[i.id] || 0; food += q * i.p; if (q) items++; }));
-  let labor = 0, people = 0; staffPlan(ev).forEach(r => { const s = ev.staff[r.k] || { q: 0, h: 0 }; labor += s.q * s.h * r.r; people += s.q; });
-  let mat = 0; matPlan(ev).forEach(m => { const s = ev.mat[m.k] || { q: 0 }; if (s.src === 'ce') mat += s.q * m.p; });
-  const sub = food + labor + mat; return { food, items, labor, people, mat, sub, coupon: sub ? 200 : 0, total: Math.max(0, sub - (sub ? 200 : 0)) }; }
-const QS = [['requested', 'Ticket created'], ['quoted', 'Quote confirmed'], ['approved', 'Approved'], ['in_progress', 'In progress'], ['completed', 'Completed']];
-const qIdx = s => Math.max(0, QS.findIndex(x => x[0] === s));
-const qLabel = ev => ev.quote ? QS[qIdx(ev.quote.status)][1] : (ev.id ? 'Planning' : 'Draft');
+const guests = ev => Math.max(1, parseInt(ev.inq?.guaranteed) || 40);
+const hours = ev => { const t = x => { const [h, m] = String(x || '0:0').split(':').map(Number); return (h || 0) + (m || 0) / 60; }; let d = t(ev.inq?.end) - t(ev.inq?.start); if (d <= 0) d += 24; return Math.max(2, Math.round(d)); };
+const STAFF = ev => { const g = guests(ev), h = hours(ev), drop = ev.inq?.type === 'Catering delivery'; return [['captain', 'Event captain', drop ? 0 : 1, h + 1, 55], ['server', 'Servers', drop ? 0 : Math.ceil(g / (ev.inq?.service === 'Plated dinner' ? 10 : 15)), h, 40], ['bartender', 'Bartender', eventVendors(ev).some(v => v.type === 'Bar + Drinks') ? Math.ceil(g / 50) : 0, Math.max(2, h - 1), 45], ['barista', 'Barista', eventVendors(ev).some(v => v.type === 'Coffee + Espresso') ? 1 : 0, 3, 40], ['driver', 'Driver', 1, 2, 35], ['setup', 'Setup + breakdown', drop ? 0 : Math.ceil(g / 25), 3, 35]].map(([k, n, q, h2, r]) => ({ k, n, q, h: h2, r })); };
+const MAT = ev => { const g = guests(ev), t = Math.ceil(g / 8) + 2; return [['tables', 'Round tables (60")', t, 12], ['chairs', 'Chairs', g, 4], ['linens', 'Linens + napkins', t, 14], ['plates', 'Plates', g * 2, 1], ['cutlery', 'Cutlery sets', g, 1.5], ['glass', 'Glassware', g * 2, 1], ['chafing', 'Chafing dishes + fuel', /Buffet/.test(ev.inq?.service || '') ? Math.max(4, Math.ceil(g / 8)) : 0, 18]].map(([k, n, q, p]) => ({ k, n, q, p })); };
+const staffOf = ev => { const d = Object.fromEntries(STAFF(ev).map(r => [r.k, { q: r.q, h: r.h }])); return { ...d, ...(ev.staff || {}) }; };
+const matOf = ev => { const d = Object.fromEntries(MAT(ev).map(m => [m.k, { q: m.q, src: 'ce' }])); return { ...d, ...(ev.mat || {}) }; };
+function totals(ev) { let food = 0, items = 0; eventVendors(ev).forEach(v => v.items.forEach(i => { const q = ev.sel?.[i.id] || 0; food += q * i.p; if (q) items++; }));
+  const st = staffOf(ev), mt = matOf(ev); let labor = 0, people = 0; STAFF(ev).forEach(r => { const s = st[r.k]; labor += s.q * s.h * r.r; people += s.q; });
+  let mat = 0; MAT(ev).forEach(m => { const s = mt[m.k]; if (s.src === 'ce') mat += s.q * m.p; }); const sub = food + labor + mat; return { food, items, labor, people, mat, total: Math.max(0, sub - (sub ? 200 : 0)) }; }
+const STAGES = ['Inquiry', 'Discovery call', 'Menus', 'Quote', 'Approved', 'Booked'];
+const stageOf = ev => { const q = ev.quote?.status; if (q === 'in_progress' || q === 'completed') return 5; if (q === 'approved') return 4; if (q === 'quoted' || q === 'requested') return 3; if (ev.booked) return 2; return 1; };
+const statusText = ev => { const q = ev.quote?.status; return q === 'completed' ? 'Completed' : q === 'in_progress' ? 'In progress' : q === 'approved' ? 'Approved' : q === 'quoted' ? 'Quote ready' : q === 'requested' ? 'Building your quote' : ev.booked ? 'Choose your menus' : 'Book your discovery call'; };
 
-// ---------- layout ----------
-const NAV = { client: [['events', 'My Events'], ['create/1', 'Create an Event'], ['directory', 'Vendor Directory'], ['board', 'Dispatch Board']], vendor: [['vendor', 'Vendor Page'], ['vendor/orders', 'Orders'], ['directory', 'Vendor Directory']], admin: [['admin', 'Dispatch Board'], ['admin/vendors', 'Vendors'], ['directory', 'Vendor Directory']] };
-function shell(kind, active, title, body, opts = {}) {
-  const nav = NAV[kind].map(([h, t]) => `<a href="#/${h}" class="${active === h || (active.startsWith('create') && h === 'create/1') ? 'on' : ''}">${t}</a>`).join('');
-  const who = kind === 'admin' ? 'Super Admin' : esc(SESS?.account?.name || SESS?.account?.email || '');
-  return `<div class="app"><aside class="side"><a class="brand" href="#/${NAV[kind][0][0]}"><img src="${LOGO}" alt="">Cülinary Expréss</a><nav class="nav" aria-label="Main">${nav}</nav>
-  <div class="out"><small>${who}</small><button type="button" id="logout">Log out</button></div></aside>
-  <main class="main"><div class="top"><div><h1>${title}</h1>${opts.sub ? `<p class="sub">${opts.sub}</p>` : ''}</div>${opts.action || ''}</div><div class="body">${body}</div>${opts.foot || ''}</main></div>`;
+// ---------- chrome ----------
+function header(mode) {
+  const left = mode === 'admin' ? [['admin', 'Dispatch'], ['admin/vendors', 'Vendors']] : mode === 'vendor' ? [['vendor', 'My page'], ['vendor/orders', 'Orders']] : [['', 'Home'], ['gems', 'Local gems'], ...(SESS && !isVendor() ? [['events', 'My events']] : [])];
+  const cur = location.hash.replace(/^#\/?/, '');
+  const right = mode === 'admin' ? `<button class="u sml" type="button" id="out">Leave admin</button>` : SESS ? `<span class="sml m" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(SESS.account.name || SESS.account.email)}</span><button class="u sml" type="button" id="out">Sign out</button>${isVendor() ? '' : `<a class="btn dk sm" href="#/start">New event</a>`}` : `<a class="u sml" href="#/signin">Sign in</a><a class="btn dk sm" href="#/start">Let’s Begin ↗</a>`;
+  return `<header class="h"><div class="in"><nav class="nl" aria-label="Main">${left.map(([h, t]) => `<a href="#/${h}" class="${cur === h ? 'on' : ''}">${t}</a>`).join('')}</nav><a class="wm" href="#/"><img src="${LOGO}" alt="">${mode === 'admin' ? '<span>Super Admin</span>' : '<span>Cülinary Expréss</span>'}</a><div class="hr">${right}</div></div></header>`;
 }
-const STEPS = [['Event Details', ic.party], ['Food &amp; Vendors', ic.food], ['Staffing and materials', ic.staff], ['Request Quote', ic.quote], ['Dispatch', ic.heart]];
-const stepper = n => `<nav class="steps" aria-label="Event steps">${STEPS.map(([t, i], k) => `${k ? `<span class="bar ${k < n ? 'done' : ''}"></span>` : ''}<a class="st ${k + 1 < n ? 'done' : k + 1 === n ? 'now' : ''}" href="#/create/${k + 1}" ${k + 1 === n ? 'aria-current="step"' : ''}><span class="ic">${i}</span>${t}</a>`).join('')}</nav>`;
-const foot = (n, next, nextLabel = 'Next') => `<div class="foot"><div>${n > 1 ? `<a class="ol sm" href="#/create/${n - 1}" aria-label="Back" style="width:40px;padding:0">${ic.back}</a>` : ''}</div><div class="c"><img src="${CAR}" alt=""><div class="dots">${[1, 2, 3, 4, 5].map(k => `<i class="${k === n ? 'on' : ''}"></i>`).join('')}</div></div><div style="justify-self:end">${next ? `<button class="ol" id="next" type="button">${nextLabel}</button>` : ''}</div></div>`;
-const bookBtn = `<button class="ol" type="button" id="bookcall">Book a call</button>`;
-const authL = (h, p, items, q) => `<div class="l"><a class="brand" href="#/"><img src="${LOGO}" alt="">Cülinary Expréss</a><h1>${h}</h1><p>${p}</p><p class="cap" style="margin-top:36px;color:#9a9a9a">Your platform</p><ul class="ul">${items.map(i => `<li>${i}</li>`).join('')}</ul><div class="quote">${q}</div></div>`;
-
+const footer = () => `<footer class="f"><span>© Cülinary Expréss · Order Your Moment</span><span><a href="mailto:plan@culinary.express">plan@culinary.express</a> · <a href="${REVIEWS}" target="_blank" rel="noopener">★ Google Reviews</a> · <a href="#/join/vendor">For vendors</a> · <a href="#/admin">Super Admin</a></span></footer>`;
+const page = (mode, body) => `${header(mode)}<main>${body}</main>${footer()}`;
 const V = {}, H = {};
-let PARAM = null;
 
-// ---------- public directory (landing) ----------
-let FILTER = 'All', QUERY = '';
-const dirCards = (inApp) => { const list = directory().filter(v => (FILTER === 'All' || v.type === FILTER) && (!QUERY || (v.name + ' ' + v.type + ' ' + (v.hood || '')).toLowerCase().includes(QUERY.toLowerCase())));
-  return `<div class="grid3">${list.map(v => `<article class="vcard"><div class="ph">${esc(v.type)}</div><div class="b"><span class="pill ${v.sample ? '' : 'o'}" style="justify-self:start">${v.sample ? 'Sample' : 'Local gem'} · ${esc(v.type)}</span><b style="font-size:17px">${esc(v.name)}</b><span class="hint">${esc(v.hood || '')}${v.blurb ? ' · ' + esc(v.blurb) : ''}</span><span class="hint">${v.items.length} menu items</span>
-  <button class="bk sm" type="button" data-add="${v.id}" style="margin-top:8px">${inApp && S.picks.includes(v.id) ? 'Added to event' : v.type === 'Event Venue' ? 'Book the venue' : v.type === 'Farm' || v.type === 'Winery' ? 'Order products' : 'Book a catered event'}</button></div></article>`).join('')}</div>
-  <div class="card pad" style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap"><div><b>Can't find the vendor you want?</b><div class="hint">Add their details and we'll invite them to the Fíeld Güide.</div></div><button class="ol" type="button" id="addown">Add your own vendor</button></div>`; };
-const filters = () => `<div class="chips" role="radiogroup" aria-label="Filter vendors" style="margin-bottom:18px">${['All', ...TYPES].map(t => `<label class="chip"><input type="radio" name="flt" value="${esc(t)}" ${FILTER === t ? 'checked' : ''}><span>${t === 'All' ? 'All vendors' : esc(t)}</span></label>`).join('')}</div>`;
-V[''] = () => `<header class="pub"><a class="brand" href="#/"><img src="${LOGO}" alt="">Cülinary Expréss</a><nav aria-label="Public"><a href="#/">Browse</a><a href="https://fieldguide.culinary.express/#how">How it works</a><a href="#/join/vendor">For vendors</a></nav>${SESS ? `<a class="bk sm" href="#/${role() === 'vendor' ? 'vendor' : 'events'}">My account</a>` : `<a class="bk sm" href="#/signin">Sign in</a>`}</header>
-<section class="hero"><h1>Find your perfect culinary partner.</h1><p style="color:#bdbdbd;margin:10px 0 0">Literally any restaurant, farm, venue or espresso cart. We bring it to your event and run the service.</p>
-<form class="search" id="sf" role="search"><label for="q" class="hint" style="position:absolute;left:-9999px">Search vendors</label><input id="q" placeholder="Search restaurants, venues, farms…" value="${esc(QUERY)}"><button class="bk sm" type="submit">Search</button></form></section>
-<main style="max-width:1120px;margin:0 auto;padding:28px 24px 64px">${filters()}<div id="dir">${dirCards(false)}</div></main>`;
-H[''] = () => { $('#sf').onsubmit = e => { e.preventDefault(); QUERY = $('#q').value; $('#dir').innerHTML = dirCards(false); bindDir(false); }; $$('[name=flt]').forEach(r => r.onchange = () => { FILTER = r.value; $('#dir').innerHTML = dirCards(false); bindDir(false); }); bindDir(false); };
-function bindDir(inApp) {
-  $$('[data-add]').forEach(b => b.onclick = () => { const id = b.dataset.add; if (!S.picks.includes(id)) S.picks.push(id); sync(); if (!SESS) { store.set('fg-after', 'create/1'); toast('Added. Create an account to plan your event.'); go('join'); } else if (inApp) { b.textContent = 'Added to event'; toast('Added to your event'); } else go('create/2'); });
-  const a = $('#addown'); if (a) a.onclick = () => { if (!SESS) { store.set('fg-after', 'create/2'); go('join'); } else go('create/2?add=1'); };
-}
+V[''] = () => page('client', `
+<section class="hero"><video src="${MEDIA}/hero-reel.mp4" poster="${MEDIA}/hero-reel.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+ <div class="wrap"><p class="caps" style="color:rgba(255,255,255,.8);margin:0 0 18px">Cülinary Expréss · Fíeld Güide</p><h1 class="d1">Order Your<br><span style="color:var(--sky)">Moment</span>.</h1>
+ <p style="font-size:20px;color:rgba(255,255,255,.88);max-width:560px;margin:22px 0 0">Literally any restaurant you want, brought to any venue, staffed and run by us.</p>
+ <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px"><a class="btn wt" href="#/start">Start your inquiry ↗</a><a class="btn ln" style="color:#fff" href="#/gems">Browse local gems</a></div></div></section>
+<section class="s"><div class="wrap"><p class="caps m" style="margin:0">How it works</p><h2 class="d2" style="margin-top:14px;max-width:800px">Your favorite vendors. <span style="font-weight:300">We run the service.</span></h2>
+ <div class="g3" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:44px">${[['01', 'Send your inquiry', 'Your event and the local gems you love.'], ['02', 'Discovery call', 'Twenty minutes with your Lead Planner.'], ['03', 'Choose your menus', 'Order straight from each vendor’s menu.'], ['04', 'Approve your quote', 'We add staff and materials. You approve.']].map(([n, t, d]) => `<div style="border-top:1px solid var(--ink);padding-top:18px"><b class="blue sml">${n}</b><h3 class="d3" style="margin:10px 0 8px">${t}</h3><p class="m" style="margin:0">${d}</p></div>`).join('')}</div>
+ <a class="btn dk" href="#/start" style="margin-top:44px">Start your inquiry</a></div></section>`);
 
-// ---------- auth ----------
-let PEND = null;
-const codeStep = () => PEND ? `<div class="card" style="padding:16px 18px;background:#fdf6ef;border-color:#f1d9c2;margin-bottom:18px"><b>Simulated email</b><div class="hint" style="color:#4a3a2a">In production this code arrives by email. Your code: <b style="font-size:16px;letter-spacing:.12em">${PEND.code}</b></div></div>
-  <form id="cf" style="display:grid;gap:16px" novalidate><label class="f">6-digit code<input class="in" id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required></label><span class="err" id="err" role="alert"></span><button class="bk" type="submit">Continue</button><button class="lnk" type="button" id="restart">Use a different email</button></form>` : '';
-async function verify(e) { e.preventDefault(); try { const v = await api('verify', { email: PEND.email, code: $('#code').value }); setSess({ token: v.token, account: v.account }); PEND = null; const after = store.get('fg-after', null); store.set('fg-after', null); go(after || (v.account.roles.includes('vendor') && PEND_ROLE === 'vendor' ? 'vendor' : 'events')); } catch (x) { $('#err').textContent = x.message; } }
-let PEND_ROLE = 'client';
-V['signin'] = () => `<div class="auth">${authL('Welcome<br>back.', 'Sign in to plan events, manage your page, view bookings and handle dispatch.', ['Plan events with any vendor you love', 'View and accept new bookings', 'Track quotes, staff and dispatch'], '"Everything I need is in one place. Bookings, staff, dispatch: it just works."<br><br><span style="color:#9a9a9a">Sample testimonial</span>')}
-<div class="r"><div><h2 style="font-size:28px;margin:0">Sign in to your account.</h2><p class="sub" style="margin-bottom:26px">Enter your email and we'll send you a sign-in code.</p>
-${PEND ? codeStep() : `<form id="sf" style="display:grid;gap:16px" novalidate><label class="f"><span class="cap">Email address</span><input class="in" id="em" type="email" autocomplete="email" placeholder="hello@yourbusiness.com" required></label><span class="err" id="err" role="alert"></span><button class="bk" type="submit">Send sign-in code</button></form>
-<p class="hint" style="text-align:center;margin-top:18px">New here? <a href="#/join">Create a client account</a> · <a href="#/join/vendor">Register your business as a partner</a></p>`}</div></div></div>`;
-H['signin'] = () => { const f = $('#sf'); if (f) f.onsubmit = async e => { e.preventDefault(); const em = $('#em').value.trim(); try { const r = await api('start', { email: em, role: 'client' }); PEND = { email: em, code: r.demoCode }; PEND_ROLE = 'client'; render(); } catch (x) { $('#err').textContent = x.message; } };
-  const c = $('#cf'); if (c) { c.onsubmit = verify; $('#code').focus(); $('#restart').onclick = () => { PEND = null; render(); }; } };
+let FILTER = 'All';
+const vendorCards = sel => { const list = directory().filter(v => FILTER === 'All' || v.type === FILTER);
+  return `<div class="g3">${list.map(v => `<article class="vc"><div class="ph"><span>${esc(initials(v.name))}</span></div><div class="b"><span class="tag">${esc(v.type)}${v.sample ? ' · Sample' : ''}</span><h3 style="font-size:20px;letter-spacing:-.02em">${esc(v.name)}</h3><span class="m sml">${esc(v.hood || '')} · ${v.items.length} menu items</span>
+   ${sel ? `<button class="btn ${D.picks.includes(v.id) ? 'dk' : 'ln'} sm" type="button" data-pick="${v.id}" style="margin-top:10px;justify-self:start">${D.picks.includes(v.id) ? 'Added ✓' : 'Add to my event'}</button>` : ''}</div></article>`).join('')}</div>`; };
+const filterChips = () => `<div class="chips" role="radiogroup" aria-label="Filter" style="margin:28px 0">${['All', ...TYPES].map(t => `<label class="chip"><input type="radio" name="flt" value="${esc(t)}" ${FILTER === t ? 'checked' : ''}><span>${esc(t)}</span></label>`).join('')}</div>`;
+V['gems'] = () => page(isVendor() ? 'vendor' : 'client', `<section class="s"><div class="wrap"><p class="caps m" style="margin:0">The Fíeld Güide</p><h1 class="d2" style="margin-top:14px">Local gems.</h1><p class="lead">Restaurants, farms, bakeries, espresso carts and more. Add any of them to your event, or bring your own.</p>${filterChips()}<div id="dir">${vendorCards(!isVendor())}</div>
+ <div class="card pad" style="margin-top:28px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap"><div><b>Don’t see your favorite?</b><div class="m sml">Add them in your inquiry and we’ll invite them to the Fíeld Güide.</div></div><a class="btn dk sm" href="#/start">Start your inquiry</a></div></div></section>`);
+const bindPicks = () => $$('[data-pick]').forEach(b => b.onclick = () => { const id = b.dataset.pick; D.picks = D.picks.includes(id) ? D.picks.filter(x => x !== id) : [...D.picks, id]; store.set('ce-draft', D); const on = D.picks.includes(id); b.textContent = on ? 'Added ✓' : 'Add to my event'; b.className = `btn ${on ? 'dk' : 'ln'} sm`; toast(on ? 'Added' : 'Removed'); });
+H['gems'] = () => { $$('[name=flt]').forEach(r => r.onchange = () => { FILTER = r.value; $('#dir').innerHTML = vendorCards(!isVendor()); bindPicks(); }); bindPicks(); };
 
-V['join'] = () => `<div class="auth">${authL('Plan your<br>moment.', 'Create your account to plan catering with the local gems you love.', ['Choose literally any restaurant or vendor', 'Book a discovery call with your Lead Planner', 'Request a quote and track dispatch'], '"With Matt, you get to choose literally ANY restaurant you want."<br><br><span style="color:#9a9a9a">Grace Leifur, Jeneration Capital</span>')}
-<div class="r"><div><h2 style="font-size:28px;margin:0">Create your account.</h2><p class="sub" style="margin-bottom:26px">No password needed. We'll send a sign-in code.</p>
-${PEND ? codeStep() : `<form id="jf" style="display:grid;gap:16px" novalidate><div class="grid2"><label class="f"><span class="cap">Full name</span><input class="in" id="nm" autocomplete="name" required></label><label class="f"><span class="cap">Phone number</span><input class="in" id="ph" type="tel" autocomplete="tel" placeholder="+1 (415) 000-0000"></label></div>
-<label class="f"><span class="cap">Email address</span><input class="in" id="em" type="email" autocomplete="email" required></label><span class="err" id="err" role="alert"></span><button class="bk" type="submit">Continue</button>
-<p class="hint" style="text-align:center">Already have an account? <a href="#/signin">Sign in</a> · Are you a vendor? <a href="#/join/vendor">Register here</a></p></form>`}</div></div></div>`;
-H['join'] = () => { const f = $('#jf'); if (f) f.onsubmit = async e => { e.preventDefault(); if (!$('#nm').value.trim()) { $('#err').textContent = 'Add your name.'; return; } try { const em = $('#em').value.trim(); const r = await api('start', { email: em, name: $('#nm').value, phone: $('#ph').value, role: 'client' }); PEND = { email: em, code: r.demoCode }; PEND_ROLE = 'client'; render(); } catch (x) { $('#err').textContent = x.message; } };
-  const c = $('#cf'); if (c) { c.onsubmit = verify; $('#code').focus(); $('#restart').onclick = () => { PEND = null; render(); }; } };
+const gemRow = (g, i) => `<div class="card" style="padding:18px;display:grid;gap:12px;background:#fafafa" data-i="${i}"><div class="g3"><label class="f">Vendor name<input class="in" data-k="name" value="${esc(g.name)}" placeholder="e.g. your favorite taquería"></label><label class="f">Type<select class="in" data-k="type">${TYPES.map(t => `<option ${g.type === t ? 'selected' : ''}>${t}</option>`).join('')}</select></label><label class="f">Website or Instagram<input class="in" data-k="link" value="${esc(g.link)}" placeholder="@handle"></label></div><div style="display:flex;gap:12px;align-items:end"><label class="f" style="flex:1">What do you love from them? (optional)<input class="in" data-k="love" value="${esc(g.love)}"></label><button class="u sml" type="button" data-del="${i}" style="height:50px">Remove</button></div></div>`;
+V['start'] = () => { if (isVendor()) { setTimeout(() => go('vendor'), 0); return ''; } const q = D.inq;
+  return page('client', `<section style="padding:64px 0 40px"><div class="narrow"><p class="caps m" style="margin:0">Start your inquiry</p><h1 class="d2" style="margin-top:14px">Tell us about<br>your moment.</h1><p class="lead">Takes about two minutes. Then book a discovery call with your Lead Planner.</p></div></section>
+<form id="f" class="narrow" novalidate>
+ <div class="blk"><div class="k"><b>01</b><span>Your event</span></div><div style="display:grid;gap:16px">
+  <label class="f">Event name<input class="in" name="title" value="${esc(q.title)}" placeholder="e.g. Dad’s retirement dinner"></label>
+  <div class="chips" role="radiogroup" aria-label="Event type">${['Full event', 'Catering delivery'].map(o => `<label class="chip"><input type="radio" name="type" value="${o}" ${q.type === o ? 'checked' : ''}><span>${o}</span></label>`).join('')}</div>
+  <div class="g3"><label class="f">Date<input class="in" type="date" name="date" value="${esc(q.date)}"></label><label class="f">Start<input class="in" type="time" name="start" value="${esc(q.start)}"></label><label class="f">End<input class="in" type="time" name="end" value="${esc(q.end)}"></label></div>
+  <div class="g2"><label class="f">Guests<input class="in" type="number" min="1" name="guaranteed" value="${esc(q.guaranteed)}" placeholder="40"></label><label class="f">Location<input class="in" name="location" value="${esc(q.location)}" placeholder="Venue, office or neighborhood"></label></div>
+  <label class="f">Service style<select class="in" name="service">${['Buffet with service', 'Tray passing', 'Plated dinner', 'Drop-off', 'Not sure yet'].map(o => `<option ${q.service === o ? 'selected' : ''}>${o}</option>`).join('')}</select></label>
+  <label class="f">Anything else? (optional)<textarea class="in" name="description" placeholder="The occasion, dietary needs, timing…">${esc(q.description)}</textarea></label></div></div>
+ <div class="blk"><div class="k"><b>02</b><span>Your local gems</span><p class="m sml" style="margin:6px 0 0">We can pick for you, you can use your own, or a mix of both.</p></div><div style="display:grid;gap:14px">
+  ${D.picks.length ? `<div class="card" style="padding:16px 18px"><span class="tag">From the Fíeld Güide</span><div class="chips" style="margin-top:10px">${D.picks.map(id => { const v = vById(id); return v ? `<span class="pill">${esc(v.name)} <button class="u" type="button" data-unpick="${id}" aria-label="Remove ${esc(v.name)}" style="margin-left:6px;text-decoration:none">×</button></span>` : ''; }).join('')}</div></div>` : ''}
+  <div id="gems" style="display:grid;gap:12px">${D.gems.map(gemRow).join('')}</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn ln sm" type="button" id="addgem">+ Add a vendor you love</button><button class="btn ln sm" type="button" id="browse">Browse local gems</button></div>
+  <div><p style="margin:10px 0 8px;font-size:13.5px;font-weight:600">Want us to recommend some?</p><div class="chips">${['Restaurant', 'Bakery + Desserts', 'Coffee + Espresso', 'Bar + Drinks', 'Farm', 'Rentals'].map(t => `<label class="chip"><input type="checkbox" class="rec" value="${t}" ${D.recommend.includes(t) ? 'checked' : ''}><span>${t}</span></label>`).join('')}</div></div></div></div>
+ <div class="blk"><div class="k"><b>03</b><span>You</span><p class="m sml" style="margin:6px 0 0">This creates your account so you can follow your event.</p></div><div style="display:grid;gap:16px">
+  ${SESS ? `<div class="notice">Signed in as <b>${esc(SESS.account.email)}</b>.</div>` : `<div class="g2"><label class="f">Your name<input class="in" id="nm" autocomplete="name"></label><label class="f">Phone<input class="in" id="ph" type="tel" autocomplete="tel"></label></div><label class="f">Email<input class="in" id="em" type="email" autocomplete="email"></label>`}
+  <div id="codebox"></div><p class="err" id="err" role="alert"></p><div><button class="btn bl" type="submit" id="send">Send inquiry</button></div></div></div>
+</form><div style="height:60px"></div>`); };
+H['start'] = () => { const f = $('#f'); if (!f) return;
+  const rd = () => { const d = new FormData(f); ['title', 'type', 'date', 'start', 'end', 'guaranteed', 'location', 'service', 'description'].forEach(k => { if (d.has(k)) D.inq[k] = d.get(k); }); $$('#gems [data-i]').forEach(r => { const g = D.gems[+r.dataset.i]; r.querySelectorAll('[data-k]').forEach(x => g[x.dataset.k] = x.value); }); D.recommend = $$('.rec').filter(x => x.checked).map(x => x.value); store.set('ce-draft', D); };
+  f.oninput = rd; f.onchange = rd;
+  $('#addgem').onclick = () => { rd(); D.gems.push({ name: '', type: 'Restaurant', link: '', love: '' }); render(); setTimeout(() => { const x = $$('#gems [data-k=name]').pop(); x && x.focus(); }, 0); };
+  $$('[data-del]').forEach(b => b.onclick = () => { rd(); D.gems.splice(+b.dataset.del, 1); render(); });
+  $$('[data-unpick]').forEach(b => b.onclick = () => { rd(); D.picks = D.picks.filter(x => x !== b.dataset.unpick); render(); });
+  $('#browse').onclick = () => { rd(); modal(`<div style="display:flex;justify-content:space-between;align-items:center"><h2 class="d3">Local gems</h2><button class="btn dk sm" type="button" data-close>Done</button></div>${filterChips()}<div id="dir">${vendorCards(true)}</div>`, m => { m.querySelectorAll('[name=flt]').forEach(r => r.onchange = () => { FILTER = r.value; m.querySelector('#dir').innerHTML = vendorCards(true); bindPicks(); }); bindPicks(); }); };
+  async function submitInquiry() { const b = $('#send'); b.disabled = true; try { const { event } = await api('saveEvent', { event: D }); D = blankDraft(); store.set('ce-draft', D); ME = null; EV = event; go('event/' + event.id); toast('Inquiry sent. Next: book your discovery call.'); } catch (x) { b.disabled = false; $('#err').textContent = x.message; } }
+  async function verifyAndSend(e) { e.preventDefault(); rd(); try { const v = await api('verify', { email: PEND.email, code: $('#code').value }); setSess({ token: v.token, account: v.account }); PEND = null; submitInquiry(); } catch (x) { $('#err').textContent = x.message; } }
+  f.onsubmit = async e => { e.preventDefault(); rd(); const q = D.inq, err = $('#err');
+    const miss = !q.title.trim() ? 'Add an event name.' : !q.date ? 'Add a date.' : !(+q.guaranteed > 0) ? 'Add your guest count.' : !q.location.trim() ? 'Add a location.' : '';
+    if (miss) { err.textContent = miss; return; }
+    D.gems = D.gems.filter(g => g.name.trim());
+    if (!SESS) { const nm = $('#nm').value.trim(), em = $('#em').value.trim(); if (!nm) { err.textContent = 'Add your name.'; return; } if (!/^\S+@\S+\.\S+$/.test(em)) { err.textContent = 'Add a valid email.'; return; }
+      try { const r = await api('start', { email: em, name: nm, phone: $('#ph').value, role: 'client' }); PEND = { email: em };
+        $('#codebox').innerHTML = `<div class="notice"><b>Check your email.</b> We sent a 6-digit code to ${esc(em)}.<br><span class="sml">Simulated for this test drive. Your code is <b style="letter-spacing:.14em">${r.demoCode}</b>.</span></div><label class="f" style="margin-top:14px">6-digit code<input class="in" id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6"></label>`;
+        $('#send').textContent = 'Verify + send inquiry'; err.textContent = ''; $('#code').focus(); f.onsubmit = verifyAndSend; } catch (x) { err.textContent = x.message; } return; }
+    submitInquiry(); };
+};
 
-let INV = null;
-const vendorJoin = () => `<div class="auth">${authL('Join the platform.<br>Grow your<br>business.', 'Create your account and start attracting clients: local, vetted, and ready to grow.', ['Get discovered by event planners and clients', 'Access professional staff and logistics support', 'Build your marketing page in minutes', 'No commissions'], '"Culinary Express helped us double our bookings in the first month."<br><br><span style="color:#9a9a9a">Sample testimonial</span>')}
-<div class="r"><div>${INV ? `<div class="card" style="padding:16px 18px;margin-bottom:20px;background:#fdf6ef;border-color:#f1d9c2"><b>A client wants ${esc(INV.gemName)} at their event.</b><div class="hint" style="color:#4a3a2a">${esc(INV.eventTitle || 'Event')} · ${esc(INV.date || 'Date TBD')} · ${esc(INV.guests || '?')} guests${INV.hood ? ' · ' + esc(INV.hood) : ''}${INV.love ? ` · They love: "${esc(INV.love)}"` : ''}</div></div>` : ''}
-<span class="pill" style="margin-bottom:10px">Partner registration</span><h2 style="font-size:28px;margin:8px 0 0">Create your account.</h2><p class="sub" style="margin-bottom:22px">Choose your vendor type. It shapes your profile and public page.</p>
-${PEND ? codeStep() : `<form id="vf" style="display:grid;gap:16px" novalidate><fieldset style="border:0;padding:0;margin:0"><legend class="cap" style="margin-bottom:8px">Vendor type</legend><div class="vt">${[['Restaurant', 'Offsite catering & events'], ['Event Venue', 'Host events & bookings'], ['Farm', 'Products & wholesale'], ['Winery', 'Wine sales & tours'], ['Bakery + Desserts', 'Cakes, pastries, sweets'], ['Coffee + Espresso', 'Carts & coffee service']].map(([t, d], i) => `<label><input type="radio" name="vt" value="${t}" ${(INV ? INV.type === t : i === 0) ? 'checked' : ''}><span>${t}<small>${d}</small></span></label>`).join('')}</div></fieldset>
-<div class="grid2"><label class="f"><span class="cap">Business name</span><input class="in" id="bz" value="${esc(INV?.gemName || '')}" placeholder="e.g. The Grove Kitchen" required></label><label class="f"><span class="cap">Owner name</span><input class="in" id="nm" autocomplete="name" required></label></div>
-<label class="f"><span class="cap">Email address</span><input class="in" id="em" type="email" autocomplete="email" placeholder="hello@yourbusiness.com" required></label><label class="f"><span class="cap">Phone number</span><input class="in" id="ph" type="tel" autocomplete="tel" placeholder="+1 (415) 000-0000"></label>
-<span class="err" id="err" role="alert"></span><button class="bk" type="submit">Continue</button><p class="hint" style="text-align:center">Already have an account? <a href="#/signin">Sign in</a></p></form>`}</div></div></div>`;
-V['join/vendor'] = vendorJoin; V['vendor/join'] = () => { if (PARAM && (!INV || INV.id !== PARAM)) api('invite', { id: PARAM }).then(j => { INV = j.invite; render(); }).catch(() => toast('Invite not found')); return vendorJoin(); };
-H['join/vendor'] = H['vendor/join'] = () => { const f = $('#vf'); if (f) f.onsubmit = async e => { e.preventDefault(); if (!$('#bz').value.trim() || !$('#nm').value.trim()) { $('#err').textContent = 'Add your business and owner name.'; return; } try { const em = $('#em').value.trim(); const r = await api('start', { email: em, name: $('#nm').value, biz: $('#bz').value, phone: $('#ph').value, type: ($$('[name=vt]').find(x => x.checked) || {}).value, role: 'vendor', inviteId: INV?.id }); PEND = { email: em, code: r.demoCode }; PEND_ROLE = 'vendor'; store.set('fg-after', 'vendor'); render(); } catch (x) { $('#err').textContent = x.message; } };
-  const c = $('#cf'); if (c) { c.onsubmit = verify; $('#code').focus(); $('#restart').onclick = () => { PEND = null; render(); }; } };
+const authPage = (title, sub, form) => page('client', `<section style="padding:80px 0"><div class="narrow" style="max-width:600px"><h1 class="d2">${title}</h1><p class="lead">${sub}</p><div style="margin-top:32px">${form}</div></div></section>`);
+const codeForm = () => `<div class="notice"><b>Check your email.</b> We sent a code to ${esc(PEND.email)}.<br><span class="sml">Simulated for this test drive. Your code is <b style="letter-spacing:.14em">${PEND.code}</b>.</span></div><form id="cf" style="display:grid;gap:16px;margin-top:18px" novalidate><label class="f">6-digit code<input class="in" id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6"></label><p class="err" id="err" role="alert"></p><div style="display:flex;gap:14px;align-items:center"><button class="btn dk" type="submit">Continue</button><button class="u sml" type="button" id="again">Use a different email</button></div></form>`;
+const bindCode = to => { const c = $('#cf'); if (!c) return false; $('#code').focus(); $('#again').onclick = () => { PEND = null; render(); };
+  c.onsubmit = async e => { e.preventDefault(); try { const v = await api('verify', { email: PEND.email, code: $('#code').value }); setSess({ token: v.token, account: v.account }); PEND = null; go(typeof to === 'function' ? to(v.account) : to); } catch (x) { $('#err').textContent = x.message; } }; return true; };
+V['signin'] = () => authPage('Welcome back.', 'Sign in with your email. We’ll send you a code.', PEND ? codeForm() : `<form id="sf" style="display:grid;gap:16px" novalidate><label class="f">Email<input class="in" id="em" type="email" autocomplete="email"></label><p class="err" id="err" role="alert"></p><div><button class="btn dk" type="submit">Send code</button></div><p class="m sml">New here? <a href="#/start">Start an inquiry</a> · Vendor? <a href="#/join/vendor">Join the Fíeld Güide</a></p></form>`);
+H['signin'] = () => { if (bindCode(a => a.vendorId && !(a.events || []).length ? 'vendor' : 'events')) return; $('#sf').onsubmit = async e => { e.preventDefault(); const em = $('#em').value.trim(); try { const r = await api('start', { email: em, role: 'client' }); PEND = { email: em, code: r.demoCode }; render(); } catch (x) { $('#err').textContent = x.message; } }; };
+const joinVendor = () => authPage(INV ? `A client wants ${esc(INV.gemName)} at their event.` : 'Join the Fíeld Güide.', INV ? `${esc(INV.eventTitle || 'An event')} · ${esc(INV.date || 'date TBD')} · ${esc(INV.guests || '?')} guests${INV.love ? ` · They love: “${esc(INV.love)}”` : ''}. Set up a free page with your menu so they can order from you. No commissions.` : 'Get discovered by clients planning events. Set up a free page with your menu. No commissions.',
+  PEND ? codeForm() : `<form id="vf" style="display:grid;gap:16px" novalidate><div class="g2"><label class="f">Business name<input class="in" id="bz" value="${esc(INV?.gemName || '')}"></label><label class="f">Type<select class="in" id="vt">${TYPES.map(t => `<option ${INV?.type === t ? 'selected' : ''}>${t}</option>`).join('')}</select></label></div><div class="g2"><label class="f">Your name<input class="in" id="nm" autocomplete="name"></label><label class="f">Phone<input class="in" id="ph" type="tel"></label></div><label class="f">Email<input class="in" id="em" type="email" autocomplete="email"></label><p class="err" id="err" role="alert"></p><div><button class="btn dk" type="submit">Continue</button></div></form>`);
+V['join/vendor'] = joinVendor;
+V['vendor/join'] = () => { if (PARAM && INV?.id !== PARAM) api('invite', { id: PARAM }).then(j => { INV = j.invite; render(); }).catch(() => toast('Invite not found')); return joinVendor(); };
+H['join/vendor'] = H['vendor/join'] = () => { if (bindCode('vendor')) return; $('#vf').onsubmit = async e => { e.preventDefault(); if (!$('#bz').value.trim() || !$('#nm').value.trim()) { $('#err').textContent = 'Add your business and your name.'; return; } const em = $('#em').value.trim(); try { const r = await api('start', { email: em, name: $('#nm').value, biz: $('#bz').value, type: $('#vt').value, phone: $('#ph').value, role: 'vendor', inviteId: INV?.id }); PEND = { email: em, code: r.demoCode }; render(); } catch (x) { $('#err').textContent = x.message; } }; };
 
-// ---------- client: my events / board ----------
-const needSess = () => { if (!SESS) { store.set('fg-after', location.hash.slice(2)); go('signin'); return true; } return false; };
-const eventCard = (ev, href) => { const i = ev.quote ? qIdx(ev.quote.status) : -1; return `<article class="card pad" style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><b style="font-size:19px">${esc(ev.inq?.title || 'Untitled event')}</b><span class="pill">${esc(ev.inq?.type || '')}</span></div><span class="pill k">${esc(qLabel(ev))}</span></div>
-  <div class="hint" style="margin-top:4px">${esc(ev.inq?.date || 'Date TBD')} ${ev.inq?.start ? 'at ' + esc(ev.inq.start) : ''} · ${esc(ev.id || '')}</div>
-  <div class="grid2" style="margin-top:16px"><div><p class="cap">Location</p>${esc(ev.inq?.location || 'TBD')}</div><div><p class="cap">Guests</p>${guests(ev)}</div></div>
-  <p class="cap" style="margin-top:16px">Timeline</p><div class="tl" style="margin-top:8px">${QS.map(([k, n], j) => `<div class="${j <= i ? 'on' : ''}"><i></i>${n}</div>`).join('')}</div>
-  <div class="hr" style="margin:16px 0"></div><a class="ol sm" href="${href}">View details</a></article>`; };
-V['events'] = () => { if (needSess()) return ''; if (!ME) { loadMe().then(render).catch(e => toast(e.message)); return shell('client', 'events', 'My Events', '<p class="hint">Loading…</p>'); }
-  return shell('client', 'events', 'My Events', `<div class="wrap">${ME.events.length ? ME.events.map(ev => eventCard(ev, `#/open/${ev.id}`)).join('') : `<div class="card pad" style="text-align:center;padding:48px"><img src="${CAR}" alt="" style="width:130px"><h2 style="margin:16px 0 6px">No events yet</h2><p class="hint">Start with the details. Your Lead Planner takes it from there.</p><a class="bk" href="#/create/1" style="margin-top:12px" id="newev">Create an event</a></div>`}</div>`,
-    { sub: 'Every event you have planned with us.', action: `<button class="bk" type="button" id="newev2">Create an event</button>` }); };
-H['events'] = () => { const n = () => { S = blank(); saveDraft(); go('create/1'); }; const a = $('#newev'); if (a) a.onclick = e => { e.preventDefault(); n(); }; const b = $('#newev2'); if (b) b.onclick = n; };
-V['open'] = () => { const ev = ME?.events.find(e => e.id === PARAM); if (ev) { S = JSON.parse(JSON.stringify(ev)); saveDraft(); setTimeout(() => go(ev.quote ? 'create/5' : 'create/1'), 0); } else setTimeout(() => go('events'), 0); return ''; };
-V['board'] = () => { if (needSess()) return ''; if (!ME) { loadMe().then(render).catch(e => toast(e.message)); return shell('client', 'board', 'Dispatch Board', '<p class="hint">Loading…</p>'); }
-  const live = ME.events.filter(e => e.quote); return shell('client', 'board', 'Dispatch Board', `<div class="wrap">${live.length ? live.map(ev => eventCard(ev, `#/open/${ev.id}`)).join('') : '<p class="hint">Events show up here once you request a quote.</p>'}</div>`, { sub: 'Track timelines, contacts and delivery/event progress.' }); };
+const needSess = () => { if (!SESS) { go('signin'); return true; } return false; };
+const loading = mode => page(mode, `<section class="s"><div class="wrap"><p class="m">Loading…</p></div></section>`);
+const timeline = ev => { const n = stageOf(ev); return `<div class="tl">${STAGES.map((s, i) => `<div class="${i < n ? 'on' : i === n ? 'now' : ''}"><i></i>${s}</div>`).join('')}</div>`; };
+V['events'] = () => { if (needSess()) return ''; if (!ME) { loadMe().then(render).catch(e => toast(e.message)); return loading('client'); }
+  return page('client', `<section class="s"><div class="wrap"><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap"><div><p class="caps m" style="margin:0">My events</p><h1 class="d2" style="margin-top:14px">Hi ${esc((SESS.account.name || '').split(' ')[0] || 'there')}.</h1></div><a class="btn dk" href="#/start">New event</a></div>
+  <div style="display:grid;gap:16px;margin-top:36px">${ME.events.length ? ME.events.map(ev => `<a class="card pad" href="#/event/${ev.id}" style="text-decoration:none;display:grid;gap:18px"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap"><div><h3 class="d3">${esc(ev.inq?.title || 'Untitled')}</h3><span class="m sml">${esc(ev.inq?.date || '')} · ${guests(ev)} guests · ${esc(ev.inq?.location || '')}</span></div><span class="pill ${ev.quote?.status === 'quoted' ? 'b' : ''}">${statusText(ev)}</span></div>${timeline(ev)}</a>`).join('') : `<div class="card pad"><b>No events yet.</b><p class="m" style="margin:6px 0 14px">Start with an inquiry. Your Lead Planner takes it from there.</p><a class="btn dk sm" href="#/start">Start your inquiry</a></div>`}</div></div></section>`); };
 
-// ---------- create event ----------
-const evGuard = n => { if (needSess()) return true; if (n > 1 && !S.id) { setTimeout(() => go('create/1'), 0); return true; } return false; };
-V['create/1'] = () => { if (evGuard(1)) return ''; const q = S.inq;
-  const body = `<div class="wrap">${stepper(1)}
-  <div class="row"><span class="ri">${ic.send}</span><div><div class="t">Inquiry form</div><div class="d">Tell us about your event. Required fields are marked.</div></div><span class="pill ${q.title ? 'g' : ''}">${q.title ? 'Started' : 'To do'}</span></div>
-  <form id="f" class="card pad" style="margin:-4px 0 14px" novalidate><div class="grid2" style="align-items:start">
-   <div style="display:grid;gap:14px"><label class="f"><span>Event title <span class="req">*</span></span><input class="in" name="title" value="${esc(q.title)}" placeholder="e.g. Johnson Family Wedding" required></label>
-    <fieldset style="border:0;padding:0;margin:0"><legend class="f" style="font-size:14px;font-weight:600;margin-bottom:7px">Event type <span class="req">*</span></legend><div class="chips">${['Full event', 'Catering delivery'].map(o => `<label class="chip"><input type="radio" name="type" value="${o}" ${q.type === o ? 'checked' : ''}><span>${o}</span></label>`).join('')}</div></fieldset>
-    <div class="grid2"><label class="f"><span>Guaranteed guest count <span class="req">*</span></span><input class="in" name="guaranteed" type="number" min="1" value="${esc(q.guaranteed)}" placeholder="0"></label><label class="f">Expected attendance<input class="in" name="expected" type="number" min="0" value="${esc(q.expected)}" placeholder="0"></label></div>
-    <div class="grid2"><label class="f"><span>Date <span class="req">*</span></span><input class="in" name="date" type="date" value="${esc(q.date)}"></label><label class="f"><span>Location <span class="req">*</span></span><input class="in" name="location" value="${esc(q.location)}" placeholder="Venue, office or neighborhood"></label></div>
-    <div class="grid2"><label class="f">Start time<input class="in" name="start" type="time" value="${esc(q.start)}"></label><label class="f">End time<input class="in" name="end" type="time" value="${esc(q.end)}"></label></div></div>
-   <div style="display:grid;gap:14px"><label class="f">Description<textarea class="in" name="description" placeholder="The occasion, vibe, dietary needs…">${esc(q.description)}</textarea></label>
-    <label class="f">Service style<select class="in" name="service">${['Drop-off', 'Buffet with service', 'Tray passing', 'Plated dinner', 'Not sure yet'].map(o => `<option ${q.service === o ? 'selected' : ''}>${o}</option>`).join('')}</select></label>
-    <label class="f">Connect partner (optional)<input class="in" name="partner" type="email" value="${esc(q.partner || '')}" placeholder="partner@restaurant.com"><span class="hint">They'll get view-only access to event details. (Not sent in this test drive.)</span></label></div>
-  </div><p class="err" id="err" role="alert"></p></form>
-  <div class="row"><span class="ri">${ic.phone}</span><div><div class="t">Recommended next step</div><div class="d">A quick call helps us align on expectations and refine your event details.</div></div><button class="bk" type="button" id="bookcall2">${S.booked ? 'Call booked ✓' : 'Book a call'}</button></div>
-  <div class="row"><span class="ri">${ic.food}</span><div><div class="t">Menu</div><div class="d">Pick vendors from the directory, add your own local gems, or let us recommend some. Next step.</div></div><a class="gr" href="#/create/2" id="tomenu">Start building menu</a></div></div>`;
-  return shell('client', 'create/1', 'Create a new event', body, { action: bookBtn, foot: foot(1, true) }); };
-const readForm = () => { const d = Object.fromEntries(new FormData($('#f'))); S.inq = { ...S.inq, ...d }; };
-H['create/1'] = () => { $('#f').oninput = () => { readForm(); saveDraft(); };
-  const next = async (to = 'create/2') => { readForm(); const q = S.inq; const miss = !q.title?.trim() ? 'Add an event title.' : !(+q.guaranteed > 0) ? 'Add a guaranteed guest count.' : !q.date ? 'Add a date.' : !q.location?.trim() ? 'Add a location.' : '';
-    if (miss) { $('#err').textContent = miss; $('#f').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
-    try { merge((await api('saveEvent', { event: S })).event); ME = null; go(to); } catch (x) { $('#err').textContent = x.message; } };
-  $('#next').onclick = () => next(); $('#tomenu').onclick = e => { e.preventDefault(); next(); }; $('#bookcall2').onclick = openCal; };
+let EV = null, lastPull = 0;
+V['event'] = () => { if (needSess()) return ''; if (!EV || EV.id !== PARAM || Date.now() - lastPull > 6000) { lastPull = Date.now(); api('getEvent', { id: PARAM }).then(j => { const changed = JSON.stringify(j.event) !== JSON.stringify(EV); EV = j.event; if (changed) render(); }).catch(e => { toast(e.message); go('events'); }); if (!EV || EV.id !== PARAM) return loading('client'); }
+  const ev = EV, q = ev.quote, vs = eventVendors(ev), t = totals(ev), editable = !q;
+  const cta = !ev.booked && !q ? `<div class="card pad" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-color:var(--ink)"><div><span class="tag" style="color:var(--blue)">Next step</span><h3 class="d3" style="margin-top:6px">Book your discovery call</h3><p class="m" style="margin:4px 0 0">Twenty minutes with your Lead Planner to go over your gems, our picks and the plan.</p></div><button class="btn bl" type="button" id="book">Book a call</button></div>`
+   : q?.status === 'quoted' ? `<div class="card pad" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-color:var(--blue)"><div><span class="tag" style="color:var(--blue)">Your quote is ready</span><h3 class="d3" style="margin-top:6px">${money(t.total)} estimated</h3><p class="m" style="margin:4px 0 0">Every vendor confirmed. Approve to lock in your date. Nothing is charged in this test drive.</p></div><button class="btn bl" type="button" id="approve">Approve quote</button></div>`
+   : q?.status === 'requested' ? `<div class="notice"><b>Your Lead Planner is building your quote.</b> We’re confirming each vendor and adding staffing and materials. You’ll get an email when it’s ready.</div>`
+   : q ? `<div class="notice"><b>${statusText(ev)}.</b> Your Lead Planner, ${esc(ev.lead || 'Matthew')}, has everything from here.</div>` : '';
+  const menus = vs.map(v => v.pending ? `<div class="card pad"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><h3 style="font-size:20px">${esc(v.name)}</h3><span class="pill k">${esc(v.how)}</span></div><p class="m sml" style="margin:6px 0 0">We invited them to the Fíeld Güide. Their menu shows up here once it’s ready.</p></div>`
+   : `<div class="card pad"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><div><h3 style="font-size:20px">${esc(v.name)}</h3><span class="m sml">${esc(v.type)}${v.sample ? ' · sample menu' : ''}</span></div><span class="pill ${v.how.startsWith('Your') ? 'k' : 'b'}">${esc(v.how)}</span></div>
+     <div class="scroll" style="margin-top:12px"><table class="tbl"><tbody>${v.items.map(i => `<tr><td><b style="font-weight:600">${esc(i.n)}</b>${i.d ? `<div class="m sml">${esc(i.d)}</div>` : ''}</td><td class="m sml">${esc(i.u)}</td><td>${money(i.p)}</td><td style="text-align:right">${editable ? `<span class="qty"><button type="button" aria-label="Fewer ${esc(i.n)}" data-q="${i.id}" data-d="-1">−</button><output>${ev.sel?.[i.id] || 0}</output><button type="button" aria-label="More ${esc(i.n)}" data-q="${i.id}" data-d="1">+</button></span>` : `<b>× ${ev.sel?.[i.id] || 0}</b>`}</td></tr>`).join('') || '<tr><td class="m">No menu items yet.</td></tr>'}</tbody></table></div></div>`).join('');
+  const conf = q ? Object.entries(q.vendors).map(([id, s]) => `<div class="sum"><span>${esc(id === 'staff' ? 'Staffing' : id === 'materials' ? 'Materials' : (vs.find(v => v.id === id) || {}).name || 'Vendor')}</span><span class="${s === 'confirmed' ? 'ok' : 'wa'}">${s === 'confirmed' ? 'Confirmed' : s === 'declined' ? 'Declined' : 'Pending'}</span></div>`).join('') : '';
+  return page('client', `<section style="padding:56px 0 28px;background:var(--soft)"><div class="wrap"><a class="u sml" href="#/events">← My events</a><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-top:18px"><div><h1 class="d2">${esc(ev.inq.title)}</h1><p class="m" style="margin:10px 0 0">${esc(ev.inq.date)} · ${esc(ev.inq.start)}–${esc(ev.inq.end)} · ${guests(ev)} guests · ${esc(ev.inq.location)}</p></div><span class="pill k">${statusText(ev)}</span></div><div style="margin-top:28px">${timeline(ev)}</div></div></section>
+  <section style="padding:36px 0 72px"><div class="wrap split"><div style="display:grid;gap:18px">${cta}
+   <div style="display:flex;justify-content:space-between;align-items:end;gap:12px;margin-top:12px"><h2 class="d3">Choose your menus</h2>${editable ? `<button class="u sml" type="button" id="more">+ Add a vendor</button>` : ''}</div>
+   ${vs.length ? menus : `<div class="card pad"><p class="m" style="margin:0">Your Lead Planner will add vendors after your call.</p></div>`}</div>
+   <aside class="card pad" style="position:sticky;top:96px"><span class="tag">Your event</span><div style="margin-top:10px"><div class="sum"><span>Food</span><b>${money(t.food)}</b></div>${q && q.status !== 'requested' ? `<div class="sum"><span>Staffing · ${t.people}</span><b>${money(t.labor)}</b></div><div class="sum"><span>Materials</span><b>${money(t.mat)}</b></div><div class="sum"><span>First-event coupon</span><span>−$200</span></div><div class="sum" style="border-top:1px solid var(--line);margin-top:6px;padding-top:12px"><b>Estimated total</b><b>${money(t.total)}</b></div>` : `<div class="sum"><span>Staffing + materials</span><span class="m sml">Added by your Lead Planner</span></div>`}</div>
+    ${editable ? `<button class="btn dk" type="button" id="sendsel" style="width:100%;margin-top:16px">Send my menu choices</button><p class="m sml" style="margin:10px 0 0">Your Lead Planner confirms each vendor, adds staff and materials, and sends your quote.</p>` : conf ? `<div style="margin-top:16px"><span class="tag">Confirmations</span>${conf}</div>` : ''}
+    <p class="m sml" style="margin:16px 0 0">Sample prices. Questions? <a href="mailto:plan@culinary.express">plan@culinary.express</a></p></aside></div></section>`); };
+let selT;
+H['event'] = () => { if (!EV || !$('.split')) return; const save = async (patch = {}) => { try { EV = (await api('saveEvent', { event: { ...EV, ...patch } })).event; } catch (x) { toast(x.message); } render(); };
+  $$('[data-q]').forEach(b => b.onclick = () => { const k = b.dataset.q; EV.sel = EV.sel || {}; EV.sel[k] = Math.max(0, (EV.sel[k] || 0) + +b.dataset.d); b.parentElement.querySelector('output').textContent = EV.sel[k]; clearTimeout(selT); selT = setTimeout(() => api('saveEvent', { event: EV }).then(() => render()).catch(() => {}), 600); });
+  const bk = $('#book'); if (bk) bk.onclick = () => openCal(() => save({ booked: true }));
+  const ap = $('#approve'); if (ap) ap.onclick = () => save({ quote: { status: 'approved' } });
+  const mo = $('#more'); if (mo) mo.onclick = () => { D.picks = [...(EV.picks || [])]; modal(`<div style="display:flex;justify-content:space-between;align-items:center"><h2 class="d3">Add local gems</h2><button class="btn dk sm" type="button" data-close>Done</button></div>${filterChips()}<div id="dir">${vendorCards(true)}</div>`, m => { m.querySelectorAll('[name=flt]').forEach(r => r.onchange = () => { FILTER = r.value; m.querySelector('#dir').innerHTML = vendorCards(true); bindPicks(); }); bindPicks(); }, () => save({ picks: D.picks })); };
+  const ss = $('#sendsel'); if (ss) ss.onclick = () => { if (!totals(EV).items) { toast('Choose at least one item first.'); return; } const vm = {}; eventVendors(EV).forEach(v => { if (v.pending || v.items.some(i => EV.sel?.[i.id])) vm[v.id] = 'waiting'; }); vm.staff = 'waiting'; vm.materials = 'waiting'; save({ quote: { status: 'requested', vendors: vm } }); }; };
 
-function menuSection(v) { if (v.pending) return `<div class="card pad" style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><b style="font-size:17px">${esc(v.name)}</b><span class="pill o">${esc(v.how)}</span></div><p class="hint" style="margin:6px 0 0">We invited them to the Fíeld Güide. Their menu appears here once they publish it, or your Lead Planner adds it.</p></div>`;
-  return `<div class="card pad" style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><div><b style="font-size:17px">${esc(v.name)}</b> <span class="hint">· ${esc(v.type)}${v.sample ? ' · sample menu' : ''}</span></div><div style="display:flex;gap:8px;align-items:center"><span class="pill ${v.how === 'Your pick' ? 'k' : 'o'}">${esc(v.how)}</span>${S.picks.includes(v.id) ? `<button class="lnk" type="button" data-rm="${v.id}">Remove</button>` : ''}</div></div>
-  <div class="scroll" style="margin-top:8px"><table class="tbl"><thead><tr><th>Item</th><th>Unit</th><th>Unit price</th><th>Qty</th></tr></thead><tbody>${v.items.map(i => `<tr><td><b>${esc(i.n)}</b>${i.d ? `<div class="hint">${esc(i.d)}</div>` : ''}</td><td class="hint">${esc(i.u)}</td><td>${money(i.p)}</td><td><span class="qty"><button type="button" aria-label="Fewer ${esc(i.n)}" data-q="${i.id}" data-d="-1">−</button><output>${S.sel[i.id] || 0}</output><button type="button" aria-label="More ${esc(i.n)}" data-q="${i.id}" data-d="1">+</button></span></td></tr>`).join('') || '<tr><td colspan="4" class="hint">No menu items yet.</td></tr>'}</tbody></table></div></div>`; }
-V['create/2'] = () => { if (evGuard(2)) return ''; const vs = eventVendors(), locked = !!S.quote;
-  const body = `<div class="wrap">${stepper(2)}
-  <div class="row"><span class="ri">${ic.store}</span><div><div class="t">Choose from the Vendor Directory</div><div class="d">Restaurants, farms, wineries, venues and more. ${S.picks.length} picked.</div></div><button class="bk" type="button" id="opendir" ${locked ? 'disabled' : ''}>Browse vendors</button></div>
-  <div class="row"><span class="ri">${ic.plus}</span><div><div class="t">Your own local gems</div><div class="d">Can't find a vendor? Add their details and we'll invite them.</div></div><button class="bk" type="button" id="addgem" ${locked ? 'disabled' : ''}>Add a vendor</button></div>
-  <div id="gemform"></div>
-  <div class="row" style="align-items:start"><span class="ri">${ic.search}</span><div><div class="t">Let us recommend local gems</div><div class="d" style="margin-bottom:10px">Pick what you'd like your Lead Planner to find.</div><div class="chips">${TYPES.filter(t => !['Event Venue'].includes(t)).map(t => `<label class="chip"><input type="checkbox" class="rec" value="${t}" ${S.recommend.includes(t) ? 'checked' : ''} ${locked ? 'disabled' : ''}><span>${t}</span></label>`).join('')}</div></div><span></span></div>
-  <h2 style="font-size:20px;margin:26px 0 12px">Menus for your event</h2>${vs.length ? vs.map(menuSection).join('') : '<p class="hint">Add a vendor above to see their menu.</p>'}</div>`;
-  return shell('client', 'create/2', 'Create a new event', body, { action: bookBtn, foot: foot(2, true) }); };
-const gemForm = () => `<form id="gf" class="card pad" style="margin:-4px 0 14px;display:grid;gap:14px" novalidate><div class="grid3"><label class="f">Vendor name<input class="in" id="g-n" required></label><label class="f">Type<select class="in" id="g-t">${TYPES.map(t => `<option>${t}</option>`).join('')}</select></label><label class="f">Website or Instagram<input class="in" id="g-l" placeholder="https:// or @handle"></label></div><label class="f">What do you love from them? (optional)<input class="in" id="g-v"></label><div style="display:flex;gap:10px"><button class="bk sm" type="submit">Add + invite</button><button class="ol sm" type="button" id="g-x">Cancel</button></div></form>`;
-H['create/2'] = () => { const vsGems = S.gems;
-  $$('[data-q]').forEach(b => b.onclick = () => { if (S.quote) return; const k = b.dataset.q; S.sel[k] = Math.max(0, (S.sel[k] || 0) + +b.dataset.d); sync(); b.parentElement.querySelector('output').textContent = S.sel[k]; });
-  $$('[data-rm]').forEach(b => b.onclick = () => { S.picks = S.picks.filter(x => x !== b.dataset.rm); sync(); render(); });
-  $$('.rec').forEach(c => c.onchange = () => { S.recommend = $$('.rec').filter(x => x.checked).map(x => x.value); sync(); render(); });
-  $('#opendir').onclick = () => modal(`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h2 style="margin:0">Vendor Directory</h2><button class="ol sm" type="button" data-close>Done</button></div>${filters()}<div id="dir">${dirCards(true)}</div>`, () => { $$('.modal [name=flt]').forEach(r => r.onchange = () => { FILTER = r.value; $('.modal #dir').innerHTML = dirCards(true); bindDir(true); }); bindDir(true); });
-  const showGem = () => { $('#gemform').innerHTML = gemForm(); $('#g-n').focus(); $('#g-x').onclick = () => $('#gemform').innerHTML = ''; $('#gf').onsubmit = async e => { e.preventDefault(); if (!$('#g-n').value.trim()) return; vsGems.push({ name: $('#g-n').value.trim(), type: $('#g-t').value, link: $('#g-l').value, love: $('#g-v').value }); try { merge((await api('saveEvent', { event: S })).event); toast('Added. We invited them to the Fíeld Güide.'); } catch (x) { toast(x.message); } render(); }; };
-  $('#addgem').onclick = showGem; if (location.hash.includes('add=1')) showGem();
-  $('#next').onclick = () => { if (!totals().items) { toast('Choose at least one menu item to continue.'); return; } sync(); go('create/3'); }; };
-
-V['create/3'] = () => { if (evGuard(3)) return ''; ensure(); const locked = !!S.quote;
-  const staffRows = staffPlan().map(r => `<tr><td><b>${r.n}</b></td><td><span class="qty"><button type="button" aria-label="Fewer ${r.n}" data-s="${r.k}" data-f="q" data-d="-1" ${locked ? 'disabled' : ''}>−</button><output>${S.staff[r.k].q}</output><button type="button" aria-label="More ${r.n}" data-s="${r.k}" data-f="q" data-d="1" ${locked ? 'disabled' : ''}>+</button></span></td><td><span class="qty"><button type="button" aria-label="Fewer hours" data-s="${r.k}" data-f="h" data-d="-1" ${locked ? 'disabled' : ''}>−</button><output>${S.staff[r.k].h}</output><button type="button" aria-label="More hours" data-s="${r.k}" data-f="h" data-d="1" ${locked ? 'disabled' : ''}>+</button></span></td><td>${money(r.r)}/hr</td><td><b>${money(S.staff[r.k].q * S.staff[r.k].h * r.r)}</b></td></tr>`).join('');
-  const matRows = matPlan().map(m => `<tr><td><b>${m.n}</b><div class="hint">${money(m.p)} each</div></td><td><span class="qty"><button type="button" aria-label="Fewer ${m.n}" data-m="${m.k}" data-d="-1" ${locked ? 'disabled' : ''}>−</button><output>${S.mat[m.k].q}</output><button type="button" aria-label="More ${m.n}" data-m="${m.k}" data-d="1" ${locked ? 'disabled' : ''}>+</button></span> <span class="hint">${m.u}</span></td><td><select class="in" style="height:36px;min-width:170px" data-src="${m.k}" aria-label="${m.n} provided by" ${locked ? 'disabled' : ''}>${[['ce', 'Cülinary Expréss'], ['have', 'I have it'], ['vendor', 'Vendor provides']].map(([v, t]) => `<option value="${v}" ${S.mat[m.k].src === v ? 'selected' : ''}>${t}</option>`).join('')}</select></td></tr>`).join('');
-  const t = totals();
-  const body = `<div class="wrap">${stepper(3)}
-  <div class="row"><span class="ri">${ic.layers}</span><div><div class="t">Materials &amp; Equipment</div><div class="d">Chafing dishes, plates, cutlery and other service items. Calculated from ${guests()} guests.</div></div><button class="bk" type="button" data-tg="mat">Set materials</button></div>
-  <div id="p-mat" class="card pad scroll" style="margin:-4px 0 14px" ${OPEN.mat ? '' : 'hidden'}><table class="tbl"><thead><tr><th>Item</th><th>Qty</th><th>Who provides</th></tr></thead><tbody>${matRows}</tbody></table><div class="sum" style="border-top:1px solid var(--line);margin-top:6px;padding-top:12px"><span>Estimated materials</span><b>${money(t.mat)}</b></div></div>
-  <div class="row"><span class="ri">${ic.staff}</span><div><div class="t">Staffing Requirements</div><div class="d">Recommended for ${esc((S.inq.service || '').toLowerCase())}, ${hours()} hours. Our staff are paid above the industry average.</div></div><button class="bk" type="button" data-tg="staff">Open staffing</button></div>
-  <div id="p-staff" class="card pad scroll" style="margin:-4px 0 14px" ${OPEN.staff ? '' : 'hidden'}><table class="tbl"><thead><tr><th>Role</th><th>How many</th><th>Hours</th><th>Rate</th><th>Total</th></tr></thead><tbody>${staffRows}</tbody></table><div class="sum" style="border-top:1px solid var(--line);margin-top:6px;padding-top:12px"><span>Estimated labor</span><b>${money(t.labor)}</b></div></div></div>`;
-  return shell('client', 'create/3', 'Create a new event', body, { action: bookBtn, foot: foot(3, true) }); };
-const OPEN = { mat: false, staff: false };
-H['create/3'] = () => { $$('[data-tg]').forEach(b => b.onclick = () => { const k = b.dataset.tg; OPEN[k] = !OPEN[k]; $('#p-' + k).hidden = !OPEN[k]; });
-  $$('[data-s]').forEach(b => b.onclick = () => { const s = S.staff[b.dataset.s]; s[b.dataset.f] = Math.max(0, s[b.dataset.f] + +b.dataset.d); sync(); render(); });
-  $$('[data-m]').forEach(b => b.onclick = () => { const s = S.mat[b.dataset.m]; s.q = Math.max(0, s.q + +b.dataset.d); sync(); render(); });
-  $$('[data-src]').forEach(x => x.onchange = () => { S.mat[x.dataset.src].src = x.value; sync(); render(); });
-  $('#next').onclick = () => { sync(); go('create/4'); }; };
-
-V['create/4'] = () => { if (evGuard(4)) return ''; const t = totals(), vs = eventVendors();
-  const lines = vs.map(v => { const amt = v.items.reduce((a, i) => a + (S.sel[i.id] || 0) * i.p, 0); return amt ? `<div class="sum"><span style="color:var(--ink)">Food menu by ${esc(v.name)}</span><span>${money(amt)}</span></div>` : ''; }).join('');
-  const body = `<div class="wrap">${stepper(4)}<div class="card pad" style="padding:30px 32px"><p class="cap" style="color:var(--ink);letter-spacing:.2em;font-size:13px">Quote request</p>
-  <div class="grid2" style="gap:40px;margin-top:18px"><div><div style="display:flex;justify-content:space-between"><b>Order summary</b><a class="lnk" href="#/create/2">Edit</a></div><div style="margin-top:8px">${lines || '<p class="hint">No menu items yet.</p>'}</div><div class="hr"></div>
-   <div class="sum"><span>Labor · ${t.people} staff</span><span>${money(t.labor)}</span></div><div class="sum"><span>Materials</span><span>${money(t.mat)}</span></div><div class="sum"><span>Delivery</span><span>Price on quote</span></div><div class="sum"><span>First-event coupon</span><span>−${money(t.coupon)}</span></div><div class="hr"></div>
-   <div class="sum" style="font-size:17px"><b>Estimated total</b><b>${money(t.total)}</b></div><p class="hint">Sample prices for testing. Your Lead Planner confirms every vendor before your final quote.</p></div>
-  <div style="border-left:1px solid var(--line);padding-left:32px"><b>What happens next</b><ol style="padding-left:18px;color:#333;line-height:1.8;margin:12px 0 20px"><li>We send each vendor their part of the order.</li><li>Every vendor confirms availability.</li><li>You receive your final quote to approve.</li></ol>
-   ${S.quote ? `<div class="card" style="padding:14px 16px;background:#e8f5ee;border-color:#cbe7d6"><b class="ok">Quote requested</b><div class="hint">Status: ${esc(qLabel(S))}</div></div><a class="bk" href="#/create/5" style="margin-top:14px;width:100%">View status</a>` : `<label style="display:flex;gap:10px;align-items:flex-start;font-size:13px;margin-bottom:14px"><input type="checkbox" id="agree" style="width:18px;height:18px;margin-top:2px;accent-color:#151515"> I understand this is a request for quote. Nothing is charged until I approve.</label><button class="bk" type="button" id="rfq" style="width:100%">Request for quote</button><p class="err" id="err" role="alert"></p>`}</div></div></div></div>`;
-  return shell('client', 'create/4', 'Create a new event', body, { action: bookBtn, foot: foot(4, false) }); };
-H['create/4'] = () => { const b = $('#rfq'); if (!b) return; b.onclick = async () => { if (!$('#agree').checked) { $('#err').textContent = 'Please confirm to continue.'; return; } if (!totals().items) { $('#err').textContent = 'Choose at least one menu item first.'; return; }
-  const vs = {}; eventVendors().forEach(v => { if (v.pending || v.items.some(i => S.sel[i.id])) vs[v.id] = 'waiting'; }); vs.staff = 'waiting'; vs.materials = 'waiting';
-  b.disabled = true; try { merge((await api('saveEvent', { event: { ...S, quote: { status: 'requested', vendors: vs } } })).event); ME = null; go('create/5'); } catch (x) { b.disabled = false; $('#err').textContent = x.message; } }; };
-
-let lastFetch = 0;
-V['create/5'] = () => { if (evGuard(5)) return ''; if (!S.quote) { setTimeout(() => go('create/4'), 0); return ''; }
-  if (Date.now() - lastFetch > 5000) { lastFetch = Date.now(); api('getEvent', { id: S.id }).then(j => { const b = JSON.stringify(S.quote); merge(j.event); if (JSON.stringify(S.quote) !== b && location.hash === '#/create/5') render(); }).catch(() => {}); }
-  const q = S.quote, i = qIdx(q.status), names = Object.fromEntries(eventVendors().map(v => [v.id, v.name])); names.staff = 'Staffing'; names.materials = 'Materials';
-  const vs = Object.entries(q.vendors), done = vs.filter(([, s]) => s === 'confirmed').length;
-  const body = `<div class="wrap">${stepper(5)}<div class="card pad"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><div><b style="font-size:20px">${esc(S.inq.title)}</b><div class="hint">${esc(S.inq.date)} at ${esc(S.inq.start)} · ${esc(S.id)} · Lead Planner: ${esc(S.lead || 'Matthew')}</div></div><span class="pill k">${esc(qLabel(S))}</span></div>
-  <p class="cap" style="margin-top:22px">Timeline</p><div class="tl" style="margin-top:8px">${QS.map(([k, n], j) => `<div class="${j <= i ? 'on' : ''}"><i></i>${n}</div>`).join('')}</div>
-  ${q.status === 'quoted' ? `<div class="card" style="margin-top:22px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;background:#fdf6ef;border-color:#f1d9c2"><div><b>Your final quote is ready.</b><div class="hint">Every vendor confirmed. Approve to lock in your date. (Deposit is simulated in this test drive.)</div></div><button class="bk" type="button" id="approve">Approve quote</button></div>` : ''}
-  <div class="grid2" style="margin-top:22px"><div><p class="cap">Vendor confirmations · ${done} of ${vs.length}</p>${vs.map(([id, s]) => `<div class="sum"><span style="color:var(--ink)">${esc(names[id] || id)}</span><span class="${s === 'confirmed' ? 'ok' : s === 'declined' ? 'err' : 'pend'}">${s === 'confirmed' ? 'Confirmed' : s === 'declined' ? 'Declined' : 'Pending'}</span></div>`).join('')}</div>
-  <div><p class="cap">Primary contact</p><div>${esc(SESS.account.name || '')} · ${esc(SESS.account.phone || SESS.account.email)}</div><p class="cap" style="margin-top:14px">Location</p><div>${esc(S.inq.location)}</div><button class="ol sm" type="button" id="refresh" style="margin-top:16px">Refresh status</button></div></div></div></div>`;
-  return shell('client', 'create/5', 'Create a new event', body, { action: bookBtn, foot: foot(5, false) }); };
-H['create/5'] = () => { const r = $('#refresh'); if (r) r.onclick = () => { lastFetch = 0; render(); }; const a = $('#approve'); if (a) a.onclick = async () => { a.disabled = true; try { merge((await api('saveEvent', { event: { ...S, quote: { status: 'approved' } } })).event); toast('Approved. Your Lead Planner is locking in the details.'); } catch (x) { toast(x.message); } render(); }; };
-
-V['directory'] = () => { const kind = ADM && location.hash.includes('admin') ? 'admin' : role() === 'vendor' && SESS ? 'vendor' : 'client'; if (!SESS && kind !== 'admin') return V[''](); return shell(kind, 'directory', 'Vendor Directory', `${filters()}<div id="dir">${dirCards(true)}</div>`, { sub: 'Every local gem in the Fíeld Güide.' }); };
-H['directory'] = () => { if (!SESS) return H[''](); $$('[name=flt]').forEach(r => r.onchange = () => { FILTER = r.value; $('#dir').innerHTML = dirCards(true); bindDir(true); }); bindDir(true); };
-
-// ---------- vendor ----------
-let VD = null;
-V['vendor'] = () => { if (needSess()) return ''; if (!ME) { loadMe().then(render).catch(e => toast(e.message)); return shell('vendor', 'vendor', 'Vendor Page', '<p class="hint">Loading…</p>'); }
-  if (!ME.vendor) return shell('vendor', 'vendor', 'Vendor Page', `<div class="card pad"><b>This account isn't a vendor yet.</b><p class="hint">Register your business to get a Fíeld Güide page.</p><a class="bk" href="#/join/vendor">Register as a partner</a></div>`);
+V['vendor'] = () => { if (needSess()) return ''; if (!ME) { loadMe().then(render).catch(e => toast(e.message)); return loading('vendor'); }
+  if (!ME.vendor) return page('client', `<section class="s"><div class="narrow"><h1 class="d2">Not a vendor account.</h1><p class="lead">Register your business to get a Fíeld Güide page.</p><a class="btn dk" href="#/join/vendor" style="margin-top:20px">Join the Fíeld Güide</a></div></section>`);
   VD = VD && VD.id === ME.vendor.id ? VD : JSON.parse(JSON.stringify(ME.vendor));
-  const body = `<div class="wrap" style="max-width:1160px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start">
-  <div><div class="card pad" style="display:grid;gap:14px"><p class="cap">Business</p><div class="grid2"><label class="f">Business name<input class="in" id="v-n" value="${esc(VD.name)}"></label><label class="f">Vendor type<select class="in" id="v-t">${TYPES.map(t => `<option ${VD.type === t ? 'selected' : ''}>${t}</option>`).join('')}</select></label></div><div class="grid2"><label class="f">Neighborhood<input class="in" id="v-h" value="${esc(VD.hood || '')}"></label><label class="f">Short description<input class="in" id="v-b" value="${esc(VD.blurb || '')}"></label></div></div>
-  <div class="card pad" style="margin-top:16px"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><p class="cap">Menu · ${VD.items.length} items</p><div style="display:flex;gap:8px"><button class="ol sm" type="button" id="imp">Quick import</button><button class="ol sm" type="button" id="addi">+ Add item</button></div></div>
-   <div id="impbox"></div><div class="scroll"><table class="tbl" style="margin-top:8px"><thead><tr><th>Item</th><th>Description</th><th>Price</th><th>Unit</th><th></th></tr></thead><tbody>${VD.items.map((i, k) => `<tr data-i="${k}"><td><input class="in" style="height:38px" data-k="n" value="${esc(i.n)}" aria-label="Item name"></td><td><input class="in" style="height:38px" data-k="d" value="${esc(i.d)}" aria-label="Description"></td><td><input class="in" style="height:38px;width:90px" data-k="p" type="number" min="0" step="0.01" value="${esc(i.p)}" aria-label="Price"></td><td><input class="in" style="height:38px;width:130px" data-k="u" value="${esc(i.u)}" placeholder="per tray (10)" aria-label="Unit"></td><td><button class="lnk" type="button" data-del="${k}" aria-label="Remove ${esc(i.n)}">Remove</button></td></tr>`).join('') || '<tr><td colspan="5" class="hint">No items yet. Add one or use Quick import.</td></tr>'}</tbody></table></div></div>
-   <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap"><button class="ol" type="button" id="draft">Save draft</button><button class="bk" type="button" id="pub">${VD.status === 'live' ? 'Update live page' : 'Publish my page'}</button><span class="pill ${VD.status === 'live' ? 'g' : ''}" style="align-self:center">${VD.status === 'live' ? 'Live in the directory' : 'Draft'}</span></div></div>
-  <aside class="vcard" style="position:sticky;top:20px"><div class="ph">${esc(VD.type)}</div><div class="b"><span class="pill o" style="justify-self:start">Local gem · ${esc(VD.type)}</span><b style="font-size:18px">${esc(VD.name)}</b><span class="hint">${esc(VD.hood || '')}${VD.blurb ? ' · ' + esc(VD.blurb) : ''}</span><div class="hr"></div>${VD.items.slice(0, 6).map(i => `<div class="sum"><span style="color:var(--ink)">${esc(i.n || 'Item')}</span><b>${money(+i.p || 0)}</b></div>`).join('') || '<span class="hint">Your menu preview</span>'}</div></aside></div>`;
-  return shell('vendor', 'vendor', 'Vendor Page', body, { sub: 'Your page in the Fíeld Güide. Clients order from this menu.' }); };
-H['vendor'] = () => { if (!VD || !$('#v-n')) return; const rd = () => { VD.name = $('#v-n').value; VD.type = $('#v-t').value; VD.hood = $('#v-h').value; VD.blurb = $('#v-b').value; $$('tr[data-i]').forEach(tr => { const it = VD.items[+tr.dataset.i]; tr.querySelectorAll('[data-k]').forEach(x => it[x.dataset.k] = x.dataset.k === 'p' ? +x.value : x.value); }); };
-  $('#addi').onclick = () => { rd(); VD.items.push({ n: '', d: '', p: 0, u: '' }); render(); };
-  $$('[data-del]').forEach(b => b.onclick = () => { rd(); VD.items.splice(+b.dataset.del, 1); render(); });
-  $('#imp').onclick = () => { $('#impbox').innerHTML = `<div style="display:grid;gap:10px;margin:12px 0"><label class="f">Paste your menu, one item per line: <span class="hint">Name - price - unit</span><textarea class="in" id="imptx" placeholder="Carnitas tray - 95 - per tray (10)\nChurros - 36 - per dozen"></textarea></label><div><button class="bk sm" type="button" id="impgo">Add items</button></div><span class="hint">In the full product this reads a menu link, PDF or photo.</span></div>`; $('#impgo').onclick = () => { rd(); $('#imptx').value.split('\n').map(l => l.split(/\s+[-–]\s+/)).filter(p => p[0]?.trim()).forEach(([n, p, u]) => VD.items.push({ n: n.trim(), d: '', p: parseFloat(String(p || '').replace(/[^0-9.]/g, '')) || 0, u: (u || '').trim() })); render(); }; };
-  const save = async live => { rd(); try { VD = (await api('saveVendor', { vendor: { ...VD, status: live ? 'live' : VD.status === 'live' && !live ? 'draft' : 'draft' } })).vendor; ME.vendor = VD; await loadLive(); toast(live ? 'Your page is live in the directory.' : 'Draft saved.'); render(); } catch (x) { toast(x.message); } };
+  return page('vendor', `<section style="padding:56px 0 24px"><div class="wrap"><p class="caps m" style="margin:0">Your Fíeld Güide page</p><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-top:14px"><h1 class="d2">${esc(VD.name)}</h1><span class="pill ${VD.status === 'live' ? 'g' : ''}">${VD.status === 'live' ? 'Live' : 'Draft'}</span></div></div></section>
+  <section style="padding:0 0 72px"><div class="wrap split"><div style="display:grid;gap:18px">
+   <div class="card pad" style="display:grid;gap:16px"><span class="tag">Business</span><div class="g2"><label class="f">Business name<input class="in" id="v-n" value="${esc(VD.name)}"></label><label class="f">Type<select class="in" id="v-t">${TYPES.map(t => `<option ${VD.type === t ? 'selected' : ''}>${t}</option>`).join('')}</select></label></div><div class="g2"><label class="f">Neighborhood<input class="in" id="v-h" value="${esc(VD.hood || '')}"></label><label class="f">One line about you<input class="in" id="v-b" value="${esc(VD.blurb || '')}"></label></div></div>
+   <div class="card pad"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span class="tag">Menu · ${VD.items.length} items</span><div style="display:flex;gap:8px"><button class="btn ln sm" type="button" id="imp">Paste a menu</button><button class="btn ln sm" type="button" id="addi">+ Add item</button></div></div><div id="impbox"></div>
+    <div class="scroll"><table class="tbl" style="margin-top:12px"><thead><tr><th>Item</th><th>Description</th><th>Price</th><th>Unit</th><th></th></tr></thead><tbody>${VD.items.map((i, k) => `<tr data-i="${k}"><td><input class="in" style="height:42px" data-k="n" value="${esc(i.n)}" aria-label="Item"></td><td><input class="in" style="height:42px" data-k="d" value="${esc(i.d)}" aria-label="Description"></td><td><input class="in" style="height:42px;width:92px" type="number" min="0" data-k="p" value="${esc(i.p)}" aria-label="Price"></td><td><input class="in" style="height:42px;width:140px" data-k="u" value="${esc(i.u)}" placeholder="per tray (10)" aria-label="Unit"></td><td><button class="u sml" type="button" data-del="${k}">Remove</button></td></tr>`).join('') || '<tr><td class="m" colspan="5">No items yet. Add one or paste your menu.</td></tr>'}</tbody></table></div></div>
+   <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn ln" type="button" id="draft">Save draft</button><button class="btn dk" type="button" id="pub">${VD.status === 'live' ? 'Update my page' : 'Publish my page'}</button></div></div>
+   <aside class="vc" style="position:sticky;top:96px"><div class="ph"><span>${esc(initials(VD.name))}</span></div><div class="b"><span class="tag">${esc(VD.type)}</span><h3 style="font-size:20px">${esc(VD.name)}</h3><span class="m sml">${esc(VD.hood || '')}${VD.blurb ? ' · ' + esc(VD.blurb) : ''}</span><div style="margin-top:8px">${VD.items.slice(0, 6).map(i => `<div class="sum"><span>${esc(i.n || 'Item')}</span><b>${money(+i.p || 0)}</b></div>`).join('') || '<span class="m sml">Preview of your page</span>'}</div></div></aside></div></section>`); };
+H['vendor'] = () => { if (!$('#v-n')) return; const rd = () => { VD.name = $('#v-n').value; VD.type = $('#v-t').value; VD.hood = $('#v-h').value; VD.blurb = $('#v-b').value; $$('tr[data-i]').forEach(tr => { const it = VD.items[+tr.dataset.i]; tr.querySelectorAll('[data-k]').forEach(x => it[x.dataset.k] = x.dataset.k === 'p' ? +x.value : x.value); }); };
+  $('#addi').onclick = () => { rd(); VD.items.push({ n: '', d: '', p: 0, u: '' }); render(); }; $$('[data-del]').forEach(b => b.onclick = () => { rd(); VD.items.splice(+b.dataset.del, 1); render(); });
+  $('#imp').onclick = () => { $('#impbox').innerHTML = `<div style="display:grid;gap:10px;margin-top:14px"><label class="f">One item per line: Name - price - unit<textarea class="in" id="imptx" placeholder="Carnitas tray - 95 - per tray (10)"></textarea></label><div><button class="btn dk sm" type="button" id="impgo">Add items</button></div></div>`; $('#impgo').onclick = () => { rd(); $('#imptx').value.split('\n').map(l => l.split(/\s+[-–]\s+/)).filter(p => p[0]?.trim()).forEach(([n, p, u]) => VD.items.push({ n: n.trim(), d: '', p: parseFloat(String(p || '').replace(/[^0-9.]/g, '')) || 0, u: (u || '').trim() })); render(); }; };
+  const save = async live => { rd(); try { VD = (await api('saveVendor', { vendor: { ...VD, status: live ? 'live' : 'draft' } })).vendor; ME.vendor = VD; await loadLive(); toast(live ? 'Your page is live.' : 'Saved.'); render(); } catch (x) { toast(x.message); } };
   $('#draft').onclick = () => save(false); $('#pub').onclick = () => save(true); };
-V['vendor/orders'] = () => { if (needSess()) return ''; if (!ME) { loadMe().then(render).catch(e => toast(e.message)); return shell('vendor', 'vendor/orders', 'Orders', '<p class="hint">Loading…</p>'); }
-  const os = ME.orders || [];
-  return shell('vendor', 'vendor/orders', 'Orders', `<div class="wrap">${os.length ? os.map(o => `<article class="card" style="margin-bottom:16px;overflow:hidden"><div class="pad" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line)"><div><p class="cap">Next action</p><b style="font-size:17px">${o.status === 'waiting' ? 'Review &amp; accept order' : o.status === 'confirmed' ? 'Order accepted' : 'Order declined'}</b><div class="hint">${o.status === 'waiting' ? 'Review order details and confirm you can fulfill this request.' : 'Your Lead Planner has your answer.'}</div></div>${o.status === 'waiting' && o.quoteStatus === 'requested' ? `<div style="display:flex;gap:8px"><button class="bk sm" type="button" data-ok="${o.id}">Accept order</button><button class="ol sm" type="button" data-no="${o.id}">Reject</button></div>` : `<span class="pill ${o.status === 'confirmed' ? 'g' : ''}">${o.status === 'confirmed' ? 'Confirmed' : o.status}</span>`}</div>
-  <div class="pad"><div class="grid3"><div><p class="cap">Event</p>${esc(o.title || o.type || '')}</div><div><p class="cap">Date</p>${esc(o.date || 'TBD')} ${o.start ? '· ' + esc(o.start) : ''}</div><div><p class="cap">Guests</p>${esc(o.guests || '')}</div></div>
-  <table class="tbl" style="margin-top:12px"><thead><tr><th>Item</th><th>Qty</th><th>Unit price</th><th>Total</th></tr></thead><tbody>${o.items.map(i => `<tr><td>${esc(i.n)} <span class="hint">${esc(i.u)}</span></td><td>×${i.q}</td><td>${money(i.p)}</td><td><b>${money(i.p * i.q)}</b></td></tr>`).join('') || '<tr><td colspan="4" class="hint">Menu pending: your Lead Planner will share the order.</td></tr>'}</tbody></table></div></article>`).join('') : '<div class="card pad"><b>No orders yet.</b><p class="hint">Publish your page so clients can add you to their events.</p></div>'}</div>`, { sub: 'Requests from clients who added you to their event.' }); };
-H['vendor/orders'] = () => { const go2 = async (id, d) => { try { await api('vendorRespond', { id, decision: d }); await loadMe(); toast(d === 'decline' ? 'Declined.' : 'Accepted.'); render(); } catch (x) { toast(x.message); } }; $$('[data-ok]').forEach(b => b.onclick = () => go2(b.dataset.ok, 'accept')); $$('[data-no]').forEach(b => b.onclick = () => go2(b.dataset.no, 'decline')); };
+V['vendor/orders'] = () => { if (needSess()) return ''; if (!ME) { loadMe().then(render).catch(e => toast(e.message)); return loading('vendor'); }
+  return page('vendor', `<section class="s"><div class="wrap"><p class="caps m" style="margin:0">Orders</p><h1 class="d2" style="margin-top:14px">Requests for you.</h1><div style="display:grid;gap:16px;margin-top:32px">${(ME.orders || []).map(o => `<div class="card pad" style="display:grid;gap:14px"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><div><h3 class="d3">${esc(o.title || o.type || 'Event')}</h3><span class="m sml">${esc(o.date || '')} ${o.start ? '· ' + esc(o.start) : ''} · ${esc(o.guests || '')} guests · ${esc(o.location || '')}</span></div>${o.status === 'waiting' && o.quoteStatus === 'requested' ? `<div style="display:flex;gap:8px"><button class="btn dk sm" type="button" data-ok="${o.id}">Accept</button><button class="btn ln sm" type="button" data-no="${o.id}">Decline</button></div>` : `<span class="pill ${o.status === 'confirmed' ? 'g' : ''}">${o.status === 'confirmed' ? 'Accepted' : o.status === 'declined' ? 'Declined' : 'Waiting'}</span>`}</div>
+   <table class="tbl"><tbody>${o.items.map(i => `<tr><td>${esc(i.n)} <span class="m sml">${esc(i.u)}</span></td><td>× ${i.q}</td><td style="text-align:right"><b>${money(i.p * i.q)}</b></td></tr>`).join('') || '<tr><td class="m">Your Lead Planner will share the order details.</td></tr>'}</tbody></table></div>`).join('') || `<div class="card pad"><b>No requests yet.</b><p class="m" style="margin:6px 0 0">Publish your page so clients can add you to their events.</p></div>`}</div></div></section>`); };
+H['vendor/orders'] = () => { const r = async (id, d) => { try { await api('vendorRespond', { id, decision: d }); await loadMe(); render(); } catch (x) { toast(x.message); } }; $$('[data-ok]').forEach(b => b.onclick = () => r(b.dataset.ok, 'accept')); $$('[data-no]').forEach(b => b.onclick = () => r(b.dataset.no, 'decline')); };
 
-// ---------- admin ----------
-const adminGate = () => shell('admin', 'admin', 'Dispatch Board', `<form id="ag" class="card pad" style="max-width:420px;display:grid;gap:14px" novalidate><b>Super Admin access</b><label class="f">Admin code<input class="in" id="acode" type="password" autocomplete="off" required></label><span class="err" id="err" role="alert"></span><button class="bk" type="submit">Continue</button></form>`);
+const gate = () => page('admin', `<section class="s"><div class="narrow" style="max-width:520px"><h1 class="d2">Super Admin</h1><form id="ag" style="display:grid;gap:16px;margin-top:28px" novalidate><label class="f">Admin code<input class="in" id="acode" type="password" autocomplete="off"></label><p class="err" id="err" role="alert"></p><div><button class="btn dk" type="submit">Continue</button></div></form></div></section>`);
+const bindGate = () => { const g = $('#ag'); if (!g) return false; g.onsubmit = async e => { e.preventDefault(); ADM = $('#acode').value.trim(); try { await api('adminCheck'); try { sessionStorage.setItem('ce-adm', ADM); } catch {} AD = null; render(); } catch { ADM = ''; $('#err').textContent = 'That code isn’t right.'; } }; return true; };
 const loadAd = async () => { AD = await api('adminData'); LIVE = AD.vendors.filter(v => v.status === 'live'); };
-V['admin'] = () => { if (!ADM) return adminGate(); if (!AD) { loadAd().then(render).catch(e => { if (/Admin code/.test(e.message)) { ADM = ''; try { sessionStorage.removeItem('fg-adm'); } catch {} } toast(e.message); render(); }); return shell('admin', 'admin', 'Dispatch Board', '<p class="hint">Loading…</p>'); }
-  const evs = AD.events.filter(e => e.quote || e.inq?.title);
-  return shell('admin', 'admin', 'Dispatch Board', `<div class="wrap"><div style="display:flex;gap:10px;margin-bottom:18px"><input class="in" id="as" placeholder="Search dispatches…" aria-label="Search dispatches"><button class="ol" type="button" id="ar">Refresh</button></div><div id="alist">${evs.map(ev => eventCard(ev, `#/admin/ticket/${ev.id}`).replace('<div class="grid2" style="margin-top:16px">', `<div class="grid2" style="margin-top:16px"><div><p class="cap">Primary contact</p>${esc(ev.ownerName || '')} · ${esc(ev.ownerPhone || ev.owner)}</div><div><p class="cap">Assigned lead</p>${esc(ev.lead || 'Matthew')}</div>`)).join('') || '<p class="hint">No events yet. Create one from a client account.</p>'}</div></div>`, { sub: 'Track timelines, contacts and delivery/event progress.' }); };
-H['admin'] = () => { const g = $('#ag'); if (g) { g.onsubmit = async e => { e.preventDefault(); ADM = $('#acode').value.trim(); try { await api('adminCheck'); try { sessionStorage.setItem('fg-adm', ADM); } catch {} AD = null; render(); } catch (x) { ADM = ''; $('#err').textContent = 'That code is not right.'; } }; return; }
-  const r = $('#ar'); if (r) r.onclick = () => { AD = null; render(); }; const s = $('#as'); if (s) s.oninput = () => $$('#alist > article').forEach(a => a.hidden = !a.textContent.toLowerCase().includes(s.value.toLowerCase())); };
-let ATAB = 'order';
-V['admin/ticket'] = () => { if (!ADM) return adminGate(); if (!AD) { loadAd().then(render).catch(e => toast(e.message)); return shell('admin', 'admin', 'Dispatch Board', '<p class="hint">Loading…</p>'); }
-  const ev = AD.events.find(e => e.id === PARAM); if (!ev) return shell('admin', 'admin', 'Not found', '<a class="ol" href="#/admin">Back to Dispatch Board</a>');
-  ensure(ev); const q = ev.quote, i = q ? qIdx(q.status) : -1, vs = eventVendors(ev), t = totals(ev), inv = AD.invites.filter(x => x.eventId === ev.id);
+const adminStatus = ev => { const q = ev.quote?.status; return q === 'requested' ? 'Build quote' : q === 'quoted' ? 'Waiting on client' : q === 'approved' ? 'Approved' : q === 'in_progress' ? 'In progress' : q === 'completed' ? 'Completed' : ev.booked ? 'Call booked' : 'New inquiry'; };
+V['admin'] = () => { if (!ADM) return gate(); if (!AD) { loadAd().then(render).catch(e => { if (/Admin code/.test(e.message)) ADM = ''; toast(e.message); render(); }); return loading('admin'); }
+  return page('admin', `<section class="s"><div class="wrap"><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap"><div><p class="caps m" style="margin:0">Dispatch</p><h1 class="d2" style="margin-top:14px">Every event.</h1></div><button class="btn ln sm" type="button" id="ar">Refresh</button></div>
+  <div class="card" style="margin-top:32px;overflow:hidden"><div class="scroll"><table class="tbl" style="min-width:760px"><thead><tr><th style="padding:18px 10px 12px 24px">Event</th><th>Client</th><th>Date</th><th>Guests</th><th>Status</th><th></th></tr></thead><tbody>${AD.events.map(ev => `<tr><td style="padding-left:24px"><b style="font-weight:600">${esc(ev.inq?.title || 'Untitled')}</b><div class="m sml">${esc(ev.inq?.type || '')} · ${esc(ev.id)}</div></td><td>${esc(ev.ownerName || '')}<div class="m sml">${esc(ev.owner)}</div></td><td>${esc(ev.inq?.date || '')}</td><td>${guests(ev)}</td><td><span class="pill ${ev.quote?.status === 'requested' ? 'b' : ''}">${adminStatus(ev)}</span></td><td style="padding-right:24px;text-align:right"><a class="btn dk sm" href="#/admin/event/${ev.id}">Open</a></td></tr>`).join('') || '<tr><td class="m" style="padding:24px" colspan="6">No events yet.</td></tr>'}</tbody></table></div></div></div></section>`); };
+H['admin'] = () => { if (bindGate()) return; const r = $('#ar'); if (r) r.onclick = () => { AD = null; render(); }; };
+V['admin/event'] = () => { if (!ADM) return gate(); if (!AD) { loadAd().then(render).catch(e => toast(e.message)); return loading('admin'); }
+  const ev = AD.events.find(e => e.id === PARAM); if (!ev) return page('admin', '<section class="s"><div class="wrap"><a class="u" href="#/admin">← Dispatch</a></div></section>');
+  const q = ev.quote, vs = eventVendors(ev), st = staffOf(ev), mt = matOf(ev), t = totals(ev), locked = ['approved', 'in_progress', 'completed'].includes(q?.status), inv = AD.invites.filter(x => x.eventId === ev.id);
+  const cf = id => !q ? '' : q.vendors[id] === 'confirmed' ? '<span class="ok">Confirmed</span>' : q.status === 'requested' && id in q.vendors ? `<button class="btn dk sm" type="button" data-cf="${esc(id)}">Confirm</button>` : '<span class="wa">Pending</span>';
   const allOk = q && Object.values(q.vendors).every(s => s === 'confirmed');
-  const conf = id => !q ? '' : q.vendors[id] === 'confirmed' ? '<span class="ok">Confirmed</span>' : q.status === 'requested' && id in q.vendors ? `<button class="bk sm" type="button" data-cf="${esc(id)}">Confirm</button>` : `<span class="pend">${q.vendors[id] === 'declined' ? 'Declined' : 'Pending'}</span>`;
-  const NA = !q ? ['Planning', 'Client is still building this event.', ''] : q.status === 'requested' ? ['Confirm vendors', allOk ? 'Everything is confirmed. Send the final quote to the client.' : 'Confirm each vendor, staffing and materials, then send the quote.', `<button class="bk sm" type="button" id="sendq" ${allOk ? '' : 'disabled'}>Send quote</button>`] : q.status === 'quoted' ? ['Quote sent · awaiting approval', 'Client received the quote. Waiting for approval.', ''] : q.status === 'approved' ? ['Finalize logistics', 'Approved. Assign staff, confirm driver and materials.', '<button class="bk sm" type="button" data-st="in_progress">Mark in progress</button>'] : q.status === 'in_progress' ? ['Event underway', 'Staff and delivery are active.', '<button class="bk sm" type="button" data-st="completed">Mark as completed</button>'] : ['Order completed', 'All services delivered.', ''];
-  const body = `<div class="wrap" style="max-width:1200px"><a class="lnk" href="#/admin">← Back to Dispatch Board</a>
-  <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0 4px"><h2 style="margin:0;font-size:26px">${esc(ev.ownerName || 'Client')} — ${esc(ev.inq?.title || '')}</h2><div style="display:flex;gap:8px"><a class="ol sm" href="mailto:${esc(ev.owner)}">Email client</a><a class="ol sm" href="tel:${esc(ev.ownerPhone || '')}">Call</a></div></div>
-  <div class="hint">${esc(ev.inq?.date || 'TBD')} · ${esc(ev.id)}</div>
-  <div class="tabs" style="margin-top:18px">${[['order', 'Order Details'], ['sheet', 'Instruction Sheet'], ['inv', 'Vendor Invites']].map(([k, n]) => `<button type="button" data-tab="${k}" class="${ATAB === k ? 'on' : ''}">${n}</button>`).join('')}</div>
-  <div class="card pad" style="margin-bottom:16px"><div class="steps" style="margin:0 auto;max-width:none">${QS.map(([k, n], j) => `${j ? `<span class="bar ${j <= i ? 'done' : ''}"></span>` : ''}<span class="st ${j < i ? 'done' : j === i ? 'now' : ''}"><span class="ic" style="font-weight:700;font-size:13px">${j + 1}</span>${n}</span>`).join('')}</div></div>
-  ${ATAB === 'order' ? `<div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start">
-   <div style="display:grid;gap:16px"><div class="card pad"><p class="cap">Order details</p><div class="grid3" style="grid-template-columns:repeat(4,minmax(0,1fr));margin-top:10px"><div><p class="hint">Dispatch type</p><b>${esc(ev.inq?.type || '')}</b></div><div><p class="hint">Event date</p><b>${esc(ev.inq?.date || 'TBD')} · ${esc(ev.inq?.start || '')}</b></div><div><p class="hint">Guests</p><b>${guests(ev)} guests</b></div><div><p class="hint">Service</p><b>${esc(ev.inq?.service || '')}</b></div></div>${ev.inq?.description ? `<p class="hint" style="margin-top:10px">${esc(ev.inq.description)}</p>` : ''}</div>
-    <div class="card pad"><p class="cap">Food / menu</p>${vs.map(v => { const its = v.items.filter(x => ev.sel?.[x.id]); return `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px"><b>${esc(v.name)} <span class="pill ${v.how === 'Your pick' ? 'k' : 'o'}">${esc(v.how)}</span></b>${conf(v.id)}</div>${its.length ? `<table class="tbl"><thead><tr><th>Item</th><th>Qty</th><th>Unit price</th><th>Total</th></tr></thead><tbody>${its.map(x => `<tr><td>${esc(x.n)} <span class="hint">${esc(x.u)}</span></td><td>×${ev.sel[x.id]}</td><td>${money(x.p)}</td><td><b>${money(x.p * ev.sel[x.id])}</b></td></tr>`).join('')}</tbody></table>` : `<p class="hint" style="margin:4px 0 0">${v.pending ? 'Invited · menu pending' : 'No items selected'}</p>`}`; }).join('')}</div>
-    <div class="card pad"><div style="display:flex;justify-content:space-between;align-items:center"><p class="cap">Labor</p>${conf('staff')}</div>${staffPlan(ev).filter(r => ev.staff[r.k]?.q).map(r => `<div class="sum" style="border-bottom:1px solid #f0ede8"><span style="color:var(--ink)"><span style="color:var(--ok)">●</span> ${r.n}</span><span class="hint">${ev.staff[r.k].q} × ${ev.staff[r.k].h}h</span><b>${money(ev.staff[r.k].q * ev.staff[r.k].h * r.r)}</b></div>`).join('')}<div class="sum"><span>Estimated labor cost</span><b>${money(t.labor)}</b></div></div>
-    <div class="card pad"><div style="display:flex;justify-content:space-between;align-items:center"><p class="cap">Materials</p>${conf('materials')}</div>${matPlan(ev).filter(m => ev.mat[m.k]?.q).map(m => `<div class="sum" style="border-bottom:1px solid #f0ede8"><span style="color:var(--ink)">${m.n}</span><span class="hint">${ev.mat[m.k].q} ${m.u}</span><span class="${ev.mat[m.k].src === 'ce' ? '' : 'hint'}">${{ ce: 'Ours', have: 'Client has', vendor: 'Vendor' }[ev.mat[m.k].src]}</span></div>`).join('')}<div class="sum"><span>Estimated cost</span><b>${money(t.mat)}</b></div></div></div>
-   <div style="display:grid;gap:16px"><div class="card pad"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><p class="cap">Next action</p>${NA[2]}</div><div class="hr"></div><b>${NA[0]}</b><p class="hint" style="margin:4px 0 0">${NA[1]}</p></div>
-    <div class="card pad"><p class="cap">Order value</p><div class="sum"><span>Food &amp; menu</span><span>${money(t.food)}</span></div><div class="sum"><span>Delivery</span><span>Price on quote</span></div><div class="sum"><span>Labor</span><span>${money(t.labor)}</span></div><div class="sum"><span>Materials</span><span>${money(t.mat)}</span></div><div class="sum"><span>Coupon</span><span>−${money(t.coupon)}</span></div><div class="hr"></div><div class="sum"><b>Estimated total</b><b>${money(t.total)} + delivery</b></div></div>
-    <div class="card pad"><p class="cap">Delivery</p><p class="hint" style="margin:10px 0 2px">Drop-off</p><b>${esc(ev.inq?.location || 'TBD')}</b><div class="sum" style="margin-top:8px"><span>Driver</span><span class="pend">${ev.staff.driver?.q ? 'To assign' : 'Not needed'}</span></div></div>
-    <div class="card pad"><p class="cap">Other notes</p><p class="hint" style="margin:8px 0 0">${esc(ev.inq?.description || 'None')}</p></div></div></div>` : ATAB === 'sheet' ? `<div class="card pad"><p class="cap">Run of show</p>${[['−2h', 'Vendor pickups + rentals load'], ['−1h', 'Staff arrive, briefing'], ['−15m', 'Setup complete'], ['Start', 'Doors / service begins'], ['End', 'Breakdown + cleanup']].map(([a, b]) => `<div class="sum" style="border-bottom:1px solid #f0ede8"><b style="width:70px">${a}</b><span style="flex:1;color:var(--ink)">${b}</span></div>`).join('')}<p class="hint" style="margin-top:12px">Times are relative to ${esc(ev.inq?.start || 'start')}–${esc(ev.inq?.end || 'end')}. Editable instruction sheets come next.</p></div>`
-  : `<div class="card pad"><p class="cap">Vendor invites from this client</p>${inv.length ? inv.map(x => `<div class="sum" style="border-bottom:1px solid #f0ede8;align-items:center"><span style="color:var(--ink)"><b>${esc(x.gemName)}</b> · ${esc(x.type)} ${x.link ? '· ' + esc(x.link) : ''}</span><span class="${x.status === 'joined' ? 'ok' : 'pend'}">${x.status === 'joined' ? 'Joined' : 'Invite sent'}</span><button class="ol sm" type="button" data-copy="${location.origin}${location.pathname}#/vendor/join/${x.id}">Copy invite link</button></div>`).join('') : '<p class="hint">This client did not add their own vendors.</p>'}<p class="hint" style="margin-top:12px">In production the invite is emailed to the vendor. Here, copy the link and open it to test vendor sign-up.</p></div>`}</div>`;
-  return shell('admin', 'admin', 'Dispatch Board', body); };
-H['admin/ticket'] = () => { if (!ADM) return H['admin'](); const up = async b => { try { const j = await api('adminUpdate', { id: PARAM, ...b }); const k = AD.events.findIndex(e => e.id === PARAM); AD.events[k] = j.event; render(); } catch (x) { toast(x.message); } };
-  $$('[data-tab]').forEach(b => b.onclick = () => { ATAB = b.dataset.tab; render(); }); $$('[data-cf]').forEach(b => b.onclick = () => up({ confirm: b.dataset.cf }));
-  const s = $('#sendq'); if (s) s.onclick = () => up({ status: 'quoted' }); $$('[data-st]').forEach(b => b.onclick = () => up({ status: b.dataset.st }));
+  const act = !q ? '<span class="m sml">Waiting for the client’s menu choices.</span>' : q.status === 'requested' ? `<button class="btn bl" type="button" id="sendq" ${allOk ? '' : 'disabled'}>Send quote to client</button>` : q.status === 'quoted' ? '<span class="pill b">Waiting on client approval</span>' : q.status === 'approved' ? '<button class="btn dk" type="button" data-st="in_progress">Mark in progress</button>' : q.status === 'in_progress' ? '<button class="btn dk" type="button" data-st="completed">Mark completed</button>' : '<span class="pill g">Completed</span>';
+  const stepper = (attr, k, f, val) => locked ? val : `<span class="qty"><button type="button" aria-label="Fewer" ${attr}="${k}" ${f ? `data-f="${f}"` : ''} data-d="-1">−</button><output>${val}</output><button type="button" aria-label="More" ${attr}="${k}" ${f ? `data-f="${f}"` : ''} data-d="1">+</button></span>`;
+  return page('admin', `<section style="padding:48px 0 28px;background:var(--soft)"><div class="wrap"><a class="u sml" href="#/admin">← Dispatch</a><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-top:16px"><div><h1 class="d2">${esc(ev.inq?.title || '')}</h1><p class="m" style="margin:10px 0 0">${esc(ev.ownerName || '')} · <a href="mailto:${esc(ev.owner)}">${esc(ev.owner)}</a>${ev.ownerPhone ? ` · <a href="tel:${esc(ev.ownerPhone)}">${esc(ev.ownerPhone)}</a>` : ''}</p></div><span class="pill k">${adminStatus(ev)}</span></div>
+   <div class="g3" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:24px">${[['Date', `${ev.inq?.date || ''} · ${ev.inq?.start || ''}`], ['Guests', guests(ev)], ['Type', ev.inq?.type], ['Service', ev.inq?.service], ['Location', ev.inq?.location], ['Discovery call', ev.booked ? 'Booked' : 'Not yet']].map(([k, v]) => `<div><span class="tag">${k}</span><div style="font-weight:600">${esc(v)}</div></div>`).join('')}</div>${ev.inq?.description ? `<p class="m" style="margin:16px 0 0;max-width:800px">“${esc(ev.inq.description)}”</p>` : ''}</div></section>
+  <section style="padding:32px 0 72px"><div class="wrap split"><div style="display:grid;gap:18px">
+   <div class="card pad"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2 class="d3">Vendors + menus</h2>${locked ? '' : `<select class="in" id="addv" style="height:40px;width:auto" aria-label="Add a vendor"><option value="">+ Add a vendor</option>${directory().filter(v => !vs.some(x => x.id === v.id)).map(v => `<option value="${v.id}">${esc(v.name)} · ${esc(v.type)}</option>`).join('')}</select>`}</div>
+    ${vs.map(v => { const its = v.items.filter(x => ev.sel?.[x.id]); return `<div style="border-top:1px solid var(--line);padding-top:16px;margin-top:16px"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><b style="font-weight:600">${esc(v.name)}</b> <span class="pill ${v.how.startsWith('Your') ? 'k' : 'b'}" style="margin-left:6px">${esc(v.how)}</span></div>${cf(v.id)}</div>${its.length ? `<table class="tbl" style="margin-top:6px"><tbody>${its.map(x => `<tr><td>${esc(x.n)} <span class="m sml">${esc(x.u)}</span></td><td>× ${ev.sel[x.id]}</td><td style="text-align:right">${money(x.p * ev.sel[x.id])}</td></tr>`).join('')}</tbody></table>` : `<p class="m sml" style="margin:6px 0 0">${v.pending ? 'Invited · menu pending' : 'No items chosen yet'}</p>`}</div>`; }).join('') || '<p class="m">No vendors yet.</p>'}
+    ${inv.length ? `<div style="border-top:1px solid var(--line);margin-top:18px;padding-top:14px"><span class="tag">Invites</span>${inv.map(x => `<div class="row"><span>${esc(x.gemName)} <span class="m sml">· ${x.status === 'joined' ? 'joined' : 'invite sent'}</span></span><button class="u sml" type="button" data-copy="${location.origin}${location.pathname}#/vendor/join/${x.id}">Copy invite link</button></div>`).join('')}</div>` : ''}</div>
+   <div class="card pad"><div style="display:flex;justify-content:space-between;align-items:center"><h2 class="d3">Staffing</h2>${cf('staff')}</div><table class="tbl" style="margin-top:10px"><thead><tr><th>Role</th><th>People</th><th>Hours</th><th style="text-align:right">Total</th></tr></thead><tbody>${STAFF(ev).map(r => `<tr><td>${r.n} <span class="m sml">${money(r.r)}/hr</span></td><td>${stepper('data-s', r.k, 'q', st[r.k].q)}</td><td>${stepper('data-s', r.k, 'h', st[r.k].h)}</td><td style="text-align:right">${money(st[r.k].q * st[r.k].h * r.r)}</td></tr>`).join('')}</tbody></table></div>
+   <div class="card pad"><div style="display:flex;justify-content:space-between;align-items:center"><h2 class="d3">Materials</h2>${cf('materials')}</div><table class="tbl" style="margin-top:10px"><thead><tr><th>Item</th><th>Qty</th><th>Provided by</th></tr></thead><tbody>${MAT(ev).map(m => `<tr><td>${m.n} <span class="m sml">${money(m.p)} ea</span></td><td>${stepper('data-m', m.k, '', mt[m.k].q)}</td><td>${locked ? { ce: 'Us', have: 'Client', vendor: 'Vendor' }[mt[m.k].src] : `<select class="in" style="height:38px;width:auto" data-src="${m.k}" aria-label="${m.n} provided by">${[['ce', 'Us'], ['have', 'Client has it'], ['vendor', 'Vendor']].map(([v, l]) => `<option value="${v}" ${mt[m.k].src === v ? 'selected' : ''}>${l}</option>`).join('')}</select>`}</td></tr>`).join('')}</tbody></table></div></div>
+   <aside class="card pad" style="position:sticky;top:96px"><span class="tag">Quote</span><div style="margin-top:10px"><div class="sum"><span>Food</span><b>${money(t.food)}</b></div><div class="sum"><span>Staffing · ${t.people}</span><b>${money(t.labor)}</b></div><div class="sum"><span>Materials</span><b>${money(t.mat)}</b></div><div class="sum"><span>Coupon</span><span>−$200</span></div><div class="sum" style="border-top:1px solid var(--line);margin-top:6px;padding-top:12px"><b>Total</b><b>${money(t.total)}</b></div></div><div style="margin-top:16px">${act}</div>${q?.status === 'requested' && !allOk ? '<p class="m sml" style="margin:10px 0 0">Confirm every vendor, staffing and materials to send.</p>' : ''}</aside></div></section>`); };
+H['admin/event'] = () => { if (bindGate()) return; const ev = AD?.events.find(e => e.id === PARAM); if (!ev) return;
+  const up = async b => { try { const j = await api('adminUpdate', { id: PARAM, ...b }); AD.events[AD.events.findIndex(e => e.id === PARAM)] = j.event; render(); } catch (x) { toast(x.message); } };
+  $$('[data-cf]').forEach(b => b.onclick = () => up({ confirm: b.dataset.cf })); const s = $('#sendq'); if (s) s.onclick = () => up({ status: 'quoted' }); $$('[data-st]').forEach(b => b.onclick = () => up({ status: b.dataset.st }));
+  const av = $('#addv'); if (av) av.onchange = () => av.value && up({ addPick: av.value });
+  $$('[data-s]').forEach(b => b.onclick = () => { const st = staffOf(ev); st[b.dataset.s][b.dataset.f] = Math.max(0, st[b.dataset.s][b.dataset.f] + +b.dataset.d); up({ staff: st }); });
+  $$('[data-m]').forEach(b => b.onclick = () => { const mt = matOf(ev); mt[b.dataset.m].q = Math.max(0, mt[b.dataset.m].q + +b.dataset.d); up({ mat: mt }); });
+  $$('[data-src]').forEach(x => x.onchange = () => { const mt = matOf(ev); mt[x.dataset.src].src = x.value; up({ mat: mt }); });
   $$('[data-copy]').forEach(b => b.onclick = async () => { try { await navigator.clipboard.writeText(b.dataset.copy); toast('Invite link copied'); } catch { prompt('Copy this link', b.dataset.copy); } }); };
-V['admin/vendors'] = () => { if (!ADM) return adminGate(); if (!AD) { loadAd().then(render).catch(e => toast(e.message)); return shell('admin', 'admin/vendors', 'Vendors', '<p class="hint">Loading…</p>'); }
-  return shell('admin', 'admin/vendors', 'Vendors', `<div class="wrap"><div class="card pad scroll"><table class="tbl"><thead><tr><th>Vendor</th><th>Type</th><th>Items</th><th>Status</th></tr></thead><tbody>${AD.vendors.map(v => `<tr><td><b>${esc(v.name)}</b></td><td>${esc(v.type)}</td><td>${v.items.length}</td><td><span class="pill ${v.status === 'live' ? 'g' : ''}">${v.status === 'live' ? 'Live' : 'Draft'}</span></td></tr>`).join('') || '<tr><td colspan="4" class="hint">No vendor accounts yet.</td></tr>'}</tbody></table></div>
-  <div class="card pad" style="margin-top:16px"><p class="cap">Invites</p>${AD.invites.map(x => `<div class="sum" style="border-bottom:1px solid #f0ede8"><span style="color:var(--ink)">${esc(x.gemName)} · ${esc(x.type)}</span><span class="${x.status === 'joined' ? 'ok' : 'pend'}">${x.status === 'joined' ? 'Joined' : 'Invite sent'}</span></div>`).join('') || '<p class="hint">No invites yet.</p>'}</div></div>`, { sub: 'Vendor pages and client invites.' }); };
+V['admin/vendors'] = () => { if (!ADM) return gate(); if (!AD) { loadAd().then(render).catch(e => toast(e.message)); return loading('admin'); }
+  return page('admin', `<section class="s"><div class="wrap"><p class="caps m" style="margin:0">Vendors</p><h1 class="d2" style="margin-top:14px">The Fíeld Güide.</h1><div class="card" style="margin-top:32px;overflow:hidden"><table class="tbl"><thead><tr><th style="padding:18px 10px 12px 24px">Vendor</th><th>Type</th><th>Menu</th><th>Status</th></tr></thead><tbody>${AD.vendors.map(v => `<tr><td style="padding-left:24px"><b style="font-weight:600">${esc(v.name)}</b></td><td>${esc(v.type)}</td><td>${v.items.length} items</td><td><span class="pill ${v.status === 'live' ? 'g' : ''}">${v.status === 'live' ? 'Live' : 'Draft'}</span></td></tr>`).join('') || '<tr><td class="m" style="padding:24px" colspan="4">No vendor accounts yet.</td></tr>'}</tbody></table></div>
+  <h2 class="d3" style="margin-top:40px">Invites from clients</h2><div class="card pad" style="margin-top:14px">${AD.invites.map(x => `<div class="row" style="border-top:0;border-bottom:1px solid var(--line)"><span><b style="font-weight:600">${esc(x.gemName)}</b> <span class="m sml">· ${esc(x.type)}</span></span><span class="${x.status === 'joined' ? 'ok' : 'wa'}">${x.status === 'joined' ? 'Joined' : 'Invite sent'}</span></div>`).join('') || '<p class="m" style="margin:0">None yet.</p>'}</div></div></section>`); };
+H['admin/vendors'] = () => bindGate();
 
-// ---------- shared ----------
-function modal(html, after) { const m = document.createElement('div'); m.className = 'modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.innerHTML = `<div>${html}</div>`; document.body.appendChild(m); const close = () => { m.remove(); document.removeEventListener('keydown', esc_); render(); }; const esc_ = e => { if (e.key === 'Escape') close(); }; document.addEventListener('keydown', esc_); m.addEventListener('click', e => { if (e.target === m || e.target.closest('[data-close]')) close(); }); after && after(m); }
-function openCal() { const u = `${CAL}?hide_gdpr_banner=1&name=${encodeURIComponent(SESS?.account?.name || '')}&email=${encodeURIComponent(SESS?.account?.email || '')}`;
-  modal(`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h2 style="margin:0">Book a call with your Lead Planner</h2><button class="ol sm" type="button" data-close>Close</button></div><iframe src="${u}" title="Book a call on Calendly" style="width:100%;height:620px;border:0;border-radius:10px"></iframe><div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="bk" type="button" id="booked">I booked my call</button></div>`, m => { m.querySelector('#booked').onclick = () => { S.booked = true; sync(); m.remove(); toast('Call noted on your event.'); render(); }; }); }
+function modal(html, after, onClose) { const m = document.createElement('div'); m.className = 'modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.innerHTML = `<div>${html}</div>`; document.body.appendChild(m);
+  const close = () => { m.remove(); document.removeEventListener('keydown', k); onClose ? onClose() : render(); }; const k = e => { if (e.key === 'Escape') close(); }; document.addEventListener('keydown', k);
+  m.addEventListener('click', e => { if (e.target === m || e.target.closest('[data-close]')) close(); }); after && after(m); return m; }
+function openCal(done) { const u = `${CAL}?hide_gdpr_banner=1&name=${encodeURIComponent(SESS?.account?.name || '')}&email=${encodeURIComponent(SESS?.account?.email || '')}`;
+  const m = modal(`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h2 class="d3">Book your discovery call</h2><button class="btn ln sm" type="button" data-close>Close</button></div><iframe src="${u}" title="Book a call on Calendly" style="width:100%;height:620px;border:0;border-radius:14px"></iframe><div style="display:flex;justify-content:flex-end;margin-top:14px"><button class="btn bl" type="button" id="didbook">I booked my call</button></div>`, null, () => {});
+  m.querySelector('#didbook').onclick = () => { m.remove(); done(); }; }
 function go(r) { location.hash = '#/' + r; }
-function render() { let r = location.hash.replace(/^#\/?/, '').split('?')[0] || ''; PARAM = null; for (const p of ['admin/ticket', 'vendor/join', 'open']) if (r.startsWith(p + '/')) { PARAM = decodeURIComponent(r.slice(p.length + 1)); r = p; } const v = V[r] || V['']; $('#app').innerHTML = v(); (H[r] || (() => {}))();
-  const lo = $('#logout'); if (lo) lo.onclick = () => { if (location.hash.includes('admin')) { ADM = ''; AD = null; try { sessionStorage.removeItem('fg-adm'); } catch {} } else { setSess(null); S = blank(); saveDraft(); } go(''); };
-  const bc = $('#bookcall'); if (bc) bc.onclick = openCal; }
-window.addEventListener('hashchange', () => { if (!location.hash.startsWith('#/create')) ME = ME; render(); window.scrollTo(0, 0); });
-$('#reset').onclick = e => { e.preventDefault(); setSess(null); S = blank(); saveDraft(); PEND = null; INV = null; VD = null; go(''); render(); };
+function render() { let r = location.hash.replace(/^#\/?/, '').split('?')[0]; PARAM = null; for (const p of ['admin/event', 'vendor/join', 'event']) if (r.startsWith(p + '/')) { PARAM = decodeURIComponent(r.slice(p.length + 1)); r = p; }
+  $('#app').innerHTML = (V[r] || V[''])(); (H[r] || (() => {}))();
+  const o = $('#out'); if (o) o.onclick = () => { if (r.startsWith('admin')) { ADM = ''; AD = null; try { sessionStorage.removeItem('ce-adm'); } catch {} } else { setSess(null); EV = null; VD = null; } go(''); }; }
+window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
+$('#reset').onclick = e => { e.preventDefault(); setSess(null); D = blankDraft(); store.set('ce-draft', D); EV = null; VD = null; PEND = null; INV = null; go(''); render(); };
 render(); loadLive().then(() => { if (!/admin/.test(location.hash)) render(); });
 })();
 </script>
