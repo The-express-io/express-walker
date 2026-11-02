@@ -28,7 +28,7 @@ const isAdmin = req => !!process.env.FG_ADMIN_CODE && req.headers.get('x-admin-c
 const pubVendor = v => ({ id: v.id, name: v.name, type: v.type, hood: v.hood, blurb: v.blurb, items: v.items || [], inviteIds: v.inviteIds || [], status: v.status });
 const vendorItems = (ev, vid) => Object.entries(ev.sel || {}).filter(([k, q]) => q > 0 && k.startsWith(vid + '-'));
 const cleanEvent = e => {
-  const pick = ['inq', 'picks', 'gems', 'recommend', 'sel', 'staff', 'mat', 'notes', 'booked'];
+  const pick = ['inq', 'picks', 'gems', 'recommend', 'sel', 'notes', 'booked'];
   const o = {}; pick.forEach(k => { if (e[k] !== undefined) o[k] = e[k]; });
   if (JSON.stringify(o).length > 60000) throw new Error('Event too large');
   o.gems = (o.gems || []).slice(0, 12).map(g => ({ name: clip(g.name, 120), type: TYPES.includes(g.type) ? g.type : 'Restaurant', link: clip(g.link, 200), love: clip(g.love, 200), inviteId: /^[a-f0-9]{12}$/.test(g.inviteId || '') ? g.inviteId : undefined }));
@@ -97,13 +97,18 @@ export async function POST(req) {
     }
     if (a === 'adminUpdate') {
       if (!EVID.test(b.id || '')) return J({ error: 'Bad id' }, 400);
-      const ev = await rd(`events/${b.id}.json`); if (!ev?.quote) return J({ error: 'Not found' }, 404);
-      const q = ev.quote;
+      const ev = await rd(`events/${b.id}.json`); if (!ev) return J({ error: 'Not found' }, 404);
+      const q = ev.quote || { status: 'none', vendors: {} };
       if (b.confirm && b.confirm in q.vendors) q.vendors[b.confirm] = 'confirmed';
       if (b.status === 'quoted' && q.status === 'requested' && Object.values(q.vendors).every(s => s === 'confirmed')) q.status = 'quoted';
       if (b.status === 'in_progress' && q.status === 'approved') q.status = 'in_progress';
       if (b.status === 'completed' && q.status === 'in_progress') q.status = 'completed';
       if (typeof b.lead === 'string') ev.lead = clip(b.lead, 80);
+      const num = (o, keys) => Object.fromEntries(Object.entries(o || {}).slice(0, 20).map(([k, v]) => [clip(k, 30), Object.fromEntries(keys.map(x => [x, typeof v?.[x] === 'number' ? Math.max(0, Math.min(10000, v[x])) : clip(v?.[x], 20)]))]));
+      if (b.staff && !['approved', 'in_progress', 'completed'].includes(q.status)) ev.staff = num(b.staff, ['q', 'h']);
+      if (b.mat && !['approved', 'in_progress', 'completed'].includes(q.status)) ev.mat = num(b.mat, ['q', 'src']);
+      if (b.addPick && /^[a-z0-9-]{3,40}$/.test(b.addPick) && !(ev.adminPicks || []).includes(b.addPick)) { ev.adminPicks = [...(ev.adminPicks || []), b.addPick]; if (q.status === 'requested') q.vendors[b.addPick] = q.vendors[b.addPick] || 'waiting'; }
+      if (ev.quote) ev.quote = q;
       ev.updatedAt = Date.now(); await wr(`events/${ev.id}.json`, ev);
       return J({ event: ev });
     }
@@ -138,6 +143,7 @@ export async function POST(req) {
     if (prev && prev.owner !== acct.email) return J({ error: 'Not your event' }, 403);
     if (!id) id = 'CE-' + rid(3).toUpperCase();
     let ev; try { ev = cleanEvent(e); } catch (x) { return J({ error: x.message }, 400); }
+    ev.staff = prev?.staff || null; ev.mat = prev?.mat || null; ev.adminPicks = prev?.adminPicks || [];
     ev.id = id; ev.owner = acct.email; ev.ownerName = acct.name; ev.ownerPhone = acct.phone || ''; ev.lead = prev?.lead || 'Matthew'; ev.createdAt = prev?.createdAt || Date.now(); ev.updatedAt = Date.now();
     for (const g of ev.gems) {
       if (!g.name || g.inviteId) continue;
@@ -148,7 +154,7 @@ export async function POST(req) {
     if (!pq && cq?.status === 'requested') ev.quote = { status: 'requested', at: Date.now(), vendors: Object.fromEntries(Object.keys(cq.vendors || {}).slice(0, 20).map(k => [clip(k, 40), 'waiting'])) };
     else if (pq && pq.status === 'quoted' && cq?.status === 'approved') ev.quote = { ...pq, status: 'approved', approvedAt: Date.now() };
     else ev.quote = pq;
-    if (pq) { ev.sel = prev.sel; ev.staff = prev.staff; ev.mat = prev.mat; ev.picks = prev.picks; }
+    if (pq) { ev.sel = prev.sel; ev.picks = prev.picks; }
     await wr(`events/${id}.json`, ev);
     if (!(acct.events || []).includes(id)) { acct.events = [...(acct.events || []), id]; await wr(`accounts/${H(acct.email)}.json`, acct); }
     return J({ event: ev });
