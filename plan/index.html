@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cülinary Expréss · Let’s Begin (test)</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f1412;--muted:#5a5f5c;--line:#e6e6e6;--soft:#f4f4f4;--blue:#0047ab;--blue2:#00337d;--sky:#4f7dff;--ok:#1d7a46;--warn:#9a5b00}
+*{box-sizing:border-box}html,body{margin:0}
+body{font:400 16px/1.55 Manrope,system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+a{color:inherit}button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.bar{height:32px;background:#0f1412;color:rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;gap:12px;font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:0 12px;text-align:center}
+.bar a{color:#fff;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.4)}
+header.h{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+header.h .in{height:72px;padding:0 40px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.nl{display:flex;gap:28px}.nl a{font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:4px 0;border-bottom:1px solid transparent}.nl a:hover,.nl a.on{border-color:currentColor}
+.wm{display:flex;align-items:center;gap:12px;text-decoration:none}.wm img{width:34px;height:34px;border-radius:50%;background:#fff}.wm span{font-size:13px;font-weight:600;letter-spacing:.32em;text-transform:uppercase}
+.hr{justify-self:end;display:flex;align-items:center;gap:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 24px;border-radius:999px;font-size:14.5px;font-weight:600;text-decoration:none;border:0;cursor:pointer;white-space:nowrap;transition:background .2s,opacity .2s}
+.dk{background:#0f1412;color:#fff}.dk:hover{background:#2b302d}
+.bl{background:var(--blue);color:#fff}.bl:hover{background:var(--blue2)}
+.wt{background:#fff;color:#0f1412}.wt:hover{background:#ececec}
+.ln{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}.ln:hover{background:rgba(0,0,0,.04)}
+.sm{min-height:36px;padding:0 16px;font-size:13px}
+.caps{font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+button:disabled{opacity:.4;cursor:not-allowed}
+.u{background:none;border:0;padding:0;cursor:pointer;font-weight:600;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(0,0,0,.25)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}.narrow{max-width:860px;margin:0 auto;padding:0 40px}
+h1,h2,h3{font-weight:600;letter-spacing:-.04em;margin:0}
+.d1{font-size:clamp(48px,7vw,104px);line-height:.95}.d2{font-size:clamp(34px,4.6vw,60px);line-height:1}.d3{font-size:26px;letter-spacing:-.03em}
+.lead{font-size:19px;color:var(--muted);margin:14px 0 0;max-width:620px}
+.m{color:var(--muted)}.sml{font-size:13px}.blue{color:var(--blue)}
+section.s{padding:72px 0}
+label.f{display:grid;gap:7px;font-size:13.5px;font-weight:600}
+.in{width:100%;height:50px;background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:0 16px;font-size:16px}
+textarea.in{height:auto;min-height:100px;padding:14px 16px;resize:vertical}
+.in:focus{outline:none;border-color:#0f1412;background:#fff}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;cursor:pointer}.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{display:inline-block;padding:9px 16px;border-radius:999px;box-shadow:inset 0 0 0 1px #d4d4d4;font-size:14px;font-weight:500}
+.chip input:checked+span{background:#0f1412;color:#fff;box-shadow:none}.chip input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.tchip{padding:8px 15px;border-radius:999px;border:0;box-shadow:inset 0 0 0 1px #d4d4d4;background:#fff;font-size:13.5px;font-weight:500;cursor:pointer}
+.tchip.on{background:#0f1412;color:#fff;box-shadow:none}
+.addchip{height:36px;border-radius:999px;border:1.5px dashed #bdbdbd;background:#fff;padding:0 14px;font-size:13.5px;width:170px}
+.addchip:focus{outline:none;border-color:#0f1412;border-style:solid}
+.err{color:#b42318;font-size:14px;font-weight:600;min-height:20px;margin:0}
+.blk{padding:40px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px}
+.blk>.k{display:grid;gap:6px;align-content:start}.blk>.k b{font-size:13px;font-weight:600;color:var(--blue)}.blk>.k span{font-size:22px;font-weight:600;letter-spacing:-.03em;line-height:1.1}
+.card{border:1px solid var(--line);border-radius:18px;background:#fff}.pad{padding:24px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;background:var(--soft);white-space:nowrap}
+.pill.k{background:#0f1412;color:#fff}.pill.b{background:#e8eefb;color:var(--blue)}.pill.g{background:#e8f4ec;color:var(--ok)}
+.ok{color:var(--ok);font-weight:600}.wa{color:var(--warn);font-weight:600}
+.qty{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.qty button{width:34px;height:34px;border-radius:50%;border:1px solid #cfcfcf;background:#fff;cursor:pointer;font-size:17px;line-height:1}
+.qty output{min-width:26px;text-align:center}
+.tl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.tl div{display:grid;gap:8px;font-size:13px;color:#8a8f8c}.tl i{height:3px;border-radius:2px;background:#e3e3e3}
+.tl .on{color:var(--ink);font-weight:600}.tl .on i{background:var(--ink)}.tl .now{color:var(--blue);font-weight:600}.tl .now i{background:var(--blue)}
+.hero{position:relative;min-height:62vh;background:#111;color:#fff;display:flex;align-items:flex-end;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.15) 65%)}
+.hero .wrap{position:relative;z-index:1;padding-bottom:64px;width:100%}
+.role{display:flex;flex-direction:column;gap:14px;padding:28px;border:1px solid var(--line);border-radius:22px;text-decoration:none;background:#fff;transition:border-color .2s,transform .2s}
+.role:hover{border-color:var(--ink);transform:translateY(-2px)}
+.role ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:14px;color:var(--muted)}.role li::before{content:"— ";color:var(--blue)}
+.role .go{margin-top:auto;align-self:flex-start}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th{text-align:left;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 10px 10px 0;border-bottom:1px solid var(--line)}
+.tbl td{padding:14px 10px 14px 0;border-bottom:1px solid var(--line);vertical-align:middle}.tbl tr:last-child td{border-bottom:0}
+.scroll{overflow-x:auto}
+.sum{display:flex;justify-content:space-between;gap:12px;padding:9px 0;font-size:15px}.sum span:first-child{color:var(--muted)}
+.notice{border-radius:14px;padding:16px 18px;background:#e8eefb;color:#0b2a63}
+.modal{position:fixed;inset:0;background:rgba(15,20,18,.6);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:18px;z-index:60}
+.modal>div{background:#fff;border-radius:22px;width:min(980px,100%);max-height:92vh;overflow:auto;padding:28px}
+.modal.n>div{width:min(560px,100%)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1412;color:#fff;padding:12px 20px;border-radius:999px;z-index:80;font-weight:600;font-size:14px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
+footer.f{border-top:1px solid var(--line);padding:28px 40px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.vcard{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.vcard .ph{aspect-ratio:16/10;background:var(--soft);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.vcard .ph img{width:100%;height:100%;object-fit:cover}
+.vcard .ph span{width:64px;height:64px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600}
+.vcard .b{padding:16px 18px 18px;display:grid;gap:6px;flex:1}
+
+/* Onboarding (Figma: dark side panel + form) */
+.ob{display:grid;grid-template-columns:400px minmax(0,1fr);min-height:calc(100vh - 32px)}
+.ob .sd{align-self:start;background:#0f1412;color:#fff;padding:40px;display:flex;flex-direction:column;gap:40px;position:sticky;top:0;height:calc(100vh - 32px);overflow:auto}
+.ob .sd .wm img{background:#fff}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{display:flex;gap:12px;align-items:center;font-size:14px;color:rgba(255,255,255,.45);padding:7px 0}
+.steps li i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25);flex:none}
+.steps li.done{color:rgba(255,255,255,.8)}.steps li.done i{background:#fff}
+.steps li.now{color:#fff;font-weight:600}.steps li.now i{background:var(--sky);box-shadow:0 0 0 4px rgba(79,125,255,.25)}
+.sd ul.pts{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14px;color:rgba(255,255,255,.75)}.sd ul.pts li::before{content:"— ";color:var(--sky)}
+.ob .mn{padding:72px 80px 96px;max-width:920px;width:100%}
+.tcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.tc{position:relative;cursor:pointer}.tc input{position:absolute;opacity:0}
+.tc span{display:grid;gap:2px;padding:16px 18px;border-radius:14px;box-shadow:inset 0 0 0 1px #d4d4d4;height:100%}
+.tc span b{font-weight:600}.tc span small{font-size:12.5px;color:var(--muted)}
+.tc input:checked+span{background:#0f1412;color:#fff;box-shadow:none}.tc input:checked+span small{color:rgba(255,255,255,.7)}
+.tc input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.mc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.mc .tc input:checked+span{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px #0f1412}.mc .tc input:checked+span small{color:var(--muted)}
+fieldset.fs{border:0;margin:0;padding:0;display:grid;gap:10px}fieldset.fs legend{font-size:13.5px;font-weight:600;padding:0;margin-bottom:10px}
+
+/* Builder */
+.bld{display:flex;flex-direction:column;height:calc(100vh - 104px)}
+.bt{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.bt .bn{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
+.seg{display:inline-flex;background:var(--soft);border-radius:999px;padding:3px}.seg button{border:0;background:none;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;color:var(--muted)}.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.bb{flex:1;display:grid;grid-template-columns:440px minmax(0,1fr);min-height:0}
+.ed{border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.tabs{display:flex;gap:4px;padding:10px 16px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{border:0;background:none;padding:8px 12px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap}.tabs button.on{background:var(--soft);color:var(--ink)}
+.edp{padding:24px;overflow:auto;display:grid;gap:20px;align-content:start;flex:1}
+.pvw{background:#e9eaea;overflow:auto;padding:24px}
+.pvf{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.12);margin:0 auto;max-width:1100px}
+.pvf.phone{max-width:390px;border-radius:28px}
+.pvf a{pointer-events:none}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.thumb{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--soft)}.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb button{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;cursor:pointer;line-height:1}
+.cover{aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--soft);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px}.cover img{width:100%;height:100%;object-fit:cover}
+.drop{border:1.5px dashed #c8c8c8;border-radius:12px;background:#fafafa;padding:22px;text-align:center;cursor:pointer;font-size:14px;color:var(--muted);width:100%}
+.drop:hover{border-color:var(--ink);color:var(--ink)}
+.sw{display:flex;gap:10px}.sw label{cursor:pointer;position:relative}.sw input{position:absolute;opacity:0}.sw span{display:block;width:40px;height:40px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.1)}.sw input:checked+span{box-shadow:0 0 0 2px #fff,0 0 0 4px #0f1412}.sw input:focus-visible+span{outline:2px solid var(--blue);outline-offset:4px}
+.irow{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.irow .t{width:52px;height:52px;border-radius:10px;background:var(--soft);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}.irow .t img{width:100%;height:100%;object-fit:cover}
+.tog{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--line);cursor:pointer}
+.tog input{width:20px;height:20px;accent-color:#0f1412}
+.hint{border-radius:12px;padding:12px 14px;background:#e8eefb;color:#0b2a63;font-size:13.5px}
+
+/* Vendor page (the public page and the builder preview share this) */
+.vpw{container-type:inline-size}
+.vp{--acc:#2a2c2f;background:#fff;color:var(--ink)}
+.vp .cv{position:relative;min-height:540px;display:flex;align-items:flex-end;color:#fff;background:radial-gradient(120% 90% at 15% 0%,color-mix(in srgb,var(--acc) 70%,#fff 10%),var(--acc) 55%,#111 100%);overflow:hidden}
+.vp .cv>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vp .cv::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.1) 70%)}
+.vp .ci{position:relative;z-index:1;padding:56px;width:100%}
+.vp h1{font-size:clamp(40px,8cqw,104px);line-height:.95;letter-spacing:-.045em}
+.vp .tg{font-size:clamp(17px,1.8cqw,21px);max-width:620px;margin:20px 0 0;color:rgba(255,255,255,.9)}
+.vp .ca{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.vp .ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75)}
+.vp .k{color:var(--acc);margin:0 0 12px}
+.vp .hl{display:grid;grid-template-columns:1.2fr 1.2fr 1fr;gap:40px;padding:44px 56px;border-bottom:1px solid var(--line)}
+.vp .vch{display:flex;flex-wrap:wrap;gap:8px}.vp .vch span{padding:7px 14px;border-radius:999px;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 35%,#ddd);font-size:13.5px;font-weight:500}
+.vp .ab{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;padding:64px 56px}
+.vp .ab h2,.vp .mn h2,.vp .gl h2{font-size:clamp(30px,4cqw,48px);line-height:1}
+.vp .ab p{font-size:18px;line-height:1.65;margin:0;max-width:680px}
+.vp .mn{padding:64px 56px;background:var(--soft)}
+.vp .mh{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.vp .vt{display:flex;gap:6px;flex-wrap:wrap}.vp .vt button{border:0;background:#fff;border-radius:999px;padding:8px 15px;font-size:13.5px;font-weight:600;cursor:pointer;box-shadow:inset 0 0 0 1px var(--line)}.vp .vt button.on{background:var(--acc);color:#fff;box-shadow:none}
+.vp .mg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.vp .mi{display:grid;grid-template-columns:120px minmax(0,1fr);gap:18px;background:#fff;border-radius:16px;padding:14px;border:1px solid var(--line)}
+.vp .mi .t{aspect-ratio:1;border-radius:12px;overflow:hidden;background:var(--soft);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--muted)}
+.vp .mi .t img{width:100%;height:100%;object-fit:cover}
+.vp .mi h3{font-size:18px;letter-spacing:-.02em}.vp .mi p{margin:4px 0 10px;font-size:14px;color:var(--muted)}
+.vp .pr{font-weight:600}.vp .pr span{font-weight:400;color:var(--muted);font-size:13px;margin-left:6px}
+.vp .gl{padding:64px 56px}
+.vp .gg{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:clamp(140px,18cqw,240px);gap:10px;margin-top:28px}.vp .gg img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block}
+.vp .gg img:first-child{grid-column:span 2;grid-row:span 2}
+.vp .bk{background:var(--acc);color:#fff;padding:64px 56px;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.vp .bk h2{font-size:clamp(30px,4.4cqw,56px);line-height:1;max-width:640px}
+.vp .bk p{margin:14px 0 0;color:rgba(255,255,255,.8);max-width:520px}
+.vp .ept{border:1.5px dashed #cfcfcf;border-radius:14px;padding:26px;text-align:center;color:var(--muted);font-size:14px;background:#fff}
+@container (max-width:700px){
+ .vp .cv{min-height:460px}.vp .ci{padding:28px 22px}
+ .vp .hl{grid-template-columns:1fr;gap:26px;padding:32px 22px}
+ .vp .ab{grid-template-columns:1fr;gap:16px;padding:44px 22px}.vp .ab p{font-size:16.5px}
+ .vp .mn,.vp .gl{padding:44px 22px}.vp .mg{grid-template-columns:1fr}.vp .mi{grid-template-columns:84px minmax(0,1fr);gap:14px}
+ .vp .gg{grid-template-columns:repeat(2,1fr)}.vp .bk{padding:44px 22px}
+}
+@media(max-width:960px){.split{grid-template-columns:1fr}.bld{height:auto}.bb{grid-template-columns:1fr}.ed{border-right:0;border-bottom:1px solid var(--line)}.pvw{padding:14px}.ob{grid-template-columns:1fr}.ob .sd{position:static;height:auto;padding:28px 18px;gap:24px}.ob .mn{padding:36px 18px 72px}.mc{grid-template-columns:1fr}}
+@media(max-width:860px){header.h .in{padding:0 18px;grid-template-columns:auto 1fr}.nl{display:none}.wm span{display:none}.wrap,.narrow{padding:0 18px}.g2,.g3{grid-template-columns:1fr}.blk{grid-template-columns:1fr;gap:16px}.bt{padding:12px 16px}}
+@media(max-width:860px){.gentry{grid-template-columns:1fr!important}.gentry>div{order:0!important}.gentry>div:first-child{min-height:220px!important}}
+@media(max-width:700px){.tl{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="bar"><span>Test version of plan.culinary.express · sign-in is simulated</span><a href="#" id="reset">Start over</a></div>
+<div id="app"></div>
+<script>
+(() => {
+const LOGO = '/assets/culinary-express-logo.png';
+const MEDIA = 'https://www.culinary.express/assets/videos/brand';
+const CAL = 'https://calendly.com/theexpress';
+const REVIEWS = 'https://share.google/562GL0SKiDTD7gPY2';
+const TYPES = ['Restaurant', 'Event Venue', 'Farm', 'Winery', 'Bakery + Desserts', 'Coffee + Espresso', 'Bar + Drinks', 'Rentals', 'Entertainment'];
+const TI = {
+  'Restaurant': { sub: 'Offsite catering + events', cta: 'Book a catered event', sec: 'Menu', cats: ['Appetizers', 'Main Courses', 'Desserts', 'Beverages', 'Specials'], perfect: ['Corporate Events', 'Private Dinners', 'Wedding Catering', 'Team Lunches', 'Cocktail Receptions'], feat: ['Farm-to-table ingredients', 'Custom menus', 'On-site chef', 'Halal + vegan options'] },
+  'Event Venue': { sub: 'Host events + bookings', cta: 'Book the venue', sec: 'Spaces + packages', cats: ['Spaces', 'Packages', 'Add-ons'], perfect: ['Weddings', 'Corporate Events', 'Galas', 'Birthdays', 'Rehearsal Dinners'], feat: ['Outdoor space', 'In-house AV', 'On-site parking', 'Getting-ready suite'] },
+  'Farm': { sub: 'Products + wholesale', cta: 'Order from the farm', sec: 'Products', cats: ['Produce', 'Dairy + Eggs', 'Meat', 'Boxes'], perfect: ['Farm-to-table dinners', 'Weddings', 'Grazing tables', 'Corporate gifting'], feat: ['Organic', 'Seasonal boxes', 'Wholesale pricing', 'Farm tours'] },
+  'Winery': { sub: 'Wine sales + tours', cta: 'Order wine', sec: 'Wines', cats: ['Reds', 'Whites', 'Rosé + Sparkling', 'Tastings'], perfect: ['Weddings', 'Tastings', 'Private Dinners', 'Corporate gifting'], feat: ['Estate grown', 'Private tastings', 'Sommelier on site', 'Case pricing'] },
+  'Bakery + Desserts': { sub: 'Pastries, cakes + sweets', cta: 'Order for your event', sec: 'Menu', cats: ['Pastries', 'Cakes', 'Breads', 'Dessert bars'], perfect: ['Weddings', 'Birthdays', 'Office breakfasts', 'Showers'], feat: ['Custom cakes', 'Gluten-free options', 'Made from scratch', 'Dessert tables'] },
+  'Coffee + Espresso': { sub: 'Espresso bars + carts', cta: 'Book the espresso bar', sec: 'Menu', cats: ['Espresso bar', 'Drinks', 'Add-ons'], perfect: ['Conferences', 'Weddings', 'Office mornings', 'Brand activations'], feat: ['Mobile cart', 'Oat + almond milk', 'Latte art', 'Local roast'] },
+  'Bar + Drinks': { sub: 'Bars, cocktails + service', cta: 'Book the bar', sec: 'Menu', cats: ['Cocktails', 'Beer + Wine', 'Packages'], perfect: ['Weddings', 'Cocktail Receptions', 'Corporate Events', 'Birthdays'], feat: ['Signature cocktails', 'Licensed bartenders', 'Mobile bar', 'Zero-proof menu'] },
+  'Rentals': { sub: 'Furniture, tableware + decor', cta: 'Add to my event', sec: 'Inventory', cats: ['Furniture', 'Tableware', 'Decor', 'Tents'], perfect: ['Weddings', 'Galas', 'Backyard parties', 'Corporate Events'], feat: ['Delivery + setup', 'Linen service', 'Vintage pieces', 'Lighting'] },
+  'Entertainment': { sub: 'Music, photo + more', cta: 'Book them', sec: 'Packages', cats: ['Packages', 'Add-ons'], perfect: ['Weddings', 'Birthdays', 'Corporate Events', 'Galas'], feat: ['Live music', 'DJ + MC', 'Photo booth', 'Sound system'] }
+};
+const ti = t => TI[t] || TI.Restaurant;
+const ACC = { charcoal: '#2a2c2f', cobalt: '#0047ab', wine: '#7d1a2a', ink: '#0f1412' };
+const MODE = { onsite: ['Onsite', 'Clients come to your location for dining or events', 'At their place'], offsite: ['Offsite / Catering', 'You deliver or cater at the client’s location', 'They come to you'], both: ['Both', 'You offer both onsite dining and offsite catering', 'Their place or yours'] };
+const STAFF_ROLES = ['Server', 'Bartender', 'Event captain', 'Barista', 'Driver', 'Setup + breakdown', 'Chef / cook'];
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const money = n => '$' + Math.round(n).toLocaleString();
+const toast = m => { const d = document.createElement('div'); d.className = 'toast'; d.setAttribute('role', 'status'); d.textContent = m; document.body.appendChild(d); setTimeout(() => d.remove(), 2800); };
+const store = { get: (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } }, set: (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
+const initials = n => String(n || '?').split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+const clone = o => JSON.parse(JSON.stringify(o));
+
+let SESS = store.get('ce-sess', null), ADM = store.get('ce-adm', '') || '';
+let LIVE = [], ME = null, AD = null, D = store.get('ce-draft', null), PARAM = null, QS = new URLSearchParams(), PEND = null, INV = null, VD = null, ST = null;
+const blankDraft = () => ({ inq: { title: '', type: 'Full event', guaranteed: '', date: '', start: '18:00', end: '22:00', location: '', service: 'Buffet with service', description: '' }, gems: [], picks: [], recommend: [] });
+if (!D) D = blankDraft();
+const setSess = x => { SESS = x; ME = null; store.set('ce-sess', x); };
+async function api(a, body = {}) {
+  const r = await fetch('/api/plan?a=' + a, { method: 'POST', headers: { 'content-type': 'application/json', 'x-token': SESS?.token || '', 'x-admin-code': ADM }, body: JSON.stringify(body) });
+  const j = await r.json().catch(() => ({ error: 'Network error. Try again.' }));
+  if (!r.ok) { if (r.status === 401 && !a.startsWith('admin') && a !== 'upload') setSess(null); throw new Error(j.error || 'Something went wrong'); }
+  return j;
+}
+const loadLive = async () => { try { LIVE = (await api('vendors')).vendors || []; } catch { LIVE = []; } };
+const loadMe = async () => (ME = await api('me'));
+const isVendor = () => !!SESS?.account?.vendorId;
+const isCrew = () => (SESS?.account?.roles || []).includes('staff');
+const homeFor = a => a.vendorId && !(a.events || []).length ? 'vendor/home' : (a.roles || []).includes('staff') && !(a.events || []).length ? 'crew' : 'events';
+
+const directory = () => LIVE;
+const vById = id => directory().find(v => v.id === id);
+function eventVendors(ev) {
+  const out = [], seen = new Set(), add = (v, how) => { if (v && !seen.has(v.id)) { seen.add(v.id); out.push({ ...v, how }); } };
+  (ev.picks || []).forEach(id => add(vById(id), 'Your pick'));
+  (ev.gems || []).filter(g => g.name).forEach((g, i) => { const L = g.inviteId && LIVE.find(v => (v.inviteIds || []).includes(g.inviteId)); if (L) add(L, 'Your local gem'); else out.push({ id: g.inviteId ? 'inv-' + g.inviteId : 'gem-' + i, name: g.name, type: g.type, items: [], how: 'Your local gem', pending: true }); });
+  (ev.adminPicks || []).forEach(id => add(vById(id), 'Lead Planner pick'));
+  return out.map(v => ({ ...v, items: (v.items || []).map((it, j) => ({ ...it, id: v.id + '-' + j })) }));
+}
+const guests = ev => Math.max(1, parseInt(ev.inq?.guaranteed) || 40);
+const hours = ev => { const t = x => { const [h, m] = String(x || '0:0').split(':').map(Number); return (h || 0) + (m || 0) / 60; }; let d = t(ev.inq?.end) - t(ev.inq?.start); if (d <= 0) d += 24; return Math.max(2, Math.round(d)); };
+const STAFF = ev => { const g = guests(ev), h = hours(ev), drop = ev.inq?.type === 'Catering delivery'; return [['captain', 'Event captain', drop ? 0 : 1, h + 1, 55], ['server', 'Servers', drop ? 0 : Math.ceil(g / (ev.inq?.service === 'Plated dinner' ? 10 : 15)), h, 40], ['bartender', 'Bartender', eventVendors(ev).some(v => v.type === 'Bar + Drinks') ? Math.ceil(g / 50) : 0, Math.max(2, h - 1), 45], ['barista', 'Barista', eventVendors(ev).some(v => v.type === 'Coffee + Espresso') ? 1 : 0, 3, 40], ['driver', 'Driver', 1, 2, 35], ['setup', 'Setup + breakdown', drop ? 0 : Math.ceil(g / 25), 3, 35]].map(([k, n, q, h2, r]) => ({ k, n, q, h: h2, r })); };
+const MAT = ev => { const g = guests(ev), t = Math.ceil(g / 8) + 2; return [['tables', 'Round tables (60")', t, 12], ['chairs', 'Chairs', g, 4], ['linens', 'Linens + napkins', t, 14], ['plates', 'Plates', g * 2, 1], ['cutlery', 'Cutlery sets', g, 1.5], ['glass', 'Glassware', g * 2, 1], ['chafing', 'Chafing dishes + fuel', /Buffet/.test(ev.inq?.service || '') ? Math.max(4, Math.ceil(g / 8)) : 0, 18]].map(([k, n, q, p]) => ({ k, n, q, p })); };
+const staffOf = ev => { const d = Object.fromEntries(STAFF(ev).map(r => [r.k, { q: r.q, h: r.h }])); return { ...d, ...(ev.staff || {}) }; };
+const matOf = ev => { const d = Object.fromEntries(MAT(ev).map(m => [m.k, { q: m.q, src: 'ce' }])); return { ...d, ...(ev.mat || {}) }; };
+function totals(ev) { let food = 0, items = 0; eventVendors(ev).forEach(v => v.items.forEach(i => { const q = ev.sel?.[i.id] || 0; food += q * i.p; if (q) items++; }));
+  const st = staffOf(ev), mt = matOf(ev); let labor = 0, people = 0; STAFF(ev).forEach(r => { const s = st[r.k]; labor += s.q * s.h * r.r; people += s.q; });
+  let mat = 0; MAT(ev).forEach(m => { const s = mt[m.k]; if (s.src === 'ce') mat += s.q * m.p; }); const sub = food + labor + mat; return { food, items, labor, people, mat, total: Math.max(0, sub - (sub ? 200 : 0)) }; }
+const STAGES = ['Inquiry', 'Discovery call', 'Menus', 'Quote', 'Approved', 'Booked'];
+const stageOf = ev => { const q = ev.quote?.status; if (q === 'in_progress' || q === 'completed') return 5; if (q === 'approved') return 4; if (q === 'quoted' || q === 'requested') return 3; if (ev.booked) return 2; return 1; };
+const statusText = ev => { const q = ev.quote?.status; return q === 'completed' ? 'Completed' : q === 'in_progress' ? 'In progress' : q === 'approved' ? 'Approved' : q === 'quoted' ? 'Quote ready' : q === 'requested' ? 'Building your quote' : ev.booked ? 'Choose your menus' : 'Book your discovery call'; };
+
+// ---------- chrome ----------
+function header(mode) {
+  const left = mode === 'admin' ? [['admin', 'Dispatch'], ['admin/vendors', 'Vendor pages'], ['admin/guide', 'Fíeld Güide'], ['admin/crew', 'Crew']] : mode === 'vendor' ? [['vendor/home', 'Overview'], ['vendor', 'My page'], ['vendor/orders', 'Orders']] : mode === 'crew' ? [['crew', 'My shifts']] : [['', 'Let’s Begin'], ...(SESS && !isVendor() && !isCrew() ? [['events', 'My events']] : [])];
+  const cur = location.hash.replace(/^#\/?/, '').split('?')[0];
+  const right = mode === 'admin' ? `<button class="u sml" type="button" id="out">Leave admin</button>` : SESS ? `<span class="sml m" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(SESS.account.name || SESS.account.email)}</span><button class="u sml" type="button" id="out">Sign out</button>${isVendor() || isCrew() ? '' : `<a class="btn dk sm" href="#/start">New event</a>`}` : `<a class="u sml" href="#/signin">Sign in</a><a class="btn dk sm" href="https://www.culinary.express">culinary.express ↗</a>`;
+  return `<header class="h"><div class="in"><nav class="nl" aria-label="Main">${left.map(([h, t]) => `<a href="#/${h}" class="${cur === h ? 'on' : ''}">${t}</a>`).join('')}</nav><a class="wm" href="#/"><img src="${LOGO}" alt="">${mode === 'admin' ? '<span>Super Admin</span>' : '<span>Cülinary Expréss</span>'}</a><div class="hr">${right}</div></div></header>`;
+}
+const footer = () => `<footer class="f"><span>© Cülinary Expréss · Order Your Moment</span><span><a href="mailto:plan@culinary.express">plan@culinary.express</a> · <a href="${REVIEWS}" target="_blank" rel="noopener">★ Google Reviews</a> · <a href="#/join/vendor">For vendors</a> · <a href="#/join/staff">Work our events</a> · <a href="#/admin">Super Admin</a></span></footer>`;
+const page = (mode, body) => `${header(mode)}<main>${body}</main>${footer()}`;
+const loading = mode => page(mode, `<section class="s"><div class="wrap"><p class="m">Loading…</p></div></section>`);
+const V = {}, H = {};
+
+// ---------- Let's Begin: pick your role ----------
+V[''] = () => page('client', `
+<section class="hero"><video src="${MEDIA}/hero-reel.mp4" poster="${MEDIA}/hero-reel.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+ <div class="wrap"><p class="caps" style="color:rgba(255,255,255,.8);margin:0 0 18px">Cülinary Expréss · Order Your Moment</p><h1 class="d1">Let’s begin.</h1>
+ <p style="font-size:20px;color:rgba(255,255,255,.88);max-width:560px;margin:22px 0 0">Tell us who you are and we’ll take it from there.</p></div></section>
+<section class="s"><div class="wrap"><div class="g3">
+ <a class="role" href="#/start"><span class="caps blue">01 · Clients</span><h2 class="d3">I’m planning an event.</h2><p class="m" style="margin:0">Literally any restaurant, food truck, espresso bar or bakery you want. We run the service.</p><ul><li>Two-minute inquiry</li><li>Bring your local gems, or let us pick</li><li>Discovery call with your Lead Planner</li></ul><span class="btn bl go">Start your inquiry ↗</span></a>
+ <a class="role" href="#/join/vendor"><span class="caps blue">02 · Vendors</span><h2 class="d3">I’m a vendor.</h2><p class="m" style="margin:0">Restaurants, venues, farms, wineries, bakeries, espresso bars. Get a page with your menu, free.</p><ul><li>Takes about five minutes</li><li>We build your page as you go</li><li>No commissions</li></ul><span class="btn dk go">Set up your page ↗</span></a>
+ <a class="role" href="#/join/staff"><span class="caps blue">03 · Crew</span><h2 class="d3">I work events.</h2><p class="m" style="margin:0">Servers, bartenders, captains, baristas and drivers. Pick up shifts at events around town.</p><ul><li>Choose your roles</li><li>Set your availability</li><li>Get offered shifts</li></ul><span class="btn dk go">Join the crew ↗</span></a>
+</div><p class="m sml" style="margin:28px 0 0">Already have an account? <a href="#/signin">Sign in</a></p></div></section>`);
+
+// ---------- Vendor page (public + builder preview) ----------
+function vendorPage(v, pv) {
+  const T = ti(v.type), S = v.sections || {}, items = v.items || [], cta = pv ? '#' : `#/start?v=${v.id}`;
+  const cats = (v.cats || []).filter(c => items.some(i => i.cat === c));
+  const thumb = (src, label) => src ? `<img src="${esc(src)}" alt="" loading="lazy">` : esc(initials(label));
+  const hl = S.highlights !== false && ((v.perfectFor || []).length || (v.features || []).length || pv);
+  return `<article class="vp" style="--acc:${ACC[v.accent] || ACC.charcoal}">
+ <header class="cv">${v.cover ? `<img src="${esc(v.cover)}" alt="">` : ''}<div class="ci"><p class="caps" style="margin:0 0 16px;color:rgba(255,255,255,.85)">${esc(v.type)}${v.area ? ' · ' + esc(v.area) : ''}</p><h1>${esc(v.name || 'Your page name')}</h1>${v.tagline ? `<p class="tg">${esc(v.tagline)}</p>` : pv ? '<p class="tg" style="opacity:.6">Your tagline shows here.</p>' : ''}
+  <div class="ca"><a class="btn wt" href="${cta}">${T.cta} ↗</a>${S.menu !== false && items.length ? `<button class="btn ghost" type="button" data-vscroll>See the ${esc(T.sec.toLowerCase())}</button>` : ''}</div></div></header>
+ ${hl ? `<section class="hl"><div><p class="caps k">Perfect for</p><div class="vch">${(v.perfectFor || []).map(x => `<span>${esc(x)}</span>`).join('') || '<span style="opacity:.5">Pick a few in Highlights</span>'}</div></div><div><p class="caps k">What sets them apart</p><div class="vch">${(v.features || []).map(x => `<span>${esc(x)}</span>`).join('') || '<span style="opacity:.5">Pick a few in Highlights</span>'}</div></div><div><p class="caps k">How they serve</p><b style="font-size:18px">${MODE[v.mode]?.[2] || MODE.offsite[2]}</b><p class="m" style="margin:4px 0 0;font-size:14px">Staffed and run by Cülinary Expréss.</p></div></section>` : ''}
+ ${S.about !== false && (v.about || pv) ? `<section class="ab"><div><p class="caps k">About</p><h2>${esc(v.name || 'About')}</h2></div><p>${v.about ? esc(v.about).replace(/\n/g, '<br>') : '<span class="m">Tell clients your story in Basics.</span>'}</p></section>` : ''}
+ ${S.menu !== false && (items.length || pv) ? `<section class="mn" data-vmenu><div class="mh"><div><p class="caps k">${esc(T.sec)}</p><h2>Order straight from ${esc(v.name || 'them')}.</h2></div>${cats.length > 1 ? `<div class="vt" role="tablist">${['All', ...cats].map((c, i) => `<button type="button" data-vcat="${esc(c)}" class="${i ? '' : 'on'}">${esc(c)}</button>`).join('')}</div>` : ''}</div>
+  ${items.length ? `<div class="mg">${items.map(i => `<div class="mi" data-icat="${esc(i.cat)}"><div class="t">${thumb(i.img, i.n)}</div><div><h3>${esc(i.n)}</h3>${i.d ? `<p>${esc(i.d)}</p>` : '<p></p>'}<div class="pr">${money(i.p)}${i.u ? `<span>${esc(i.u)}</span>` : ''}</div></div></div>`).join('')}</div>` : `<div class="ept">Your items show up here. Add them under ${esc(T.sec)}.</div>`}</section>` : ''}
+ ${S.gallery !== false && (v.gallery || []).length ? `<section class="gl"><p class="caps k">Gallery</p><h2>A taste.</h2><div class="gg">${v.gallery.map(g => `<img src="${esc(g)}" alt="" loading="lazy">`).join('')}</div></section>` : ''}
+ <section class="bk"><div><p class="caps" style="margin:0;color:rgba(255,255,255,.75)">Served by Cülinary Expréss</p><h2 style="margin-top:14px">Bring ${esc(v.name || 'them')} to your event.</h2><p>We handle the staff, rentals and service. You enjoy your moment.</p></div><a class="btn wt" href="${cta}">Start your inquiry ↗</a></section>
+</article>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-vcat]');
+  if (b) { const root = b.closest('.vp'), c = b.dataset.vcat; root.querySelectorAll('[data-vcat]').forEach(x => x.classList.toggle('on', x === b)); root.querySelectorAll('[data-icat]').forEach(x => x.hidden = c !== 'All' && x.dataset.icat !== c); return; }
+  const s = e.target.closest('[data-vscroll]'); if (s) { const m = s.closest('.vp').querySelector('[data-vmenu]'); m && m.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+});
+let PUB = null;
+V['v'] = () => { if (!PUB || PUB.id !== PARAM) { api('vendor', { id: PARAM }).then(j => { PUB = j.vendor; render(); }).catch(e => { PUB = { id: PARAM, err: e.message }; render(); }); return loading('client'); }
+  if (PUB.err) return page('client', `<section class="s"><div class="narrow"><h1 class="d2">${esc(PUB.err)}.</h1><p class="lead">Check the link, or start an inquiry and tell us who you’re looking for.</p><a class="btn dk" href="#/start" style="margin-top:22px">Start your inquiry</a></div></section>`);
+  return page('client', `${PUB.status !== 'live' ? '<div class="notice" style="border-radius:0;text-align:center">Draft preview · only you can see this until it’s published.</div>' : ''}<div class="vpw">${vendorPage(PUB)}</div>`); };
+
+// ---------- Builder pieces (used by the page builder and vendor onboarding) ----------
+const sel = (a, x) => (a || []).includes(x);
+const chipSet = (field, sugg, v) => { const all = [...new Set([...sugg, ...(v[field] || [])])]; return `<div class="chips">${all.map(x => `<button type="button" class="tchip ${sel(v[field], x) ? 'on' : ''}" data-chip="${field}" data-val="${esc(x)}" aria-pressed="${sel(v[field], x)}">${esc(x)}</button>`).join('')}<input class="addchip" data-addchip="${field}" placeholder="+ Add your own" aria-label="Add your own"></div>`; };
+const fBasics = v => `
+ <label class="f">Page name<input class="in" data-f="name" value="${esc(v.name)}" placeholder="e.g. Saffron Kitchen"></label>
+ <label class="f">Vendor type<select class="in" data-f="type">${TYPES.map(t => `<option ${v.type === t ? 'selected' : ''}>${t}</option>`).join('')}</select></label>
+ <label class="f">Tagline<textarea class="in" data-f="tagline" style="min-height:76px" placeholder="e.g. Wood-fired Mediterranean flavors for corporate events and intimate celebrations">${esc(v.tagline)}</textarea></label>
+ <label class="f">About your business<textarea class="in" data-f="about" style="min-height:130px" placeholder="Your story, your food, what clients love.">${esc(v.about)}</textarea></label>
+ <label class="f">Location / service area<input class="in" data-f="area" value="${esc(v.area)}" placeholder="e.g. Austin, TX (serving Greater Austin)"></label>
+ <fieldset class="fs"><legend>How do you offer your services?</legend><div class="mc">${Object.entries(MODE).map(([k, [t, d]]) => `<label class="tc"><input type="radio" name="mode" value="${k}" ${v.mode === k ? 'checked' : ''}><span><b>${t}</b><small>${d}</small></span></label>`).join('')}</div></fieldset>`;
+const fHighlights = v => `<div style="display:grid;gap:10px"><b class="sml">Perfect for <span class="m" style="font-weight:400">(select all that apply)</span></b>${chipSet('perfectFor', ti(v.type).perfect, v)}</div><div style="display:grid;gap:10px"><b class="sml">Unique features <span class="m" style="font-weight:400">(select all that apply)</span></b>${chipSet('features', ti(v.type).feat, v)}</div>`;
+const fCover = v => `<div style="display:grid;gap:10px"><b class="sml">Cover photo</b>${v.cover ? `<div class="cover"><img src="${esc(v.cover)}" alt="Cover photo"></div><div style="display:flex;gap:14px"><button class="u sml" type="button" data-up="cover">Replace</button><button class="u sml" type="button" data-rm="cover">Remove</button></div>` : `<button class="drop" type="button" data-up="cover">+ Upload a cover photo<br><span class="sml">The big image at the top of the page. JPG, PNG or HEIC.</span></button>`}</div>`;
+const fLook = v => `${fCover(v)}
+ <fieldset class="fs"><legend>Accent color</legend><div class="sw">${Object.entries(ACC).map(([k, c]) => `<label title="${k}"><input type="radio" name="accent" value="${k}" ${v.accent === k ? 'checked' : ''} aria-label="${k}"><span style="background:${c}"></span></label>`).join('')}</div><span class="m sml">Used for labels, menu tabs and the booking band.</span></fieldset>
+ <div style="display:grid;gap:10px"><b class="sml">Gallery <span class="m" style="font-weight:400">· up to 9 photos</span></b>${(v.gallery || []).length ? `<div class="thumbs">${v.gallery.map((g, i) => `<div class="thumb"><img src="${esc(g)}" alt=""><button type="button" data-rmg="${i}" aria-label="Remove photo">×</button></div>`).join('')}</div>` : ''}${(v.gallery || []).length < 9 ? `<button class="drop" type="button" data-up="gallery">+ Add photos</button>` : ''}</div>`;
+const fMenu = v => { const T = ti(v.type), items = v.items || [];
+  return `<div style="display:grid;gap:10px"><b class="sml">Categories</b><div class="chips">${(v.cats || []).map((c, i) => `<span class="tchip on" style="display:inline-flex;gap:8px;align-items:center">${esc(c)}<button type="button" data-rmcat="${i}" aria-label="Remove ${esc(c)}" style="border:0;background:none;color:#fff;cursor:pointer;padding:0">×</button></span>`).join('')}<input class="addchip" data-addcat placeholder="+ New category" aria-label="New category"></div></div>
+ <div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><b class="sml">${esc(T.sec)} · ${items.length} item${items.length === 1 ? '' : 's'}</b><div style="display:flex;gap:8px"><button class="btn ln sm" type="button" data-imp>Import</button><button class="btn dk sm" type="button" data-additem>+ Add item</button></div></div><div data-impbox></div>
+ ${items.length ? items.map((i, k) => `<div class="irow"><div class="t">${i.img ? `<img src="${esc(i.img)}" alt="">` : esc(initials(i.n))}</div><div style="min-width:0"><b style="font-weight:600;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(i.n)}</b><span class="m sml">${esc(i.cat || 'No category')} · ${money(i.p)}${i.u ? ' ' + esc(i.u) : ''}</span></div><div style="display:flex;gap:12px"><button class="u sml" type="button" data-edit="${k}">Edit</button><button class="u sml" type="button" data-del="${k}">Remove</button></div></div>`).join('') : `<div class="card" style="padding:28px;text-align:center;border-style:dashed"><b>You need at least one item to start.</b><p class="m sml" style="margin:6px 0 0">Add items one by one, or import a whole menu.</p></div>`}</div>`; };
+const fSections = v => `<p class="m sml" style="margin:0">Choose what shows on the page. The cover and booking band always show.</p><div>${[['highlights', 'Highlights', 'Perfect for, features, how they serve'], ['about', 'About', 'Your story'], ['menu', ti(v.type).sec, 'Items clients can order'], ['gallery', 'Gallery', 'Shows once you add photos']].map(([k, t, d]) => `<label class="tog"><span><b style="font-weight:600">${t}</b><br><span class="m sml">${d}</span></span><input type="checkbox" data-sec="${k}" ${v.sections?.[k] !== false ? 'checked' : ''}></label>`).join('')}</div>`;
+
+async function toJpeg(file) {
+  const url = URL.createObjectURL(file);
+  try { const im = await new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = url; });
+    const s = Math.min(1, 1600 / Math.max(im.naturalWidth, im.naturalHeight)), c = document.createElement('canvas'); c.width = Math.round(im.naturalWidth * s); c.height = Math.round(im.naturalHeight * s);
+    c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); return c.toDataURL('image/jpeg', .82); } finally { URL.revokeObjectURL(url); }
+}
+function pickImages(multiple) { return new Promise(res => { const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*'; i.multiple = !!multiple; i.onchange = async () => { const out = []; if (i.files.length) toast('Uploading…'); for (const f of [...i.files].slice(0, 9)) { try { out.push((await api('upload', { data: await toJpeg(f) })).url); } catch (x) { toast(x.message || 'That photo didn’t upload'); } } $$('.toast').forEach(t => t.textContent === 'Uploading…' && t.remove()); res(out); }; i.click(); }); }
+
+function openItem(k, onDone) {
+  const T = ti(VD.type), it = k == null ? { n: '', d: '', p: '', u: '', cat: (VD.cats || [])[0] || '', img: '' } : { ...VD.items[k] };
+  const m = modal(`<div style="display:flex;justify-content:space-between;align-items:center"><h2 class="d3">${k == null ? 'Add' : 'Edit'} ${T.sec === 'Menu' ? 'menu item' : 'item'}</h2><button class="u sml" type="button" data-close>Close</button></div>
+   <form id="itf" style="display:grid;gap:16px;margin-top:20px" novalidate><label class="f">Name<input class="in" id="i-n" value="${esc(it.n)}" placeholder="e.g. Chicken shawarma tray"></label>
+   <label class="f">Description<textarea class="in" id="i-d" style="min-height:80px">${esc(it.d)}</textarea></label>
+   <fieldset class="fs"><legend>Category</legend><div class="chips">${(VD.cats || []).map(c => `<label class="chip"><input type="radio" name="icat" value="${esc(c)}" ${it.cat === c ? 'checked' : ''}><span>${esc(c)}</span></label>`).join('') || '<span class="m sml">Add categories in the menu panel.</span>'}</div></fieldset>
+   <div style="display:grid;gap:8px"><b class="sml">Image</b><div id="i-img">${it.img ? `<div class="thumb" style="width:120px"><img src="${esc(it.img)}" alt=""><button type="button" id="i-rm" aria-label="Remove image">×</button></div>` : `<button class="drop" type="button" id="i-up">+ Upload item photo</button>`}</div></div>
+   <div class="g2"><label class="f">Price ($)<input class="in" id="i-p" type="number" min="0" step="0.01" value="${esc(it.p)}" placeholder="0.00"></label><label class="f">Unit<input class="in" id="i-u" value="${esc(it.u)}" placeholder="per tray (serves 10)"></label></div>
+   <p class="err" id="i-err" role="alert"></p><div style="display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap"><button class="btn ln" type="button" data-close>Cancel</button>${k == null ? '<button class="btn ln" type="button" id="i-more">Save &amp; add another</button>' : ''}<button class="btn dk" type="submit">Save</button></div></form>`, mm => {
+    const bindImg = () => { const up = mm.querySelector('#i-up'), rm = mm.querySelector('#i-rm'); if (up) up.onclick = async () => { const [u] = await pickImages(false); if (u) { it.img = u; mm.querySelector('#i-img').innerHTML = `<div class="thumb" style="width:120px"><img src="${esc(u)}" alt=""><button type="button" id="i-rm" aria-label="Remove image">×</button></div>`; bindImg(); } }; if (rm) rm.onclick = () => { it.img = ''; mm.querySelector('#i-img').innerHTML = `<button class="drop" type="button" id="i-up">+ Upload item photo</button>`; bindImg(); }; };
+    bindImg(); setTimeout(() => mm.querySelector('#i-n').focus(), 0);
+    const save = again => { it.n = mm.querySelector('#i-n').value.trim(); if (!it.n) { mm.querySelector('#i-err').textContent = 'Add a name.'; return; } it.d = mm.querySelector('#i-d').value; it.p = +mm.querySelector('#i-p').value || 0; it.u = mm.querySelector('#i-u').value; it.cat = (mm.querySelector('[name=icat]:checked') || {}).value || '';
+      VD.items = VD.items || []; if (k == null) VD.items.push(it); else VD.items[k] = it; mm.remove(); onDone(); if (again) openItem(null, onDone); };
+    mm.querySelector('#itf').onsubmit = e => { e.preventDefault(); save(false); }; const mo = mm.querySelector('#i-more'); if (mo) mo.onclick = () => save(true);
+  }, () => {}); m.classList.add('n');
+}
+
+// Binds every editor control inside root. changed(): something edited; rebuild(): structure changed, re-render the controls.
+function bindEditor(root, changed, rebuild) {
+  root.querySelectorAll('[data-f]').forEach(x => x.oninput = x.onchange = () => { const f = x.dataset.f;
+    if (f === 'type' && x.value !== VD.type) { const old = ti(VD.type).cats; if (!(VD.cats || []).length || JSON.stringify(VD.cats) === JSON.stringify(old)) VD.cats = [...ti(x.value).cats]; VD.type = x.value; changed(); rebuild(); return; }
+    VD[f] = x.value; changed(); });
+  root.querySelectorAll('[name=mode]').forEach(x => x.onchange = () => { VD.mode = x.value; changed(); });
+  root.querySelectorAll('[name=accent]').forEach(x => x.onchange = () => { VD.accent = x.value; changed(); });
+  root.querySelectorAll('[data-chip]').forEach(b => b.onclick = () => { const f = b.dataset.chip, v = b.dataset.val; VD[f] = sel(VD[f], v) ? VD[f].filter(x => x !== v) : [...(VD[f] || []), v]; changed(); rebuild(); });
+  root.querySelectorAll('[data-addchip]').forEach(x => x.onkeydown = e => { if (e.key !== 'Enter') return; e.preventDefault(); const v = x.value.trim(), f = x.dataset.addchip; if (v && !sel(VD[f], v)) { VD[f] = [...(VD[f] || []), v]; changed(); rebuild(); } });
+  root.querySelectorAll('[data-sec]').forEach(x => x.onchange = () => { VD.sections = { ...(VD.sections || {}), [x.dataset.sec]: x.checked }; changed(); });
+  root.querySelectorAll('[data-up]').forEach(b => b.onclick = async () => { const k = b.dataset.up, urls = await pickImages(k === 'gallery'); if (!urls.length) return; if (k === 'cover') VD.cover = urls[0]; else VD.gallery = [...(VD.gallery || []), ...urls].slice(0, 9); changed(); rebuild(); });
+  root.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { VD[b.dataset.rm] = ''; changed(); rebuild(); });
+  root.querySelectorAll('[data-rmg]').forEach(b => b.onclick = () => { VD.gallery.splice(+b.dataset.rmg, 1); changed(); rebuild(); });
+  root.querySelectorAll('[data-rmcat]').forEach(b => b.onclick = () => { VD.cats.splice(+b.dataset.rmcat, 1); changed(); rebuild(); });
+  root.querySelectorAll('[data-addcat]').forEach(x => x.onkeydown = e => { if (e.key !== 'Enter') return; e.preventDefault(); const v = x.value.trim(); if (v && !sel(VD.cats, v)) { VD.cats = [...(VD.cats || []), v]; changed(); rebuild(); setTimeout(() => { const n = root.querySelector('[data-addcat]'); n && n.focus(); }, 0); } });
+  root.querySelectorAll('[data-additem]').forEach(b => b.onclick = () => openItem(null, () => { changed(); rebuild(); }));
+  root.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => openItem(+b.dataset.edit, () => { changed(); rebuild(); }));
+  root.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { VD.items.splice(+b.dataset.del, 1); changed(); rebuild(); });
+  root.querySelectorAll('[data-imp]').forEach(b => b.onclick = () => { const box = root.querySelector('[data-impbox]'); box.innerHTML = `<div style="display:grid;gap:10px;margin:10px 0 14px"><label class="f">Paste your menu, one item per line: Name - price - unit<textarea class="in" data-imptx placeholder="Chicken shawarma tray - 95 - serves 10&#10;Falafel tray - 70 - serves 10"></textarea></label><div><button class="btn dk sm" type="button" data-impgo>Add items</button></div></div>`;
+    box.querySelector('[data-impgo]').onclick = () => { const c = (VD.cats || [])[0] || ''; box.querySelector('[data-imptx]').value.split('\n').map(l => l.split(/\s+[-–]\s+/)).filter(p => p[0]?.trim()).forEach(([n, p, u]) => (VD.items = VD.items || []).push({ n: n.trim(), d: '', p: parseFloat(String(p || '').replace(/[^0-9.]/g, '')) || 0, u: (u || '').trim(), cat: c, img: '' })); changed(); rebuild(); }; });
+}
+
+// Autosave
+let saveT = null, saveState = '';
+const setSave = s => { saveState = s; const e = $('#svst'); if (e) e.textContent = s; };
+function persist(now) { clearTimeout(saveT); setSave('Unsaved changes'); const snap = () => clone(VD);
+  return new Promise(res => { saveT = setTimeout(async () => { setSave('Saving…'); try { const r = await api(ADMINMODE() ? 'adminSaveVendor' : 'saveVendor', { vendor: snap() }); VD.updatedAt = r.vendor.updatedAt; if (AD) { const i = AD.vendors.findIndex(x => x.id === r.vendor.id); if (i > -1) AD.vendors[i] = { ...AD.vendors[i], ...r.vendor }; } if (ME?.vendor?.id === r.vendor.id) ME.vendor = r.vendor; setSave('Saved'); res(true); } catch (x) { setSave('Not saved'); toast(x.message); res(false); } }, now ? 0 : 800); }); }
+let BMODE = 'admin';
+const ADMINMODE = () => BMODE === 'admin';
+
+// ---------- The page builder ----------
+let VTAB = 'basics', DEV = 'desktop';
+function builder(mode) {
+  BMODE = mode; const v = VD, T = ti(v.type);
+  const tabs = [['basics', 'Basics'], ['look', 'Look'], ['highlights', 'Highlights'], ['menu', T.sec], ['sections', 'Sections']];
+  return `<div class="bld"><div class="bt"><div style="display:flex;align-items:center;gap:14px;min-width:0;flex-wrap:wrap">${mode === 'admin' ? '<a class="u sml" href="#/admin/vendors">← Vendor pages</a>' : ''}<b class="bn">${esc(v.name)}</b><span class="pill ${v.status === 'live' ? 'g' : ''}">${v.status === 'live' ? 'Live' : 'Draft'}</span><span class="m sml" id="svst" aria-live="polite">${saveState}</span></div>
+   <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><div class="seg" role="group" aria-label="Preview size">${[['desktop', 'Desktop'], ['phone', 'Phone']].map(([k, t]) => `<button type="button" data-dev="${k}" class="${DEV === k ? 'on' : ''}" aria-pressed="${DEV === k}">${t}</button>`).join('')}</div><a class="btn ln sm" href="#/v/${v.id}" target="_blank" rel="noopener">View page ↗</a><button class="btn ${v.status === 'live' ? 'ln' : 'bl'} sm" type="button" id="pub">${v.status === 'live' ? 'Unpublish' : 'Publish'}</button></div></div>
+   <div class="bb"><aside class="ed" aria-label="Page editor"><nav class="tabs" role="tablist">${tabs.map(([k, t]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${VTAB === k}" class="${VTAB === k ? 'on' : ''}">${esc(t)}</button>`).join('')}</nav><div class="edp" id="edp">${panel()}</div></aside>
+   <div class="pvw" aria-label="Live preview"><div class="pvf ${DEV}"><div class="vpw" id="pv">${vendorPage(v, true)}</div></div></div></div></div>`;
+}
+const panel = () => ({ basics: fBasics, look: fLook, highlights: fHighlights, menu: fMenu, sections: fSections }[VTAB] || fBasics)(VD);
+function bindBuilder() {
+  if (!$('#edp')) return;
+  const changed = () => { $('#pv').innerHTML = vendorPage(VD, true); const bn = $('.bn'); if (bn) bn.textContent = VD.name || 'Untitled'; persist(); };
+  const rebuild = () => { $('#edp').innerHTML = panel(); bindEditor($('#edp'), changed, rebuild); };
+  bindEditor($('#edp'), changed, rebuild);
+  $$('[data-tab]').forEach(b => b.onclick = () => { VTAB = b.dataset.tab; $$('[data-tab]').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-selected', x === b); }); rebuild(); });
+  $$('[data-dev]').forEach(b => b.onclick = () => { DEV = b.dataset.dev; $('.pvf').className = 'pvf ' + DEV; $$('[data-dev]').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); }); });
+  $('#pub').onclick = async () => { VD.status = VD.status === 'live' ? 'draft' : 'live'; if (await persist(true)) { toast(VD.status === 'live' ? 'Published. The page is live.' : 'Unpublished. Back to draft.'); if (BMODE === 'admin') await loadLive(); render(); } else VD.status = VD.status === 'live' ? 'draft' : 'live'; };
+}
+
+// ---------- Onboarding layout (Figma) ----------
+const obPage = (steps, cur, side, body) => `<div class="ob"><aside class="sd"><a class="wm" href="#/" style="color:#fff"><img src="${LOGO}" alt=""><span>Cülinary Expréss</span></a>
+ <ol class="steps">${steps.map((s, i) => `<li class="${i < cur ? 'done' : i === cur ? 'now' : ''}"><i></i>${esc(s)}</li>`).join('')}</ol>
+ <div><h2 style="font-size:34px;line-height:1.05">${side.h}</h2><p style="color:rgba(255,255,255,.75);margin:14px 0 0">${side.p}</p></div>
+ <ul class="pts">${side.pts.map(x => `<li>${x}</li>`).join('')}</ul>${side.foot || ''}</aside><main class="mn">${body}</main></div>`;
+const V_STEPS = ['Create account', 'Your profile', 'Services + offering', 'Your page'];
+const vSide = { h: 'Tell us about<br>your business.', p: 'This info builds your public page on Cülinary Expréss. You can edit everything later in your page builder.', pts: ['Takes about five minutes', 'Pre-fills your page', 'Editable anytime', 'No commissions'] };
+
+V['join/vendor'] = () => { if (SESS && isVendor()) { setTimeout(() => go('join/vendor/profile'), 0); return ''; }
+  const head = INV ? `<div class="notice" style="margin-bottom:24px"><b>A client wants ${esc(INV.gemName)} at their event.</b><br>${esc(INV.eventTitle || 'An event')} · ${esc(INV.date || 'date TBD')} · ${esc(INV.guests || '?')} guests${INV.love ? ` · They love: “${esc(INV.love)}”` : ''}</div>` : '';
+  return obPage(V_STEPS, 0, vSide, `${head}<h1 class="d2" style="font-size:44px">Create your account.</h1><p class="lead" style="font-size:17px">Choose your vendor type. It shapes your profile and your page.</p>
+  ${PEND ? `<div style="margin-top:28px">${codeForm()}</div>` : `<form id="vf" style="display:grid;gap:18px;margin-top:28px" novalidate><fieldset class="fs"><legend>Vendor type</legend><div class="tcs">${TYPES.map((t, i) => `<label class="tc"><input type="radio" name="vt" value="${esc(t)}" ${(INV?.type || 'Restaurant') === t ? 'checked' : ''}><span><b>${esc(t)}</b><small>${esc(ti(t).sub)}</small></span></label>`).join('')}</div></fieldset>
+   <div class="g2"><label class="f">Business name<input class="in" id="bz" value="${esc(INV?.gemName || '')}" placeholder="e.g. The Grove Kitchen"></label><label class="f">Owner name<input class="in" id="nm" autocomplete="name" placeholder="Your full name"></label></div>
+   <div class="g2"><label class="f">Email address<input class="in" id="em" type="email" autocomplete="email" placeholder="hello@yourbusiness.com"></label><label class="f">Phone number<input class="in" id="ph" type="tel" autocomplete="tel"></label></div>
+   <p class="err" id="err" role="alert"></p><div><button class="btn dk" type="submit">Continue →</button></div><p class="m sml" style="margin:0">Already have an account? <a href="#/signin">Sign in</a></p></form>`}`); };
+V['vendor/join'] = () => { if (PARAM && INV?.id !== PARAM) api('invite', { id: PARAM }).then(j => { INV = j.invite; render(); }).catch(() => toast('Invite not found')); return V['join/vendor'](); };
+H['join/vendor'] = H['vendor/join'] = () => { if (bindCode(() => 'join/vendor/profile')) return; const f = $('#vf'); if (!f) return;
+  f.onsubmit = async e => { e.preventDefault(); if (!$('#bz').value.trim() || !$('#nm').value.trim()) { $('#err').textContent = 'Add your business and your name.'; return; } const em = $('#em').value.trim();
+    try { const r = await api('start', { email: em, name: $('#nm').value, biz: $('#bz').value, type: (f.querySelector('[name=vt]:checked') || {}).value, phone: $('#ph').value, role: 'vendor', inviteId: INV?.id }); PEND = { email: em, code: r.demoCode }; render(); } catch (x) { $('#err').textContent = x.message; } }; };
+
+const needVendor = () => { if (!SESS) { go('join/vendor'); return 'wait'; } if (!ME) { loadMe().then(() => { if (ME.vendor) VD = VD && VD.id === ME.vendor.id ? VD : clone(ME.vendor); render(); }).catch(e => toast(e.message)); return 'wait'; } if (!ME.vendor) return 'none'; BMODE = 'vendor'; if (!VD || VD.id !== ME.vendor.id) VD = clone(ME.vendor); if (!(VD.cats || []).length) VD.cats = [...ti(VD.type).cats]; return 'ok'; };
+const notVendor = () => page('client', `<section class="s"><div class="narrow"><h1 class="d2">Not a vendor account.</h1><p class="lead">Register your business to get your own page.</p><a class="btn dk" href="#/join/vendor" style="margin-top:20px">Set up your page</a></div></section>`);
+V['join/vendor/profile'] = () => { const s = needVendor(); if (s === 'wait') return ''; if (s === 'none') return notVendor();
+  return obPage(V_STEPS, 1, { ...vSide, foot: `<span class="pill" style="align-self:flex-start;background:rgba(255,255,255,.1);color:#fff">${esc(VD.type)}</span>` }, `<h1 class="d2" style="font-size:44px">Set up your profile.</h1><p class="lead" style="font-size:17px">You’re registering as ${/^[AEIOU]/.test(VD.type) ? 'an' : 'a'} ${esc(VD.type)}. Fill in the basics and we’ll build your page.</p>
+   <div class="hint" style="margin-top:22px">All fields can be edited later in your page builder.</div><div id="obf" style="display:grid;gap:20px;margin-top:24px">${fBasics(VD)}${fHighlights(VD)}</div>
+   <div style="display:flex;gap:12px;margin-top:32px"><a class="btn ln" href="#/join/vendor">← Back</a><button class="btn dk" type="button" id="next">Continue →</button></div>`); };
+H['join/vendor/profile'] = () => { const r = $('#obf'); if (!r) return; const rebuild = () => { r.innerHTML = fBasics(VD) + fHighlights(VD); bindEditor(r, () => {}, rebuild); }; bindEditor(r, () => {}, rebuild);
+  $('#next').onclick = async () => { if (await persist(true)) go('join/vendor/menu'); }; };
+V['join/vendor/menu'] = () => { const s = needVendor(); if (s === 'wait') return ''; if (s === 'none') return notVendor(); const T = ti(VD.type);
+  return obPage(V_STEPS, 2, { h: `Build your ${esc(T.sec.toLowerCase())}.`, p: 'Clients order straight from this list. Add a cover photo and a few items now. You can add the rest anytime.', pts: ['Import a whole menu at once', 'Photos are optional', 'Prices can change anytime'] }, `<h1 class="d2" style="font-size:44px">Services + offering.</h1><p class="lead" style="font-size:17px">Add and organize your items by category.</p>
+   <div id="obf" style="display:grid;gap:24px;margin-top:28px">${fCover(VD)}${fMenu(VD)}</div>
+   <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap"><a class="btn ln" href="#/join/vendor/profile">← Back</a><button class="btn dk" type="button" id="next">See my page →</button></div>`); };
+H['join/vendor/menu'] = () => { const r = $('#obf'); if (!r) return; const rebuild = () => { r.innerHTML = fCover(VD) + fMenu(VD); bindEditor(r, () => persist(), rebuild); }; bindEditor(r, () => persist(), rebuild);
+  $('#next').onclick = async () => { if (await persist(true)) { VTAB = 'look'; go('vendor'); toast('Your page is ready. Style it, then publish.'); } }; };
+
+// ---------- Crew onboarding (Figma: personal details, experience + role, payment, tax) ----------
+const C_STEPS = ['Personal details', 'Experience + role', 'Payment info', 'Tax info'];
+const cSide = { h: 'Join the<br>crew.', p: 'Work events across town with Cülinary Expréss. Tell us what you do and when you’re free.', pts: ['Takes about three minutes', 'Pick the roles you want', 'Get offered shifts that fit'] };
+V['join/staff'] = () => { if (SESS && isCrew()) { setTimeout(() => go('join/staff/experience'), 0); return ''; }
+  return obPage(C_STEPS, 0, cSide, `<h1 class="d2" style="font-size:44px">Personal details.</h1><p class="lead" style="font-size:17px">So your Lead Planner can reach you about shifts.</p>
+  ${PEND ? `<div style="margin-top:28px">${codeForm()}</div>` : `<form id="sf2" style="display:grid;gap:18px;margin-top:28px" novalidate><div class="g2"><label class="f">Full name<input class="in" id="nm" autocomplete="name"></label><label class="f">Phone<input class="in" id="ph" type="tel" autocomplete="tel"></label></div><label class="f">Email<input class="in" id="em" type="email" autocomplete="email"></label>
+   <p class="err" id="err" role="alert"></p><div><button class="btn dk" type="submit">Continue →</button></div><p class="m sml" style="margin:0">Already have an account? <a href="#/signin">Sign in</a></p></form>`}`); };
+H['join/staff'] = () => { if (bindCode(() => 'join/staff/experience')) return; const f = $('#sf2'); if (!f) return;
+  f.onsubmit = async e => { e.preventDefault(); const nm = $('#nm').value.trim(), em = $('#em').value.trim(); if (!nm) { $('#err').textContent = 'Add your name.'; return; }
+    try { const r = await api('start', { email: em, name: nm, phone: $('#ph').value, role: 'staff' }); PEND = { email: em, code: r.demoCode }; render(); } catch (x) { $('#err').textContent = x.message; } }; };
+const needCrew = () => { if (!SESS) { go('join/staff'); return false; } if (!ME) { loadMe().then(() => { ST = ME.staff ? clone(ME.staff) : null; render(); }).catch(e => toast(e.message)); return false; } if (!ST) ST = ME.staff ? clone(ME.staff) : { roles: [], avail: [], certs: [] }; return true; };
+const saveCrew = async patch => { try { ST = (await api('saveStaff', { staff: { ...ST, ...patch } })).staff; if (ME) ME.staff = ST; return true; } catch (x) { toast(x.message); return false; } };
+const multi = (name, opts, vals) => `<div class="chips">${opts.map(o => `<label class="chip"><input type="checkbox" name="${name}" value="${esc(o)}" ${sel(vals, o) ? 'checked' : ''}><span>${esc(o)}</span></label>`).join('')}</div>`;
+V['join/staff/experience'] = () => { if (!needCrew()) return loading('crew');
+  return obPage(C_STEPS, 1, cSide, `<h1 class="d2" style="font-size:44px">Experience + role.</h1><p class="lead" style="font-size:17px">Pick everything you’re comfortable working.</p>
+  <form id="xf" style="display:grid;gap:22px;margin-top:28px" novalidate><fieldset class="fs"><legend>Roles</legend>${multi('roles', STAFF_ROLES, ST.roles)}</fieldset>
+   <div class="g2"><label class="f">Years in hospitality<select class="in" id="yr">${['', 'Less than 1', '1–2', '3–5', '6–10', '10+'].map(o => `<option ${ST.years === o ? 'selected' : ''} value="${o}">${o || 'Choose'}</option>`).join('')}</select></label><label class="f">Home area<input class="in" id="ar" value="${esc(ST.area || '')}" placeholder="Neighborhood or city"></label></div>
+   <fieldset class="fs"><legend>Usually available</legend>${multi('avail', ['Weekday days', 'Weeknights', 'Weekends', 'Short notice'], ST.avail)}</fieldset>
+   <fieldset class="fs"><legend>Certifications</legend>${multi('certs', ['Food handler card', 'Alcohol server (TABC)', 'ServSafe Manager', 'Driver’s license'], ST.certs)}</fieldset>
+   <label class="f">A little about you (optional)<textarea class="in" id="bio" placeholder="Where you’ve worked, what you love about events.">${esc(ST.bio || '')}</textarea></label>
+   <p class="err" id="err" role="alert"></p><div style="display:flex;gap:12px"><button class="btn dk" type="submit">Continue →</button></div></form>`); };
+H['join/staff/experience'] = () => { const f = $('#xf'); if (!f) return; f.onsubmit = async e => { e.preventDefault(); const pick = n => $$(`[name=${n}]`).filter(x => x.checked).map(x => x.value); const roles = pick('roles'); if (!roles.length) { $('#err').textContent = 'Pick at least one role.'; return; }
+  if (await saveCrew({ roles, avail: pick('avail'), certs: pick('certs'), years: $('#yr').value, area: $('#ar').value, bio: $('#bio').value, name: SESS.account.name, phone: SESS.account.phone })) go('join/staff/pay'); }; };
+V['join/staff/pay'] = () => { if (!needCrew()) return loading('crew');
+  return obPage(C_STEPS, 2, cSide, `<h1 class="d2" style="font-size:44px">Payment + tax info.</h1><p class="lead" style="font-size:17px">How you get paid for your shifts.</p>
+  <div class="card pad" style="margin-top:28px;display:grid;gap:14px"><div class="row" style="border-top:0;padding-top:0"><div><b>Direct deposit</b><div class="m sml">Bank details for your paychecks</div></div><span class="pill">Before your first shift</span></div><div class="row"><div><b>Tax forms</b><div class="m sml">W-4 or W-9, depending on how you work with us</div></div><span class="pill">Before your first shift</span></div></div>
+  <div class="hint" style="margin-top:16px">Test version: nothing to enter here. In the real app these are collected on a secure payroll form, never in this site.</div>
+  <label class="tog" style="margin-top:20px;border-top:0"><span>I understand I’ll complete payment and tax forms before my first shift.</span><input type="checkbox" id="ack" ${ST.payrollAck ? 'checked' : ''}></label>
+  <p class="err" id="err" role="alert"></p><div style="display:flex;gap:12px;margin-top:12px"><a class="btn ln" href="#/join/staff/experience">← Back</a><button class="btn dk" type="button" id="next">Finish →</button></div>`); };
+H['join/staff/pay'] = () => { const n = $('#next'); if (!n) return; n.onclick = async () => { if (!$('#ack').checked) { $('#err').textContent = 'Check the box to continue.'; return; } if (await saveCrew({ payrollAck: true, done: true })) go('join/staff/welcome'); }; };
+V['join/staff/welcome'] = () => obPage(C_STEPS, 4, cSide, `<div style="min-height:50vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:18px"><img src="${LOGO}" alt="" style="width:72px;height:72px;border-radius:50%"><h1 class="d2">Welcome to Cülinary Expréss!</h1><p class="lead" style="margin:0">You’re all set. Your Lead Planner will offer you shifts that match your roles and availability.</p><a class="btn dk" href="#/crew">Go to my dashboard →</a></div>`);
+V['crew'] = () => { if (!needCrew()) return loading('crew');
+  return page('crew', `<section class="s"><div class="wrap"><p class="caps m" style="margin:0">Crew</p><h1 class="d2" style="margin-top:14px">Hi ${esc((ST.name || SESS.account.name || '').split(' ')[0] || 'there')}.</h1>
+  <div class="split" style="margin-top:36px"><div class="card pad"><h2 class="d3">Upcoming shifts</h2><p class="m" style="margin:8px 0 0">No shifts yet. When your Lead Planner staffs an event that fits your roles, the offer shows up here.</p></div>
+  <aside class="card pad"><span class="tag">Your profile</span><div style="margin-top:10px">${[['Roles', (ST.roles || []).join(', ') || '—'], ['Experience', ST.years || '—'], ['Area', ST.area || '—'], ['Available', (ST.avail || []).join(', ') || '—'], ['Certifications', (ST.certs || []).join(', ') || '—'], ['Payroll forms', ST.payrollAck ? 'Before first shift' : 'Not started']].map(([k, v]) => `<div class="sum"><span>${k}</span><span style="text-align:right">${esc(v)}</span></div>`).join('')}</div><a class="btn ln sm" href="#/join/staff/experience" style="margin-top:14px">Edit profile</a></aside></div></div></section>`); };
+
+// ---------- Client inquiry ----------
+const gemRow = (g, i) => `<div class="card" style="padding:18px;display:grid;gap:12px;background:#fafafa" data-i="${i}"><div class="g3"><label class="f">Vendor name<input class="in" data-k="name" value="${esc(g.name)}" placeholder="e.g. your favorite taquería"></label><label class="f">Type<select class="in" data-k="type">${TYPES.map(t => `<option ${g.type === t ? 'selected' : ''}>${t}</option>`).join('')}</select></label><label class="f">Website or Instagram<input class="in" data-k="link" value="${esc(g.link)}" placeholder="@handle"></label></div><div style="display:flex;gap:12px;align-items:end"><label class="f" style="flex:1">What do you love from them? (optional)<input class="in" data-k="love" value="${esc(g.love)}"></label><button class="u sml" type="button" data-delg="${i}" style="height:50px">Remove</button></div></div>`;
+V['start'] = () => { if (isVendor()) { setTimeout(() => go('vendor'), 0); return ''; } const q = D.inq;
+  const pv = QS.get('v'); if (pv && /^v-[a-f0-9]{8}$/.test(pv) && !D.picks.includes(pv)) { D.picks.push(pv); store.set('ce-draft', D); }
+  const picks = D.picks.map(id => vById(id)).filter(Boolean);
+  return page('client', `<section style="padding:64px 0 40px"><div class="narrow"><p class="caps m" style="margin:0">Start your inquiry</p><h1 class="d2" style="margin-top:14px">Tell us about<br>your moment.</h1><p class="lead">Takes about two minutes. Then book a discovery call with your Lead Planner.</p></div></section>
+<form id="f" class="narrow" novalidate>
+ <div class="blk"><div class="k"><b>01</b><span>Your event</span></div><div style="display:grid;gap:16px">
+  <label class="f">Event name<input class="in" name="title" value="${esc(q.title)}" placeholder="e.g. Dad’s retirement dinner"></label>
+  <div class="chips" role="radiogroup" aria-label="Event type">${['Full event', 'Catering delivery'].map(o => `<label class="chip"><input type="radio" name="type" value="${o}" ${q.type === o ? 'checked' : ''}><span>${o}</span></label>`).join('')}</div>
+  <div class="g3"><label class="f">Date<input class="in" type="date" name="date" value="${esc(q.date)}"></label><label class="f">Start<input class="in" type="time" name="start" value="${esc(q.start)}"></label><label class="f">End<input class="in" type="time" name="end" value="${esc(q.end)}"></label></div>
+  <div class="g2"><label class="f">Guests<input class="in" type="number" min="1" name="guaranteed" value="${esc(q.guaranteed)}" placeholder="40"></label><label class="f">Location<input class="in" name="location" value="${esc(q.location)}" placeholder="Venue, office or neighborhood"></label></div>
+  <label class="f">Service style<select class="in" name="service">${['Buffet with service', 'Tray passing', 'Plated dinner', 'Drop-off', 'Not sure yet'].map(o => `<option ${q.service === o ? 'selected' : ''}>${o}</option>`).join('')}</select></label>
+  <label class="f">Anything else? (optional)<textarea class="in" name="description" placeholder="The occasion, dietary needs, timing…">${esc(q.description)}</textarea></label></div></div>
+ <div class="blk"><div class="k"><b>02</b><span>Your local gems</span><p class="m sml" style="margin:6px 0 0">Local gems: ours, yours, or both. Tell us the vendors you love, ask us to recommend some, or both.</p></div><div style="display:grid;gap:14px">
+  ${picks.length ? `<div class="card" style="padding:14px 18px">${picks.map(v => `<div class="row" style="border-top:0;padding:6px 0"><span><b style="font-weight:600">${esc(v.name)}</b> <span class="m sml">· ${esc(v.type)}${basket()[v.id] ? ` · ${basket()[v.id]} items chosen` : ' · from their page'}</span></span><button class="u sml" type="button" data-unpick="${v.id}">Remove</button></div>`).join('')}</div>` : ''}
+  <div id="gems" style="display:grid;gap:12px">${D.gems.map(gemRow).join('')}</div>
+  <div><button class="btn ln sm" type="button" id="addgem">+ Add a vendor you love</button></div>
+  <div><p style="margin:10px 0 8px;font-size:13.5px;font-weight:600">Want us to recommend some?</p><div class="chips">${['Restaurant', 'Bakery + Desserts', 'Coffee + Espresso', 'Bar + Drinks', 'Farm', 'Rentals'].map(t => `<label class="chip"><input type="checkbox" class="rec" value="${t}" ${D.recommend.includes(t) ? 'checked' : ''}><span>${t}</span></label>`).join('')}</div></div></div></div>
+ <div class="blk"><div class="k"><b>03</b><span>You</span><p class="m sml" style="margin:6px 0 0">This creates your account so you can follow your event.</p></div><div style="display:grid;gap:16px">
+  ${SESS ? `<div class="notice">Signed in as <b>${esc(SESS.account.email)}</b>.</div>` : `<div class="g2"><label class="f">Your name<input class="in" id="nm" autocomplete="name"></label><label class="f">Phone<input class="in" id="ph" type="tel" autocomplete="tel"></label></div><label class="f">Email<input class="in" id="em" type="email" autocomplete="email"></label>`}
+  <div id="codebox"></div><p class="err" id="err" role="alert"></p><div><button class="btn bl" type="submit" id="send">Send inquiry</button></div></div></div>
+</form><div style="height:60px"></div>`); };
+H['start'] = () => { const f = $('#f'); if (!f) return;
+  const rd = () => { const d = new FormData(f); ['title', 'type', 'date', 'start', 'end', 'guaranteed', 'location', 'service', 'description'].forEach(k => { if (d.has(k)) D.inq[k] = d.get(k); }); $$('#gems [data-i]').forEach(r => { const g = D.gems[+r.dataset.i]; r.querySelectorAll('[data-k]').forEach(x => g[x.dataset.k] = x.value); }); D.recommend = $$('.rec').filter(x => x.checked).map(x => x.value); store.set('ce-draft', D); };
+  f.oninput = rd; f.onchange = rd;
+  $('#addgem').onclick = () => { rd(); D.gems.push({ name: '', type: 'Restaurant', link: '', love: '' }); render(); setTimeout(() => { const x = $$('#gems [data-k=name]').pop(); x && x.focus(); }, 0); };
+  $$('[data-delg]').forEach(b => b.onclick = () => { rd(); D.gems.splice(+b.dataset.delg, 1); render(); });
+  $$('[data-unpick]').forEach(b => b.onclick = () => { rd(); D.picks = D.picks.filter(x => x !== b.dataset.unpick); store.set('ce-draft', D); if (QS.get('v')) { go('start'); return; } render(); });
+  async function submitInquiry() { const b = $('#send'); b.disabled = true; try { const { event } = await api('saveEvent', { event: D }); D = blankDraft(); store.set('ce-draft', D); ME = null; EV = event; go('event/' + event.id); toast('Inquiry sent. Next: book your discovery call.'); } catch (x) { b.disabled = false; $('#err').textContent = x.message; } }
+  async function verifyAndSend(e) { e.preventDefault(); rd(); try { const v = await api('verify', { email: PEND.email, code: $('#code').value }); setSess({ token: v.token, account: v.account }); PEND = null; submitInquiry(); } catch (x) { $('#err').textContent = x.message; } }
+  f.onsubmit = async e => { e.preventDefault(); rd(); const q = D.inq, err = $('#err');
+    const miss = !q.title.trim() ? 'Add an event name.' : !q.date ? 'Add a date.' : !(+q.guaranteed > 0) ? 'Add your guest count.' : !q.location.trim() ? 'Add a location.' : '';
+    if (miss) { err.textContent = miss; return; }
+    D.gems = D.gems.filter(g => g.name.trim());
+    if (!SESS) { const nm = $('#nm').value.trim(), em = $('#em').value.trim(); if (!nm) { err.textContent = 'Add your name.'; return; } if (!/^\S+@\S+\.\S+$/.test(em)) { err.textContent = 'Add a valid email.'; return; }
+      try { const r = await api('start', { email: em, name: nm, phone: $('#ph').value, role: 'client' }); PEND = { email: em };
+        $('#codebox').innerHTML = `<div class="notice"><b>Check your email.</b> We sent a 6-digit code to ${esc(em)}.<br><span class="sml">Simulated for this test. Your code is <b style="letter-spacing:.14em">${r.demoCode}</b>.</span></div><label class="f" style="margin-top:14px">6-digit code<input class="in" id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6"></label>`;
+        $('#send').textContent = 'Verify + send inquiry'; err.textContent = ''; $('#code').focus(); f.onsubmit = verifyAndSend; } catch (x) { err.textContent = x.message; } return; }
+    submitInquiry(); };
+};
+
+// ---------- Sign in ----------
+const codeForm = () => `<div class="notice"><b>Check your email.</b> We sent a code to ${esc(PEND.email)}.<br><span class="sml">Simulated for this test. Your code is <b style="letter-spacing:.14em">${PEND.code}</b>.</span></div><form id="cf" style="display:grid;gap:16px;margin-top:18px" novalidate><label class="f">6-digit code<input class="in" id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6"></label><p class="err" id="err" role="alert"></p><div style="display:flex;gap:14px;align-items:center"><button class="btn dk" type="submit">Continue →</button><button class="u sml" type="button" id="again">Use a different email</button></div></form>`;
+const bindCode = to => { const c = $('#cf'); if (!c) return false; $('#code').focus(); $('#again').onclick = () => { PEND = null; render(); };
+  c.onsubmit = async e => { e.preventDefault(); try { const v = await api('verify', { email: PEND.email, code: $('#code').value }); setSess({ token: v.token, account: v.account }); PEND = null; VD = null; ST = null; go(to(v.account)); } catch (x) { $('#err').textContent = x.message; } }; return true; };
+V['signin'] = () => page('client', `<section style="padding:80px 0"><div class="narrow" style="max-width:600px"><h1 class="d2">Welcome back.</h1><p class="lead">Sign in with your email. We’ll send you a code.</p><div style="margin-top:32px">${PEND ? codeForm() : `<form id="sf" style="display:grid;gap:16px" novalidate><label class="f">Email<input class="in" id="em" type="email" autocomplete="email"></label><p class="err" id="err" role="alert"></p><div><button class="btn dk" type="submit">Send code</button></div><p class="m sml">New here? <a href="#/">Let’s begin</a></p></form>`}</div></div></section>`);
+H['signin'] = () => { if (bindCode(homeFor)) return; $('#sf').onsubmit = async e => { e.preventDefault(); const em = $('#em').value.trim(); try { const r = await api('start', { email: em, role: 'client' }); PEND = { email: em, code: r.demoCode }; render(); } catch (x) { $('#err').textContent = x.message; } }; };
+
+// ---------- Client events ----------
+const needSess = () => { if (!SESS) { go('signin'); return true; } return false; };
+const timeline = ev => { const n = stageOf(ev); return `<div class="tl">${STAGES.map((s, i) => `<div class="${i < n ? 'on' : i === n ? 'now' : ''}"><i></i>${s}</div>`).join('')}</div>`; };
+V['events'] = () => { if (needSess()) return ''; if (!ME) { loadMe().then(render).catch(e => toast(e.message)); return loading('client'); }
+  return page('client', `<section class="s"><div class="wrap"><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap"><div><p class="caps m" style="margin:0">My events</p><h1 class="d2" style="margin-top:14px">Hi ${esc((SESS.account.name || '').split(' ')[0] || 'there')}.</h1></div><a class="btn dk" href="#/start">New event</a></div>
+  <div style="display:grid;gap:16px;margin-top:36px">${ME.events.length ? ME.events.map(ev => `<a class="card pad" href="#/event/${ev.id}" style="text-decoration:none;display:grid;gap:18px"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap"><div><h3 class="d3">${esc(ev.inq?.title || 'Untitled')}</h3><span class="m sml">${esc(ev.inq?.date || '')} · ${guests(ev)} guests · ${esc(ev.inq?.location || '')}</span></div><span class="pill ${ev.quote?.status === 'quoted' ? 'b' : ''}">${statusText(ev)}</span></div>${timeline(ev)}</a>`).join('') : `<div class="card pad"><b>No events yet.</b><p class="m" style="margin:6px 0 14px">Start with an inquiry. Your Lead Planner takes it from there.</p><a class="btn dk sm" href="#/start">Start your inquiry</a></div>`}</div></div></section>`); };
+
+let EV = null, lastPull = 0;
+V['event'] = () => { if (needSess()) return ''; if (!EV || EV.id !== PARAM || Date.now() - lastPull > 6000) { lastPull = Date.now(); api('getEvent', { id: PARAM }).then(j => { const changed = JSON.stringify(j.event) !== JSON.stringify(EV); EV = j.event; if (changed) render(); }).catch(e => { toast(e.message); go('events'); }); if (!EV || EV.id !== PARAM) return loading('client'); }
+  const ev = EV, q = ev.quote, vs = eventVendors(ev), t = totals(ev), editable = !q;
+  const cta = !ev.booked && !q ? `<div class="card pad" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-color:var(--ink)"><div><span class="tag" style="color:var(--blue)">Next step</span><h3 class="d3" style="margin-top:6px">Book your discovery call</h3><p class="m" style="margin:4px 0 0">Twenty minutes with your Lead Planner to go over your gems, our picks and the plan.</p></div><button class="btn bl" type="button" id="book">Book a call</button></div>`
+   : q?.status === 'quoted' ? `<div class="card pad" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-color:var(--blue)"><div><span class="tag" style="color:var(--blue)">Your quote is ready</span><h3 class="d3" style="margin-top:6px">${money(t.total)} estimated</h3><p class="m" style="margin:4px 0 0">Every vendor confirmed. Approve to lock in your date. Nothing is charged in this test.</p></div><button class="btn bl" type="button" id="approve">Approve quote</button></div>`
+   : q?.status === 'requested' ? `<div class="notice"><b>Your Lead Planner is building your quote.</b> We’re confirming each vendor and adding staffing and materials. You’ll get an email when it’s ready.</div>`
+   : q ? `<div class="notice"><b>${statusText(ev)}.</b> Your Lead Planner, ${esc(ev.lead || 'Matthew')}, has everything from here.</div>` : '';
+  const menus = vs.map(v => v.pending ? `<div class="card pad"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><h3 style="font-size:20px">${esc(v.name)}</h3><span class="pill k">${esc(v.how)}</span></div><p class="m sml" style="margin:6px 0 0">We invited them to set up their page. Their menu shows up here once it’s ready.</p></div>`
+   : `<div class="card pad"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><div><h3 style="font-size:20px">${esc(v.name)}</h3><span class="m sml">${esc(v.type)} · <a href="#/v/${v.id}">See their page</a></span></div><span class="pill ${v.how.startsWith('Your') ? 'k' : 'b'}">${esc(v.how)}</span></div>
+     <div class="scroll" style="margin-top:12px"><table class="tbl"><tbody>${v.items.map(i => `<tr><td><b style="font-weight:600">${esc(i.n)}</b>${i.d ? `<div class="m sml">${esc(i.d)}</div>` : ''}</td><td class="m sml">${esc(i.u)}</td><td>${money(i.p)}</td><td style="text-align:right">${editable ? `<span class="qty"><button type="button" aria-label="Fewer ${esc(i.n)}" data-q="${i.id}" data-d="-1">−</button><output>${ev.sel?.[i.id] || 0}</output><button type="button" aria-label="More ${esc(i.n)}" data-q="${i.id}" data-d="1">+</button></span>` : `<b>× ${ev.sel?.[i.id] || 0}</b>`}</td></tr>`).join('') || '<tr><td class="m">No menu items yet.</td></tr>'}</tbody></table></div></div>`).join('');
+  const conf = q ? Object.entries(q.vendors).map(([id, s]) => `<div class="sum"><span>${esc(id === 'staff' ? 'Staffing' : id === 'materials' ? 'Materials' : (vs.find(v => v.id === id) || {}).name || 'Vendor')}</span><span class="${s === 'confirmed' ? 'ok' : 'wa'}">${s === 'confirmed' ? 'Confirmed' : s === 'declined' ? 'Declined' : 'Pending'}</span></div>`).join('') : '';
+  return page('client', `<section style="padding:56px 0 28px;background:var(--soft)"><div class="wrap"><a class="u sml" href="#/events">← My events</a><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-top:18px"><div><h1 class="d2">${esc(ev.inq.title)}</h1><p class="m" style="margin:10px 0 0">${esc(ev.inq.date)} · ${esc(ev.inq.start)}–${esc(ev.inq.end)} · ${guests(ev)} guests · ${esc(ev.inq.location)}</p></div><span class="pill k">${statusText(ev)}</span></div><div style="margin-top:28px">${timeline(ev)}</div></div></section>
+  <section style="padding:36px 0 72px"><div class="wrap split"><div style="display:grid;gap:18px">${cta}
+   <h2 class="d3" style="margin-top:12px">Choose your menus</h2>
+   ${vs.length ? menus : `<div class="card pad"><p class="m" style="margin:0">Your Lead Planner adds vendors and their menus after your call.</p></div>`}</div>
+   <aside class="card pad" style="position:sticky;top:96px"><span class="tag">Your event</span><div style="margin-top:10px"><div class="sum"><span>Food</span><b>${money(t.food)}</b></div>${q && q.status !== 'requested' ? `<div class="sum"><span>Staffing · ${t.people}</span><b>${money(t.labor)}</b></div><div class="sum"><span>Materials</span><b>${money(t.mat)}</b></div><div class="sum"><span>First-event coupon</span><span>−$200</span></div><div class="sum" style="border-top:1px solid var(--line);margin-top:6px;padding-top:12px"><b>Estimated total</b><b>${money(t.total)}</b></div>` : `<div class="sum"><span>Staffing + materials</span><span class="m sml">Added by your Lead Planner</span></div>`}</div>
+    ${editable ? `<button class="btn dk" type="button" id="sendsel" style="width:100%;margin-top:16px">Send my menu choices</button><p class="m sml" style="margin:10px 0 0">Your Lead Planner confirms each vendor, adds staff and materials, and sends your quote.</p>` : conf ? `<div style="margin-top:16px"><span class="tag">Confirmations</span>${conf}</div>` : ''}
+    <p class="m sml" style="margin:16px 0 0">Sample prices. Questions? <a href="mailto:plan@culinary.express">plan@culinary.express</a></p></aside></div></section>`); };
+let selT;
+H['event'] = () => { if (!EV || !$('.split')) return; const save = async (patch = {}) => { try { EV = (await api('saveEvent', { event: { ...EV, ...patch } })).event; } catch (x) { toast(x.message); } render(); };
+  $$('[data-q]').forEach(b => b.onclick = () => { const k = b.dataset.q; EV.sel = EV.sel || {}; EV.sel[k] = Math.max(0, (EV.sel[k] || 0) + +b.dataset.d); b.parentElement.querySelector('output').textContent = EV.sel[k]; clearTimeout(selT); selT = setTimeout(() => api('saveEvent', { event: EV }).then(() => render()).catch(() => {}), 600); });
+  const bk = $('#book'); if (bk) bk.onclick = () => openCal(() => save({ booked: true }));
+  const ap = $('#approve'); if (ap) ap.onclick = () => save({ quote: { status: 'approved' } });
+  const ss = $('#sendsel'); if (ss) ss.onclick = () => { if (!eventVendors(EV).length) { toast('Your Lead Planner will add vendors after your call.'); return; } const vm = {}; eventVendors(EV).forEach(v => { if (v.pending || v.items.some(i => EV.sel?.[i.id])) vm[v.id] = 'waiting'; }); vm.staff = 'waiting'; vm.materials = 'waiting'; save({ quote: { status: 'requested', vendors: vm } }); }; };
+
+// ---------- Vendor dashboard ----------
+V['vendor'] = () => { const s = needVendor(); if (s === 'wait') return loading('vendor'); if (s === 'none') return notVendor();
+  return `${header('vendor')}${builder('vendor')}`; };
+H['vendor'] = bindBuilder;
+V['vendor/orders'] = () => { if (needSess()) return ''; if (!ME) { loadMe().then(render).catch(e => toast(e.message)); return loading('vendor'); }
+  return page('vendor', `<section class="s"><div class="wrap"><p class="caps m" style="margin:0">Orders</p><h1 class="d2" style="margin-top:14px">Requests for you.</h1><div style="display:grid;gap:16px;margin-top:32px">${(ME.orders || []).map(o => `<div class="card pad" style="display:grid;gap:14px"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><div><h3 class="d3">${esc(o.title || o.type || 'Event')}</h3><span class="m sml">${esc(o.date || '')} ${o.start ? '· ' + esc(o.start) : ''} · ${esc(o.guests || '')} guests · ${esc(o.location || '')}</span></div>${o.status === 'waiting' && o.quoteStatus === 'requested' ? `<div style="display:flex;gap:8px"><button class="btn dk sm" type="button" data-ok="${o.id}">Accept</button><button class="btn ln sm" type="button" data-no="${o.id}">Decline</button></div>` : `<span class="pill ${o.status === 'confirmed' ? 'g' : ''}">${o.status === 'confirmed' ? 'Accepted' : o.status === 'declined' ? 'Declined' : 'Waiting'}</span>`}</div>
+   <table class="tbl"><tbody>${o.items.map(i => `<tr><td>${esc(i.n)} <span class="m sml">${esc(i.u)}</span></td><td>× ${i.q}</td><td style="text-align:right"><b>${money(i.p * i.q)}</b></td></tr>`).join('') || '<tr><td class="m">Your Lead Planner will share the order details.</td></tr>'}</tbody></table></div>`).join('') || `<div class="card pad"><b>No requests yet.</b><p class="m" style="margin:6px 0 0">Publish your page so clients can add you to their events.</p></div>`}</div></div></section>`); };
+H['vendor/orders'] = () => { const r = async (id, d) => { try { await api('vendorRespond', { id, decision: d }); await loadMe(); render(); } catch (x) { toast(x.message); } }; $$('[data-ok]').forEach(b => b.onclick = () => r(b.dataset.ok, 'accept')); $$('[data-no]').forEach(b => b.onclick = () => r(b.dataset.no, 'decline')); };
+
+// ---------- Onboarding progress (shared by vendor + admin dashboards) ----------
+const vSteps = v => [['Account created', true, 'join/vendor'], ['Profile + story', !!(v.tagline && v.about && v.area), 'join/vendor/profile'], [`${ti(v.type).sec} (3+ items)`, (v.items || []).length >= 3, 'join/vendor/menu'], ['Cover photo', !!v.cover, 'vendor'], ['Published', v.status === 'live', 'vendor']];
+const vProg = v => { const s = vSteps(v); return { done: s.filter(x => x[1]).length, total: s.length }; };
+const progBar = v => { const p = vProg(v); return `<div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:4px;border-radius:2px;background:var(--line);overflow:hidden"><i style="display:block;height:100%;width:${p.done / p.total * 100}%;background:${p.done === p.total ? 'var(--ok)' : 'var(--blue)'}"></i></div><span class="m sml" style="white-space:nowrap">${p.done}/${p.total}</span></div>`; };
+V['vendor/home'] = () => { const s = needVendor(); if (s === 'wait') return loading('vendor'); if (s === 'none') return notVendor();
+  const v = VD, st = vSteps(v), p = vProg(v), open = (ME.orders || []).filter(o => o.status === 'waiting').length;
+  return page('vendor', `<section class="s"><div class="wrap"><p class="caps m" style="margin:0">${esc(v.type)}</p><h1 class="d2" style="margin-top:14px">${esc(v.name)}</h1>
+  <div class="split" style="margin-top:36px"><div style="display:grid;gap:18px"><div class="card pad"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h2 class="d3">${p.done === p.total ? 'Your page is live.' : 'Finish setting up your page'}</h2><span class="pill ${p.done === p.total ? 'g' : 'b'}">${p.done} of ${p.total}</span></div><div style="margin:14px 0 4px">${progBar(v)}</div>
+   ${st.map(([t, ok, r]) => `<div class="row"><span style="display:flex;gap:12px;align-items:center"><span aria-hidden="true" style="width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;${ok ? 'background:var(--ink);color:#fff' : 'box-shadow:inset 0 0 0 1.5px #c8c8c8'}">${ok ? '✓' : ''}</span><span class="${ok ? 'm' : ''}" style="font-weight:600">${esc(t)}</span></span>${ok ? '<span class="ok sml">Done</span>' : `<a class="btn dk sm" href="#/${r}">Do it</a>`}</div>`).join('')}</div>
+   <div class="card pad" style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap"><div><h2 class="d3">Orders</h2><p class="m" style="margin:4px 0 0">${open ? `${open} request${open === 1 ? '' : 's'} waiting on you.` : 'No open requests right now.'}</p></div><a class="btn ln sm" href="#/vendor/orders">See orders</a></div></div>
+  <aside class="card pad"><span class="tag">Your page</span><div class="vcard" style="margin-top:12px"><div class="ph">${v.cover ? `<img src="${esc(v.cover)}" alt="">` : `<span>${esc(initials(v.name))}</span>`}</div><div class="b"><b>${esc(v.name)}</b><span class="m sml">${esc(v.tagline || 'Add a tagline in your page builder.')}</span></div></div>
+   <div style="display:grid;gap:10px;margin-top:14px"><a class="btn dk" href="#/vendor">Open page builder</a><a class="btn ln" href="#/v/${v.id}" target="_blank" rel="noopener">View page ↗</a></div><p class="m sml" style="margin:12px 0 0">${v.status === 'live' ? 'Clients can find and order from your page.' : 'Your page is a draft until you publish it.'}</p></aside></div></div></section>`); };
+
+// ---------- Fíeld Güide: brochure + catalogue of published pages, with ordering modals ----------
+// Not public yet. The Super Admin previews it at #/admin/guide; it opens at #/guide when it goes live.
+let GFILT = 'All';
+const basket = () => { const by = {}; Object.entries(D.sel || {}).forEach(([k, q]) => { if (q > 0) { const id = k.replace(/-\d+$/, ''); by[id] = (by[id] || 0) + q; } }); return by; };
+function guide(admin) {
+  const list = (admin ? AD.vendors.filter(v => v.status === 'live') : LIVE), types = TYPES.filter(t => list.some(v => v.type === t)), shown = list.filter(v => GFILT === 'All' || v.type === GFILT), b = basket(), n = Object.values(b).reduce((x, y) => x + y, 0);
+  return `${admin ? `<div class="notice" style="border-radius:0;text-align:center"><b>Preview · not public yet.</b> ${list.length} published entr${list.length === 1 ? 'y' : 'ies'}. Publish more vendor pages, then take the Fíeld Güide live.</div>` : ''}
+  <section style="background:#0f1412;color:#fff;padding:96px 0 72px"><div class="wrap"><p class="caps" style="margin:0;color:rgba(255,255,255,.7)">Cülinary Expréss presents</p><h1 class="d1" style="margin-top:18px">Fíeld<br>Güide</h1><p style="font-size:20px;color:rgba(255,255,255,.85);max-width:600px;margin:24px 0 0">Our catalogue of local gems: restaurants, farms, wineries, bakeries, espresso bars and more. Order from any of them for your next event. We run the service.</p></div></section>
+  <section style="padding:40px 0 96px"><div class="wrap"><div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap"><div class="chips" role="radiogroup" aria-label="Filter">${['All', ...types].map(t => `<label class="chip"><input type="radio" name="gf" value="${esc(t)}" ${GFILT === t ? 'checked' : ''}><span>${esc(t)}</span></label>`).join('')}</div><span class="m sml">${shown.length} entr${shown.length === 1 ? 'y' : 'ies'}</span></div>
+   <div style="display:grid;gap:28px;margin-top:32px">${shown.map((v, i) => `<article class="gentry" style="display:grid;grid-template-columns:${i % 2 ? '1fr 1.15fr' : '1.15fr 1fr'};gap:0;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fff">
+     <div style="order:${i % 2 ? 2 : 1};min-height:340px;background:${ACC[v.accent] || ACC.charcoal};position:relative">${v.cover ? `<img src="${esc(v.cover)}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">` : `<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:64px;font-weight:600;letter-spacing:-.04em">${esc(initials(v.name))}</span>`}</div>
+     <div style="order:${i % 2 ? 1 : 2};padding:40px;display:flex;flex-direction:column;gap:14px"><span class="caps" style="color:${ACC[v.accent] || ACC.charcoal}">${esc(v.type)}${v.area ? ' · ' + esc(v.area) : ''}</span><h2 class="d2" style="font-size:clamp(30px,3.4vw,46px)">${esc(v.name)}</h2>${v.tagline ? `<p class="m" style="margin:0;font-size:17px">${esc(v.tagline)}</p>` : ''}
+      ${(v.perfectFor || []).length ? `<div class="chips">${v.perfectFor.slice(0, 4).map(x => `<span class="pill">${esc(x)}</span>`).join('')}</div>` : ''}
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:10px"><button class="btn dk" type="button" data-order="${v.id}">${b[v.id] ? `In your order · ${b[v.id]}` : 'Order'}</button><a class="btn ln" href="#/v/${v.id}">See the page</a></div></div></article>`).join('') || `<div class="card pad" style="text-align:center;padding:56px"><h2 class="d3">No entries yet.</h2><p class="m" style="margin:8px 0 0">Published vendor pages show up here.</p></div>`}</div></div></section>
+  ${n ? `<div style="position:sticky;bottom:0;z-index:20;background:#0f1412;color:#fff;padding:14px 0"><div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap"><span><b>Your order</b> · ${n} item${n === 1 ? '' : 's'} from ${Object.keys(b).length} vendor${Object.keys(b).length === 1 ? '' : 's'}</span><a class="btn wt sm" href="#/start">Continue to your inquiry →</a></div></div>` : ''}`;
+}
+function orderModal(id, list) {
+  const v = list.find(x => x.id === id); if (!v) return; D.sel = D.sel || {};
+  const T = ti(v.type), items = v.items || [];
+  modal(`<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px"><div><span class="caps" style="color:${ACC[v.accent] || ACC.charcoal}">${esc(v.type)}</span><h2 class="d3" style="margin-top:6px">Order from ${esc(v.name)}</h2><p class="m sml" style="margin:4px 0 0">Pick what you’d like. Your Lead Planner confirms quantities on your discovery call.</p></div><button class="btn ln sm" type="button" data-close>Done</button></div>
+   <div style="margin-top:18px">${items.length ? items.map((it, j) => { const k = v.id + '-' + j; return `<div class="irow" style="grid-template-columns:64px minmax(0,1fr) auto"><div class="t" style="width:64px;height:64px">${it.img ? `<img src="${esc(it.img)}" alt="">` : esc(initials(it.n))}</div><div style="min-width:0"><b style="font-weight:600">${esc(it.n)}</b>${it.d ? `<div class="m sml">${esc(it.d)}</div>` : ''}<div class="sml" style="font-weight:600;margin-top:2px">${money(it.p)} <span class="m" style="font-weight:400">${esc(it.u)}</span></div></div><span class="qty"><button type="button" aria-label="Fewer ${esc(it.n)}" data-oq="${k}" data-d="-1">−</button><output>${D.sel[k] || 0}</output><button type="button" aria-label="More ${esc(it.n)}" data-oq="${k}" data-d="1">+</button></span></div>`; }).join('') : `<p class="m">Their ${esc(T.sec.toLowerCase())} is coming soon. Add them to your inquiry and we’ll build it with you.</p>`}</div>
+   <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px;flex-wrap:wrap"><button class="btn ln" type="button" data-close>Keep browsing</button><a class="btn bl" href="#/start" id="o-go">Continue to your inquiry →</a></div>`, m => {
+    m.querySelectorAll('[data-oq]').forEach(b => b.onclick = () => { const k = b.dataset.oq; D.sel[k] = Math.max(0, (D.sel[k] || 0) + +b.dataset.d); b.parentElement.querySelector('output').textContent = D.sel[k]; if (D.sel[k] && !D.picks.includes(v.id)) D.picks.push(v.id); store.set('ce-draft', D); });
+    m.querySelector('#o-go').onclick = () => { if (!D.picks.includes(v.id)) D.picks.push(v.id); store.set('ce-draft', D); m.remove(); };
+  });
+}
+const bindGuide = list => { $$('[name=gf]').forEach(r => r.onchange = () => { GFILT = r.value; render(); }); $$('[data-order]').forEach(b => b.onclick = () => orderModal(b.dataset.order, list)); };
+V['admin/guide'] = () => needAd() || `${header('admin')}<main>${guide(true)}</main>${footer()}`;
+H['admin/guide'] = () => { if (bindGate()) return; bindGuide(AD.vendors); };
+V['guide'] = () => page('client', guide(false));
+H['guide'] = () => bindGuide(LIVE);
+
+// ---------- Super Admin ----------
+const gate = () => page('admin', `<section class="s"><div class="narrow" style="max-width:520px"><h1 class="d2">Super Admin</h1><p class="lead">Enter your admin code once. This browser remembers it.</p><form id="ag" style="display:grid;gap:16px;margin-top:28px" novalidate><label class="f">Admin code<input class="in" id="acode" type="password" autocomplete="off"></label><p class="err" id="err" role="alert"></p><div><button class="btn dk" type="submit">Continue</button></div></form></div></section>`);
+const bindGate = () => { const g = $('#ag'); if (!g) return false; g.onsubmit = async e => { e.preventDefault(); ADM = $('#acode').value.trim(); try { await api('adminCheck'); store.set('ce-adm', ADM); AD = null; render(); } catch { ADM = ''; $('#err').textContent = 'That code isn’t right.'; } }; return true; };
+const loadAd = async () => { AD = await api('adminData'); LIVE = AD.vendors; };
+const needAd = () => { if (!ADM) return gate(); if (!AD) { loadAd().then(render).catch(e => { if (/Admin code/.test(e.message)) { ADM = ''; store.set('ce-adm', null); } toast(e.message); render(); }); return loading('admin'); } return null; };
+const adminStatus = ev => { const q = ev.quote?.status; return q === 'requested' ? 'Build quote' : q === 'quoted' ? 'Waiting on client' : q === 'approved' ? 'Approved' : q === 'in_progress' ? 'In progress' : q === 'completed' ? 'Completed' : ev.booked ? 'Call booked' : 'New inquiry'; };
+V['admin'] = () => needAd() || page('admin', `<section class="s"><div class="wrap"><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap"><div><p class="caps m" style="margin:0">Dispatch</p><h1 class="d2" style="margin-top:14px">Every event.</h1></div><button class="btn ln sm" type="button" id="ar">Refresh</button></div>
+  <div class="card" style="margin-top:32px;overflow:hidden"><div class="scroll"><table class="tbl" style="min-width:760px"><thead><tr><th style="padding:18px 10px 12px 24px">Event</th><th>Client</th><th>Date</th><th>Guests</th><th>Status</th><th></th></tr></thead><tbody>${AD.events.map(ev => `<tr><td style="padding-left:24px"><b style="font-weight:600">${esc(ev.inq?.title || 'Untitled')}</b><div class="m sml">${esc(ev.inq?.type || '')} · ${esc(ev.id)}</div></td><td>${esc(ev.ownerName || '')}<div class="m sml">${esc(ev.owner)}</div></td><td>${esc(ev.inq?.date || '')}</td><td>${guests(ev)}</td><td><span class="pill ${ev.quote?.status === 'requested' ? 'b' : ''}">${adminStatus(ev)}</span></td><td style="padding-right:24px;text-align:right"><a class="btn dk sm" href="#/admin/event/${ev.id}">Open</a></td></tr>`).join('') || '<tr><td class="m" style="padding:24px" colspan="6">No events yet.</td></tr>'}</tbody></table></div></div></div></section>`);
+H['admin'] = () => { if (bindGate()) return; const r = $('#ar'); if (r) r.onclick = () => { AD = null; render(); }; };
+V['admin/event'] = () => { const g = needAd(); if (g) return g;
+  const ev = AD.events.find(e => e.id === PARAM); if (!ev) return page('admin', '<section class="s"><div class="wrap"><a class="u" href="#/admin">← Dispatch</a></div></section>');
+  const q = ev.quote, vs = eventVendors(ev), st = staffOf(ev), mt = matOf(ev), t = totals(ev), locked = ['approved', 'in_progress', 'completed'].includes(q?.status), inv = AD.invites.filter(x => x.eventId === ev.id);
+  const cf = id => !q ? '' : q.vendors[id] === 'confirmed' ? '<span class="ok">Confirmed</span>' : q.status === 'requested' && id in q.vendors ? `<button class="btn dk sm" type="button" data-cf="${esc(id)}">Confirm</button>` : '<span class="wa">Pending</span>';
+  const allOk = q && Object.values(q.vendors).every(s => s === 'confirmed');
+  const act = !q ? '<span class="m sml">Waiting for the client’s menu choices.</span>' : q.status === 'requested' ? `<button class="btn bl" type="button" id="sendq" ${allOk ? '' : 'disabled'}>Send quote to client</button>` : q.status === 'quoted' ? '<span class="pill b">Waiting on client approval</span>' : q.status === 'approved' ? '<button class="btn dk" type="button" data-st="in_progress">Mark in progress</button>' : q.status === 'in_progress' ? '<button class="btn dk" type="button" data-st="completed">Mark completed</button>' : '<span class="pill g">Completed</span>';
+  const stepper = (attr, k, f, val) => locked ? val : `<span class="qty"><button type="button" aria-label="Fewer" ${attr}="${k}" ${f ? `data-f="${f}"` : ''} data-d="-1">−</button><output>${val}</output><button type="button" aria-label="More" ${attr}="${k}" ${f ? `data-f="${f}"` : ''} data-d="1">+</button></span>`;
+  return page('admin', `<section style="padding:48px 0 28px;background:var(--soft)"><div class="wrap"><a class="u sml" href="#/admin">← Dispatch</a><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-top:16px"><div><h1 class="d2">${esc(ev.inq?.title || '')}</h1><p class="m" style="margin:10px 0 0">${esc(ev.ownerName || '')} · <a href="mailto:${esc(ev.owner)}">${esc(ev.owner)}</a>${ev.ownerPhone ? ` · <a href="tel:${esc(ev.ownerPhone)}">${esc(ev.ownerPhone)}</a>` : ''}</p></div><span class="pill k">${adminStatus(ev)}</span></div>
+   <div class="g3" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:24px">${[['Date', `${ev.inq?.date || ''} · ${ev.inq?.start || ''}`], ['Guests', guests(ev)], ['Type', ev.inq?.type], ['Service', ev.inq?.service], ['Location', ev.inq?.location], ['Discovery call', ev.booked ? 'Booked' : 'Not yet'], ['Wants us to recommend', (ev.recommend || []).join(', ') || 'Nothing']].map(([k, v]) => `<div><span class="tag">${k}</span><div style="font-weight:600">${esc(v)}</div></div>`).join('')}</div>${ev.inq?.description ? `<p class="m" style="margin:16px 0 0;max-width:800px">“${esc(ev.inq.description)}”</p>` : ''}</div></section>
+  <section style="padding:32px 0 72px"><div class="wrap split"><div style="display:grid;gap:18px">
+   <div class="card pad"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2 class="d3">Vendors + menus</h2>${locked ? '' : `<select class="in" id="addv" style="height:40px;width:auto" aria-label="Add a vendor"><option value="">+ Add a vendor</option>${AD.vendors.filter(v => !vs.some(x => x.id === v.id)).map(v => `<option value="${v.id}">${esc(v.name)} · ${esc(v.type)}${v.status === 'live' ? '' : ' (draft)'}</option>`).join('')}</select>`}</div>
+    ${vs.map(v => { const its = v.items.filter(x => ev.sel?.[x.id]); return `<div style="border-top:1px solid var(--line);padding-top:16px;margin-top:16px"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><b style="font-weight:600">${esc(v.name)}</b> <span class="pill ${v.how.startsWith('Your') ? 'k' : 'b'}" style="margin-left:6px">${esc(v.how)}</span></div>${cf(v.id)}</div>${its.length ? `<table class="tbl" style="margin-top:6px"><tbody>${its.map(x => `<tr><td>${esc(x.n)} <span class="m sml">${esc(x.u)}</span></td><td>× ${ev.sel[x.id]}</td><td style="text-align:right">${money(x.p * ev.sel[x.id])}</td></tr>`).join('')}</tbody></table>` : `<p class="m sml" style="margin:6px 0 0">${v.pending ? 'Invited · menu pending' : 'No items chosen yet'}</p>`}</div>`; }).join('') || '<p class="m">No vendors yet.</p>'}
+    ${inv.length ? `<div style="border-top:1px solid var(--line);margin-top:18px;padding-top:14px"><span class="tag">Invites</span>${inv.map(x => `<div class="row"><span>${esc(x.gemName)} <span class="m sml">· ${x.status === 'joined' ? 'joined' : 'invite sent'}</span></span><button class="u sml" type="button" data-copy="${location.origin}${location.pathname}#/vendor/join/${x.id}">Copy invite link</button></div>`).join('')}</div>` : ''}</div>
+   <div class="card pad"><div style="display:flex;justify-content:space-between;align-items:center"><h2 class="d3">Staffing</h2>${cf('staff')}</div><table class="tbl" style="margin-top:10px"><thead><tr><th>Role</th><th>People</th><th>Hours</th><th style="text-align:right">Total</th></tr></thead><tbody>${STAFF(ev).map(r => `<tr><td>${r.n} <span class="m sml">${money(r.r)}/hr</span></td><td>${stepper('data-s', r.k, 'q', st[r.k].q)}</td><td>${stepper('data-s', r.k, 'h', st[r.k].h)}</td><td style="text-align:right">${money(st[r.k].q * st[r.k].h * r.r)}</td></tr>`).join('')}</tbody></table></div>
+   <div class="card pad"><div style="display:flex;justify-content:space-between;align-items:center"><h2 class="d3">Materials</h2>${cf('materials')}</div><table class="tbl" style="margin-top:10px"><thead><tr><th>Item</th><th>Qty</th><th>Provided by</th></tr></thead><tbody>${MAT(ev).map(m => `<tr><td>${m.n} <span class="m sml">${money(m.p)} ea</span></td><td>${stepper('data-m', m.k, '', mt[m.k].q)}</td><td>${locked ? { ce: 'Us', have: 'Client', vendor: 'Vendor' }[mt[m.k].src] : `<select class="in" style="height:38px;width:auto" data-src="${m.k}" aria-label="${m.n} provided by">${[['ce', 'Us'], ['have', 'Client has it'], ['vendor', 'Vendor']].map(([v, l]) => `<option value="${v}" ${mt[m.k].src === v ? 'selected' : ''}>${l}</option>`).join('')}</select>`}</td></tr>`).join('')}</tbody></table></div></div>
+   <aside class="card pad" style="position:sticky;top:96px"><span class="tag">Quote</span><div style="margin-top:10px"><div class="sum"><span>Food</span><b>${money(t.food)}</b></div><div class="sum"><span>Staffing · ${t.people}</span><b>${money(t.labor)}</b></div><div class="sum"><span>Materials</span><b>${money(t.mat)}</b></div><div class="sum"><span>Coupon</span><span>−$200</span></div><div class="sum" style="border-top:1px solid var(--line);margin-top:6px;padding-top:12px"><b>Total</b><b>${money(t.total)}</b></div></div><div style="margin-top:16px">${act}</div>${q?.status === 'requested' && !allOk ? '<p class="m sml" style="margin:10px 0 0">Confirm every vendor, staffing and materials to send.</p>' : ''}</aside></div></section>`); };
+H['admin/event'] = () => { if (bindGate()) return; const ev = AD?.events.find(e => e.id === PARAM); if (!ev) return;
+  const up = async b => { try { const j = await api('adminUpdate', { id: PARAM, ...b }); AD.events[AD.events.findIndex(e => e.id === PARAM)] = j.event; render(); } catch (x) { toast(x.message); } };
+  $$('[data-cf]').forEach(b => b.onclick = () => up({ confirm: b.dataset.cf })); const s = $('#sendq'); if (s) s.onclick = () => up({ status: 'quoted' }); $$('[data-st]').forEach(b => b.onclick = () => up({ status: b.dataset.st }));
+  const av = $('#addv'); if (av) av.onchange = () => av.value && up({ addPick: av.value });
+  $$('[data-s]').forEach(b => b.onclick = () => { const st = staffOf(ev); st[b.dataset.s][b.dataset.f] = Math.max(0, st[b.dataset.s][b.dataset.f] + +b.dataset.d); up({ staff: st }); });
+  $$('[data-m]').forEach(b => b.onclick = () => { const mt = matOf(ev); mt[b.dataset.m].q = Math.max(0, mt[b.dataset.m].q + +b.dataset.d); up({ mat: mt }); });
+  $$('[data-src]').forEach(x => x.onchange = () => { const mt = matOf(ev); mt[x.dataset.src].src = x.value; up({ mat: mt }); });
+  $$('[data-copy]').forEach(b => b.onclick = async () => { try { await navigator.clipboard.writeText(b.dataset.copy); toast('Link copied'); } catch { prompt('Copy this link', b.dataset.copy); } }); };
+
+V['admin/vendors'] = () => needAd() || page('admin', `<section class="s"><div class="wrap"><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap"><div><p class="caps m" style="margin:0">Vendor pages</p><h1 class="d2" style="margin-top:14px">Build a page.</h1><p class="lead">Create pages for vendors yourself, or share the sign-up link so they build their own.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn ln sm" type="button" data-copy="${location.origin}${location.pathname}#/join/vendor">Copy vendor sign-up link</button><button class="btn bl" type="button" id="newv">+ New vendor page</button></div></div>
+  <div class="g3" style="margin-top:36px">${AD.vendors.map(v => `<article class="vcard"><div class="ph">${v.cover ? `<img src="${esc(v.cover)}" alt="">` : `<span>${esc(initials(v.name))}</span>`}</div><div class="b"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span class="tag">${esc(v.type)}</span><span class="pill ${v.status === 'live' ? 'g' : ''}">${v.status === 'live' ? 'Live' : 'Draft'}</span></div><h3 style="font-size:20px;letter-spacing:-.02em">${esc(v.name)}</h3><span class="m sml">${(v.items || []).length} items · ${v.ownerEmail === 'admin' ? 'Built by you' : 'Built by vendor'}</span><div style="margin-top:6px">${progBar(v)}</div>
+   <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap"><a class="btn dk sm" href="#/admin/page/${v.id}">Edit page</a><a class="btn ln sm" href="#/v/${v.id}" target="_blank" rel="noopener">View ↗</a><button class="u sml" type="button" data-copy="${location.origin}${location.pathname}#/v/${v.id}">Copy link</button></div></div></article>`).join('') || `<div class="card pad" style="grid-column:1/-1;text-align:center;padding:48px"><h2 class="d3">No vendor pages yet.</h2><p class="m" style="margin:8px 0 18px">Start your first one. It takes a few minutes.</p><button class="btn bl" type="button" id="newv2">+ New vendor page</button></div>`}</div>
+  ${AD.invites.length ? `<h2 class="d3" style="margin-top:48px">Invites from clients</h2><div class="card pad" style="margin-top:14px">${AD.invites.map(x => `<div class="row" style="border-top:0;border-bottom:1px solid var(--line)"><span><b style="font-weight:600">${esc(x.gemName)}</b> <span class="m sml">· ${esc(x.type)}</span></span><span class="${x.status === 'joined' ? 'ok' : 'wa'}">${x.status === 'joined' ? 'Joined' : 'Invite sent'}</span></div>`).join('')}</div>` : ''}</div></section>`);
+H['admin/vendors'] = () => { if (bindGate()) return;
+  const nv = () => { const m = modal(`<div style="display:flex;justify-content:space-between;align-items:center"><h2 class="d3">New vendor page</h2><button class="u sml" type="button" data-close>Close</button></div><form id="nvf" style="display:grid;gap:16px;margin-top:20px" novalidate><label class="f">Vendor name<input class="in" id="nv-n" placeholder="e.g. The Grove Kitchen"></label><fieldset class="fs"><legend>Vendor type</legend><div class="tcs">${TYPES.map((t, i) => `<label class="tc"><input type="radio" name="nvt" value="${esc(t)}" ${i ? '' : 'checked'}><span><b>${esc(t)}</b><small>${esc(ti(t).sub)}</small></span></label>`).join('')}</div></fieldset><p class="err" id="nv-err" role="alert"></p><div style="display:flex;justify-content:flex-end"><button class="btn dk" type="submit">Create + open builder →</button></div></form>`, mm => {
+    setTimeout(() => mm.querySelector('#nv-n').focus(), 0);
+    mm.querySelector('#nvf').onsubmit = async e => { e.preventDefault(); const n = mm.querySelector('#nv-n').value.trim(); if (!n) { mm.querySelector('#nv-err').textContent = 'Add a name.'; return; }
+      try { const t = mm.querySelector('[name=nvt]:checked').value, { vendor } = await api('adminNewVendor', { name: n, type: t }); vendor.cats = [...ti(t).cats]; AD.vendors.unshift(vendor); VD = clone(vendor); VTAB = 'basics'; mm.remove(); go('admin/page/' + vendor.id); } catch (x) { mm.querySelector('#nv-err').textContent = x.message; } }; }, () => {}); };
+  ['#newv', '#newv2'].forEach(s => { const b = $(s); if (b) b.onclick = nv; });
+  $$('[data-copy]').forEach(b => b.onclick = async () => { try { await navigator.clipboard.writeText(b.dataset.copy); toast('Link copied'); } catch { prompt('Copy this link', b.dataset.copy); } }); };
+V['admin/page'] = () => { const g = needAd(); if (g) return g; const v = AD.vendors.find(x => x.id === PARAM); if (!v) return page('admin', '<section class="s"><div class="wrap"><a class="u" href="#/admin/vendors">← Vendor pages</a><p>Page not found.</p></div></section>');
+  if (!VD || VD.id !== v.id) { VD = clone(v); saveState = ''; } if (!(VD.cats || []).length) VD.cats = [...ti(VD.type).cats]; return `${header('admin')}${builder('admin')}`; };
+H['admin/page'] = () => { if (bindGate()) return; bindBuilder(); };
+V['admin/crew'] = () => needAd() || page('admin', `<section class="s"><div class="wrap"><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap"><div><p class="caps m" style="margin:0">Crew</p><h1 class="d2" style="margin-top:14px">Your people.</h1></div><button class="btn ln sm" type="button" data-copy="${location.origin}${location.pathname}#/join/staff">Copy crew sign-up link</button></div>
+  <div class="card" style="margin-top:32px;overflow:hidden"><div class="scroll"><table class="tbl" style="min-width:760px"><thead><tr><th style="padding:18px 10px 12px 24px">Name</th><th>Roles</th><th>Experience</th><th>Available</th><th>Certifications</th><th>Onboarding</th></tr></thead><tbody>${AD.staff.map(s => `<tr><td style="padding-left:24px"><b style="font-weight:600">${esc(s.name || '—')}</b><div class="m sml">${esc(s.email)}${s.phone ? ' · ' + esc(s.phone) : ''}</div></td><td>${esc((s.roles || []).join(', ') || '—')}</td><td>${esc(s.years || '—')}</td><td>${esc((s.avail || []).join(', ') || '—')}</td><td>${esc((s.certs || []).join(', ') || '—')}</td><td><span class="pill ${s.done ? 'g' : ''}">${s.done ? 'Complete' : 'In progress'}</span></td></tr>`).join('') || '<tr><td class="m" style="padding:24px" colspan="6">No crew yet. Share the sign-up link.</td></tr>'}</tbody></table></div></div></div></section>`);
+H['admin/crew'] = () => { if (bindGate()) return; $$('[data-copy]').forEach(b => b.onclick = async () => { try { await navigator.clipboard.writeText(b.dataset.copy); toast('Link copied'); } catch { prompt('Copy this link', b.dataset.copy); } }); };
+
+function modal(html, after, onClose) { const m = document.createElement('div'); m.className = 'modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.innerHTML = `<div>${html}</div>`; document.body.appendChild(m);
+  const close = () => { m.remove(); document.removeEventListener('keydown', k); onClose ? onClose() : render(); }; const k = e => { if (e.key === 'Escape' && document.body.contains(m)) close(); }; document.addEventListener('keydown', k);
+  m.addEventListener('click', e => { if (e.target === m || e.target.closest('[data-close]')) close(); }); after && after(m); return m; }
+function openCal(done) { const u = `${CAL}?hide_gdpr_banner=1&name=${encodeURIComponent(SESS?.account?.name || '')}&email=${encodeURIComponent(SESS?.account?.email || '')}`;
+  const m = modal(`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h2 class="d3">Book your discovery call</h2><button class="btn ln sm" type="button" data-close>Close</button></div><iframe src="${u}" title="Book a call on Calendly" style="width:100%;height:620px;border:0;border-radius:14px"></iframe><div style="display:flex;justify-content:flex-end;margin-top:14px"><button class="btn bl" type="button" id="didbook">I booked my call</button></div>`, null, () => {});
+  m.querySelector('#didbook').onclick = () => { m.remove(); done(); }; }
+function go(r) { location.hash = '#/' + r; }
+function render() { const raw = location.hash.replace(/^#\/?/, ''); let [r, qs] = raw.split('?'); QS = new URLSearchParams(qs || ''); PARAM = null;
+  for (const p of ['admin/event', 'admin/page', 'vendor/join', 'event', 'v']) if (r.startsWith(p + '/')) { PARAM = decodeURIComponent(r.slice(p.length + 1)); r = p; }
+  $('#app').innerHTML = (V[r] || V[''])(); (H[r] || (() => {}))();
+  const o = $('#out'); if (o) o.onclick = () => { if (r.startsWith('admin')) { ADM = ''; AD = null; store.set('ce-adm', null); } else { setSess(null); EV = null; VD = null; ST = null; } go(''); }; }
+window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
+$('#reset').onclick = e => { e.preventDefault(); setSess(null); D = blankDraft(); store.set('ce-draft', D); EV = null; VD = null; ST = null; PEND = null; INV = null; go(''); render(); };
+render(); loadLive().then(() => { if (/^#\/?(start|events|event\/|guide)/.test(location.hash)) render(); });
+})();
+</script>
+</body>
+</html>
