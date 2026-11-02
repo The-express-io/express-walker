@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#0f1412;--muted:#5a5f5c;--line:#e6e6e6;--soft:#f4f4f4;--blue:#0047ab;--blue2:#00337d;--sky:#4f7dff;--ok:#1d7a46;--warn:#9a5b00}
 *{box-sizing:border-box}html,body{margin:0}
@@ -111,74 +111,116 @@ footer.f{border-top:1px solid var(--line);padding:28px 40px;display:flex;justify
 .mc .tc input:checked+span{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px #0f1412}.mc .tc input:checked+span small{color:var(--muted)}
 fieldset.fs{border:0;margin:0;padding:0;display:grid;gap:10px}fieldset.fs legend{font-size:13.5px;font-weight:600;padding:0;margin-bottom:10px}
 
+/* Figma app shell (vendor + Super Admin dashboards) */
+.app{display:grid;grid-template-columns:236px minmax(0,1fr);min-height:calc(100vh - 32px);font-family:Montserrat,system-ui,sans-serif;background:#f7f7f7}
+.app .side{background:#1e1e1e;color:#fff;padding:28px 0;display:flex;flex-direction:column;position:sticky;top:0;height:calc(100vh - 32px);overflow:auto}
+.app .lg{display:flex;align-items:center;gap:10px;padding:0 24px 36px;color:#fff;text-decoration:none;font-size:17px;font-weight:500}.app .lg img{width:30px;height:30px;border-radius:50%;background:#fff}
+.app .side nav{display:flex;flex-direction:column}
+.app .grp{padding:16px 24px 4px;font-size:15px;font-weight:600}
+.app a.it{display:block;padding:9px 24px;font-size:15px;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;border-left:2px solid transparent}
+.app a.it.sub{padding:5px 24px 5px 38px;font-size:13.5px}
+.app a.it:hover{color:#fff}.app a.it.on{color:#fff;font-weight:600;border-left-color:#fff}
+.app .out{margin-top:auto;padding:24px 24px 0}.app .out button{background:none;border:0;color:#fff;font:600 15px Montserrat,system-ui,sans-serif;cursor:pointer;padding:0}
+.app .cnt{padding:32px 36px 56px;min-width:0}
+.app .cnt>section{padding-left:0!important;padding-right:0!important;background:none!important}.app .cnt>section.s{padding:0}
+.bed .mc{grid-template-columns:1fr}.bed .tc span{padding:12px 14px}.bed .tcs{grid-template-columns:1fr 1fr}.app .wrap,.app .narrow{max-width:none;padding:0}
+.app .d2{font:600 26px/1.15 Montserrat,system-ui,sans-serif;letter-spacing:-.01em}.app .d3{font:600 18px Montserrat,system-ui,sans-serif}.app .lead{font-size:15px}.app p.caps.m{display:none}
+.app .btn,.ob .btn{border-radius:6px;font-family:Montserrat,system-ui,sans-serif;min-height:40px;font-size:13.5px}.app .card{border-radius:10px}
+.ph1{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.ph1 h1{font:600 24px Montserrat,system-ui,sans-serif;letter-spacing:-.01em}.ph1 p{margin:4px 0 0;color:#6b6b6b;font-size:15px}
+.fb{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 16px;border-radius:6px;font:600 13.5px Montserrat,system-ui,sans-serif;border:1px solid #1e1e1e;background:#1e1e1e;color:#fff;cursor:pointer;text-decoration:none;white-space:nowrap}
+.fb:hover{background:#000}.fb.o{background:#fff;color:#1e1e1e;border-color:#dcdcdc}.fb.o:hover{border-color:#1e1e1e}.fb svg{width:15px;height:15px}
+.fsearch{height:38px;width:240px;border:1px solid #dcdcdc;border-radius:6px;padding:0 14px;font:14px Montserrat,system-ui,sans-serif;background:#fff}.fsearch:focus{outline:none;border-color:#1e1e1e}
+.fpanel{background:#fff;border:1px solid #e6e6e6;border-radius:10px;overflow:hidden}
+.fsub{border-right:1px solid #ececec;padding:18px 14px;display:flex;flex-direction:column;gap:2px}
+.fsub .t{font-size:13.5px;color:#6b6b6b;padding:0 10px 8px}
+.fsub button{display:flex;justify-content:space-between;align-items:center;gap:6px;text-align:left;border:0;background:none;padding:9px 10px;border-radius:6px;font:500 14.5px Montserrat,system-ui,sans-serif;cursor:pointer;color:#1e1e1e;white-space:nowrap}
+.fsub button.on{background:#ececec}.fsub button:hover:not(.on){background:#f5f5f5}
 /* Builder */
-.bld{display:flex;flex-direction:column;height:calc(100vh - 104px)}
-.bt{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.bt .bn{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
-.seg{display:inline-flex;background:var(--soft);border-radius:999px;padding:3px}.seg button{border:0;background:none;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;color:var(--muted)}.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
-.bb{flex:1;display:grid;grid-template-columns:440px minmax(0,1fr);min-height:0}
-.ed{border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
-.tabs{display:flex;gap:4px;padding:10px 16px;border-bottom:1px solid var(--line);overflow-x:auto}
-.tabs button{border:0;background:none;padding:8px 12px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap}.tabs button.on{background:var(--soft);color:var(--ink)}
-.edp{padding:24px;overflow:auto;display:grid;gap:20px;align-content:start;flex:1}
-.pvw{background:#e9eaea;overflow:auto;padding:24px}
-.pvf{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.12);margin:0 auto;max-width:1100px}
-.pvf.phone{max-width:390px;border-radius:28px}
+.seg{display:inline-flex;background:#f0f0f0;border-radius:6px;padding:3px}.seg button{border:0;background:none;border-radius:4px;padding:6px 12px;font:600 13px Montserrat,system-ui,sans-serif;cursor:pointer;color:#6b6b6b}.seg button.on{background:#fff;color:#1e1e1e;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.bgrid{display:grid;grid-template-columns:180px 360px minmax(0,1fr);height:calc(100vh - 170px);min-height:560px}
+.bed{padding:22px;display:grid;gap:18px;align-content:start;border-right:1px solid #ececec;overflow:auto}
+.bpv{background:#efefef;padding:18px;overflow:auto}
+.pvf{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.08);margin:0 auto;width:1120px}
+.pvf.phone{width:390px;border-radius:22px}
 .pvf a{pointer-events:none}
+.mgrid{display:grid;grid-template-columns:200px minmax(0,1fr);min-height:calc(100vh - 170px)}
+.pcards{padding:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-content:start}
+.pc{display:grid;grid-template-columns:130px minmax(0,1fr);gap:22px;border:1px solid #e6e6e6;border-radius:8px;padding:18px;background:#fff;font-family:Montserrat,system-ui,sans-serif}
+.pc .im{aspect-ratio:1;border-radius:4px;background:#d9d9d9;overflow:hidden}.pc .im img{width:100%;height:100%;object-fit:cover;display:block}
+.pc h3{font:600 16px Montserrat,system-ui,sans-serif;letter-spacing:0}.pc p{margin:6px 0 0;font-size:14px;line-height:1.45;color:#6b6b6b}
+.pc .ft{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:14px}
+.price{font-family:'Playfair Display',Georgia,serif;font-size:22px;color:#1e1e1e}.price small{font-family:Montserrat,system-ui,sans-serif;font-size:12.5px;color:#6b6b6b;margin-left:6px}
+.ic{border:0;background:none;cursor:pointer;padding:4px;color:#1e1e1e}.ic svg{width:20px;height:20px;display:block}
+.mempty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;min-height:420px;text-align:center;font-family:Montserrat,system-ui,sans-serif}.mempty b{font-size:20px;font-weight:600}
 .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.thumb{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--soft)}.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;background:var(--soft)}.thumb img{width:100%;height:100%;object-fit:cover}
 .thumb button{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;cursor:pointer;line-height:1}
-.cover{aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--soft);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px}.cover img{width:100%;height:100%;object-fit:cover}
-.drop{border:1.5px dashed #c8c8c8;border-radius:12px;background:#fafafa;padding:22px;text-align:center;cursor:pointer;font-size:14px;color:var(--muted);width:100%}
-.drop:hover{border-color:var(--ink);color:var(--ink)}
-.sw{display:flex;gap:10px}.sw label{cursor:pointer;position:relative}.sw input{position:absolute;opacity:0}.sw span{display:block;width:40px;height:40px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.1)}.sw input:checked+span{box-shadow:0 0 0 2px #fff,0 0 0 4px #0f1412}.sw input:focus-visible+span{outline:2px solid var(--blue);outline-offset:4px}
+.cover{aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:var(--soft)}.cover img{width:100%;height:100%;object-fit:cover}
+.drop{border:0;border-radius:8px;background:#f3f3f5;padding:22px;text-align:center;cursor:pointer;font:14px Montserrat,system-ui,sans-serif;color:#6b6b6b;width:100%}
+.drop small{display:block;font-size:11.5px;color:#9a9a9a;margin-top:2px}.drop:hover{color:#1e1e1e;background:#ececee}
 .irow{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
-.irow .t{width:52px;height:52px;border-radius:10px;background:var(--soft);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}.irow .t img{width:100%;height:100%;object-fit:cover}
+.irow .t{width:52px;height:52px;border-radius:6px;background:#d9d9d9;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}.irow .t img{width:100%;height:100%;object-fit:cover}
 .tog{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--line);cursor:pointer}
-.tog input{width:20px;height:20px;accent-color:#0f1412}
-.hint{border-radius:12px;padding:12px 14px;background:#e8eefb;color:#0b2a63;font-size:13.5px}
+.tog input{width:20px;height:20px;accent-color:#1e1e1e}
+.hint{border-radius:8px;padding:12px 14px;background:#f3f3f5;color:#3a3a3a;font-size:13.5px}
+.fm{font-family:Montserrat,system-ui,sans-serif}.fm label.f{font-weight:600;font-size:14px}.fm .in{background:#f3f3f5;border-radius:8px;height:44px;font-size:15px}.fm textarea.in{height:auto}
+.catbox{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:#f3f3f5;border-radius:8px;padding:6px}
+.catbox label{cursor:pointer}.catbox input{position:absolute;opacity:0}.catbox span{display:inline-block;padding:6px 10px;border-radius:4px;font-size:12.5px;color:#6b6b6b}
+.catbox input:checked+span{background:#fff;color:#1e1e1e;box-shadow:inset 0 0 0 1px #1e1e1e}.catbox input:focus-visible+span{outline:2px solid var(--blue)}
+.pfx{display:flex;background:#f3f3f5;border-radius:8px;overflow:hidden}.pfx b{display:flex;align-items:center;padding:0 12px;background:#e6e6e8;color:#6b6b6b;font-weight:500}.pfx .in{border-radius:0}
 
-/* Vendor page (the public page and the builder preview share this) */
+/* Vendor page (public page + builder preview), Figma style */
 .vpw{container-type:inline-size}
-.vp{--acc:#2a2c2f;background:#fff;color:var(--ink)}
-.vp .cv{position:relative;min-height:540px;display:flex;align-items:flex-end;color:#fff;background:radial-gradient(120% 90% at 15% 0%,color-mix(in srgb,var(--acc) 70%,#fff 10%),var(--acc) 55%,#111 100%);overflow:hidden}
-.vp .cv>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.vp .cv::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.1) 70%)}
-.vp .ci{position:relative;z-index:1;padding:56px;width:100%}
-.vp h1{font-size:clamp(40px,8cqw,104px);line-height:.95;letter-spacing:-.045em}
-.vp .tg{font-size:clamp(17px,1.8cqw,21px);max-width:620px;margin:20px 0 0;color:rgba(255,255,255,.9)}
-.vp .ca{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.vp .ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75)}
-.vp .k{color:var(--acc);margin:0 0 12px}
-.vp .hl{display:grid;grid-template-columns:1.2fr 1.2fr 1fr;gap:40px;padding:44px 56px;border-bottom:1px solid var(--line)}
-.vp .vch{display:flex;flex-wrap:wrap;gap:8px}.vp .vch span{padding:7px 14px;border-radius:999px;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 35%,#ddd);font-size:13.5px;font-weight:500}
-.vp .ab{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;padding:64px 56px}
-.vp .ab h2,.vp .mn h2,.vp .gl h2{font-size:clamp(30px,4cqw,48px);line-height:1}
-.vp .ab p{font-size:18px;line-height:1.65;margin:0;max-width:680px}
-.vp .mn{padding:64px 56px;background:var(--soft)}
-.vp .mh{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:28px}
-.vp .vt{display:flex;gap:6px;flex-wrap:wrap}.vp .vt button{border:0;background:#fff;border-radius:999px;padding:8px 15px;font-size:13.5px;font-weight:600;cursor:pointer;box-shadow:inset 0 0 0 1px var(--line)}.vp .vt button.on{background:var(--acc);color:#fff;box-shadow:none}
-.vp .mg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.vp .mi{display:grid;grid-template-columns:120px minmax(0,1fr);gap:18px;background:#fff;border-radius:16px;padding:14px;border:1px solid var(--line)}
-.vp .mi .t{aspect-ratio:1;border-radius:12px;overflow:hidden;background:var(--soft);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--muted)}
-.vp .mi .t img{width:100%;height:100%;object-fit:cover}
-.vp .mi h3{font-size:18px;letter-spacing:-.02em}.vp .mi p{margin:4px 0 10px;font-size:14px;color:var(--muted)}
-.vp .pr{font-weight:600}.vp .pr span{font-weight:400;color:var(--muted);font-size:13px;margin-left:6px}
-.vp .gl{padding:64px 56px}
-.vp .gg{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:clamp(140px,18cqw,240px);gap:10px;margin-top:28px}.vp .gg img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block}
-.vp .gg img:first-child{grid-column:span 2;grid-row:span 2}
-.vp .bk{background:var(--acc);color:#fff;padding:64px 56px;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
-.vp .bk h2{font-size:clamp(30px,4.4cqw,56px);line-height:1;max-width:640px}
-.vp .bk p{margin:14px 0 0;color:rgba(255,255,255,.8);max-width:520px}
-.vp .ept{border:1.5px dashed #cfcfcf;border-radius:14px;padding:26px;text-align:center;color:var(--muted);font-size:14px;background:#fff}
-@container (max-width:700px){
- .vp .cv{min-height:460px}.vp .ci{padding:28px 22px}
- .vp .hl{grid-template-columns:1fr;gap:26px;padding:32px 22px}
- .vp .ab{grid-template-columns:1fr;gap:16px;padding:44px 22px}.vp .ab p{font-size:16.5px}
- .vp .mn,.vp .gl{padding:44px 22px}.vp .mg{grid-template-columns:1fr}.vp .mi{grid-template-columns:84px minmax(0,1fr);gap:14px}
- .vp .gg{grid-template-columns:repeat(2,1fr)}.vp .bk{padding:44px 22px}
+.vp{font-family:Montserrat,system-ui,sans-serif;background:#f7f7f7;color:#1e1e1e}
+.bdg{display:inline-block;padding:5px 12px;border-radius:999px;font:600 12px Montserrat,system-ui,sans-serif}
+.vp .vh{background:#1e1e1e;color:#fff;padding:56px 48px}
+.vp .vhi{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.vp h1{font:700 clamp(34px,4.6cqw,52px)/1.08 Montserrat,system-ui,sans-serif;letter-spacing:-.02em;margin:16px 0 0}
+.vp .mt{color:rgba(255,255,255,.6);font-size:14.5px;margin:10px 0 0}
+.vp .tg{font-size:17px;line-height:1.6;color:rgba(255,255,255,.85);margin:20px 0 0;max-width:520px}
+.vp .ca{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.vb1,.vb2{height:46px;padding:0 22px;border-radius:6px;font:600 14.5px Montserrat,system-ui,sans-serif;display:inline-flex;align-items:center;text-decoration:none;cursor:pointer}
+.vb1{background:#fff;color:#1e1e1e;border:0}.vb2{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
+.vp .cvr{aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#2c2c2c;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);font-size:14px}
+.vp .cvr img{width:100%;height:100%;object-fit:cover}
+.vp .vbd{max-width:1120px;margin:0 auto;padding:36px 48px 64px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start}
+.vp .vc{background:#fff;border:1px solid #e6e6e6;border-radius:10px;padding:26px}
+.vp h2{font:600 20px Montserrat,system-ui,sans-serif;letter-spacing:-.01em}
+.vp .ab{font-size:15.5px;line-height:1.7;color:#444;margin:12px 0 0}
+.vp .vm{display:grid;grid-template-columns:170px minmax(0,1fr);border:1px solid #e6e6e6;border-radius:10px;background:#fff;overflow:hidden}
+.vp .vm .pcards{grid-template-columns:1fr}
+.vp .vsd{position:sticky;top:20px}
+.vp .lbl{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6b6b6b;margin:20px 0 0}
+.vp .chs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.vp .chs span{padding:7px 13px;border-radius:999px;border:1px solid #dcdcdc;font-size:13px;font-weight:500}
+.vbk{width:100%;height:46px;border-radius:6px;background:#1e1e1e;color:#fff;font:600 14.5px Montserrat,system-ui,sans-serif;display:flex;align-items:center;justify-content:center;text-decoration:none;margin-top:22px}
+.vp .gg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.vp .gg img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block}
+@container (max-width:760px){
+ .vp .vh{padding:28px 18px 32px}.vp .vhi{grid-template-columns:1fr;gap:22px}.vp .cvr{order:-1}
+ .vp .vbd{grid-template-columns:1fr;padding:18px 14px 40px;gap:16px}.vp .vsd{position:static;order:-1}.vp .vc{padding:20px}
+ .vp .vm{grid-template-columns:1fr}.vp .vm .fsub{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid #ececec;padding:10px}.vp .vm .fsub .t{display:none}
+ .vp .pc{grid-template-columns:92px minmax(0,1fr);gap:14px;padding:14px}.vp .pcards{padding:12px}.vp .gg{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:960px){.split{grid-template-columns:1fr}.bld{height:auto}.bb{grid-template-columns:1fr}.ed{border-right:0;border-bottom:1px solid var(--line)}.pvw{padding:14px}.ob{grid-template-columns:1fr}.ob .sd{position:static;height:auto;padding:28px 18px;gap:24px}.ob .mn{padding:36px 18px 72px}.mc{grid-template-columns:1fr}}
+
+/* Field Guide catalogue (Figma directory) */
+.fdir{font-family:Montserrat,system-ui,sans-serif;background:#f7f7f7}
+.fdh{background:#1e1e1e;color:#fff;text-align:center;padding:56px 20px 44px}
+.fdh h1{font:700 clamp(28px,3.4vw,40px) Montserrat,system-ui,sans-serif;letter-spacing:-.01em}.fdh p{color:rgba(255,255,255,.6);margin:8px 0 0}
+.fsrch{max-width:800px;margin:28px auto 0;background:#fff;border-radius:8px;padding:5px;display:flex;gap:6px}.fsrch input{flex:1;border:0;padding:0 18px;font:15px Montserrat,system-ui,sans-serif;outline:none;min-width:0;background:none}
+.fdb{max-width:1240px;margin:0 auto;padding:24px 40px 72px}
+.fdf{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;font-size:13.5px;color:#6b6b6b}
+.fdf .chip span{font-size:13px;font-weight:600;padding:8px 18px;background:#fff}.fdf .chip input:checked+span{background:#1e1e1e}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:24px}
+.dcard{background:#fff;border:1px solid #e6e6e6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.dph{aspect-ratio:16/9;background:#e9e9e9;display:flex;align-items:center;justify-content:center;color:#9a9a9a;font-size:13px;text-decoration:none}.dph img{width:100%;height:100%;object-fit:cover}
+.db{padding:14px 16px 16px;display:flex;flex-direction:column;gap:3px;flex:1;align-items:flex-start}
+.dn{font:700 18px Montserrat,system-ui,sans-serif;text-decoration:none;color:#1e1e1e;margin-top:10px}.dm{font-size:13px;color:#6b6b6b}
+.dbtn{align-self:stretch;margin-top:18px;height:40px;border-radius:6px;background:#1e1e1e;color:#fff;font:600 14px Montserrat,system-ui,sans-serif;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.app .fdh{border-radius:10px 10px 0 0}.app .fdb{padding:24px 0 48px}
+.ob{font-family:Montserrat,system-ui,sans-serif}.ob .d2{font:700 34px/1.1 Montserrat,system-ui,sans-serif;letter-spacing:-.02em}.ob .in{background:#f3f3f5;border-radius:8px}
+@media(max-width:1100px){.bgrid{grid-template-columns:160px minmax(0,1fr);height:auto}.bpv{grid-column:1/-1;max-height:none}.bed{border-right:0}}
+@media(max-width:900px){.app{grid-template-columns:1fr}.app .side{position:static;height:auto;flex-direction:row;align-items:center;overflow-x:auto;padding:10px 12px;gap:4px}.app .side nav{flex-direction:row}.app .grp{display:none}.app .lg{padding:0 10px 0 0;font-size:0}.app a.it,.app a.it.sub{padding:8px 10px;border-left:0;white-space:nowrap;font-size:13.5px}.app .out{margin:0;padding:0 0 0 10px}.app .cnt{padding:20px 16px 40px}.bgrid,.mgrid{grid-template-columns:1fr}.fsub{border-right:0;border-bottom:1px solid #ececec;flex-direction:row;overflow-x:auto}.fsub .t{display:none}.pcards{grid-template-columns:1fr}.pc{grid-template-columns:92px minmax(0,1fr);gap:14px}.fsearch{width:100%}}
+@media(max-width:960px){.split{grid-template-columns:1fr}.ob{grid-template-columns:1fr}.ob .sd{position:static;height:auto;padding:28px 18px;gap:24px}.ob .mn{padding:36px 18px 72px}.mc{grid-template-columns:1fr}}
 @media(max-width:860px){header.h .in{padding:0 18px;grid-template-columns:auto 1fr}.nl{display:none}.wm span{display:none}.wrap,.narrow{padding:0 18px}.g2,.g3{grid-template-columns:1fr}.blk{grid-template-columns:1fr;gap:16px}.bt{padding:12px 16px}}
 @media(max-width:860px){.gentry{grid-template-columns:1fr!important}.gentry>div{order:0!important}.gentry>div:first-child{min-height:220px!important}}
 @media(max-width:700px){.tl{grid-template-columns:repeat(3,1fr)}}
@@ -264,7 +306,11 @@ function header(mode) {
   return `<header class="h"><div class="in"><nav class="nl" aria-label="Main">${left.map(([h, t]) => `<a href="#/${h}" class="${cur === h ? 'on' : ''}">${t}</a>`).join('')}</nav><a class="wm" href="#/"><img src="${LOGO}" alt="">${mode === 'admin' ? '<span>Super Admin</span>' : '<span>Cülinary Expréss</span>'}</a><div class="hr">${right}</div></div></header>`;
 }
 const footer = () => `<footer class="f"><span>© Cülinary Expréss · Order Your Moment</span><span><a href="mailto:plan@culinary.express">plan@culinary.express</a> · <a href="${REVIEWS}" target="_blank" rel="noopener">★ Google Reviews</a> · <a href="#/join/vendor">For vendors</a> · <a href="#/join/staff">Work our events</a> · <a href="#/admin">Super Admin</a></span></footer>`;
-const page = (mode, body) => `${header(mode)}<main>${body}</main>${footer()}`;
+const SIDENAV = { admin: [['admin', 'Dispatch Board'], ['grp', 'Management'], ['admin/vendors', 'Vendor Pages', 1], ['admin/crew', 'Crew', 1], ['admin/guide', 'Fíeld Güide']], vendor: [['vendor/home', 'Overview'], ['vendor', 'Vendor Page'], ['vendor?tab=menu', 'Menu', 1], ['vendor/orders', 'Orders']] };
+const navOn = (h, full) => full === h || (h === 'vendor' && /^vendor\?tab=(?!menu)/.test(full)) || (h === 'admin' && full.startsWith('admin/event/')) || (h === 'admin/vendors' && full.startsWith('admin/page/'));
+const shell = (mode, body) => { const full = location.hash.replace(/^#\/?/, '');
+  return `<div class="app"><aside class="side"><a class="lg" href="#/${mode === 'admin' ? 'admin' : 'vendor/home'}"><img src="${LOGO}" alt="">Cülinary Expréss</a><nav aria-label="Dashboard">${SIDENAV[mode].map(([h, t, sub]) => h === 'grp' ? `<span class="grp">${t}</span>` : `<a class="it ${sub ? 'sub' : ''} ${navOn(h, full) ? 'on' : ''}" href="#/${h}">${t}</a>`).join('')}</nav><div class="out"><button type="button" id="out">${mode === 'admin' ? 'Leave admin' : 'Log out'}</button></div></aside><main class="cnt">${body}</main></div>`; };
+const page = (mode, body) => mode === 'admin' || mode === 'vendor' ? shell(mode, body) : `${header(mode)}<main>${body}</main>${footer()}`;
 const loading = mode => page(mode, `<section class="s"><div class="wrap"><p class="m">Loading…</p></div></section>`);
 const V = {}, H = {};
 
@@ -280,20 +326,30 @@ V[''] = () => page('client', `
 </div><p class="m sml" style="margin:28px 0 0">Already have an account? <a href="#/signin">Sign in</a></p></div></section>`);
 
 // ---------- Vendor page (public + builder preview) ----------
+const BADGE = { 'Restaurant': ['#e7f6ec', '#1f7a3f'], 'Event Venue': ['#efeafd', '#5b3fc4'], 'Farm': ['#fff1e0', '#c2410c'], 'Winery': ['#fff1e0', '#c2410c'], 'Bakery + Desserts': ['#fdecf1', '#b4235a'], 'Coffee + Espresso': ['#e8effd', '#1d4ed8'], 'Bar + Drinks': ['#eef0f3', '#334155'], 'Rentals': ['#e6f7f8', '#0e7490'], 'Entertainment': ['#fdf6d8', '#a16207'] };
+const badge = t => { const [b, c] = BADGE[t] || BADGE.Restaurant; return `<span class="bdg" style="background:${b};color:${c}">${esc(t)}</span>`; };
+const MODEL = { onsite: 'Onsite Events', offsite: 'Offsite Catering', both: 'Onsite + Offsite' };
+const metaOf = v => [MODEL[v.mode] || MODEL.offsite, v.area].filter(Boolean).join(' — ');
+const sv = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const ICON = { edit: sv('<path d="M14.5 5.5l4 4M4 20l1-5L15.5 4.5a2.1 2.1 0 013 3L8 18l-4 2z"/>'), trash: sv('<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/>'), up: sv('<path d="M12 15V4M7 9l5-5 5 5M5 15v5h14v-5"/>'), plus: sv('<path d="M12 5v14M5 12h14"/>') };
+const pcard = (i, k, edit) => `<div class="pc" data-icat="${esc(i.cat)}"><div class="im">${i.img ? `<img src="${esc(i.img)}" alt="" loading="lazy">` : ''}</div><div style="min-width:0;display:flex;flex-direction:column"><h3>${esc(i.n)}</h3>${i.d ? `<p>${esc(i.d)}</p>` : ''}<div class="ft"><span class="price">${money(i.p)}${i.u ? `<small>${esc(i.u)}</small>` : ''}</span>${edit ? `<span style="display:flex;gap:4px"><button class="ic" type="button" data-edit="${k}" aria-label="Edit ${esc(i.n)}">${ICON.edit}</button><button class="ic" type="button" data-del="${k}" aria-label="Delete ${esc(i.n)}">${ICON.trash}</button></span>` : ''}</div></div></div>`;
 function vendorPage(v, pv) {
   const T = ti(v.type), S = v.sections || {}, items = v.items || [], cta = pv ? '#' : `#/start?v=${v.id}`;
-  const cats = (v.cats || []).filter(c => items.some(i => i.cat === c));
-  const thumb = (src, label) => src ? `<img src="${esc(src)}" alt="" loading="lazy">` : esc(initials(label));
-  const hl = S.highlights !== false && ((v.perfectFor || []).length || (v.features || []).length || pv);
-  return `<article class="vp" style="--acc:${ACC[v.accent] || ACC.charcoal}">
- <header class="cv">${v.cover ? `<img src="${esc(v.cover)}" alt="">` : ''}<div class="ci"><p class="caps" style="margin:0 0 16px;color:rgba(255,255,255,.85)">${esc(v.type)}${v.area ? ' · ' + esc(v.area) : ''}</p><h1>${esc(v.name || 'Your page name')}</h1>${v.tagline ? `<p class="tg">${esc(v.tagline)}</p>` : pv ? '<p class="tg" style="opacity:.6">Your tagline shows here.</p>' : ''}
-  <div class="ca"><a class="btn wt" href="${cta}">${T.cta} ↗</a>${S.menu !== false && items.length ? `<button class="btn ghost" type="button" data-vscroll>See the ${esc(T.sec.toLowerCase())}</button>` : ''}</div></div></header>
- ${hl ? `<section class="hl"><div><p class="caps k">Perfect for</p><div class="vch">${(v.perfectFor || []).map(x => `<span>${esc(x)}</span>`).join('') || '<span style="opacity:.5">Pick a few in Highlights</span>'}</div></div><div><p class="caps k">What sets them apart</p><div class="vch">${(v.features || []).map(x => `<span>${esc(x)}</span>`).join('') || '<span style="opacity:.5">Pick a few in Highlights</span>'}</div></div><div><p class="caps k">How they serve</p><b style="font-size:18px">${MODE[v.mode]?.[2] || MODE.offsite[2]}</b><p class="m" style="margin:4px 0 0;font-size:14px">Staffed and run by Cülinary Expréss.</p></div></section>` : ''}
- ${S.about !== false && (v.about || pv) ? `<section class="ab"><div><p class="caps k">About</p><h2>${esc(v.name || 'About')}</h2></div><p>${v.about ? esc(v.about).replace(/\n/g, '<br>') : '<span class="m">Tell clients your story in Basics.</span>'}</p></section>` : ''}
- ${S.menu !== false && (items.length || pv) ? `<section class="mn" data-vmenu><div class="mh"><div><p class="caps k">${esc(T.sec)}</p><h2>Order straight from ${esc(v.name || 'them')}.</h2></div>${cats.length > 1 ? `<div class="vt" role="tablist">${['All', ...cats].map((c, i) => `<button type="button" data-vcat="${esc(c)}" class="${i ? '' : 'on'}">${esc(c)}</button>`).join('')}</div>` : ''}</div>
-  ${items.length ? `<div class="mg">${items.map(i => `<div class="mi" data-icat="${esc(i.cat)}"><div class="t">${thumb(i.img, i.n)}</div><div><h3>${esc(i.n)}</h3>${i.d ? `<p>${esc(i.d)}</p>` : '<p></p>'}<div class="pr">${money(i.p)}${i.u ? `<span>${esc(i.u)}</span>` : ''}</div></div></div>`).join('')}</div>` : `<div class="ept">Your items show up here. Add them under ${esc(T.sec)}.</div>`}</section>` : ''}
- ${S.gallery !== false && (v.gallery || []).length ? `<section class="gl"><p class="caps k">Gallery</p><h2>A taste.</h2><div class="gg">${v.gallery.map(g => `<img src="${esc(g)}" alt="" loading="lazy">`).join('')}</div></section>` : ''}
- <section class="bk"><div><p class="caps" style="margin:0;color:rgba(255,255,255,.75)">Served by Cülinary Expréss</p><h2 style="margin-top:14px">Bring ${esc(v.name || 'them')} to your event.</h2><p>We handle the staff, rentals and service. You enjoy your moment.</p></div><a class="btn wt" href="${cta}">Start your inquiry ↗</a></section>
+  const cats = (v.cats || []).filter(c => items.some(i => i.cat === c)), pf = v.perfectFor || [], ft = v.features || [];
+  return `<article class="vp">
+ <section class="vh"><div class="vhi"><div>${badge(v.type)}<h1>${esc(v.name || 'Your page name')}</h1><p class="mt">${esc(metaOf(v))}</p>${v.tagline ? `<p class="tg">${esc(v.tagline)}</p>` : pv ? '<p class="tg" style="opacity:.45">Your tagline shows here.</p>' : ''}
+  <div class="ca"><a class="vb1" href="${cta}">${esc(T.cta)}</a>${S.menu !== false && items.length ? `<button class="vb2" type="button" data-vscroll>View ${esc(T.sec.toLowerCase())}</button>` : ''}</div></div>
+  <div class="cvr">${v.cover ? `<img src="${esc(v.cover)}" alt="">` : 'photo'}</div></div></section>
+ <div class="vbd"><div style="display:grid;gap:20px;min-width:0">
+  ${S.about !== false && (v.about || pv) ? `<div class="vc"><h2>About</h2><p class="ab">${v.about ? esc(v.about).replace(/\n/g, '<br>') : '<span style="opacity:.45">Tell clients your story in Business info.</span>'}</p></div>` : ''}
+  ${S.menu !== false && (items.length || pv) ? `<div data-vmenu style="scroll-margin-top:20px"><div style="display:flex;justify-content:space-between;align-items:end;margin:4px 2px 12px"><h2>${esc(T.sec)}</h2><span style="font-size:13.5px;color:#6b6b6b">${items.length} item${items.length === 1 ? '' : 's'}</span></div>
+   ${items.length ? `<div class="vm">${cats.length ? `<div class="fsub"><span class="t">Categories</span>${['All', ...cats].map((c, i) => `<button type="button" data-vcat="${esc(c)}" class="${i ? '' : 'on'}">${esc(c)}</button>`).join('')}</div>` : ''}<div class="pcards" style="${cats.length ? '' : 'grid-column:1/-1'}">${items.map((i, k) => pcard(i, k, false)).join('')}</div></div>` : '<div class="vc" style="text-align:center;color:#6b6b6b">Your items show up here.</div>'}</div>` : ''}
+  ${S.gallery !== false && (v.gallery || []).length ? `<div class="vc"><h2>Gallery</h2><div class="gg">${v.gallery.map(g => `<img src="${esc(g)}" alt="" loading="lazy">`).join('')}</div></div>` : ''}
+ </div>
+ <aside class="vsd"><div class="vc"><h2 style="font-size:18px">${esc(T.cta)}</h2><p style="margin:6px 0 0;font-size:14px;color:#6b6b6b">${esc(metaOf(v))}</p>
+  ${S.highlights !== false && (pf.length || pv) ? `<p class="lbl">Perfect for</p><div class="chs">${pf.map(x => `<span>${esc(x)}</span>`).join('') || '<span style="opacity:.45">Pick in Highlights</span>'}</div>` : ''}
+  ${S.highlights !== false && ft.length ? `<p class="lbl">Unique features</p><div class="chs">${ft.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : ''}
+  <a class="vbk" href="${cta}">${esc(T.cta)}</a><p style="margin:12px 0 0;font-size:12.5px;color:#6b6b6b;text-align:center">Staffed and run by Cülinary Expréss</p></div></aside></div>
 </article>`;
 }
 document.addEventListener('click', e => {
@@ -317,14 +373,14 @@ const fBasics = v => `
  <label class="f">Location / service area<input class="in" data-f="area" value="${esc(v.area)}" placeholder="e.g. Austin, TX (serving Greater Austin)"></label>
  <fieldset class="fs"><legend>How do you offer your services?</legend><div class="mc">${Object.entries(MODE).map(([k, [t, d]]) => `<label class="tc"><input type="radio" name="mode" value="${k}" ${v.mode === k ? 'checked' : ''}><span><b>${t}</b><small>${d}</small></span></label>`).join('')}</div></fieldset>`;
 const fHighlights = v => `<div style="display:grid;gap:10px"><b class="sml">Perfect for <span class="m" style="font-weight:400">(select all that apply)</span></b>${chipSet('perfectFor', ti(v.type).perfect, v)}</div><div style="display:grid;gap:10px"><b class="sml">Unique features <span class="m" style="font-weight:400">(select all that apply)</span></b>${chipSet('features', ti(v.type).feat, v)}</div>`;
-const fCover = v => `<div style="display:grid;gap:10px"><b class="sml">Cover photo</b>${v.cover ? `<div class="cover"><img src="${esc(v.cover)}" alt="Cover photo"></div><div style="display:flex;gap:14px"><button class="u sml" type="button" data-up="cover">Replace</button><button class="u sml" type="button" data-rm="cover">Remove</button></div>` : `<button class="drop" type="button" data-up="cover">+ Upload a cover photo<br><span class="sml">The big image at the top of the page. JPG, PNG or HEIC.</span></button>`}</div>`;
+const fCover = v => `<div style="display:grid;gap:10px"><b class="sml">Cover photo</b>${v.cover ? `<div class="cover"><img src="${esc(v.cover)}" alt="Cover photo"></div><div style="display:flex;gap:14px"><button class="u sml" type="button" data-up="cover">Replace</button><button class="u sml" type="button" data-rm="cover">Remove</button></div>` : `<button class="drop" type="button" data-up="cover">+ Upload cover photo<small>The main photo on your page. JPG, PNG or WEBP</small></button>`}</div>`;
 const fLook = v => `${fCover(v)}
- <fieldset class="fs"><legend>Accent color</legend><div class="sw">${Object.entries(ACC).map(([k, c]) => `<label title="${k}"><input type="radio" name="accent" value="${k}" ${v.accent === k ? 'checked' : ''} aria-label="${k}"><span style="background:${c}"></span></label>`).join('')}</div><span class="m sml">Used for labels, menu tabs and the booking band.</span></fieldset>
- <div style="display:grid;gap:10px"><b class="sml">Gallery <span class="m" style="font-weight:400">· up to 9 photos</span></b>${(v.gallery || []).length ? `<div class="thumbs">${v.gallery.map((g, i) => `<div class="thumb"><img src="${esc(g)}" alt=""><button type="button" data-rmg="${i}" aria-label="Remove photo">×</button></div>`).join('')}</div>` : ''}${(v.gallery || []).length < 9 ? `<button class="drop" type="button" data-up="gallery">+ Add photos</button>` : ''}</div>`;
+ <div style="display:grid;gap:10px"><b class="sml">Gallery <span class="m" style="font-weight:400">· up to 9 photos</span></b>${(v.gallery || []).length ? `<div class="thumbs">${v.gallery.map((g, i) => `<div class="thumb"><img src="${esc(g)}" alt=""><button type="button" data-rmg="${i}" aria-label="Remove photo">×</button></div>`).join('')}</div>` : ''}${(v.gallery || []).length < 9 ? `<button class="drop" type="button" data-up="gallery">+ Add photos<small>JPG, PNG or WEBP</small></button>` : ''}</div>`;
+const emptyMenu = v => `<div class="mempty"><b>You need at least one ${ti(v.type).sec === 'Menu' ? 'dish' : 'item'} to start</b><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="fb o" type="button" data-imp>${ICON.up} Import menu</button><button class="fb" type="button" data-additem>${ICON.plus} Add item</button></div></div>`;
 const fMenu = v => { const T = ti(v.type), items = v.items || [];
-  return `<div style="display:grid;gap:10px"><b class="sml">Categories</b><div class="chips">${(v.cats || []).map((c, i) => `<span class="tchip on" style="display:inline-flex;gap:8px;align-items:center">${esc(c)}<button type="button" data-rmcat="${i}" aria-label="Remove ${esc(c)}" style="border:0;background:none;color:#fff;cursor:pointer;padding:0">×</button></span>`).join('')}<input class="addchip" data-addcat placeholder="+ New category" aria-label="New category"></div></div>
- <div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><b class="sml">${esc(T.sec)} · ${items.length} item${items.length === 1 ? '' : 's'}</b><div style="display:flex;gap:8px"><button class="btn ln sm" type="button" data-imp>Import</button><button class="btn dk sm" type="button" data-additem>+ Add item</button></div></div><div data-impbox></div>
- ${items.length ? items.map((i, k) => `<div class="irow"><div class="t">${i.img ? `<img src="${esc(i.img)}" alt="">` : esc(initials(i.n))}</div><div style="min-width:0"><b style="font-weight:600;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(i.n)}</b><span class="m sml">${esc(i.cat || 'No category')} · ${money(i.p)}${i.u ? ' ' + esc(i.u) : ''}</span></div><div style="display:flex;gap:12px"><button class="u sml" type="button" data-edit="${k}">Edit</button><button class="u sml" type="button" data-del="${k}">Remove</button></div></div>`).join('') : `<div class="card" style="padding:28px;text-align:center;border-style:dashed"><b>You need at least one item to start.</b><p class="m sml" style="margin:6px 0 0">Add items one by one, or import a whole menu.</p></div>`}</div>`; };
+  return `<div style="display:grid;gap:10px"><b class="sml">Categories</b><div class="chips">${(v.cats || []).map((c, i) => `<span class="tchip on" style="display:inline-flex;gap:8px;align-items:center;border-radius:6px">${esc(c)}<button type="button" data-rmcat="${i}" aria-label="Remove ${esc(c)}" style="border:0;background:none;color:#fff;cursor:pointer;padding:0">×</button></span>`).join('')}<input class="addchip" data-addcat placeholder="+ New category" aria-label="New category" style="border-radius:6px"></div></div>
+ <div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap"><b class="sml">${esc(T.sec)} · ${items.length} item${items.length === 1 ? '' : 's'}</b><div style="display:flex;gap:8px"><button class="fb o" type="button" data-imp>${ICON.up} Import</button><button class="fb" type="button" data-additem>${ICON.plus} Add item</button></div></div>
+ ${items.length ? `<div class="pcards" style="padding:0;grid-template-columns:1fr">${items.map((i, k) => pcard(i, k, true)).join('')}</div>` : `<div class="fpanel">${emptyMenu(v)}</div>`}</div>`; };
 const fSections = v => `<p class="m sml" style="margin:0">Choose what shows on the page. The cover and booking band always show.</p><div>${[['highlights', 'Highlights', 'Perfect for, features, how they serve'], ['about', 'About', 'Your story'], ['menu', ti(v.type).sec, 'Items clients can order'], ['gallery', 'Gallery', 'Shows once you add photos']].map(([k, t, d]) => `<label class="tog"><span><b style="font-weight:600">${t}</b><br><span class="m sml">${d}</span></span><input type="checkbox" data-sec="${k}" ${v.sections?.[k] !== false ? 'checked' : ''}></label>`).join('')}</div>`;
 
 async function toJpeg(file) {
@@ -336,22 +392,32 @@ async function toJpeg(file) {
 function pickImages(multiple) { return new Promise(res => { const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*'; i.multiple = !!multiple; i.onchange = async () => { const out = []; if (i.files.length) toast('Uploading…'); for (const f of [...i.files].slice(0, 9)) { try { out.push((await api('upload', { data: await toJpeg(f) })).url); } catch (x) { toast(x.message || 'That photo didn’t upload'); } } $$('.toast').forEach(t => t.textContent === 'Uploading…' && t.remove()); res(out); }; i.click(); }); }
 
 function openItem(k, onDone) {
-  const T = ti(VD.type), it = k == null ? { n: '', d: '', p: '', u: '', cat: (VD.cats || [])[0] || '', img: '' } : { ...VD.items[k] };
-  const m = modal(`<div style="display:flex;justify-content:space-between;align-items:center"><h2 class="d3">${k == null ? 'Add' : 'Edit'} ${T.sec === 'Menu' ? 'menu item' : 'item'}</h2><button class="u sml" type="button" data-close>Close</button></div>
-   <form id="itf" style="display:grid;gap:16px;margin-top:20px" novalidate><label class="f">Name<input class="in" id="i-n" value="${esc(it.n)}" placeholder="e.g. Chicken shawarma tray"></label>
-   <label class="f">Description<textarea class="in" id="i-d" style="min-height:80px">${esc(it.d)}</textarea></label>
-   <fieldset class="fs"><legend>Category</legend><div class="chips">${(VD.cats || []).map(c => `<label class="chip"><input type="radio" name="icat" value="${esc(c)}" ${it.cat === c ? 'checked' : ''}><span>${esc(c)}</span></label>`).join('') || '<span class="m sml">Add categories in the menu panel.</span>'}</div></fieldset>
-   <div style="display:grid;gap:8px"><b class="sml">Image</b><div id="i-img">${it.img ? `<div class="thumb" style="width:120px"><img src="${esc(it.img)}" alt=""><button type="button" id="i-rm" aria-label="Remove image">×</button></div>` : `<button class="drop" type="button" id="i-up">+ Upload item photo</button>`}</div></div>
-   <div class="g2"><label class="f">Price ($)<input class="in" id="i-p" type="number" min="0" step="0.01" value="${esc(it.p)}" placeholder="0.00"></label><label class="f">Unit<input class="in" id="i-u" value="${esc(it.u)}" placeholder="per tray (serves 10)"></label></div>
-   <p class="err" id="i-err" role="alert"></p><div style="display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap"><button class="btn ln" type="button" data-close>Cancel</button>${k == null ? '<button class="btn ln" type="button" id="i-more">Save &amp; add another</button>' : ''}<button class="btn dk" type="submit">Save</button></div></form>`, mm => {
-    const bindImg = () => { const up = mm.querySelector('#i-up'), rm = mm.querySelector('#i-rm'); if (up) up.onclick = async () => { const [u] = await pickImages(false); if (u) { it.img = u; mm.querySelector('#i-img').innerHTML = `<div class="thumb" style="width:120px"><img src="${esc(u)}" alt=""><button type="button" id="i-rm" aria-label="Remove image">×</button></div>`; bindImg(); } }; if (rm) rm.onclick = () => { it.img = ''; mm.querySelector('#i-img').innerHTML = `<button class="drop" type="button" id="i-up">+ Upload item photo</button>`; bindImg(); }; };
-    bindImg(); setTimeout(() => mm.querySelector('#i-n').focus(), 0);
+  const T = ti(VD.type), noun = T.sec === 'Menu' ? 'Dish' : 'Item', it = k == null ? { n: '', d: '', p: '', u: '', cat: MCAT !== 'All' ? MCAT : (VD.cats || [])[0] || '', img: '' } : { ...VD.items[k] };
+  const imgBox = () => it.img ? `<div class="thumb" style="width:120px"><img src="${esc(it.img)}" alt=""><button type="button" id="i-rm" aria-label="Remove image">×</button></div>` : `<button class="drop" type="button" id="i-up">+ Upload item photo<small>JPG, PNG or WEBP, max 5MB</small></button>`;
+  const cats = () => `${(VD.cats || []).map(c => `<label><input type="radio" name="icat" value="${esc(c)}" ${it.cat === c ? 'checked' : ''}><span>${esc(c)}</span></label>`).join('')}<button class="fb o" type="button" id="i-newcat" style="height:30px;margin-left:auto;font-size:12px">+ New</button>`;
+  const m = modal(`<div class="fm"><div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid #ececec"><h2 style="font:700 19px Montserrat,system-ui,sans-serif">${k == null ? 'Add' : 'Edit'} ${T.sec === 'Menu' ? 'Menu Item' : 'Item'}</h2><button class="ic" type="button" data-close aria-label="Close" style="font-size:22px;line-height:1">×</button></div>
+   <form id="itf" style="display:grid;gap:16px;margin-top:18px" novalidate><label class="f">${noun} Name<input class="in" id="i-n" value="${esc(it.n)}" placeholder="Enter ${noun.toLowerCase()} name"></label>
+   <label class="f">Description<textarea class="in" id="i-d" style="min-height:70px" placeholder="Enter description">${esc(it.d)}</textarea></label>
+   <fieldset class="fs" style="gap:8px"><legend style="font-weight:600;font-size:14px;margin-bottom:8px">Category</legend><div class="catbox" id="i-cats">${cats()}</div></fieldset>
+   <div style="display:grid;gap:8px"><b style="font-size:14px">Image</b><div id="i-img">${imgBox()}</div></div>
+   <div class="g2"><label class="f">Price<span class="pfx"><b>$</b><input class="in" id="i-p" type="number" min="0" step="0.01" value="${esc(it.p)}" placeholder="0.00"></span></label><label class="f">Unit <span class="m" style="font-weight:400">(optional)</span><input class="in" id="i-u" value="${esc(it.u)}" placeholder="serves 10"></label></div>
+   <p class="err" id="i-err" role="alert"></p><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid #ececec;padding-top:16px"><button class="u sml" type="button" data-close style="text-decoration:none;letter-spacing:.08em;color:#6b6b6b;font-weight:500">CANCEL</button><span style="flex:1"></span><button class="fb o" type="submit">Save ${noun}</button>${k == null ? '<button class="fb" type="button" id="i-more">Save &amp; Add Another</button>' : ''}</div></form></div>`, mm => {
+    const bindImg = () => { const up = mm.querySelector('#i-up'), rm = mm.querySelector('#i-rm'); if (up) up.onclick = async () => { const [u] = await pickImages(false); if (u) { it.img = u; mm.querySelector('#i-img').innerHTML = imgBox(); bindImg(); } }; if (rm) rm.onclick = () => { it.img = ''; mm.querySelector('#i-img').innerHTML = imgBox(); bindImg(); }; };
+    const bindCats = () => { mm.querySelector('#i-newcat').onclick = () => { const n = (prompt('New category name') || '').trim(); if (n && !sel(VD.cats, n)) { VD.cats = [...(VD.cats || []), n]; it.cat = n; mm.querySelector('#i-cats').innerHTML = cats(); bindCats(); } }; };
+    bindImg(); bindCats(); setTimeout(() => mm.querySelector('#i-n').focus(), 0);
     const save = again => { it.n = mm.querySelector('#i-n').value.trim(); if (!it.n) { mm.querySelector('#i-err').textContent = 'Add a name.'; return; } it.d = mm.querySelector('#i-d').value; it.p = +mm.querySelector('#i-p').value || 0; it.u = mm.querySelector('#i-u').value; it.cat = (mm.querySelector('[name=icat]:checked') || {}).value || '';
       VD.items = VD.items || []; if (k == null) VD.items.push(it); else VD.items[k] = it; mm.remove(); onDone(); if (again) openItem(null, onDone); };
     mm.querySelector('#itf').onsubmit = e => { e.preventDefault(); save(false); }; const mo = mm.querySelector('#i-more'); if (mo) mo.onclick = () => save(true);
   }, () => {}); m.classList.add('n');
 }
-
+function openImport(onDone) {
+  const m = modal(`<div class="fm"><div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid #ececec"><h2 style="font:700 19px Montserrat,system-ui,sans-serif">Import menu</h2><button class="ic" type="button" data-close aria-label="Close" style="font-size:22px;line-height:1">×</button></div>
+   <div style="display:grid;gap:14px;margin-top:18px"><label class="f">Paste your menu, one item per line<textarea class="in" id="imptx" style="min-height:160px" placeholder="Chicken shawarma tray - 95 - serves 10&#10;Falafel tray - 70 - serves 10"></textarea></label><span class="m sml">Format: Name - price - unit. Items go into ${esc(MCAT !== 'All' ? MCAT : (VD.cats || [])[0] || 'no category')}.</span>
+   <div style="display:flex;justify-content:flex-end;gap:10px"><button class="fb o" type="button" data-close>Cancel</button><button class="fb" type="button" id="impgo">Add items</button></div></div></div>`, mm => {
+    setTimeout(() => mm.querySelector('#imptx').focus(), 0);
+    mm.querySelector('#impgo').onclick = () => { const c = MCAT !== 'All' ? MCAT : (VD.cats || [])[0] || ''; mm.querySelector('#imptx').value.split('\n').map(l => l.split(/\s+[-–]\s+/)).filter(p => p[0]?.trim()).forEach(([n, p, u]) => (VD.items = VD.items || []).push({ n: n.trim(), d: '', p: parseFloat(String(p || '').replace(/[^0-9.]/g, '')) || 0, u: (u || '').trim(), cat: c, img: '' })); mm.remove(); onDone(); };
+  }, () => {}); m.classList.add('n');
+}
 // Binds every editor control inside root. changed(): something edited; rebuild(): structure changed, re-render the controls.
 function bindEditor(root, changed, rebuild) {
   root.querySelectorAll('[data-f]').forEach(x => x.oninput = x.onchange = () => { const f = x.dataset.f;
@@ -365,13 +431,12 @@ function bindEditor(root, changed, rebuild) {
   root.querySelectorAll('[data-up]').forEach(b => b.onclick = async () => { const k = b.dataset.up, urls = await pickImages(k === 'gallery'); if (!urls.length) return; if (k === 'cover') VD.cover = urls[0]; else VD.gallery = [...(VD.gallery || []), ...urls].slice(0, 9); changed(); rebuild(); });
   root.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { VD[b.dataset.rm] = ''; changed(); rebuild(); });
   root.querySelectorAll('[data-rmg]').forEach(b => b.onclick = () => { VD.gallery.splice(+b.dataset.rmg, 1); changed(); rebuild(); });
-  root.querySelectorAll('[data-rmcat]').forEach(b => b.onclick = () => { VD.cats.splice(+b.dataset.rmcat, 1); changed(); rebuild(); });
+  root.querySelectorAll('[data-rmcat]').forEach(b => b.onclick = e => { e.stopPropagation(); const c = VD.cats[+b.dataset.rmcat]; VD.cats.splice(+b.dataset.rmcat, 1); if (MCAT === c) MCAT = 'All'; changed(); rebuild(); });
   root.querySelectorAll('[data-addcat]').forEach(x => x.onkeydown = e => { if (e.key !== 'Enter') return; e.preventDefault(); const v = x.value.trim(); if (v && !sel(VD.cats, v)) { VD.cats = [...(VD.cats || []), v]; changed(); rebuild(); setTimeout(() => { const n = root.querySelector('[data-addcat]'); n && n.focus(); }, 0); } });
   root.querySelectorAll('[data-additem]').forEach(b => b.onclick = () => openItem(null, () => { changed(); rebuild(); }));
   root.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => openItem(+b.dataset.edit, () => { changed(); rebuild(); }));
   root.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { VD.items.splice(+b.dataset.del, 1); changed(); rebuild(); });
-  root.querySelectorAll('[data-imp]').forEach(b => b.onclick = () => { const box = root.querySelector('[data-impbox]'); box.innerHTML = `<div style="display:grid;gap:10px;margin:10px 0 14px"><label class="f">Paste your menu, one item per line: Name - price - unit<textarea class="in" data-imptx placeholder="Chicken shawarma tray - 95 - serves 10&#10;Falafel tray - 70 - serves 10"></textarea></label><div><button class="btn dk sm" type="button" data-impgo>Add items</button></div></div>`;
-    box.querySelector('[data-impgo]').onclick = () => { const c = (VD.cats || [])[0] || ''; box.querySelector('[data-imptx]').value.split('\n').map(l => l.split(/\s+[-–]\s+/)).filter(p => p[0]?.trim()).forEach(([n, p, u]) => (VD.items = VD.items || []).push({ n: n.trim(), d: '', p: parseFloat(String(p || '').replace(/[^0-9.]/g, '')) || 0, u: (u || '').trim(), cat: c, img: '' })); changed(); rebuild(); }; });
+  root.querySelectorAll('[data-imp]').forEach(b => b.onclick = () => openImport(() => { changed(); rebuild(); }));
 }
 
 // Autosave
@@ -382,24 +447,39 @@ function persist(now) { clearTimeout(saveT); setSave('Unsaved changes'); const s
 let BMODE = 'admin';
 const ADMINMODE = () => BMODE === 'admin';
 
-// ---------- The page builder ----------
-let VTAB = 'basics', DEV = 'desktop';
+// ---------- The page builder (Figma app shell) ----------
+let VTAB = 'basics', DEV = 'desktop', MCAT = 'All', MQ = '';
+const SUBS = v => [['basics', 'Business info'], ['look', 'Photos'], ['highlights', 'Highlights'], ['menu', ti(v.type).sec], ['sections', 'Page sections']];
+const catSub = () => `<div class="fsub"><button type="button" data-tab="basics" style="color:#6b6b6b;font-size:13.5px">← Back to page</button><span class="t" style="margin-top:10px">Categories</span>${['All', ...(VD.cats || [])].map((c, i) => `<button type="button" data-mcat="${esc(c)}" class="${MCAT === c ? 'on' : ''}"><span>${esc(c)}</span>${i ? `<span data-rmcat="${i - 1}" role="button" tabindex="0" aria-label="Remove ${esc(c)}" title="Remove category" style="color:#9a9a9a;padding:0 4px">×</span>` : ''}</button>`).join('')}<input class="addchip" data-addcat placeholder="+ New category" aria-label="New category" style="width:100%;margin-top:10px;border-radius:6px"></div>`;
+const menuCards = () => { if (!(VD.items || []).length) return emptyMenu(VD); const q = MQ.toLowerCase(), list = (VD.items || []).map((i, k) => [i, k]).filter(([i]) => (MCAT === 'All' || i.cat === MCAT) && (!q || (i.n + ' ' + i.d).toLowerCase().includes(q)));
+  return `<div class="pcards">${list.map(([i, k]) => pcard(i, k, true)).join('') || '<p class="m" style="padding:8px 4px;margin:0">Nothing here yet.</p>'}</div>`; };
 function builder(mode) {
   BMODE = mode; const v = VD, T = ti(v.type);
-  const tabs = [['basics', 'Basics'], ['look', 'Look'], ['highlights', 'Highlights'], ['menu', T.sec], ['sections', 'Sections']];
-  return `<div class="bld"><div class="bt"><div style="display:flex;align-items:center;gap:14px;min-width:0;flex-wrap:wrap">${mode === 'admin' ? '<a class="u sml" href="#/admin/vendors">← Vendor pages</a>' : ''}<b class="bn">${esc(v.name)}</b><span class="pill ${v.status === 'live' ? 'g' : ''}">${v.status === 'live' ? 'Live' : 'Draft'}</span><span class="m sml" id="svst" aria-live="polite">${saveState}</span></div>
-   <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><div class="seg" role="group" aria-label="Preview size">${[['desktop', 'Desktop'], ['phone', 'Phone']].map(([k, t]) => `<button type="button" data-dev="${k}" class="${DEV === k ? 'on' : ''}" aria-pressed="${DEV === k}">${t}</button>`).join('')}</div><a class="btn ln sm" href="#/v/${v.id}" target="_blank" rel="noopener">View page ↗</a><button class="btn ${v.status === 'live' ? 'ln' : 'bl'} sm" type="button" id="pub">${v.status === 'live' ? 'Unpublish' : 'Publish'}</button></div></div>
-   <div class="bb"><aside class="ed" aria-label="Page editor"><nav class="tabs" role="tablist">${tabs.map(([k, t]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${VTAB === k}" class="${VTAB === k ? 'on' : ''}">${esc(t)}</button>`).join('')}</nav><div class="edp" id="edp">${panel()}</div></aside>
-   <div class="pvw" aria-label="Live preview"><div class="pvf ${DEV}"><div class="vpw" id="pv">${vendorPage(v, true)}</div></div></div></div></div>`;
+  if (VTAB === 'menu') return `<div class="ph1"><div><h1>Build your ${esc(T.sec.toLowerCase())}</h1><p>${mode === 'admin' ? `${esc(v.name)} · ` : ''}Add and organise your ${T.sec === 'Menu' ? 'dishes' : 'items'} by category <span id="svst" style="margin-left:6px">${saveState}</span></p></div><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><input class="fsearch" id="msq" placeholder="Search ..." value="${esc(MQ)}" aria-label="Search items"><button class="fb o" type="button" data-imp>${ICON.up} Import</button><button class="fb" type="button" data-additem>${ICON.plus} Add new item</button></div></div>
+   <div class="fpanel mgrid">${catSub()}<div id="edp">${menuCards()}</div></div>`;
+  return `<div class="ph1"><div><h1>${mode === 'admin' ? esc(v.name) : 'Vendor Page'}</h1><p>${mode === 'admin' ? '<a href="#/admin/vendors" style="color:inherit">Vendor Pages</a> · ' : ''}Build your public page. Changes save automatically. <span id="svst" style="margin-left:6px">${saveState}</span></p></div>
+   <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><span class="pill ${v.status === 'live' ? 'g' : ''}">${v.status === 'live' ? 'Live' : 'Draft'}</span><div class="seg" role="group" aria-label="Preview size">${[['desktop', 'Desktop'], ['phone', 'Phone']].map(([k, t]) => `<button type="button" data-dev="${k}" class="${DEV === k ? 'on' : ''}" aria-pressed="${DEV === k}">${t}</button>`).join('')}</div><a class="fb o" href="#/v/${v.id}" target="_blank" rel="noopener">View page</a><button class="fb" type="button" id="pub">${v.status === 'live' ? 'Unpublish' : 'Publish'}</button></div></div>
+   <div class="fpanel bgrid"><div class="fsub"><span class="t">Your page</span>${SUBS(v).map(([k, t]) => `<button type="button" data-tab="${k}" class="${VTAB === k ? 'on' : ''}" aria-current="${VTAB === k}">${esc(t)}</button>`).join('')}</div>
+   <div class="bed fm" id="edp">${panel()}</div><div class="bpv" aria-label="Live preview"><div class="pvf ${DEV}" id="pvf"><div class="vpw" id="pv">${vendorPage(v, true)}</div></div></div></div>`;
 }
-const panel = () => ({ basics: fBasics, look: fLook, highlights: fHighlights, menu: fMenu, sections: fSections }[VTAB] || fBasics)(VD);
+const panel = () => ({ basics: fBasics, look: fLook, highlights: fHighlights, sections: fSections }[VTAB] || fBasics)(VD);
+const fitPv = () => { const f = $('#pvf'), w = $('.bpv'); if (!f || !w) return; f.style.zoom = Math.min(1, (w.clientWidth - 36) / (DEV === 'phone' ? 390 : 1120)); };
+window.addEventListener('resize', fitPv);
 function bindBuilder() {
+  const base = BMODE === 'admin' ? 'admin/page/' + VD.id : 'vendor';
+  $$('[data-tab]').forEach(b => b.onclick = () => go(base + (b.dataset.tab === 'basics' ? '' : '?tab=' + b.dataset.tab)));
   if (!$('#edp')) return;
-  const changed = () => { $('#pv').innerHTML = vendorPage(VD, true); const bn = $('.bn'); if (bn) bn.textContent = VD.name || 'Untitled'; persist(); };
-  const rebuild = () => { $('#edp').innerHTML = panel(); bindEditor($('#edp'), changed, rebuild); };
-  bindEditor($('#edp'), changed, rebuild);
-  $$('[data-tab]').forEach(b => b.onclick = () => { VTAB = b.dataset.tab; $$('[data-tab]').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-selected', x === b); }); rebuild(); });
-  $$('[data-dev]').forEach(b => b.onclick = () => { DEV = b.dataset.dev; $('.pvf').className = 'pvf ' + DEV; $$('[data-dev]').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); }); });
+  const menu = VTAB === 'menu';
+  const changed = () => { const pv = $('#pv'); if (pv) pv.innerHTML = vendorPage(VD, true); persist(); };
+  const rebuild = () => { if (menu) { render(); return; } $('#edp').innerHTML = panel(); bindEditor($('#edp'), changed, rebuild); };
+  bindEditor(menu ? $('#app') : $('#edp'), changed, rebuild);
+  if (menu) {
+    $$('[data-mcat]').forEach(b => b.onclick = () => { MCAT = b.dataset.mcat; render(); });
+    const q = $('#msq'); if (q) q.oninput = () => { MQ = q.value; $('#edp').innerHTML = menuCards(); bindEditor($('#edp'), changed, rebuild); };
+    return;
+  }
+  fitPv();
+  $$('[data-dev]').forEach(b => b.onclick = () => { DEV = b.dataset.dev; $('#pvf').className = 'pvf ' + DEV; $$('[data-dev]').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); }); fitPv(); });
   $('#pub').onclick = async () => { VD.status = VD.status === 'live' ? 'draft' : 'live'; if (await persist(true)) { toast(VD.status === 'live' ? 'Published. The page is live.' : 'Unpublished. Back to draft.'); if (BMODE === 'admin') await loadLive(); render(); } else VD.status = VD.status === 'live' ? 'draft' : 'live'; };
 }
 
@@ -436,7 +516,7 @@ V['join/vendor/menu'] = () => { const s = needVendor(); if (s === 'wait') return
    <div id="obf" style="display:grid;gap:24px;margin-top:28px">${fCover(VD)}${fMenu(VD)}</div>
    <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap"><a class="btn ln" href="#/join/vendor/profile">← Back</a><button class="btn dk" type="button" id="next">See my page →</button></div>`); };
 H['join/vendor/menu'] = () => { const r = $('#obf'); if (!r) return; const rebuild = () => { r.innerHTML = fCover(VD) + fMenu(VD); bindEditor(r, () => persist(), rebuild); }; bindEditor(r, () => persist(), rebuild);
-  $('#next').onclick = async () => { if (await persist(true)) { VTAB = 'look'; go('vendor'); toast('Your page is ready. Style it, then publish.'); } }; };
+  $('#next').onclick = async () => { if (await persist(true)) { go('vendor?tab=look'); toast('Your page is ready. Style it, then publish.'); } }; };
 
 // ---------- Crew onboarding (Figma: personal details, experience + role, payment, tax) ----------
 const C_STEPS = ['Personal details', 'Experience + role', 'Payment info', 'Tax info'];
@@ -557,7 +637,7 @@ H['event'] = () => { if (!EV || !$('.split')) return; const save = async (patch 
 
 // ---------- Vendor dashboard ----------
 V['vendor'] = () => { const s = needVendor(); if (s === 'wait') return loading('vendor'); if (s === 'none') return notVendor();
-  return `${header('vendor')}${builder('vendor')}`; };
+  VTAB = QS.get('tab') || 'basics'; return page('vendor', builder('vendor')); };
 H['vendor'] = bindBuilder;
 V['vendor/orders'] = () => { if (needSess()) return ''; if (!ME) { loadMe().then(render).catch(e => toast(e.message)); return loading('vendor'); }
   return page('vendor', `<section class="s"><div class="wrap"><p class="caps m" style="margin:0">Orders</p><h1 class="d2" style="margin-top:14px">Requests for you.</h1><div style="display:grid;gap:16px;margin-top:32px">${(ME.orders || []).map(o => `<div class="card pad" style="display:grid;gap:14px"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><div><h3 class="d3">${esc(o.title || o.type || 'Event')}</h3><span class="m sml">${esc(o.date || '')} ${o.start ? '· ' + esc(o.start) : ''} · ${esc(o.guests || '')} guests · ${esc(o.location || '')}</span></div>${o.status === 'waiting' && o.quoteStatus === 'requested' ? `<div style="display:flex;gap:8px"><button class="btn dk sm" type="button" data-ok="${o.id}">Accept</button><button class="btn ln sm" type="button" data-no="${o.id}">Decline</button></div>` : `<span class="pill ${o.status === 'confirmed' ? 'g' : ''}">${o.status === 'confirmed' ? 'Accepted' : o.status === 'declined' ? 'Declined' : 'Waiting'}</span>`}</div>
@@ -581,30 +661,28 @@ V['vendor/home'] = () => { const s = needVendor(); if (s === 'wait') return load
 // Not public yet. The Super Admin previews it at #/admin/guide; it opens at #/guide when it goes live.
 let GFILT = 'All';
 const basket = () => { const by = {}; Object.entries(D.sel || {}).forEach(([k, q]) => { if (q > 0) { const id = k.replace(/-\d+$/, ''); by[id] = (by[id] || 0) + q; } }); return by; };
+let GQ = '';
 function guide(admin) {
-  const list = (admin ? AD.vendors.filter(v => v.status === 'live') : LIVE), types = TYPES.filter(t => list.some(v => v.type === t)), shown = list.filter(v => GFILT === 'All' || v.type === GFILT), b = basket(), n = Object.values(b).reduce((x, y) => x + y, 0);
-  return `${admin ? `<div class="notice" style="border-radius:0;text-align:center"><b>Preview · not public yet.</b> ${list.length} published entr${list.length === 1 ? 'y' : 'ies'}. Publish more vendor pages, then take the Fíeld Güide live.</div>` : ''}
-  <section style="background:#0f1412;color:#fff;padding:96px 0 72px"><div class="wrap"><p class="caps" style="margin:0;color:rgba(255,255,255,.7)">Cülinary Expréss presents</p><h1 class="d1" style="margin-top:18px">Fíeld<br>Güide</h1><p style="font-size:20px;color:rgba(255,255,255,.85);max-width:600px;margin:24px 0 0">Our catalogue of local gems: restaurants, farms, wineries, bakeries, espresso bars and more. Order from any of them for your next event. We run the service.</p></div></section>
-  <section style="padding:40px 0 96px"><div class="wrap"><div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap"><div class="chips" role="radiogroup" aria-label="Filter">${['All', ...types].map(t => `<label class="chip"><input type="radio" name="gf" value="${esc(t)}" ${GFILT === t ? 'checked' : ''}><span>${esc(t)}</span></label>`).join('')}</div><span class="m sml">${shown.length} entr${shown.length === 1 ? 'y' : 'ies'}</span></div>
-   <div style="display:grid;gap:28px;margin-top:32px">${shown.map((v, i) => `<article class="gentry" style="display:grid;grid-template-columns:${i % 2 ? '1fr 1.15fr' : '1.15fr 1fr'};gap:0;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fff">
-     <div style="order:${i % 2 ? 2 : 1};min-height:340px;background:${ACC[v.accent] || ACC.charcoal};position:relative">${v.cover ? `<img src="${esc(v.cover)}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">` : `<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:64px;font-weight:600;letter-spacing:-.04em">${esc(initials(v.name))}</span>`}</div>
-     <div style="order:${i % 2 ? 1 : 2};padding:40px;display:flex;flex-direction:column;gap:14px"><span class="caps" style="color:${ACC[v.accent] || ACC.charcoal}">${esc(v.type)}${v.area ? ' · ' + esc(v.area) : ''}</span><h2 class="d2" style="font-size:clamp(30px,3.4vw,46px)">${esc(v.name)}</h2>${v.tagline ? `<p class="m" style="margin:0;font-size:17px">${esc(v.tagline)}</p>` : ''}
-      ${(v.perfectFor || []).length ? `<div class="chips">${v.perfectFor.slice(0, 4).map(x => `<span class="pill">${esc(x)}</span>`).join('')}</div>` : ''}
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:10px"><button class="btn dk" type="button" data-order="${v.id}">${b[v.id] ? `In your order · ${b[v.id]}` : 'Order'}</button><a class="btn ln" href="#/v/${v.id}">See the page</a></div></div></article>`).join('') || `<div class="card pad" style="text-align:center;padding:56px"><h2 class="d3">No entries yet.</h2><p class="m" style="margin:8px 0 0">Published vendor pages show up here.</p></div>`}</div></div></section>
-  ${n ? `<div style="position:sticky;bottom:0;z-index:20;background:#0f1412;color:#fff;padding:14px 0"><div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap"><span><b>Your order</b> · ${n} item${n === 1 ? '' : 's'} from ${Object.keys(b).length} vendor${Object.keys(b).length === 1 ? '' : 's'}</span><a class="btn wt sm" href="#/start">Continue to your inquiry →</a></div></div>` : ''}`;
+  const list = admin ? AD.vendors.filter(v => v.status === 'live') : LIVE, types = TYPES.filter(t => list.some(v => v.type === t)), q = GQ.toLowerCase();
+  const shown = list.filter(v => (GFILT === 'All' || v.type === GFILT) && (!q || [v.name, v.type, v.area, v.tagline, (v.items || []).map(i => i.n).join(' ')].join(' ').toLowerCase().includes(q))), b = basket(), n = Object.values(b).reduce((x, y) => x + y, 0);
+  return `${admin ? `<div class="hint" style="margin-bottom:16px"><b>Preview · not public yet.</b> ${list.length} published entr${list.length === 1 ? 'y' : 'ies'}. Publish more vendor pages, then take the Fíeld Güide live.</div>` : ''}<div class="fdir">
+  <section class="fdh"><h1>Find your perfect culinary partner.</h1><p>The Fíeld Güide: restaurants, event venues, farms and wineries, all in one place.</p><form class="fsrch" id="gsf" role="search"><input id="gq" value="${esc(GQ)}" placeholder="Search by name, cuisine or location..." aria-label="Search the Fíeld Güide"><button class="fb" type="submit">Search</button></form></section>
+  <section class="fdb"><div class="fdf"><div class="chips" role="radiogroup" aria-label="Filter">${['All', ...types].map(t => `<label class="chip"><input type="radio" name="gf" value="${esc(t)}" ${GFILT === t ? 'checked' : ''}><span>${t === 'All' ? 'All Vendors' : esc(t)}</span></label>`).join('')}</div><span>${shown.length} vendor${shown.length === 1 ? '' : 's'} found</span></div>
+   <div class="fgrid">${shown.map(v => `<article class="dcard"><a class="dph" href="#/v/${v.id}">${v.cover ? `<img src="${esc(v.cover)}" alt="">` : 'photo'}</a><div class="db">${badge(v.type)}<a class="dn" href="#/v/${v.id}">${esc(v.name)}</a><span class="dm">${esc(metaOf(v))}</span><button class="dbtn" type="button" data-order="${v.id}">${b[v.id] ? `In your order · ${b[v.id]}` : esc(ti(v.type).cta)}</button></div></article>`).join('') || '<div class="fpanel" style="grid-column:1/-1;padding:48px;text-align:center;color:#6b6b6b">No vendors match yet.</div>'}</div></section></div>
+  ${n ? `<div style="position:sticky;bottom:0;z-index:20;background:#1e1e1e;color:#fff;padding:14px 20px;font-family:Montserrat,system-ui,sans-serif;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap"><span><b>Your order</b> · ${n} item${n === 1 ? '' : 's'} from ${Object.keys(b).length} vendor${Object.keys(b).length === 1 ? '' : 's'}</span><a class="fb o" href="#/start">Continue to your inquiry →</a></div>` : ''}`;
 }
 function orderModal(id, list) {
   const v = list.find(x => x.id === id); if (!v) return; D.sel = D.sel || {};
   const T = ti(v.type), items = v.items || [];
-  modal(`<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px"><div><span class="caps" style="color:${ACC[v.accent] || ACC.charcoal}">${esc(v.type)}</span><h2 class="d3" style="margin-top:6px">Order from ${esc(v.name)}</h2><p class="m sml" style="margin:4px 0 0">Pick what you’d like. Your Lead Planner confirms quantities on your discovery call.</p></div><button class="btn ln sm" type="button" data-close>Done</button></div>
-   <div style="margin-top:18px">${items.length ? items.map((it, j) => { const k = v.id + '-' + j; return `<div class="irow" style="grid-template-columns:64px minmax(0,1fr) auto"><div class="t" style="width:64px;height:64px">${it.img ? `<img src="${esc(it.img)}" alt="">` : esc(initials(it.n))}</div><div style="min-width:0"><b style="font-weight:600">${esc(it.n)}</b>${it.d ? `<div class="m sml">${esc(it.d)}</div>` : ''}<div class="sml" style="font-weight:600;margin-top:2px">${money(it.p)} <span class="m" style="font-weight:400">${esc(it.u)}</span></div></div><span class="qty"><button type="button" aria-label="Fewer ${esc(it.n)}" data-oq="${k}" data-d="-1">−</button><output>${D.sel[k] || 0}</output><button type="button" aria-label="More ${esc(it.n)}" data-oq="${k}" data-d="1">+</button></span></div>`; }).join('') : `<p class="m">Their ${esc(T.sec.toLowerCase())} is coming soon. Add them to your inquiry and we’ll build it with you.</p>`}</div>
-   <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px;flex-wrap:wrap"><button class="btn ln" type="button" data-close>Keep browsing</button><a class="btn bl" href="#/start" id="o-go">Continue to your inquiry →</a></div>`, m => {
+  modal(`<div class="fm"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px"><div>${badge(v.type)}<h2 style="margin-top:10px;font:700 22px Montserrat,system-ui,sans-serif">Order from ${esc(v.name)}</h2><p class="m sml" style="margin:4px 0 0">Pick what you’d like. Your Lead Planner confirms quantities on your discovery call.</p></div><button class="fb o" type="button" data-close>Done</button></div>
+   <div style="margin-top:18px">${items.length ? items.map((it, j) => { const k = v.id + '-' + j; return `<div class="irow" style="grid-template-columns:64px minmax(0,1fr) auto"><div class="t" style="width:64px;height:64px">${it.img ? `<img src="${esc(it.img)}" alt="">` : esc(initials(it.n))}</div><div style="min-width:0"><b style="font-weight:600">${esc(it.n)}</b>${it.d ? `<div class="m sml">${esc(it.d)}</div>` : ''}<div class="price" style="font-size:18px;margin-top:2px">${money(it.p)}${it.u ? `<small>${esc(it.u)}</small>` : ''}</div></div><span class="qty"><button type="button" aria-label="Fewer ${esc(it.n)}" data-oq="${k}" data-d="-1">−</button><output>${D.sel[k] || 0}</output><button type="button" aria-label="More ${esc(it.n)}" data-oq="${k}" data-d="1">+</button></span></div>`; }).join('') : `<p class="m">Their ${esc(T.sec.toLowerCase())} is coming soon. Add them to your inquiry and we’ll build it with you.</p>`}</div>
+   <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px;flex-wrap:wrap"><button class="fb o" type="button" data-close>Keep browsing</button><a class="fb" href="#/start" id="o-go">Continue to your inquiry →</a></div></div>`, m => {
     m.querySelectorAll('[data-oq]').forEach(b => b.onclick = () => { const k = b.dataset.oq; D.sel[k] = Math.max(0, (D.sel[k] || 0) + +b.dataset.d); b.parentElement.querySelector('output').textContent = D.sel[k]; if (D.sel[k] && !D.picks.includes(v.id)) D.picks.push(v.id); store.set('ce-draft', D); });
     m.querySelector('#o-go').onclick = () => { if (!D.picks.includes(v.id)) D.picks.push(v.id); store.set('ce-draft', D); m.remove(); };
   });
 }
-const bindGuide = list => { $$('[name=gf]').forEach(r => r.onchange = () => { GFILT = r.value; render(); }); $$('[data-order]').forEach(b => b.onclick = () => orderModal(b.dataset.order, list)); };
-V['admin/guide'] = () => needAd() || `${header('admin')}<main>${guide(true)}</main>${footer()}`;
+const bindGuide = list => { $$('[name=gf]').forEach(r => r.onchange = () => { GFILT = r.value; render(); }); const gf = $('#gsf'); if (gf) gf.onsubmit = e => { e.preventDefault(); GQ = $('#gq').value.trim(); render(); }; $$('[data-order]').forEach(b => b.onclick = () => orderModal(b.dataset.order, list)); };
+V['admin/guide'] = () => needAd() || page('admin', guide(true));
 H['admin/guide'] = () => { if (bindGate()) return; bindGuide(AD.vendors); };
 V['guide'] = () => page('client', guide(false));
 H['guide'] = () => bindGuide(LIVE);
@@ -643,19 +721,19 @@ H['admin/event'] = () => { if (bindGate()) return; const ev = AD?.events.find(e 
   $$('[data-src]').forEach(x => x.onchange = () => { const mt = matOf(ev); mt[x.dataset.src].src = x.value; up({ mat: mt }); });
   $$('[data-copy]').forEach(b => b.onclick = async () => { try { await navigator.clipboard.writeText(b.dataset.copy); toast('Link copied'); } catch { prompt('Copy this link', b.dataset.copy); } }); };
 
-V['admin/vendors'] = () => needAd() || page('admin', `<section class="s"><div class="wrap"><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap"><div><p class="caps m" style="margin:0">Vendor pages</p><h1 class="d2" style="margin-top:14px">Build a page.</h1><p class="lead">Create pages for vendors yourself, or share the sign-up link so they build their own.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn ln sm" type="button" data-copy="${location.origin}${location.pathname}#/join/vendor">Copy vendor sign-up link</button><button class="btn bl" type="button" id="newv">+ New vendor page</button></div></div>
-  <div class="g3" style="margin-top:36px">${AD.vendors.map(v => `<article class="vcard"><div class="ph">${v.cover ? `<img src="${esc(v.cover)}" alt="">` : `<span>${esc(initials(v.name))}</span>`}</div><div class="b"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span class="tag">${esc(v.type)}</span><span class="pill ${v.status === 'live' ? 'g' : ''}">${v.status === 'live' ? 'Live' : 'Draft'}</span></div><h3 style="font-size:20px;letter-spacing:-.02em">${esc(v.name)}</h3><span class="m sml">${(v.items || []).length} items · ${v.ownerEmail === 'admin' ? 'Built by you' : 'Built by vendor'}</span><div style="margin-top:6px">${progBar(v)}</div>
-   <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap"><a class="btn dk sm" href="#/admin/page/${v.id}">Edit page</a><a class="btn ln sm" href="#/v/${v.id}" target="_blank" rel="noopener">View ↗</a><button class="u sml" type="button" data-copy="${location.origin}${location.pathname}#/v/${v.id}">Copy link</button></div></div></article>`).join('') || `<div class="card pad" style="grid-column:1/-1;text-align:center;padding:48px"><h2 class="d3">No vendor pages yet.</h2><p class="m" style="margin:8px 0 18px">Start your first one. It takes a few minutes.</p><button class="btn bl" type="button" id="newv2">+ New vendor page</button></div>`}</div>
-  ${AD.invites.length ? `<h2 class="d3" style="margin-top:48px">Invites from clients</h2><div class="card pad" style="margin-top:14px">${AD.invites.map(x => `<div class="row" style="border-top:0;border-bottom:1px solid var(--line)"><span><b style="font-weight:600">${esc(x.gemName)}</b> <span class="m sml">· ${esc(x.type)}</span></span><span class="${x.status === 'joined' ? 'ok' : 'wa'}">${x.status === 'joined' ? 'Joined' : 'Invite sent'}</span></div>`).join('')}</div>` : ''}</div></section>`);
+V['admin/vendors'] = () => needAd() || page('admin', `<div class="ph1"><div><h1>Vendor Pages</h1><p>Build pages for vendors yourself, or share the sign-up link so they build their own.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="fb o" type="button" data-copy="${location.origin}${location.pathname}#/join/vendor">Copy vendor sign-up link</button><button class="fb" type="button" id="newv">${ICON.plus} New vendor page</button></div></div>
+  <div class="fgrid" style="font-family:Montserrat,system-ui,sans-serif">${AD.vendors.map(v => `<article class="dcard"><a class="dph" href="#/admin/page/${v.id}">${v.cover ? `<img src="${esc(v.cover)}" alt="">` : 'photo'}</a><div class="db"><div style="display:flex;justify-content:space-between;align-items:center;width:100%">${badge(v.type)}<span class="pill ${v.status === 'live' ? 'g' : ''}">${v.status === 'live' ? 'Live' : 'Draft'}</span></div><a class="dn" href="#/admin/page/${v.id}">${esc(v.name)}</a><span class="dm">${esc(metaOf(v))}</span><span class="dm">${(v.items || []).length} items · ${v.ownerEmail === 'admin' ? 'Built by you' : 'Built by vendor'}</span><div style="width:100%;margin-top:10px">${progBar(v)}</div>
+   <a class="dbtn" href="#/admin/page/${v.id}">Edit page</a><div style="display:flex;gap:14px;margin-top:10px;font-size:13px"><a href="#/v/${v.id}" target="_blank" rel="noopener">View page ↗</a><button class="u sml" type="button" data-copy="${location.origin}${location.pathname}#/v/${v.id}">Copy link</button></div></div></article>`).join('') || `<div class="fpanel" style="grid-column:1/-1"><div class="mempty"><b>No vendor pages yet</b><button class="fb" type="button" id="newv2">${ICON.plus} New vendor page</button></div></div>`}</div>
+  ${AD.invites.length ? `<h2 class="d3" style="margin-top:40px">Invites from clients</h2><div class="fpanel" style="margin-top:12px;padding:6px 20px">${AD.invites.map(x => `<div class="row" style="border-top:0;border-bottom:1px solid var(--line)"><span><b style="font-weight:600">${esc(x.gemName)}</b> <span class="m sml">· ${esc(x.type)}</span></span><span class="${x.status === 'joined' ? 'ok' : 'wa'}">${x.status === 'joined' ? 'Joined' : 'Invite sent'}</span></div>`).join('')}</div>` : ''}`);
 H['admin/vendors'] = () => { if (bindGate()) return;
   const nv = () => { const m = modal(`<div style="display:flex;justify-content:space-between;align-items:center"><h2 class="d3">New vendor page</h2><button class="u sml" type="button" data-close>Close</button></div><form id="nvf" style="display:grid;gap:16px;margin-top:20px" novalidate><label class="f">Vendor name<input class="in" id="nv-n" placeholder="e.g. The Grove Kitchen"></label><fieldset class="fs"><legend>Vendor type</legend><div class="tcs">${TYPES.map((t, i) => `<label class="tc"><input type="radio" name="nvt" value="${esc(t)}" ${i ? '' : 'checked'}><span><b>${esc(t)}</b><small>${esc(ti(t).sub)}</small></span></label>`).join('')}</div></fieldset><p class="err" id="nv-err" role="alert"></p><div style="display:flex;justify-content:flex-end"><button class="btn dk" type="submit">Create + open builder →</button></div></form>`, mm => {
     setTimeout(() => mm.querySelector('#nv-n').focus(), 0);
     mm.querySelector('#nvf').onsubmit = async e => { e.preventDefault(); const n = mm.querySelector('#nv-n').value.trim(); if (!n) { mm.querySelector('#nv-err').textContent = 'Add a name.'; return; }
-      try { const t = mm.querySelector('[name=nvt]:checked').value, { vendor } = await api('adminNewVendor', { name: n, type: t }); vendor.cats = [...ti(t).cats]; AD.vendors.unshift(vendor); VD = clone(vendor); VTAB = 'basics'; mm.remove(); go('admin/page/' + vendor.id); } catch (x) { mm.querySelector('#nv-err').textContent = x.message; } }; }, () => {}); };
+      try { const t = mm.querySelector('[name=nvt]:checked').value, { vendor } = await api('adminNewVendor', { name: n, type: t }); vendor.cats = [...ti(t).cats]; vendor.ownerEmail = 'admin'; AD.vendors.unshift(vendor); VD = clone(vendor); VTAB = 'basics'; mm.remove(); go('admin/page/' + vendor.id); } catch (x) { mm.querySelector('#nv-err').textContent = x.message; } }; }, () => {}); };
   ['#newv', '#newv2'].forEach(s => { const b = $(s); if (b) b.onclick = nv; });
   $$('[data-copy]').forEach(b => b.onclick = async () => { try { await navigator.clipboard.writeText(b.dataset.copy); toast('Link copied'); } catch { prompt('Copy this link', b.dataset.copy); } }); };
 V['admin/page'] = () => { const g = needAd(); if (g) return g; const v = AD.vendors.find(x => x.id === PARAM); if (!v) return page('admin', '<section class="s"><div class="wrap"><a class="u" href="#/admin/vendors">← Vendor pages</a><p>Page not found.</p></div></section>');
-  if (!VD || VD.id !== v.id) { VD = clone(v); saveState = ''; } if (!(VD.cats || []).length) VD.cats = [...ti(VD.type).cats]; return `${header('admin')}${builder('admin')}`; };
+  if (!VD || VD.id !== v.id) { VD = clone(v); saveState = ''; } if (!(VD.cats || []).length) VD.cats = [...ti(VD.type).cats]; VTAB = QS.get('tab') || 'basics'; return page('admin', builder('admin')); };
 H['admin/page'] = () => { if (bindGate()) return; bindBuilder(); };
 V['admin/crew'] = () => needAd() || page('admin', `<section class="s"><div class="wrap"><div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap"><div><p class="caps m" style="margin:0">Crew</p><h1 class="d2" style="margin-top:14px">Your people.</h1></div><button class="btn ln sm" type="button" data-copy="${location.origin}${location.pathname}#/join/staff">Copy crew sign-up link</button></div>
   <div class="card" style="margin-top:32px;overflow:hidden"><div class="scroll"><table class="tbl" style="min-width:760px"><thead><tr><th style="padding:18px 10px 12px 24px">Name</th><th>Roles</th><th>Experience</th><th>Available</th><th>Certifications</th><th>Onboarding</th></tr></thead><tbody>${AD.staff.map(s => `<tr><td style="padding-left:24px"><b style="font-weight:600">${esc(s.name || '—')}</b><div class="m sml">${esc(s.email)}${s.phone ? ' · ' + esc(s.phone) : ''}</div></td><td>${esc((s.roles || []).join(', ') || '—')}</td><td>${esc(s.years || '—')}</td><td>${esc((s.avail || []).join(', ') || '—')}</td><td>${esc((s.certs || []).join(', ') || '—')}</td><td><span class="pill ${s.done ? 'g' : ''}">${s.done ? 'Complete' : 'In progress'}</span></td></tr>`).join('') || '<tr><td class="m" style="padding:24px" colspan="6">No crew yet. Share the sign-up link.</td></tr>'}</tbody></table></div></div></div></section>`);
