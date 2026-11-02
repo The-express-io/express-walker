@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#0f1412;--muted:#5a5f5c;--line:#e6e6e6;--soft:#f4f4f4;--blue:#0047ab;--blue2:#00337d;--sky:#4f7dff;--ok:#1d7a46;--warn:#9a5b00}
 *{box-sizing:border-box}html,body{margin:0}
@@ -170,36 +170,77 @@ fieldset.fs{border:0;margin:0;padding:0;display:grid;gap:10px}fieldset.fs legend
 .catbox input:checked+span{background:#fff;color:#1e1e1e;box-shadow:inset 0 0 0 1px #1e1e1e}.catbox input:focus-visible+span{outline:2px solid var(--blue)}
 .pfx{display:flex;background:#f3f3f5;border-radius:8px;overflow:hidden}.pfx b{display:flex;align-items:center;padding:0 12px;background:#e6e6e8;color:#6b6b6b;font-weight:500}.pfx .in{border-radius:0}
 
-/* Vendor page (public page + builder preview), Figma style */
+/* Vendor page (public page + builder preview): Lead Planner reference design + dd.nyc / memory2 flair */
 .vpw{container-type:inline-size}
-.vp{font-family:Montserrat,system-ui,sans-serif;background:#f7f7f7;color:#1e1e1e}
+.vp{font-family:Montserrat,system-ui,sans-serif;background:#fff;color:#1e1e1e;overflow:hidden}
 .bdg{display:inline-block;padding:5px 12px;border-radius:999px;font:600 12px Montserrat,system-ui,sans-serif}
-.vp .vh{background:#1e1e1e;color:#fff;padding:56px 48px}
-.vp .vhi{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
-.vp h1{font:700 clamp(34px,4.6cqw,52px)/1.08 Montserrat,system-ui,sans-serif;letter-spacing:-.02em;margin:16px 0 0}
-.vp .mt{color:rgba(255,255,255,.6);font-size:14.5px;margin:10px 0 0}
-.vp .tg{font-size:17px;line-height:1.6;color:rgba(255,255,255,.85);margin:20px 0 0;max-width:520px}
-.vp .ca{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
-.vb1,.vb2{height:46px;padding:0 22px;border-radius:6px;font:600 14.5px Montserrat,system-ui,sans-serif;display:inline-flex;align-items:center;text-decoration:none;cursor:pointer}
-.vb1{background:#fff;color:#1e1e1e;border:0}.vb2{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
-.vp .cvr{aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#2c2c2c;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);font-size:14px}
-.vp .cvr img{width:100%;height:100%;object-fit:cover}
-.vp .vbd{max-width:1120px;margin:0 auto;padding:36px 48px 64px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start}
-.vp .vc{background:#fff;border:1px solid #e6e6e6;border-radius:10px;padding:26px}
-.vp h2{font:600 20px Montserrat,system-ui,sans-serif;letter-spacing:-.01em}
-.vp .ab{font-size:15.5px;line-height:1.7;color:#444;margin:12px 0 0}
-.vp .vm{display:grid;grid-template-columns:170px minmax(0,1fr);border:1px solid #e6e6e6;border-radius:10px;background:#fff;overflow:hidden}
-.vp .vm .pcards{grid-template-columns:1fr}
-.vp .vsd{position:sticky;top:20px}
-.vp .lbl{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6b6b6b;margin:20px 0 0}
-.vp .chs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.vp .chs span{padding:7px 13px;border-radius:999px;border:1px solid #dcdcdc;font-size:13px;font-weight:500}
-.vbk{width:100%;height:46px;border-radius:6px;background:#1e1e1e;color:#fff;font:600 14.5px Montserrat,system-ui,sans-serif;display:flex;align-items:center;justify-content:center;text-decoration:none;margin-top:22px}
-.vp .gg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.vp .gg img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block}
+.vp .sf{font-family:'Instrument Serif','Playfair Display',Georgia,serif;font-weight:400}
+.op{display:inline-flex;align-items:center;justify-content:center;gap:12px;height:44px;padding:0 26px;border-radius:999px;border:1px solid #1e1e1e;background:transparent;color:#1e1e1e;font:500 11.5px Montserrat,system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;white-space:nowrap;transition:background .25s,color .25s}
+.op:hover{background:#1e1e1e;color:#fff}.op img{width:26px;height:auto;transition:filter .25s}.op:hover img{filter:invert(1)}
+.op.k{background:#1e1e1e;color:#fff}.op.k:hover{background:#000}.op.w{border-color:rgba(255,255,255,.85);color:#fff}.op.w:hover{background:#fff;color:#1e1e1e}
+.vp .vh{position:relative;min-height:clamp(460px,46cqw,640px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;background:#1e1e1e;padding:90px 24px 70px}
+.vp .vh>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);animation:vpz 14s ease-out forwards}
+@keyframes vpz{to{transform:scale(1)}}
+.vp .vh::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.48)}
+.vp .vh>*:not(img){position:relative;z-index:1}
+.vp .pl{position:absolute!important;top:24px;left:50%;transform:translateX(-50%);background:#fff;color:#1e1e1e;border-radius:999px;padding:11px 26px;font:500 12px Montserrat,system-ui,sans-serif}
+.vp .tt{display:flex;align-items:center;justify-content:center;gap:clamp(18px,5cqw,90px)}
+.vp .tt img{width:clamp(44px,6cqw,84px);height:auto}
+.vp h1{font:400 clamp(48px,7.4cqw,104px)/.95 'Instrument Serif','Playfair Display',Georgia,serif;letter-spacing:-.01em;margin:0}
+.vp .loc{font:400 clamp(22px,2.6cqw,34px) 'Instrument Serif','Playfair Display',Georgia,serif;font-variant:small-caps;letter-spacing:.06em;margin:16px 0 0}
+.vp .vi{max-width:1100px;margin:0 auto;padding:28px 40px 88px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:72px}
+.vp .ty{display:flex;flex-direction:column;align-items:flex-start;gap:6px;font-size:15px;color:#444}.vp .ty img{width:64px;height:64px}
+.vp h2{font:400 clamp(34px,3.6cqw,46px)/1 'Instrument Serif','Playfair Display',Georgia,serif;letter-spacing:-.01em;margin:0}
+.vp .tg{font:italic 400 22px/1.35 'Instrument Serif','Playfair Display',Georgia,serif;color:#444;margin:14px 0 0}
+.vp .ab{font-size:14.5px;line-height:1.75;color:#3a3a3a;margin:16px 0 0;max-width:470px}
+.vp .bts{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.vp .rt{display:flex;flex-direction:column;align-items:flex-end;gap:44px}
+.vp .any{width:100%;text-align:center}
+.vp .rule{display:flex;align-items:center;gap:16px;font-size:14px;color:#444}.vp .rule::before,.vp .rule::after{content:"";flex:1;height:1px;background:#bdbdbd}
+.vp .ics{display:flex;justify-content:center;gap:clamp(28px,6cqw,80px);margin-top:26px}.vp .ics div{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12.5px;color:#666;width:80px;text-align:center}.vp .ics img{width:40px;height:40px}
+.vp .hs{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:center;font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#7a7a7a;max-width:420px}
+.vp .hw{background:#f6f6f4;padding:80px 40px 96px}
+.vp .hw h2{text-align:center}
+.vp .snk{position:relative;max-width:1000px;margin:40px auto 0;aspect-ratio:1000/480}
+.vp .snk svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.vp .st{position:absolute;width:min(255px,27%);transform:translateY(-100%);padding-bottom:22px;display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;align-items:start}
+.vp .st i{font:600 10px/24px Montserrat,system-ui,sans-serif;font-style:normal;width:22px;height:22px;border-radius:4px;background:#1e1e1e;color:#fff;text-align:center;margin-top:2px}
+.vp .st b{display:block;font-size:15px;font-weight:500}.vp .st span{display:block;font-size:12.5px;line-height:1.55;color:#4a4a4a;margin-top:4px}
+.vp .snk .car{position:absolute;width:clamp(56px,8cqw,84px);transform:translateY(-100%)}
+.vp .stl{display:none}
+.vp .of{padding:96px 0 88px}
+.vp .ofh{text-align:center;padding:0 24px}.vp .ofh h2{font-size:clamp(40px,4.4cqw,56px)}.vp .ofh p{margin:10px 0 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7a7a7a}
+.vp .ofbar{max-width:1240px;margin:34px auto 18px;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.vp .vt{display:flex;gap:6px;flex-wrap:wrap}.vp .vt button{border:1px solid #d6d6d6;background:#fff;border-radius:999px;padding:8px 16px;font:600 12px Montserrat,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:#1e1e1e}.vp .vt button.on{background:#1e1e1e;color:#fff;border-color:#1e1e1e}
+.vp .cnt2{display:flex;align-items:center;gap:14px;font:500 13px Montserrat,system-ui,sans-serif;letter-spacing:.08em}.vp .cnt2 output{min-width:64px;text-align:center}
+.vp .arr{width:44px;height:44px;border-radius:50%;border:1px solid #1e1e1e;background:#fff;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}.vp .arr:hover{background:#1e1e1e;color:#fff}
+.vp .ofr{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 max(24px,calc((100cqw - 1240px)/2 + 24px)) 6px;scrollbar-width:none}.vp .ofr::-webkit-scrollbar{display:none}
+.vp .oc{flex:0 0 clamp(250px,30cqw,380px);aspect-ratio:290/372;position:relative;overflow:hidden;scroll-snap-align:start;cursor:pointer;background:linear-gradient(160deg,#3a3a3a,#141414);border:0;padding:0;color:#fff;text-align:center}
+.vp .oc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.vp .oc::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.38);transition:background .4s}
+.vp .oc:hover img{transform:scale(1.06)}.vp .oc:hover::after{background:rgba(0,0,0,.28)}
+.vp .oc .nm{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;padding:24px;font:400 clamp(28px,2.8cqw,36px)/1.15 'Instrument Serif','Playfair Display',Georgia,serif}
+.vp .oc .pr{position:absolute;left:0;right:0;bottom:20px;z-index:1;font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.vp .add{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:40px}
+.vp .ept{max-width:700px;margin:30px auto 0;border:1px dashed #cfcfcf;padding:30px;text-align:center;color:#8a8a8a;font-size:14px}
+.vp .gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(150px,19cqw,280px);gap:4px;grid-auto-flow:dense}.vp .gal img{width:100%;height:100%;object-fit:cover;display:block}.vp .gal img:first-child{grid-column:span 2;grid-row:span 2}
+.vp .gal.g1{grid-template-columns:1fr}.vp .gal.g1 img{grid-column:auto!important}.vp .gal.g2{grid-template-columns:1fr 1fr}.vp .gal.g2 img{grid-column:auto!important;grid-row:span 2}.vp .gal.g3{grid-template-columns:2fr 1fr}.vp .gal.g3 img:first-child{grid-column:auto}.vp .gal.g4 img:last-child{grid-column:span 2}
+.vp .cl{position:relative;overflow:hidden;text-align:center;padding:72px 24px 40px;color:#fff;background:#8f8a86}
+.vp .cl .mesh{position:absolute;inset:-30%;background:radial-gradient(40% 55% at 12% 70%,#fff200 0%,rgba(255,242,0,0) 70%),radial-gradient(45% 60% at 92% 50%,#5b45e0 0%,rgba(91,69,224,0) 70%),radial-gradient(40% 50% at 55% 20%,#b9b0a6 0%,rgba(185,176,166,0) 70%),#9a948e;filter:saturate(1.1);animation:vpm 18s ease-in-out infinite alternate}
+@keyframes vpm{0%{transform:translate(0,0) rotate(0)}50%{transform:translate(4%,-3%) rotate(6deg)}100%{transform:translate(-4%,3%) rotate(-5deg)}}
+.vp .cl .grain{position:absolute;inset:0;opacity:.22;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vp .cl>*:not(.mesh):not(.grain){position:relative;z-index:1}
+.vp .cl h2{font:400 clamp(26px,2.8cqw,36px) 'Playfair Display',Georgia,serif;letter-spacing:.08em}
+.vp .clb{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:28px}.vp .clb .op{min-width:230px}
+.vp .fu{margin-top:44px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:#1e1e1e}.vp .fu img{width:90px}
+.vp .rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}.vp .rv.vin{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vp .rv{opacity:1;transform:none}.vp .cl .mesh,.vp .vh>img.bg{animation:none}}
 @container (max-width:760px){
- .vp .vh{padding:28px 18px 32px}.vp .vhi{grid-template-columns:1fr;gap:22px}.vp .cvr{order:-1}
- .vp .vbd{grid-template-columns:1fr;padding:18px 14px 40px;gap:16px}.vp .vsd{position:static;order:-1}.vp .vc{padding:20px}
- .vp .vm{grid-template-columns:1fr}.vp .vm .fsub{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid #ececec;padding:10px}.vp .vm .fsub .t{display:none}
- .vp .pc{grid-template-columns:92px minmax(0,1fr);gap:14px;padding:14px}.vp .pcards{padding:12px}.vp .gg{grid-template-columns:repeat(2,1fr)}
+ .vp .vh{min-height:440px;padding:84px 18px 56px}.vp .tt{gap:12px}.vp .tt img{width:38px}
+ .vp .vi{grid-template-columns:1fr;gap:44px;padding:24px 20px 64px}.vp .rt{align-items:stretch}.vp .rt>.op{align-self:flex-start}.vp .hs{justify-content:flex-start}
+ .vp .hw{padding:64px 20px 72px}.vp .snk{display:none}.vp .stl{display:grid;gap:26px;margin:32px 0 0;padding:0 0 0 22px;border-left:1px solid #1e1e1e;list-style:none}
+ .vp .stl li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px}.vp .stl i{font:600 10px/22px Montserrat;font-style:normal;width:22px;height:22px;border-radius:4px;background:#1e1e1e;color:#fff;text-align:center}.vp .stl b{font-weight:500}.vp .stl span{display:block;font-size:13px;color:#4a4a4a;margin-top:4px;line-height:1.55}
+ .vp .of{padding:64px 0}.vp .oc{flex-basis:76cqw}.vp .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}.vp .gal.g4 img:last-child{grid-column:auto}
 }
 
 /* Field Guide catalogue (Figma directory) */
@@ -237,15 +278,15 @@ const CAL = 'https://calendly.com/theexpress';
 const REVIEWS = 'https://share.google/562GL0SKiDTD7gPY2';
 const TYPES = ['Restaurant', 'Event Venue', 'Farm', 'Winery', 'Bakery + Desserts', 'Coffee + Espresso', 'Bar + Drinks', 'Rentals', 'Entertainment'];
 const TI = {
-  'Restaurant': { sub: 'Offsite catering + events', cta: 'Book a catered event', sec: 'Menu', cats: ['Appetizers', 'Main Courses', 'Desserts', 'Beverages', 'Specials'], perfect: ['Corporate Events', 'Private Dinners', 'Wedding Catering', 'Team Lunches', 'Cocktail Receptions'], feat: ['Farm-to-table ingredients', 'Custom menus', 'On-site chef', 'Halal + vegan options'] },
-  'Event Venue': { sub: 'Host events + bookings', cta: 'Book the venue', sec: 'Spaces + packages', cats: ['Spaces', 'Packages', 'Add-ons'], perfect: ['Weddings', 'Corporate Events', 'Galas', 'Birthdays', 'Rehearsal Dinners'], feat: ['Outdoor space', 'In-house AV', 'On-site parking', 'Getting-ready suite'] },
-  'Farm': { sub: 'Products + wholesale', cta: 'Order from the farm', sec: 'Products', cats: ['Produce', 'Dairy + Eggs', 'Meat', 'Boxes'], perfect: ['Farm-to-table dinners', 'Weddings', 'Grazing tables', 'Corporate gifting'], feat: ['Organic', 'Seasonal boxes', 'Wholesale pricing', 'Farm tours'] },
-  'Winery': { sub: 'Wine sales + tours', cta: 'Order wine', sec: 'Wines', cats: ['Reds', 'Whites', 'Rosé + Sparkling', 'Tastings'], perfect: ['Weddings', 'Tastings', 'Private Dinners', 'Corporate gifting'], feat: ['Estate grown', 'Private tastings', 'Sommelier on site', 'Case pricing'] },
-  'Bakery + Desserts': { sub: 'Pastries, cakes + sweets', cta: 'Order for your event', sec: 'Menu', cats: ['Pastries', 'Cakes', 'Breads', 'Dessert bars'], perfect: ['Weddings', 'Birthdays', 'Office breakfasts', 'Showers'], feat: ['Custom cakes', 'Gluten-free options', 'Made from scratch', 'Dessert tables'] },
-  'Coffee + Espresso': { sub: 'Espresso bars + carts', cta: 'Book the espresso bar', sec: 'Menu', cats: ['Espresso bar', 'Drinks', 'Add-ons'], perfect: ['Conferences', 'Weddings', 'Office mornings', 'Brand activations'], feat: ['Mobile cart', 'Oat + almond milk', 'Latte art', 'Local roast'] },
-  'Bar + Drinks': { sub: 'Bars, cocktails + service', cta: 'Book the bar', sec: 'Menu', cats: ['Cocktails', 'Beer + Wine', 'Packages'], perfect: ['Weddings', 'Cocktail Receptions', 'Corporate Events', 'Birthdays'], feat: ['Signature cocktails', 'Licensed bartenders', 'Mobile bar', 'Zero-proof menu'] },
-  'Rentals': { sub: 'Furniture, tableware + decor', cta: 'Add to my event', sec: 'Inventory', cats: ['Furniture', 'Tableware', 'Decor', 'Tents'], perfect: ['Weddings', 'Galas', 'Backyard parties', 'Corporate Events'], feat: ['Delivery + setup', 'Linen service', 'Vintage pieces', 'Lighting'] },
-  'Entertainment': { sub: 'Music, photo + more', cta: 'Book them', sec: 'Packages', cats: ['Packages', 'Add-ons'], perfect: ['Weddings', 'Birthdays', 'Corporate Events', 'Galas'], feat: ['Live music', 'DJ + MC', 'Photo booth', 'Sound system'] }
+  'Restaurant': { hd: 'Our Catering Services', icon: 'dinner', plural: 'Restaurants', sub: 'Offsite catering + events', cta: 'Book a catered event', sec: 'Menu', cats: ['Appetizers', 'Main Courses', 'Desserts', 'Beverages', 'Specials'], perfect: ['Corporate Events', 'Private Dinners', 'Wedding Catering', 'Team Lunches', 'Cocktail Receptions'], feat: ['Farm-to-table ingredients', 'Custom menus', 'On-site chef', 'Halal + vegan options'] },
+  'Event Venue': { hd: 'Our Spaces', icon: 'venue', plural: 'Event Venues', sub: 'Host events + bookings', cta: 'Book the venue', sec: 'Spaces + packages', cats: ['Spaces', 'Packages', 'Add-ons'], perfect: ['Weddings', 'Corporate Events', 'Galas', 'Birthdays', 'Rehearsal Dinners'], feat: ['Outdoor space', 'In-house AV', 'On-site parking', 'Getting-ready suite'] },
+  'Farm': { hd: 'From Our Farm', icon: 'fern', plural: 'Farms', sub: 'Products + wholesale', cta: 'Order from the farm', sec: 'Products', cats: ['Produce', 'Dairy + Eggs', 'Meat', 'Boxes'], perfect: ['Farm-to-table dinners', 'Weddings', 'Grazing tables', 'Corporate gifting'], feat: ['Organic', 'Seasonal boxes', 'Wholesale pricing', 'Farm tours'] },
+  'Winery': { hd: 'Our Wines', icon: 'fern', plural: 'Wineries', sub: 'Wine sales + tours', cta: 'Order wine', sec: 'Wines', cats: ['Reds', 'Whites', 'Rosé + Sparkling', 'Tastings'], perfect: ['Weddings', 'Tastings', 'Private Dinners', 'Corporate gifting'], feat: ['Estate grown', 'Private tastings', 'Sommelier on site', 'Case pricing'] },
+  'Bakery + Desserts': { hd: 'Our Bakes', icon: 'venue', plural: 'Bakeries', sub: 'Pastries, cakes + sweets', cta: 'Order for your event', sec: 'Menu', cats: ['Pastries', 'Cakes', 'Breads', 'Dessert bars'], perfect: ['Weddings', 'Birthdays', 'Office breakfasts', 'Showers'], feat: ['Custom cakes', 'Gluten-free options', 'Made from scratch', 'Dessert tables'] },
+  'Coffee + Espresso': { hd: 'Our Coffee Service', icon: 'venue', plural: 'Coffee + Espresso', sub: 'Espresso bars + carts', cta: 'Book the espresso bar', sec: 'Menu', cats: ['Espresso bar', 'Drinks', 'Add-ons'], perfect: ['Conferences', 'Weddings', 'Office mornings', 'Brand activations'], feat: ['Mobile cart', 'Oat + almond milk', 'Latte art', 'Local roast'] },
+  'Bar + Drinks': { hd: 'Our Bar Service', icon: 'dinner', plural: 'Bars', sub: 'Bars, cocktails + service', cta: 'Book the bar', sec: 'Menu', cats: ['Cocktails', 'Beer + Wine', 'Packages'], perfect: ['Weddings', 'Cocktail Receptions', 'Corporate Events', 'Birthdays'], feat: ['Signature cocktails', 'Licensed bartenders', 'Mobile bar', 'Zero-proof menu'] },
+  'Rentals': { hd: 'Our Rentals', icon: 'house', plural: 'Rentals', sub: 'Furniture, tableware + decor', cta: 'Add to my event', sec: 'Inventory', cats: ['Furniture', 'Tableware', 'Decor', 'Tents'], perfect: ['Weddings', 'Galas', 'Backyard parties', 'Corporate Events'], feat: ['Delivery + setup', 'Linen service', 'Vintage pieces', 'Lighting'] },
+  'Entertainment': { hd: 'Our Entertainment', icon: 'venue', plural: 'Entertainment', sub: 'Music, photo + more', cta: 'Book them', sec: 'Packages', cats: ['Packages', 'Add-ons'], perfect: ['Weddings', 'Birthdays', 'Corporate Events', 'Galas'], feat: ['Live music', 'DJ + MC', 'Photo booth', 'Sound system'] }
 };
 const ti = t => TI[t] || TI.Restaurant;
 const ACC = { charcoal: '#2a2c2f', cobalt: '#0047ab', wine: '#7d1a2a', ink: '#0f1412' };
@@ -333,34 +374,50 @@ const metaOf = v => [MODEL[v.mode] || MODEL.offsite, v.area].filter(Boolean).joi
 const sv = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 const ICON = { edit: sv('<path d="M14.5 5.5l4 4M4 20l1-5L15.5 4.5a2.1 2.1 0 013 3L8 18l-4 2z"/>'), trash: sv('<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/>'), up: sv('<path d="M12 15V4M7 9l5-5 5 5M5 15v5h14v-5"/>'), plus: sv('<path d="M12 5v14M5 12h14"/>') };
 const pcard = (i, k, edit) => `<div class="pc" data-icat="${esc(i.cat)}"><div class="im">${i.img ? `<img src="${esc(i.img)}" alt="" loading="lazy">` : ''}</div><div style="min-width:0;display:flex;flex-direction:column"><h3>${esc(i.n)}</h3>${i.d ? `<p>${esc(i.d)}</p>` : ''}<div class="ft"><span class="price">${money(i.p)}${i.u ? `<small>${esc(i.u)}</small>` : ''}</span>${edit ? `<span style="display:flex;gap:4px"><button class="ic" type="button" data-edit="${k}" aria-label="Edit ${esc(i.n)}">${ICON.edit}</button><button class="ic" type="button" data-del="${k}" aria-label="Delete ${esc(i.n)}">${ICON.trash}</button></span>` : ''}</div></div></div>`;
+const STEPS = [['Choose a service type', 'High-level catering delivery, a private dinner party, a full-service event, a family meal or office services.', 330, 150], ['Event details + RSVPs', 'Next, share the details and invite your guests.', 630, 150], ['Staff selection', 'We give you the best staff options for what you need, then you pick your favorites.', 590, 300], ['Materials delivered', 'Furniture, cutlery, linens, tables and more.', 220, 300], ['Local farm upgrades', 'Upgrade any agreed menu item with ingredients from local farms.', 370, 450]];
+const SHORTMODE = { onsite: 'Onsite', offsite: 'Offsite', both: 'Onsite + Offsite' };
 function vendorPage(v, pv) {
-  const T = ti(v.type), S = v.sections || {}, items = v.items || [], cta = pv ? '#' : `#/start?v=${v.id}`;
-  const cats = (v.cats || []).filter(c => items.some(i => i.cat === c)), pf = v.perfectFor || [], ft = v.features || [];
-  return `<article class="vp">
- <section class="vh"><div class="vhi"><div>${badge(v.type)}<h1>${esc(v.name || 'Your page name')}</h1><p class="mt">${esc(metaOf(v))}</p>${v.tagline ? `<p class="tg">${esc(v.tagline)}</p>` : pv ? '<p class="tg" style="opacity:.45">Your tagline shows here.</p>' : ''}
-  <div class="ca"><a class="vb1" href="${cta}">${esc(T.cta)}</a>${S.menu !== false && items.length ? `<button class="vb2" type="button" data-vscroll>View ${esc(T.sec.toLowerCase())}</button>` : ''}</div></div>
-  <div class="cvr">${v.cover ? `<img src="${esc(v.cover)}" alt="">` : 'photo'}</div></div></section>
- <div class="vbd"><div style="display:grid;gap:20px;min-width:0">
-  ${S.about !== false && (v.about || pv) ? `<div class="vc"><h2>About</h2><p class="ab">${v.about ? esc(v.about).replace(/\n/g, '<br>') : '<span style="opacity:.45">Tell clients your story in Business info.</span>'}</p></div>` : ''}
-  ${S.menu !== false && (items.length || pv) ? `<div data-vmenu style="scroll-margin-top:20px"><div style="display:flex;justify-content:space-between;align-items:end;margin:4px 2px 12px"><h2>${esc(T.sec)}</h2><span style="font-size:13.5px;color:#6b6b6b">${items.length} item${items.length === 1 ? '' : 's'}</span></div>
-   ${items.length ? `<div class="vm">${cats.length ? `<div class="fsub"><span class="t">Categories</span>${['All', ...cats].map((c, i) => `<button type="button" data-vcat="${esc(c)}" class="${i ? '' : 'on'}">${esc(c)}</button>`).join('')}</div>` : ''}<div class="pcards" style="${cats.length ? '' : 'grid-column:1/-1'}">${items.map((i, k) => pcard(i, k, false)).join('')}</div></div>` : '<div class="vc" style="text-align:center;color:#6b6b6b">Your items show up here.</div>'}</div>` : ''}
-  ${S.gallery !== false && (v.gallery || []).length ? `<div class="vc"><h2>Gallery</h2><div class="gg">${v.gallery.map(g => `<img src="${esc(g)}" alt="" loading="lazy">`).join('')}</div></div>` : ''}
- </div>
- <aside class="vsd"><div class="vc"><h2 style="font-size:18px">${esc(T.cta)}</h2><p style="margin:6px 0 0;font-size:14px;color:#6b6b6b">${esc(metaOf(v))}</p>
-  ${S.highlights !== false && (pf.length || pv) ? `<p class="lbl">Perfect for</p><div class="chs">${pf.map(x => `<span>${esc(x)}</span>`).join('') || '<span style="opacity:.45">Pick in Highlights</span>'}</div>` : ''}
-  ${S.highlights !== false && ft.length ? `<p class="lbl">Unique features</p><div class="chs">${ft.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : ''}
-  <a class="vbk" href="${cta}">${esc(T.cta)}</a><p style="margin:12px 0 0;font-size:12.5px;color:#6b6b6b;text-align:center">Staffed and run by Cülinary Expréss</p></div></aside></div>
+  const T = ti(v.type), S = v.sections || {}, items = v.items || [], name = v.name || 'Your page name', go2 = t => pv ? '#' : `#/start?v=${v.id}${t ? '&t=' + t : ''}`, rv = pv ? '' : ' rv';
+  const cats = (v.cats || []).filter(c => items.some(i => i.cat === c)), tags = S.highlights !== false ? [...(v.perfectFor || []), ...(v.features || [])] : [];
+  const food = ['Restaurant', 'Bakery + Desserts', 'Bar + Drinks', 'Coffee + Espresso'].includes(v.type), car = '<img src="/assets/carBtn.png" alt="">';
+  const offers = [...items].sort((a, b) => !!b.img - !!a.img);
+  return `<article class="vp" data-vid="${esc(v.id || '')}">
+ <header class="vh">${v.cover ? `<img class="bg" src="${esc(v.cover)}" alt="">` : ''}<span class="pl">${esc(SHORTMODE[v.mode] || 'Offsite')}</span>
+  <div class="tt"><img src="/assets/branchLeft.png" alt=""><h1>${esc(name)}</h1><img src="/assets/branchRight.png" alt=""></div>${v.area ? `<p class="loc">${esc(v.area)}</p>` : `<p class="loc">${esc(v.type)}</p>`}</header>
+ <section class="vi${rv}"><div><div class="ty"><img src="/assets/${T.icon || 'venue'}.png" alt="">${esc(T.plural || v.type)}</div><h2 style="margin-top:10px">${esc(T.hd || 'About us')}</h2>${v.tagline ? `<p class="tg">${esc(v.tagline)}</p>` : ''}
+   ${S.about !== false ? `<p class="ab">${v.about ? esc(v.about).replace(/\n/g, '<br>') : pv ? '<span style="color:#b5b5b5">Tell clients your story in Business info.</span>' : ''}</p>` : ''}
+   <div class="bts">${food ? `<a class="op" href="${go2('delivery')}">${car} Order catering delivery</a><a class="op" href="${go2('event')}">${car} Order catered event</a>` : `<a class="op" href="${go2('event')}">${car} ${esc(T.cta)}</a>`}</div></div>
+  <div class="rt"><a class="op" href="${pv ? '#' : `mailto:plan@culinary.express?subject=${encodeURIComponent(name)}`}">Contact info</a>
+   <div class="any">${v.mode === 'onsite' ? `<div class="rule">At ${esc(name)}</div><div class="ics"><div><img src="/assets/venue.png" alt="">${esc(v.area || 'Their place')}</div></div>` : `<div class="rule">Anywhere you like</div><div class="ics"><div><img src="/assets/office.png" alt="">Offices</div><div><img src="/assets/venue.png" alt="">Private venues</div><div><img src="/assets/house.png" alt="">Private residences</div></div>`}</div>
+   ${tags.length ? `<div class="hs">${tags.map(x => `<span>#${esc(x)}</span>`).join('')}</div>` : ''}</div></section>
+ <section class="hw"><h2 class="${rv.trim()}">How it works</h2>
+  <div class="snk${rv}"><svg viewBox="0 0 1000 480" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 H960 Q980 150 980 170 V280 Q980 300 960 300 H40 Q20 300 20 320 V430 Q20 450 40 450 H1000" fill="none" stroke="#1e1e1e" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>
+   ${STEPS.map(([t, d, x, y], i) => `<span style="position:absolute;left:${x / 10}%;top:${y / 4.8}%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:1.5px solid #1e1e1e;background:#fff"></span><div class="st" style="left:calc(${x / 10}% - 34px);top:${y / 4.8}%"><i>${i + 1}</i><div><b>${t}</b><span>${d}</span></div></div>`).join('')}
+   <img class="car" src="/assets/carBlack.png" alt="" style="left:1%;top:${150 / 4.8}%"><img class="car" src="/assets/carBlack.png" alt="" style="right:2%;top:${450 / 4.8}%"></div>
+  <ol class="stl">${STEPS.map(([t, d], i) => `<li><i>${i + 1}</i><div><b>${t}</b><span>${d}</span></div></li>`).join('')}</ol></section>
+ ${S.menu !== false && (items.length || pv) ? `<section class="of"><div class="ofh${rv}"><h2>Offerings</h2><p>Order straight from ${esc(name)}</p></div>
+  ${items.length ? `<div class="ofbar">${cats.length > 1 ? `<div class="vt" role="tablist">${['All', ...cats].map((c, i) => `<button type="button" data-vcat="${esc(c)}" class="${i ? '' : 'on'}">${esc(c)}</button>`).join('')}</div>` : '<span></span>'}<div class="cnt2"><button class="arr" type="button" data-car="-1" aria-label="Previous">←</button><output>01 / ${String(offers.length).padStart(2, '0')}</output><button class="arr" type="button" data-car="1" aria-label="Next">→</button></div></div>
+   <div class="ofr">${offers.map(i => `<button class="oc" type="button" data-icat="${esc(i.cat)}" data-vorder>${i.img ? `<img src="${esc(i.img)}" alt="" loading="lazy">` : ''}<span class="nm">${esc(i.n)}</span><span class="pr">${money(i.p)}${i.u ? ' · ' + esc(i.u) : ''}</span></button>`).join('')}</div>
+   <div class="add"><span aria-hidden="true">+</span><button class="op" type="button" data-vorder>Add to cart</button></div>` : `<div class="ept">Your items show up here. Add them under ${esc(T.sec)}.</div>`}</section>` : ''}
+ ${S.gallery !== false && (v.gallery || []).length ? `<section class="${rv.trim()}"><div class="gal g${Math.min(v.gallery.length, 5)}">${v.gallery.slice(0, 9).map(g => `<img src="${esc(g)}" alt="" loading="lazy">`).join('')}</div></section>` : ''}
+ <section class="cl"><div class="mesh"></div><div class="grain"></div><h2>Make your day unforgettable with us</h2><div class="clb"><a class="op w" href="${go2('')}">Send an inquiry</a><a class="op k" href="${pv ? '#' : CAL}" ${pv ? '' : 'target="_blank" rel="noopener"'}>Book a call</a></div><div class="fu"><img src="/assets/carBlack.png" alt="">Fueled by Cülinary Expréss</div></section>
 </article>`;
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-vcat]');
-  if (b) { const root = b.closest('.vp'), c = b.dataset.vcat; root.querySelectorAll('[data-vcat]').forEach(x => x.classList.toggle('on', x === b)); root.querySelectorAll('[data-icat]').forEach(x => x.hidden = c !== 'All' && x.dataset.icat !== c); return; }
-  const s = e.target.closest('[data-vscroll]'); if (s) { const m = s.closest('.vp').querySelector('[data-vmenu]'); m && m.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  if (b) { const root = b.closest('.vp'), c = b.dataset.vcat; root.querySelectorAll('[data-vcat]').forEach(x => x.classList.toggle('on', x === b)); root.querySelectorAll('.oc[data-icat]').forEach(x => x.hidden = c !== 'All' && x.dataset.icat !== c); const tr = root.querySelector('.ofr'); if (tr) { tr.scrollLeft = 0; carCount(tr); } return; }
+  const a = e.target.closest('[data-car]'); if (a) { const tr = a.closest('.vp').querySelector('.ofr'), c = tr && tr.querySelector('.oc:not([hidden])'); if (c) tr.scrollBy({ left: +a.dataset.car * (c.offsetWidth + 24), behavior: 'smooth' }); return; }
+  const o = e.target.closest('[data-vorder]'); if (o && !o.closest('.pvf') && PUB && !PUB.err) orderModal(PUB.id, [PUB]);
 });
 let PUB = null;
+function carCount(tr) { const cs = [...tr.querySelectorAll('.oc:not([hidden])')], out = tr.closest('.vp').querySelector('.cnt2 output'); if (!out || !cs.length) return; const w = cs[0].offsetWidth + 24, i = Math.min(cs.length, Math.round(tr.scrollLeft / w) + 1); out.textContent = `${String(i).padStart(2, '0')} / ${String(cs.length).padStart(2, '0')}`; }
+document.addEventListener('scroll', e => { if (e.target.classList && e.target.classList.contains('ofr')) carCount(e.target); }, true);
+const revealIO = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('vin'); revealIO.unobserve(x.target); } }), { threshold: .12 }) : null;
+const reveal = () => $$('.vp .rv:not(.vin)').forEach(el => revealIO ? revealIO.observe(el) : el.classList.add('vin'));
 V['v'] = () => { if (!PUB || PUB.id !== PARAM) { api('vendor', { id: PARAM }).then(j => { PUB = j.vendor; render(); }).catch(e => { PUB = { id: PARAM, err: e.message }; render(); }); return loading('client'); }
   if (PUB.err) return page('client', `<section class="s"><div class="narrow"><h1 class="d2">${esc(PUB.err)}.</h1><p class="lead">Check the link, or start an inquiry and tell us who you’re looking for.</p><a class="btn dk" href="#/start" style="margin-top:22px">Start your inquiry</a></div></section>`);
   return page('client', `${PUB.status !== 'live' ? '<div class="notice" style="border-radius:0;text-align:center">Draft preview · only you can see this until it’s published.</div>' : ''}<div class="vpw">${vendorPage(PUB)}</div>`); };
+H['v'] = () => { reveal(); const tr = $('.vp .ofr'); if (tr) carCount(tr); };
 
 // ---------- Builder pieces (used by the page builder and vendor onboarding) ----------
 const sel = (a, x) => (a || []).includes(x);
@@ -558,6 +615,7 @@ V['crew'] = () => { if (!needCrew()) return loading('crew');
 const gemRow = (g, i) => `<div class="card" style="padding:18px;display:grid;gap:12px;background:#fafafa" data-i="${i}"><div class="g3"><label class="f">Vendor name<input class="in" data-k="name" value="${esc(g.name)}" placeholder="e.g. your favorite taquería"></label><label class="f">Type<select class="in" data-k="type">${TYPES.map(t => `<option ${g.type === t ? 'selected' : ''}>${t}</option>`).join('')}</select></label><label class="f">Website or Instagram<input class="in" data-k="link" value="${esc(g.link)}" placeholder="@handle"></label></div><div style="display:flex;gap:12px;align-items:end"><label class="f" style="flex:1">What do you love from them? (optional)<input class="in" data-k="love" value="${esc(g.love)}"></label><button class="u sml" type="button" data-delg="${i}" style="height:50px">Remove</button></div></div>`;
 V['start'] = () => { if (isVendor()) { setTimeout(() => go('vendor'), 0); return ''; } const q = D.inq;
   const pv = QS.get('v'); if (pv && /^v-[a-f0-9]{8}$/.test(pv) && !D.picks.includes(pv)) { D.picks.push(pv); store.set('ce-draft', D); }
+  if (QS.get('t') === 'delivery') D.inq.type = 'Catering delivery'; else if (QS.get('t') === 'event') D.inq.type = 'Full event';
   const picks = D.picks.map(id => vById(id)).filter(Boolean);
   return page('client', `<section style="padding:64px 0 40px"><div class="narrow"><p class="caps m" style="margin:0">Start your inquiry</p><h1 class="d2" style="margin-top:14px">Tell us about<br>your moment.</h1><p class="lead">Takes about two minutes. Then book a discovery call with your Lead Planner.</p></div></section>
 <form id="f" class="narrow" novalidate>
